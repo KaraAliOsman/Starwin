@@ -240,6 +240,8 @@
 
     /* Ajustes responsive Navbar (MODIFICADO para Dropdown Móvil) */
     @media (max-width: 991.98px) {
+        .navbar-brand img { max-height: 28px; width: auto; vertical-align: middle; margin-bottom: 4px; }
+
       .navbar-collapse { margin-top: 1rem; border-top: 1px solid var(--brand-extralightgray); padding-top: 1rem; background-color: var(--brand-navbar-bg); max-height: 75vh; overflow-y: auto; }
       .navbar .navbar-nav { align-items: stretch; }
       .navbar .nav-item { margin-bottom: 0.5rem; width: 100%; }
@@ -272,13 +274,7 @@
       .navbar .dropdown-item { padding: 0.65rem 1rem; text-align: center; }
       .navbar .btn-cta { width: 100%; text-align: center; margin-top: 1rem; padding: 0.85rem 1.5rem; }
       /* Remove desktop hover effect on mobile */
-      .navbar .nav-item.dropdown:hover > .dropdown-menu {
-          /* display: none; NO NEED, BS handles this*/
-      }
-      /* Bootstrap's .show class will handle visibility */
-      .navbar .nav-item.dropdown .dropdown-menu.show {
-          /* display: block; NO NEED, BS handles this*/
-      }
+      
     }
 
 
@@ -389,9 +385,7 @@
     @media (max-width: 991.98px) {
         /* MODIFICADO: Ya NO ocultamos las flechas de .color-carousel aquí */
         /* .color-carousel .slick-prev, .color-carousel .slick-next, */
-        .testimonial-carousel .slick-prev, .testimonial-carousel .slick-next {
-             /* display: none !important; */ /* Mantenemos esto para testimonios si es necesario */
-        }
+        
         /* Mantener visibles las flechas de .color-carousel en tablet si es necesario */
         /* Si las flechas de color-carousel se ven mal en tablet, podríamos ocultarlas aquí: */
          /* .color-carousel .slick-prev, .color-carousel .slick-next { display: none !important; } */

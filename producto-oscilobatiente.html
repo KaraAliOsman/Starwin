@@ -175,6 +175,8 @@
 
     /* Estilos Navbar en móvil (Breakpoint lg de Bootstrap: 992px) */
     @media (max-width: 991.98px) {
+        .navbar-brand img { max-height: 28px; width: auto; vertical-align: middle; margin-bottom: 4px; }
+
       .navbar-collapse {
           margin-top: 0.8rem; border-top: 1px solid var(--brand-extralightgray, #e9ecef);
           padding-top: 0.8rem; padding-bottom: 1rem; /* Añadido padding bottom */
@@ -381,7 +383,6 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownProductos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Nuestras Ventanas
-                            <i class="fas fa-chevron-down dropdown-indicator"></i> <!-- Indicador añadido -->
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownProductos">
                             <li><a class="dropdown-item active" href="productos.html">Catálogo de Productos</a></li>

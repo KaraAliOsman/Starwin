@@ -205,15 +205,10 @@
     .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
     .navbar .btn-cta { padding: 0.65rem 1.5rem; font-size: 0.95rem; } /* Ajustado para navbar */
 
-    @media (min-width: 992px) { /* Estilos desktop navbar */
-      .navbar { padding-top: 0.8rem; padding-bottom: 0.8rem; }
-      .navbar-brand { font-size: 1.8rem; }
-      .navbar-brand img { max-height: 50px; }
-      .navbar .nav-link { padding: 0.8rem 1.1rem; font-size: 1.02rem; margin: 0 0.3rem; }
-      .navbar .dropdown-item { font-size: 0.98rem; padding: 0.55rem 1.2rem; }
-      .navbar .btn-cta { padding: 0.75rem 1.7rem; font-size: 1rem; }
-    }
+    
     @media (max-width: 991.98px) { /* Estilos mobile navbar (ya presentes y correctos) */
+        .navbar-brand img { max-height: 28px; width: auto; vertical-align: middle; margin-bottom: 4px; }
+
       .navbar-collapse { margin-top: 1rem; border-top: 1px solid var(--brand-extralightgray, #e9ecef); padding-top: 1rem; background-color: var(--brand-navbar-bg, #f8f9fa); max-height: 75vh; overflow-y: auto; }
       .navbar .navbar-nav { align-items: stretch; }
       .navbar .nav-item { margin-bottom: 0.5rem; width: 100%; }
@@ -475,7 +470,6 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownProductos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Nuestras Ventanas
-                            <i class="fas fa-chevron-down dropdown-indicator"></i> <!-- Indicador añadido -->
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownProductos">
                             <!-- Marcar "Catálogo" como activo, ya que esta es una página de producto específico -->
