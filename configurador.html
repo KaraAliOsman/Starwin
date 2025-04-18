@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título actualizado para reflejar la página -->
+    <title>Cotizador Online Ventanas uPVC (Beta) - Starwin Chile</title>
+    <!-- Añadir descripción relevante -->
+    <meta name="description" content="Configura y cotiza online tus ventanas uPVC a medida con Starwin Chile. Elige dimensiones, aperturas, colores y accesorios. Versión Beta.">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts: Inter & Poppins (requerido por navbar/footer de Starwin) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Incluir Poppins y Roboto Slab si es necesario para el configurador -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- PDF Generation Libraries (jsPDF) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+    /* --- Variables y Estilos Base Mejorados --- */
+    :root {
+        /* Variables originales del Configurador (Startech verde) - SE USARÁN PRINCIPALMENTE EN EL CONTENIDO MAIN */
+        /* --brand-primary: #027223; */ /* Verde principal - Comentado para usar el de Starwin */
+        /* --brand-secondary: #343a40; */ /* Gris oscuro más intenso - Usará el de Starwin */
+        /* --brand-accent: #f0ad4e; */ /* Naranja/Amarillo para acentos - Comentado para usar el de Starwin */
+        /* --brand-lightgray: #f8f9fa; */ /* Gris claro Bootstrap - Usará el de Starwin */
+        /* --brand-mediumgray: #e9ecef; */ /* Gris medio - Usará el de Starwin */
+        /* --brand-darkergray: #6c757d; */ /* Gris oscuro texto secundario - Usará el de Starwin */
+        /* --border-color: #dee2e6; */ /* Usará el de Starwin o derivados */
+        /* --card-bg: #ffffff; */ /* Usará el de Starwin */
+        /* --body-bg: #f1f3f5; */ /* Fondo general ligeramente más gris - Comentado para usar el de Starwin */
+        --font-primary: 'Inter', sans-serif; /* Fuente del configurador */
+        --font-headings-config: 'Roboto Slab', serif; /* Fuente títulos del configurador */
+        --canvas-max-height: 400px; /* Altura máxima visual del canvas */
+
+        /* Variables de Starwin (Turquesa/Naranja) - DOMINARÁN EL LOOK GENERAL */
+        --brand-primary: #17A2B8; /* Turquesa Principal */
+        --brand-primary-dark: #117A8B; /* Turquesa Oscuro (Hover) */
+        --brand-secondary: #6c757d; /* Gris Medio (Texto secundario, bordes) */
+        --brand-accent: #fd7e14;   /* Naranja (CTAs principales) */
+        --brand-accent-dark: #E6710F; /* Naranja Oscuro (Hover) */
+        --brand-dark: #343a40;     /* Gris Oscuro (Texto principal, fondos oscuros) */
+        --brand-lightgray: #f8f9fa; /* Gris Claro (Fondos alternos) */
+        --brand-extralightgray: #e9ecef; /* Gris Muy Claro (Bordes sutiles, fondos) */
+        --brand-white: #ffffff;
+        --brand-navbar-bg: #f8f9fa; /* Gris muy claro para navbar */
+        --text-muted: var(--brand-secondary); /* Gris medio para texto muted */
+        --border-color: #dee2e6; /* Color de borde por defecto de Bootstrap, usado en config */
+
+        /* Convertidos a RGB para Bootstrap */
+        --bs-primary-rgb: 23, 162, 184;
+        --bs-secondary-rgb: 108, 117, 125;
+        --bs-dark-rgb: 52, 58, 64;
+        --bs-link-color-rgb: var(--bs-primary-rgb);
+        --bs-link-hover-color-rgb: 17, 122, 139; /* Darker turquoise */
+
+        /* AJUSTE: Tamaños de fuente base aumentados (de Starwin) */
+        --base-font-size-lg: 17.5px; /* Ajuste */
+        --base-font-size-md: 16.5px; /* Ajuste */
+        --base-font-size-sm: 16px; /* Ajuste */
+
+        /* Padding estándar para secciones (de Starwin, usado por Footer) */
+        --section-padding-y: 5.5rem;
+        --section-padding-y-sm: 4rem;
+
+        /* Otros (de Starwin) */
+        --border-radius-base: 0.6rem;
+        --border-radius-sm: 0.4rem;
+        --box-shadow-sm: 0 0.125rem 0.35rem rgba(0, 0, 0, 0.07);
+        --box-shadow-md: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.1);
+        --box-shadow-lg: 0 1.2rem 3.5rem rgba(0, 0, 0, 0.13);
+        --transition-base: all 0.3s ease-in-out;
+        --font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        --font-family-headings: 'Poppins', var(--font-family-sans-serif); /* Fuente para Navbar/Footer */
+    }
+
+    html {
+        scroll-behavior: smooth;
+        font-size: var(--base-font-size-lg); /* Usa tamaño base Starwin */
+    }
+    @media (max-width: 1200px) { html { font-size: var(--base-font-size-md); } }
+    @media (max-width: 768px) { html { font-size: var(--base-font-size-sm); } }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background-color: var(--brand-white); /* Fondo blanco de Starwin */
+        font-family: var(--font-primary); /* Fuente base del configurador */
+        color: var(--brand-dark); /* Color texto oscuro de Starwin */
+        line-height: 1.7; /* Ajustado, intermedio */
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    main {
+        flex-grow: 1;
+        /* Padding original del main del configurador */
+        padding-top: 2.5rem;
+        padding-bottom: 3rem;
+         @media (min-width: 992px) {
+            padding-top: 3rem;
+            padding-bottom: 4rem;
+         }
+    }
+
+    /* --- Tipografía y Títulos (Configurador - Roboto Slab) --- */
+    .configurator-wrapper h1, .configurator-wrapper .h1,
+    .configurator-wrapper h2, .configurator-wrapper .h2,
+    .configurator-wrapper h3, .configurator-wrapper .h3,
+    .configurator-wrapper h4, .configurator-wrapper .h4,
+    .configurator-wrapper h5, .configurator-wrapper .h5,
+    .configurator-wrapper h6, .configurator-wrapper .h6 {
+        font-family: var(--font-headings-config); /* Fuente específica config */
+        font-weight: 700;
+        color: var(--brand-dark); /* Color oscuro Starwin */
+        line-height: 1.4;
+    }
+    /* Tamaños específicos del configurador */
+    .configurator-wrapper h1, .configurator-wrapper .h1 { font-size: calc(1.4rem + 1.8vw); margin-bottom: 0.75rem;}
+    @media (min-width: 1200px) { .configurator-wrapper h1, .configurator-wrapper .h1 { font-size: 2.8rem; } }
+    .configurator-wrapper h2, .configurator-wrapper .h2 { font-size: calc(1.3rem + 1.2vw); margin-bottom: 1.5rem;}
+    @media (min-width: 1200px) { .configurator-wrapper h2, .configurator-wrapper .h2 { font-size: 2.2rem; } }
+    .configurator-wrapper h3, .configurator-wrapper .h3 { font-size: calc(1.25rem + 0.8vw); margin-bottom: 1.25rem; }
+    @media (min-width: 1200px) { .configurator-wrapper h3, .configurator-wrapper .h3 { font-size: 1.9rem; } }
+    /* Párrafos y otros textos dentro del configurador */
+    .configurator-wrapper p, .configurator-wrapper li, .configurator-wrapper span,
+    .configurator-wrapper label, .configurator-wrapper input, .configurator-wrapper textarea,
+    .configurator-wrapper select, .configurator-wrapper .form-label, .configurator-wrapper .form-select,
+    .configurator-wrapper .form-control /* .btn NO */ {
+        font-size: 0.98rem; /* Tamaño texto config */
+        color: var(--brand-secondary); /* Gris medio Starwin */
+    }
+    .configurator-wrapper .lead {
+        font-size: 1.15rem; /* Tamaño lead Starwin */
+        font-weight: 400;
+        color: var(--brand-secondary); /* Gris medio Starwin */
+    }
+    .configurator-wrapper .small, .configurator-wrapper small { font-size: 0.88rem; } /* Tamaño small Starwin */
+    .configurator-wrapper strong, .configurator-wrapper b { font-weight: 600; color: var(--brand-dark); }
+    .configurator-wrapper a { color: var(--brand-primary); text-decoration: none; transition: var(--transition-base); }
+    .configurator-wrapper a:hover { color: var(--brand-primary-dark); text-decoration: underline; }
+
+    /* --- Estilos Navbar/Footer (COPIADOS DE STARWIN index.html) --- */
+    /* --- Botones (Se mantienen de Starwin) --- */
+    .btn {
+        padding: 0.85rem 1.9rem; font-weight: 500; font-family: var(--font-family-headings); /* Usa Poppins */
+        transition: var(--transition-base); border-radius: var(--border-radius-sm); text-transform: none;
+        border: 1px solid transparent; box-shadow: var(--box-shadow-sm); font-size: 1.02rem; letter-spacing: 0.3px;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: var(--box-shadow-md); }
+    .btn:focus, .btn.focus { outline: 0; box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.3); }
+    .btn:active, .btn.active { transform: translateY(-1px); box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
+    .btn-lg { padding: 1.05rem 2.5rem; font-size: 1.15rem; }
+    .btn-sm { padding: 0.65rem 1.4rem; font-size: 0.92rem; }
+    .btn-brand-primary { background-color: var(--brand-primary); border-color: var(--brand-primary); color: var(--brand-white); }
+    .btn-brand-primary:hover, .btn-brand-primary:focus { background-color: var(--brand-primary-dark); border-color: var(--brand-primary-dark); color: var(--brand-white); }
+    .btn-brand-primary:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.5); }
+    .btn-brand-accent { background-color: var(--brand-accent); border-color: var(--brand-accent); color: var(--brand-white); }
+    .btn-brand-accent:hover, .btn-brand-accent:focus { background-color: var(--brand-accent-dark); border-color: var(--brand-accent-dark); color: var(--brand-white); }
+    .btn-brand-accent:focus { box-shadow: 0 0 0 0.25rem rgba(253, 126, 20, 0.5); }
+    .btn-outline-dark { color: var(--brand-dark); border-color: var(--brand-dark); background-color: transparent; }
+     .btn-outline-dark:hover, .btn-outline-dark:focus { background-color: var(--brand-dark); border-color: var(--brand-dark); color: var(--brand-white); }
+     .btn-outline-dark:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-dark-rgb), 0.5); }
+    .btn-light { background-color: rgba(255, 255, 255, 0.95); border-color: rgba(255, 255, 255, 0.95); color: var(--brand-dark); }
+    .btn-light:hover, .btn-light:focus { background-color: var(--brand-white); border-color: var(--brand-white); color: var(--brand-primary); }
+
+    /* --- Header / Navbar (Se mantiene COMPLETO de Starwin) --- */
+    .navbar { transition: background-color 0.3s ease, box-shadow 0.3s ease; padding-top: 0.7rem; padding-bottom: 0.7rem; background-color: var(--brand-navbar-bg) !important; /* Usa variable Starwin*/ border-bottom: 1px solid var(--brand-extralightgray); }
+    /* .navbar-sticky { box-shadow: var(--box-shadow-md); } */ /* Clase para JS si se quiere sticky */
+    .navbar-brand { font-weight: 700; font-size: 1.8rem; color: var(--brand-dark) !important; padding-top: 0; padding-bottom: 0; }
+     .navbar-brand img { max-height: 48px; width: auto; vertical-align: middle; margin-bottom: 4px; }
+    .navbar .nav-link { color: var(--brand-dark); font-weight: 500; font-family: var(--font-family-sans-serif); padding: 0.7rem 1rem; position: relative; transition: color 0.3s ease; text-decoration: none; font-size: 1rem; margin: 0 0.3rem; border-radius: var(--border-radius-sm); }
+    .navbar .nav-link:hover, .navbar .nav-link:focus { color: var(--brand-primary); background-color: rgba(var(--bs-primary-rgb), 0.08); text-decoration: none; }
+    .navbar .nav-link.active { color: var(--brand-primary); font-weight: 600; background-color: rgba(var(--bs-primary-rgb), 0.12); }
+     .navbar .nav-link::after { display: none; }
+    .navbar .dropdown-indicator { display: inline-block; transition: transform 0.2s ease-in-out; font-size: 0.8em; vertical-align: middle; opacity: 0.7; }
+    .navbar .dropdown-toggle.show .dropdown-indicator { transform: rotate(180deg); }
+    .navbar .dropdown-menu { border-radius: var(--border-radius-sm); border: 1px solid var(--brand-extralightgray); box-shadow: var(--box-shadow-md); margin-top: 0.3rem; padding-top: 0.5rem; padding-bottom: 0.5rem; transition: opacity 0.2s ease, visibility 0.2s ease, margin-top 0.2s ease; }
+    .navbar .dropdown-menu.show { margin-top: 0.5rem; }
+    .navbar .dropdown-item { font-size: 0.98rem; padding: 0.55rem 1.2rem; color: var(--brand-dark); transition: background-color 0.2s ease, color 0.2s ease; font-family: var(--font-family-sans-serif); }
+     .navbar .dropdown-item:hover, .navbar .dropdown-item:focus { background-color: var(--brand-lightgray); color: var(--brand-primary); }
+     .navbar .dropdown-item.active, .navbar .dropdown-item:active { background-color: var(--brand-primary); color: var(--brand-white); } /* Estilo para item activo */
+    .navbar-toggler { border: none; padding: 0.6rem; }
+    .navbar-toggler:focus { box-shadow: none; }
+    .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
+    .navbar .btn-cta { padding: 0.65rem 1.5rem; font-size: 0.98rem; }
+
+    /* Ajustes responsive Navbar (Se mantienen de Starwin) */
+    @media (max-width: 991.98px) {
+      .navbar-collapse { margin-top: 1rem; border-top: 1px solid var(--brand-extralightgray); padding-top: 1rem; background-color: var(--brand-navbar-bg); max-height: 75vh; overflow-y: auto; }
+      .navbar .navbar-nav { align-items: stretch; }
+      .navbar .nav-item { margin-bottom: 0.5rem; width: 100%; }
+      .navbar .nav-link { padding: 0.8rem 1rem; display: block; text-align: center; }
+      .navbar .nav-item.dropdown .dropdown-toggle { display: flex; justify-content: center; align-items: center; }
+      .navbar .nav-item.dropdown .dropdown-indicator { margin-left: 8px; }
+      .navbar .dropdown-menu { box-shadow: none; border: none; margin-top: 0 !important; padding-left: 1.5rem; background-color: var(--brand-extralightgray); position: static !important; float: none !important; width: auto !important; text-align: center; }
+      .navbar .dropdown-item { padding: 0.65rem 1rem; text-align: center; }
+      .navbar .btn-cta { width: 100%; text-align: center; margin-top: 1rem; padding: 0.85rem 1.5rem; }
+    }
+
+    /* --- Footer (Se mantiene COMPLETO de Starwin) --- */
+    footer#contacto { background-color: var(--brand-dark); color: var(--brand-lightgray) !important; padding-top: var(--section-padding-y); padding-bottom: 2rem; font-size: 0.98rem; margin-top: 4rem; /* Añadido margin-top */ }
+    footer#contacto h5 { font-size: 1.2rem; font-weight: 600; font-family: var(--font-family-headings); /* Usa Poppins */ color: var(--brand-white); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.8px; }
+    footer#contacto a { color: var(--brand-lightgray); text-decoration: none; transition: color 0.2s ease; }
+    footer#contacto a:hover { color: var(--brand-primary); text-decoration: none; }
+    footer#contacto .footer-links li { margin-bottom: 0.75rem; }
+    footer#contacto .footer-links a:hover { text-decoration: underline; }
+    footer#contacto .contact-info li { display: flex; align-items: flex-start; margin-bottom: 0.9rem; }
+    footer#contacto .contact-info i { color: var(--brand-primary); margin-right: 1rem; margin-top: 4px; width: 1.2em; text-align: center; flex-shrink: 0; font-size: 1.1em; }
+    footer#contacto address { font-style: normal; line-height: 1.6; }
+    footer#contacto .social-icons a { color: var(--brand-lightgray); font-size: 1.5rem; margin: 0 0.6rem; transition: color 0.2s ease, transform 0.2s ease; display: inline-block; }
+    footer#contacto .social-icons a:hover { color: var(--brand-primary); transform: scale(1.15) translateY(-2px); }
+    footer#contacto .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 1.8rem; margin-top: 3.5rem; }
+    footer#contacto .copyright { font-size: 0.92rem; color: var(--brand-secondary); }
+    /* Necesario del responsive de Starwin para footer */
+     @media (max-width: 768px) {
+         footer#contacto { padding-top: var(--section-padding-y-sm); }
+         footer#contacto .text-center-md { text-align: center !important; }
+         footer#contacto .mb-md-4 { margin-bottom: 2rem !important; }
+         footer#contacto .col-lg-2, footer#contacto .col-lg-3, footer#contacto .col-lg-4 { text-align: center; }
+         footer#contacto .contact-info li { justify-content: center; }
+         footer#contacto .social-icons { justify-content: center; display: flex; margin-bottom: 1.5rem;}
+     }
+    /* Fin estilos Navbar/Footer Starwin */
+
+    /* --- Estilos Específicos del Configurador (Original Startech con ajustes de color) --- */
+    .configurator-wrapper {
+        background-color: var(--brand-white); /* Fondo blanco */
+        border-radius: var(--border-radius-base); /* Bordes Starwin */
+        box-shadow: var(--box-shadow-md); /* Sombra Starwin */
+        padding: 2.5rem;
+        border: 1px solid var(--brand-extralightgray); /* Borde claro Starwin */
+    }
+     @media (max-width: 767px) { .configurator-wrapper { padding: 1.5rem; } }
+     @media (max-width: 575px) { .configurator-wrapper { padding: 1rem; } }
+
+    .config-section {
+        margin-bottom: 2.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px dashed var(--border-color);
+    }
+    .config-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .config-section-title {
+        font-family: var(--font-headings-config); font-size: 1.3rem; font-weight: 700;
+        color: var(--brand-primary); /* Usa turquesa Starwin */
+        margin-bottom: 1.5rem; padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--brand-primary); /* Usa turquesa Starwin */
+        display: inline-block;
+    }
+    @media (max-width: 767px) { .config-section-title { font-size: 1.2rem; } }
+
+
+    /* --- Área de Visualización (Panel Central - Canvas) (Original Startech) --- */
+    .visualization-panel {
+        background-color: var(--brand-lightgray); border-radius: var(--border-radius-sm); /* Usa Starwin */
+        padding: 1.5rem; border: 1px solid var(--border-color);
+        position: sticky; top: 100px; z-index: 10;
+    }
+     @media (max-width: 991px) { .visualization-panel { position: relative; top: auto; margin-bottom: 2rem; } }
+
+    .window-visualization-container {
+        background-color: #fff; border-radius: var(--border-radius-sm); padding: 1rem; margin-bottom: 1.5rem;
+        display: flex; justify-content: center; align-items: center;
+        min-height: 350px; position: relative; overflow: hidden;
+        border: 1px solid var(--border-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05) inset;
+    }
+     @media (max-width: 991px) { .window-visualization-container { min-height: 300px; } }
+     @media (max-width: 767px) { .window-visualization-container { min-height: 250px; } }
+
+    #window-canvas-visual {
+        display: block; max-width: 100%; max-height: var(--canvas-max-height);
+        transition: opacity 0.5s ease; opacity: 1;
+    }
+    #window-canvas-visual.loading { opacity: 0.5; }
+    #window-canvas-visual.error { background-color: #f8d7da; }
+
+    /* --- Opciones de Configuración (Panel Derecho) (Original Startech, focus color ajustado) --- */
+    .options-panel .form-label {
+        font-weight: 600; color: var(--brand-dark); margin-bottom: 0.6rem; /* Color Starwin */
+        display: flex; align-items: center; justify-content: space-between;
+         font-size: 0.95rem; /* Tamaño config */
+    }
+    .options-panel .form-control, .options-panel .form-select {
+        border-radius: var(--border-radius-sm); border: 1px solid #ced4da; margin-bottom: 1.25rem; font-size: 0.95rem;
+    }
+    .options-panel .form-control:focus, .options-panel .form-select:focus {
+        border-color: var(--brand-primary); /* Usa turquesa Starwin */
+        box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25); /* Usa turquesa Starwin */
+    }
+    .option-block { margin-bottom: 1.8rem; }
+    .input-group-text { background-color: var(--brand-extralightgray); border: 1px solid var(--border-color); font-size: 0.9rem; color: var(--brand-secondary); }
+    .dimension-input-group { margin-bottom: 0.8rem; }
+    #pane-widths-container .col { padding-left: 4px; padding-right: 4px; }
+    #pane-widths-container .input-group { margin-bottom: 0.5rem; }
+
+    /* --- Precios junto a opciones (Original Startech) --- */
+    .option-price { font-weight: 500; color: var(--brand-secondary); /* Gris Starwin */ }
+
+    /* --- Estilos para Nueva Selección de Color (Original Startech, focus color ajustado) --- */
+    .color-options-container { display: flex; flex-wrap: wrap; gap: 10px; }
+    .color-option {
+        border: 2px solid var(--border-color); border-radius: var(--border-radius-sm); /* Starwin */
+        padding: 8px; text-align: center; cursor: pointer;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        flex: 1 1 80px; max-width: 100px;
+        position: relative;
+    }
+    .color-option:hover { border-color: var(--brand-secondary); }
+    .color-option.selected {
+        border-color: var(--brand-primary); /* Usa turquesa Starwin */
+        box-shadow: 0 0 0 2px rgba(var(--bs-primary-rgb), 0.3); /* Usa turquesa Starwin */
+        font-weight: 600;
+    }
+    .color-swatch {
+        width: 100%; height: 80px; border-radius: 3px;
+        margin-bottom: 6px; background-color: #ccc;
+        border: 1px solid rgba(0,0,0,0.1);
+    }
+    .color-name { font-size: 0.85rem; display: block; line-height: 1.3; }
+    .color-option[data-color-value="white"] .color-swatch { background-color: #ffffff; border: 1px solid #ddd; }
+    .color-option[data-color-value="anthracite"] .color-swatch { background-color: #343a40; }
+    .color-option[data-color-value="golden-oak"] .color-swatch { background-color: #b87a3a; }
+    .color-option[data-color-value="walnut"] .color-swatch { background-color: #6a472a; }
+    .color-option[data-color-value="black"] .color-swatch { background-color: #111111; }
+    .color-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+    @media (max-width: 767px) { .color-option { flex-basis: 70px; } }
+    @media (max-width: 575px) { .color-option { flex-basis: calc(50% - 4px); max-width: none; } }
+
+    /* --- Estilos para Opciones de Apertura (Original Startech, focus color ajustado) --- */
+    #pane-specific-configs { margin-top: 1.5rem; }
+    #pane-specific-configs h4, #pane-specific-configs h6 {
+        font-weight: 600; color: var(--brand-secondary); /* Gris Starwin */
+        margin-bottom: 1rem;
+    }
+    .pane-opening-config {
+        padding: 1rem; border: 1px solid var(--brand-extralightgray); /* Gris claro Starwin */
+        border-radius: var(--border-radius-sm); /* Starwin */
+        margin-bottom: 1.5rem; background-color: #fff;
+    }
+    .opening-options-container { display: flex; flex-wrap: wrap; gap: 15px; justify-content: start; }
+    .opening-option {
+        border: 2px solid var(--border-color); border-radius: var(--border-radius-sm); /* Starwin */
+        padding: 10px; text-align: center; cursor: pointer;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        flex: 0 0 110px; max-width: 110px;
+        position: relative; background-color: var(--brand-lightgray); /* Gris claro Starwin */
+    }
+    .opening-option:hover { border-color: var(--brand-secondary); background-color: #e9ecef;}
+    .opening-option.selected {
+        border-color: var(--brand-primary); /* Usa turquesa Starwin */
+        box-shadow: 0 0 0 2px rgba(var(--bs-primary-rgb), 0.3); /* Usa turquesa Starwin */
+        font-weight: 600; background-color: rgba(var(--bs-primary-rgb), 0.1); /* Fondo turquesa claro */
+    }
+    .opening-preview-image { width: 50px; height: 50px; object-fit: contain; margin-bottom: 8px; display: block; margin-left: auto; margin-right: auto; }
+    .opening-name { font-size: 0.85rem; display: block; margin-bottom: 3px; line-height: 1.2; }
+    .opening-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+    @media (max-width: 767px) { .opening-option { flex-basis: 90px; padding: 8px; } .opening-preview-image { width: 40px; height: 40px; } }
+    @media (max-width: 575px) { .opening-option { flex-basis: calc(50% - 5px); max-width: none; } }
+
+    /* --- Imágenes de Previsualización de Opciones (Pequeñas) (Original Startech) --- */
+    .option-preview-image {
+        width: 28px; height: 28px; border-radius: 50%; margin-left: 10px; border: 2px solid var(--border-color);
+        object-fit: cover; display: inline-block; vertical-align: middle; background-color: #fff;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.1); flex-shrink: 0;
+    }
+    .option-preview-image.glass-preview { width: 35px; height: 35px; border-radius: 4px; object-fit: contain; }
+    .option-preview-image.handle-preview { width: 30px; height: 30px; border-radius: 4px; object-fit: contain; }
+    .option-preview-image.preview-error { opacity: 0.6; background-color: #f8d7da; }
+    .label-with-preview { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 0.6rem; }
+    .label-with-preview .form-label-text { margin-right: auto; font-weight: 600; color: var(--brand-dark); /* Starwin */ }
+
+    /* --- Resumen y Precio (Original Startech) --- */
+    .summary-panel { margin-top: 1.5rem; }
+    .config-summary-box { background-color: rgba(255, 255, 255, 0.9); padding: 1rem 1.25rem; border-radius: var(--border-radius-sm); margin-bottom: 1.5rem; border: 1px solid var(--border-color); box-shadow: var(--box-shadow-sm); font-size: 0.9rem; }
+    .config-summary-box strong { font-family: var(--font-headings); color: var(--brand-dark); font-weight: 700; display: block; margin-bottom: 0.75rem; font-size: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+    .config-summary-box span { display: block; margin-bottom: 0.4rem; color: var(--brand-secondary); }
+    .config-summary-box span strong { color: var(--brand-dark); font-weight: 600; display: inline; margin-bottom: 0; border-bottom: none; padding-bottom: 0; font-size: inherit; font-family: var(--font-primary); margin-right: 5px; }
+    .config-summary-box .text-danger { font-weight: 500; }
+
+    .price-display-box { background-color: var(--brand-dark); /* Fondo oscuro Starwin */ padding: 1.25rem 1.5rem; border-radius: var(--border-radius-sm); text-align: center; border: 1px solid #1a1d20; box-shadow: var(--box-shadow-sm); }
+    .price-display-box .price-label { font-family: var(--font-headings); font-weight: 700; color: var(--brand-lightgray); font-size: 1.1rem; margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .price-display-box .price-amount { font-size: 2.4rem; font-weight: 700; color: #ffffff; margin-bottom: 0.25rem; min-height: 44px; display: inline-block; }
+    .price-display-box small { color: var(--brand-lightgray); opacity: 0.8; font-size: 0.8rem; }
+    @media (max-width: 767px) { .price-display-box .price-amount { font-size: 2rem; min-height: 38px;} }
+    @media (max-width: 575px) { .price-display-box .price-amount { font-size: 1.8rem; min-height: 34px; } }
+
+    /* --- Botón de Cotización y Accesorios (Original Startech) --- */
+    .accessories-section .form-check { margin-bottom: 0.8rem; }
+    .accessories-section .form-check-label {
+        font-weight: 500; color: var(--brand-dark); /* Starwin */
+        display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+    }
+    .accessory-preview-image {
+        width: 40px; height: 40px; /* Más pequeño */ object-fit: contain;
+        border: 1px solid var(--border-color); border-radius: 4px;
+        background-color: #fff; flex-shrink: 0;
+    }
+    .accessory-preview-image.preview-error { opacity: 0.6; background-color: #f8d7da; }
+    .accessory-label-text { /* Span para texto */ }
+
+    .quote-section { margin-top: 2rem; padding-top: 2rem; border-top: 1px dashed var(--border-color); text-align: center; }
+    /* Estilos para el botón de cotización usando clases de Starwin ahora */
+    #quote-button { /* Usará .btn y .btn-brand-accent */ }
+    #quote-button .spinner-border { width: 1rem; height: 1rem; border-width: .2em; margin-right: 0.5rem; }
+
+    /* --- Mensaje Manilla (Original Startech) --- */
+    #handle-message { font-style: italic; }
+
+    /* --- Ajustes Responsivos (Original Startech) --- */
+    @media (max-width: 575px) {
+        #pane-widths-container .col { flex: 0 0 100%; max-width: 100%; padding-left: 0; padding-right: 0; }
+        #pane-widths-container .col:not(:last-child) .input-group { margin-bottom: 0.5rem; }
+        .color-options-container { gap: 8px; }
+        .opening-options-container { gap: 10px; }
+    }
+
+    /* Utilidad Highlight Beta (de Starwin) */
+    .beta-highlight {
+        color: var(--brand-primary); /* Turquesa */
+        font-weight: bold;
+        font-size: 0.9em;
+        vertical-align: super;
+        margin-left: 2px;
+    }
+
+</style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!--   HEADER / NAVBAR (COPIADO DE index.html)    -->
+<!-- ============================================ -->
+<header class="sticky-top shadow-sm">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" title="Inicio - Starwin Chile">
+                <img src="logostarwin.png" alt="Starwin Logo" >
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <!-- Marcar el dropdown como activo si estamos en una página hija -->
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProductos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Nuestras Ventanas
+                            <span class="dropdown-indicator ms-1"><i class="fas fa-chevron-down fa-xs"></i></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownProductos">
+                            <li><a class="dropdown-item" href="productos.html">Catálogo de Productos</a></li>
+                            <li><a class="dropdown-item" href="colores.html">Colores y Acabados</a></li>
+                            <li><a class="dropdown-item" href="detalles-tecnicos.html">Detalles Técnicos</a></li>
+                            <li><a class="dropdown-item" href="beneficios.html">Principales Beneficios</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <!-- Marcamos este como activo -->
+                            <li><a class="dropdown-item active" href="#">COTIZADOR ONLINE <span class="beta-highlight">beta</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nosotros.html">¿Quienes somos?</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="proceso.html">Proceso</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <!-- Asegúrate que #contacto exista en esta página o enlace a contacto.html -->
+                        <a class="nav-link" href="https://wa.me/56972051379">Contacto</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                         <!-- Asegúrate que #presupuesto exista en esta página o enlace a cotizar.html -->
+                        <a href="cotizar.html" class="btn btn-brand-accent btn-cta shadow-sm">Cotizar Ahora</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main> <!-- Removido padding original py-4 py-lg-5 para usar el global de body/main -->
+    <div class="container">
+         <!-- Título de la página del Configurador -->
+        <div class="text-center mb-5">
+             <h1 class="fw-bold">Cotizador Online de Ventanas PVC <span class="beta-highlight">beta</span></h1>
+             <p class="lead">Diseña tu ventana ideal paso a paso y obtén una cotización estimada al instante.</p>
+             <p class="small text-muted">(Versión Beta - Precios y opciones sujetos a confirmación)</p>
+        </div>
+
+        <!-- El wrapper del configurador se mantiene igual -->
+        <div class="configurator-wrapper">
+            <div class="row g-4 g-lg-5">
+
+                <!-- Columna Central: Visualización y Resumen -->
+                <div class="col-lg-6 order-lg-2">
+                    <div class="visualization-panel">
+                         <h3 class="config-section-title">Visualización</h3>
+                         <div class="window-visualization-container mb-3">
+                             <canvas id="window-canvas-visual" width="400" height="300">
+                                 Tu navegador no soporta el elemento Canvas. La visualización no está disponible.
+                             </canvas>
+                         </div>
+                         <!-- Mensaje para manilla fija -->
+                         <div id="handle-message" class="text-muted small mt-2 mb-3 text-center" style="display: none;">
+                             <i class="fas fa-info-circle me-1"></i> No cuenta con manilla al ser totalmente fija.
+                         </div>
+                         <div class="summary-panel">
+                             <div class="config-summary-box mb-3" id="config-summary">
+                                 <strong>Resumen de Configuración:</strong>
+                                 <span>Cargando detalles...</span>
+                             </div>
+                             <div class="price-display-box">
+                                <div class="price-label">Precio Estimado</div>
+                                <div class="price-amount" id="total-price">$0 CLP</div>
+                                <small class="d-block mt-1">IVA incluido. Costo de instalación no incluido.</small>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+
+                <!-- Columna Izquierda/Derecha: Opciones -->
+                <div class="col-lg-6 order-lg-1 options-panel">
+                    <div class="config-section">
+                         <h3 class="config-section-title">1. Estructura y Dimensiones</h3>
+
+                         <div class="option-block">
+                             <label for="window-type" class="form-label">Número de Hojas:</label>
+                             <select class="form-select" id="window-type">
+                                 <option value="1" selected>1 Hoja</option>
+                                 <option value="2">2 Hojas</option>
+                                 <option value="3">3 Hojas</option>
+                             </select>
+                         </div>
+
+                         <div class="option-block">
+                             <label class="form-label">Dimensiones (mm):</label>
+                             <div class="input-group dimension-input-group">
+                                 <span class="input-group-text" style="width: 70px;">Alto</span>
+                                 <input type="number" class="form-control dimension-input" id="window-height" value="1200" step="10" min="500" max="3000" aria-label="Alto total en mm" required>
+                                 <span class="input-group-text">mm</span>
+                             </div>
+
+                             <div id="total-width-container" class="input-group dimension-input-group">
+                                 <span class="input-group-text" style="width: 70px;">Ancho</span>
+                                 <input type="number" class="form-control dimension-input" id="window-width-total" value="1000" step="10" min="400" max="3000" aria-label="Ancho total en mm" required>
+                                 <span class="input-group-text">mm</span>
+                             </div>
+
+                             <label id="pane-widths-label" class="form-label mt-3" style="display: none;">Ancho por Hoja (mm):</label>
+                             <div id="pane-widths-container" class="row gx-2" style="display: none;">
+                                 <!-- Inputs generados por JS -->
+                             </div>
+                         </div>
+
+                         <div id="pane-specific-configs" class="option-block mt-4">
+                              <!-- Opciones de apertura generadas por JS aquí -->
+                         </div>
+                    </div>
+
+                    <div class="config-section">
+                         <h3 class="config-section-title">2. Apariencia y Vidrio</h3>
+
+                         <div class="option-block">
+                             <label class="form-label mb-3">Color del Marco:</label>
+                             <div class="color-options-container" id="frame-color-options">
+                                 <div class="color-option selected" data-color-value="white">
+                                     <input type="radio" name="frame-color-radio" id="frame-color-white" value="white" checked>
+                                     <div class="color-swatch"></div>
+                                     <span class="color-name">Blanco</span>
+                                     <span class="option-price text-muted small d-block"></span>
+                                 </div>
+                                 <div class="color-option" data-color-value="anthracite">
+                                     <input type="radio" name="frame-color-radio" id="frame-color-anthracite" value="anthracite">
+                                     <div class="color-swatch"></div>
+                                     <span class="color-name">Grafito</span>
+                                     <span class="option-price text-muted small d-block"></span>
+                                 </div>
+                                 <div class="color-option" data-color-value="golden-oak">
+                                     <input type="radio" name="frame-color-radio" id="frame-color-golden-oak" value="golden-oak">
+                                     <div class="color-swatch"></div>
+                                     <span class="color-name">Roble</span>
+                                     <span class="option-price text-muted small d-block"></span>
+                                 </div>
+                                 <div class="color-option" data-color-value="walnut">
+                                     <input type="radio" name="frame-color-radio" id="frame-color-walnut" value="walnut">
+                                     <div class="color-swatch"></div>
+                                     <span class="color-name">Nogal</span>
+                                     <span class="option-price text-muted small d-block"></span>
+                                 </div>
+                                 <div class="color-option" data-color-value="black">
+                                     <input type="radio" name="frame-color-radio" id="frame-color-black" value="black">
+                                     <div class="color-swatch"></div>
+                                     <span class="color-name">New Black</span>
+                                     <span class="option-price text-muted small d-block"></span>
+                                 </div>
+                             </div>
+                         </div>
+
+                         <div class="option-block">
+                             <label for="handle-color" class="label-with-preview">
+                                 <span class="form-label-text">Color de Manilla(s):</span>
+                                 <img id="handle-color-preview" src="images/previews/manilla_cromo.png" alt="Preview Color Manilla" class="option-preview-image handle-preview"
+                                       onerror="this.onerror=null; this.src='images/previews/preview_error.png'; this.classList.add('preview-error'); console.warn('Error cargando preview color manilla: ' + this.src);">
+                             </label>
+                             <select class="form-select" id="handle-color">
+                                 <option value="chrome" data-preview-src="images/previews/manilla_cromo.png" selected>Cromo <span class="option-price text-muted small ms-1"></span></option>
+                                 <option value="gold" data-preview-src="images/previews/manilla_dorado.png">Dorado <span class="option-price text-muted small ms-1"></span></option>
+                                 <option value="white" data-preview-src="images/previews/manilla_blanco.png">Blanco <span class="option-price text-muted small ms-1"></span></option>
+                                 <option value="black" data-preview-src="images/previews/manilla_negro.png">Negro <span class="option-price text-muted small ms-1"></span></option>
+                                 <option value="brushed" data-preview-src="images/previews/manilla_acero.png">Acero Cepillado <span class="option-price text-muted small ms-1"></span></option>
+                             </select>
+                         </div>
+
+                         <div class="option-block">
+                             <label for="glass-type" class="label-with-preview">
+                                 <span class="form-label-text">Tipo de Vidrio:</span>
+                                  <img id="glass-type-preview" src="images/previews/vidrio_doble.svg" alt="Preview Tipo Vidrio" class="option-preview-image glass-preview"
+                                       onerror="this.onerror=null; this.src='images/previews/preview_error.png'; this.classList.add('preview-error'); console.warn('Error cargando preview tipo vidrio: ' + this.src);">
+                             </label>
+                             <select class="form-select" id="glass-type">
+                                 <option value="single" data-preview-src="images/previews/vidrio_simple.svg">Simple (Monolítico) <span class="option-price text-muted small ms-1"></span></option>
+                                 <option value="double" data-preview-src="images/previews/vidrio_doble.svg" selected>Doble (Termopanel Est.) <span class="option-price text-muted small ms-1"></span></option>
+                                 <option value="double-low-e" data-preview-src="images/previews/vidrio_doble_lowe.svg">Doble Low-E <span class="option-price text-muted small ms-1"></span></option>
+                                 <option value="triple" data-preview-src="images/previews/vidrio_triple.svg">Triple (Termopanel Est.) <span class="option-price text-muted small ms-1"></span></option>
+                                 <option value="triple-low-e" data-preview-src="images/previews/vidrio_triple_lowe.svg">Triple Low-E <span class="option-price text-muted small ms-1"></span></option>
+                                 <option value="laminated" data-preview-src="images/previews/vidrio_laminado.svg">Laminado (Seguridad) <span class="option-price text-muted small ms-1"></span></option>
+                             </select>
+                         </div>
+                    </div>
+
+                    <div class="config-section accessories-section">
+                         <h3 class="config-section-title">3. Accesorios Adicionales</h3>
+                         <div class="form-check">
+                             <input class="form-check-input accessory-input" type="checkbox" value="glazing-bars" id="glazing-bars">
+                             <label class="form-check-label" for="glazing-bars">
+                                 <span class="accessory-label-text">Barrotillos Decorativos</span>
+                                 <span class="option-price text-muted small ms-1"></span>
+                             </label>
+                         </div>
+                         <div class="form-check">
+                             <input class="form-check-input accessory-input" type="checkbox" value="security-lock" id="security-lock">
+                             <label class="form-check-label" for="security-lock">
+                                 <span class="accessory-label-text">Cierre Seguridad Mejorado</span>
+                                 <span class="option-price text-muted small ms-1"></span>
+                             </label>
+                         </div>
+                         <div class="form-check">
+                             <input class="form-check-input accessory-input" type="checkbox" value="exterior-sill" id="exterior-sill">
+                             <label class="form-check-label" for="exterior-sill">
+                                 <span class="accessory-label-text">Vierteaguas Exterior</span>
+                                 <span class="option-price text-muted small ms-1"></span>
+                             </label>
+                         </div>
+                    </div>
+
+                     <div class="config-section quote-section" id="quote-section">
+                         <h3 class="config-section-title">4. Solicitar Cotización</h3>
+                         <p class="text-muted mb-4">Revisa la configuración y el precio estimado. Haz clic abajo para generar un resumen PDF.</p>
+                         <button class="btn btn-brand-accent btn-lg w-100 shadow-sm" id="quote-button" type="button" disabled>
+                             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
+                             <span class="button-text">Generar PDF y Solicitar Cotización</span>
+                         </button>
+                          <p class="small text-muted mt-3">Al generar el PDF, nos pondremos en contacto para confirmar detalles.</p>
+                          <div id="pdf-status" class="mt-3 small" style="min-height: 20px;"></div>
+                     </div>
+                </div>
+
+            </div> <!-- / .row -->
+        </div> <!-- / .configurator-wrapper -->
+    </div> <!-- / .container -->
+</main>
+
+<!-- ============================================ -->
+<!--        FOOTER (COPIADO DE index.html)        -->
+<!-- ============================================ -->
+<footer id="contacto"> <!-- Mantenemos el ID por los estilos CSS -->
+    <div class="container">
+        <div class="row gy-4 gy-lg-5">
+            <div class="col-lg-4 col-md-12 text-center-md">
+                <a href="index.html" title="Inicio - Starwin Chile" class="d-inline-block mb-3">
+                    <img src="logostarwin.png" alt="Starwin Chile Logo Footer" style="max-height: 55px; filter: brightness(0) invert(1);">
+                </a>
+                <p class="small text-light-muted pe-lg-4 mt-2">Expertos en diseño, fabricación e instalación de ventanas y puertas uPVC de alta eficiencia en Concepción y la Región del Biobío. Calidad europea, atención local personalizada.</p>
+                <div class="social-icons mt-4">
+                    <a href="https://www.facebook.com/Starwinchile/" title="Facebook Starwin" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/starwincl/" title="Instagram Starwin (Próximamente)" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>  <a href="https://wa.me/56972051379" title="WhatsApp Starwin" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                 </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-6 text-center-md">
+                <h5 class="mb-4">Navegación</h5>
+                <ul class="list-unstyled small footer-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Catálogo</a></li>
+                    <li><a href="proceso.html">Proceso</a></li>
+                     <li><a href="beneficios.html">Beneficios</a></li>
+                     <li><a href="cotizar.html">Cotizar</a></li>
+                     <li><a href="https://wa.me/56972051379">Contacto</a></li>
+                     <li><a href="#">Cotizador Online</a></li>
+                </ul>
+            </div>
+             <div class="col-lg-3 col-md-4 col-6 text-center-md">
+                <h5 class="mb-4">Información</h5>
+                <ul class="list-unstyled small footer-links">
+                    <!-- TODO: Actualizar href si las páginas tienen nombres diferentes -->
+                    <li><a href="faq.html">Preguntas Frecuentes</a></li>
+                    <li><a href="garantia.html">Garantía</a></li>
+                    <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
+                    <li><a href="terminos-condiciones.html">Términos y Condiciones</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-4 col-12 text-center-md">
+                 <h5 class="mb-4">Contáctanos</h5>
+                 <ul class="list-unstyled small contact-info">
+                     <li><i class="fas fa-map-marker-alt fa-fw"></i><address class="mb-0">Pedro de Valdivia 733,<br> Concepción, Biobío, Chile</address></li>
+                     <li><i class="fas fa-phone fa-fw"></i><a href="tel:+56972051379">+56 9 7205 1379</a></li>
+                      <li><i class="fab fa-whatsapp fa-fw"></i><a href="https://wa.me/56972051379" target="_blank" rel="noopener noreferrer">WhatsApp Directo</a></li>
+                     <li><i class="fas fa-envelope fa-fw"></i><a href="mailto:starwinchile@gmail.com">starwinchile@gmail.com</a></li>
+                     <li><i class="fas fa-clock fa-fw"></i><span>Lun - Vie: 9:00 - 18:30 hrs</span></li>
+                 </ul>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p class="small copyright mb-0">© <span id="current-year"></span> Starwin Chile - Ventanas uPVC. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ============================================ -->
+<!--                   SCRIPTS                    -->
+<!-- ============================================ -->
+<!-- jQuery (Requerido por el script de Starwin Navbar) -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<!-- Bootstrap Bundle JS (Incluye Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<!-- Configurador JS (Original Startech) + Lógica Navbar/Footer (de Starwin) -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log("--- DOM Cargado. Iniciando Configurador Starwin (con base Startech v2.8) ---");
+
+        // --- LÓGICA NAVBAR Y FOOTER (Adaptada de index.html) ---
+
+        // --- Navbar Dropdown Mejorado (Click y Hover con Timers) ---
+        function setupNavbarDropdowns() {
+            // (Copiada exactamente como en index.html, pero sin inicializar Slick)
+            let hoverTimerEnter;
+            let hoverTimerLeave;
+            const enterDelay = 200; // 0.2 segundos para abrir con hover
+            const leaveDelay = 1000; // 1 segundo para cerrar al salir
+
+            $('.navbar .nav-item.dropdown').off('mouseenter mouseleave click');
+            $('.navbar .dropdown-toggle').off('click');
+
+            if (window.innerWidth >= 992) {
+                $('.navbar .nav-item.dropdown').each(function() {
+                    const $dropdown = $(this);
+                    const $toggle = $dropdown.find('.dropdown-toggle');
+                    const $menu = $dropdown.find('.dropdown-menu');
+                    let menuInstance = bootstrap.Dropdown.getOrCreateInstance($toggle[0]);
+                    let isOpenByClick = false;
+
+                    $toggle.on('click', function(e) {
+                        e.preventDefault(); e.stopPropagation();
+                        clearTimeout(hoverTimerEnter); clearTimeout(hoverTimerLeave);
+                        if ($menu.hasClass('show')) { menuInstance.hide(); isOpenByClick = false; }
+                        else {
+                            $('.navbar .nav-item.dropdown .dropdown-menu.show').each(function() { bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide(); });
+                            menuInstance.show(); isOpenByClick = true;
+                        }
+                    });
+                    $dropdown.on('mouseenter', function() {
+                        if (isOpenByClick) return;
+                        clearTimeout(hoverTimerLeave);
+                        hoverTimerEnter = setTimeout(() => {
+                             $('.navbar .nav-item.dropdown .dropdown-menu.show').not($menu).each(function() { bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide(); });
+                            if (!$menu.hasClass('show')) { menuInstance.show(); }
+                        }, enterDelay);
+                    });
+                    $dropdown.on('mouseleave', function() {
+                        clearTimeout(hoverTimerEnter);
+                        hoverTimerLeave = setTimeout(() => { if ($menu.hasClass('show')) { menuInstance.hide(); isOpenByClick = false; } }, leaveDelay);
+                    });
+                    $menu.find('.dropdown-item').on('click', function() { menuInstance.hide(); isOpenByClick = false; });
+                });
+                $(document).on('click', function(e) { if (!$(e.target).closest('.navbar .nav-item.dropdown').length) { $('.navbar .nav-item.dropdown .dropdown-menu.show').each(function() { bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide(); }); } });
+            } else {
+                $('.navbar .dropdown-toggle').attr('data-bs-toggle', 'dropdown');
+                $('.navbar .dropdown-item').on('click', function() {
+                    const $navbarCollapse = $(this).closest('.navbar-collapse'); if ($navbarCollapse.hasClass('show')) { bootstrap.Collapse.getOrCreateInstance($navbarCollapse[0]).hide(); }
+                    const $dropdownMenu = $(this).closest('.dropdown-menu'); if ($dropdownMenu.hasClass('show')) { const $toggle = $dropdownMenu.prev('.dropdown-toggle'); bootstrap.Dropdown.getOrCreateInstance($toggle[0]).hide(); }
+                });
+            }
+            console.log("Navbar Dropdowns configurados.");
+        }
+        setupNavbarDropdowns(); // Ejecutar al cargar
+        $(window).on('resize', setupNavbarDropdowns); // Re-ejecutar en resize
+
+        // --- Funcionalidad Menú Móvil (Cerrar al hacer click en link normal) ---
+        const mobileMenu = document.getElementById('navbarNav');
+        if (mobileMenu) {
+            const mobileLinks = mobileMenu.querySelectorAll('a.nav-link:not(.dropdown-toggle)');
+            const bsCollapse = bootstrap.Collapse.getOrCreateInstance(mobileMenu, { toggle: false });
+            mobileLinks.forEach(link => { link.addEventListener('click', (e) => { const href = link.getAttribute('href'); if (href && href.startsWith('#') && window.innerWidth < 992 && mobileMenu.classList.contains('show')) { bsCollapse.hide(); } }); });
+            document.addEventListener('click', function (event) { const isClickInsideNav = mobileMenu.contains(event.target); const navbarToggler = document.querySelector('.navbar-toggler'); const isToggler = navbarToggler ? navbarToggler.contains(event.target) : false; const isNavOpen = mobileMenu.classList.contains('show'); if (!isClickInsideNav && !isToggler && isNavOpen && window.innerWidth < 992) { bsCollapse.hide(); } });
+            console.log("Listeners menú móvil añadidos.");
+        }
+
+        // --- Actualizar Año del Footer ---
+        const yearSpan = document.getElementById('current-year');
+        if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); console.log("Año footer actualizado."); }
+
+
+        // --- LÓGICA DEL CONFIGURADOR (Original Startech v2.8) ---
+        // (Todo el código JS del configurador va aquí, SIN el 'DOMContentLoaded' wrapper exterior)
+        console.log("--- Iniciando Lógica del Configurador Startech v2.8 ---");
+
+        // --- Constantes y Configuración Detallada ---
+        const CONFIG = {
+            // Precios Base y Factores
+            BASE_PRICE: 145000,
+            PRICE_PER_SQUARE_METER: 105000,
+            MULLION_PRICE: 22000,
+
+            // Detalles de Apertura (ACTUALIZADOS)
+            OPENING_TYPE_DETAILS: {
+                'fixed': { name: 'Fijo', price: 0, preview: 'images/windows/previews/fija.png', description: 'Ventana que no se abre.' },
+                'batiente': { name: 'Batiente', price: 35000, preview: 'images/windows/previews/batiente.png', description: 'Apertura superior inclinada para ventilación controlada.' }, // NEW
+                'casement': { name: 'Abatible', price: 42000, preview: 'images/windows/previews/abatible.png', description: 'Apertura lateral completa (hacia el interior).' }, // Updated preview
+                'tilt-turn': { name: 'Oscilobatiente', price: 68000, preview: 'images/windows/previews/oscilo-batiente.png', description: 'Doble apertura: lateral completa y superior inclinada para ventilación.' } // Updated preview
+            },
+
+             // Ajustes de Precio Color Marco
+             FRAME_COLOR_PRICES: {
+                 'white': { name: 'Blanco', price: 0, type: 'fixed' },
+                 'anthracite': { name: 'Grafito', price: 0.30, type: 'percentage_on_subtotal' },
+                 'golden-oak': { name: 'Roble', price: 0.38, type: 'percentage_on_subtotal' },
+                 'walnut': { name: 'Nogal', price: 0.38, type: 'percentage_on_subtotal' },
+                 'black': { name: 'New Black', price: 0.35, type: 'percentage_on_subtotal' }
+             },
+
+            // Precio ADICIONAL por m² sobre 'single' y Descripciones (NUEVO)
+            GLASS_TYPE_PRICE_PER_M2: {
+                'single': { name: 'Simple (Monolítico)', price: 0, description: 'Vidrio único de 4mm o 5mm. Aislamiento básico.' },
+                'double': { name: 'Doble (Termopanel Est.)', price: 30000, description: 'Doble vidrio (ej: 4/10/4) con cámara de aire. Mejora aislamiento térmico y acústico.' },
+                'double-low-e': { name: 'Doble Low-E', price: 42000, description: 'Termopanel con capa de baja emisividad (Low-E) que reduce transferencia de calor.' },
+                'triple': { name: 'Triple (Termopanel Est.)', price: 58000, description: 'Triple vidrio (ej: 4/8/4/8/4) con dos cámaras de aire. Máximo aislamiento térmico estándar.' },
+                'triple-low-e': { name: 'Triple Low-E', price: 75000, description: 'Termopanel triple con capa Low-E para un rendimiento térmico superior.' },
+                'laminated': { name: 'Laminado (Seguridad)', price: 50000, description: 'Vidrio compuesto por dos o más láminas unidas por una interlámina plástica (PVB). Mayor seguridad y filtro UV. Puede ser simple o parte de un termopanel.' }
+            },
+
+            // Precio ADICIONAL por manilla sobre 'chrome'
+            HANDLE_COLOR_PRICES: {
+                'chrome': { name: 'Cromo', price: 0 },
+                'gold': { name: 'Dorado', price: 19500 },
+                'white': { name: 'Blanco', price: 1500 },
+                'black': { name: 'Negro', price: 13500 },
+                'brushed': { name: 'Acero Cepillado', price: 16000 }
+            },
+
+            // Precio por accesorio, Preview y Descripción (NUEVO)
+            ACCESSORY_PRICES: {
+                'glazing-bars': { name: 'Barrotillos Decorativos', price: 48000, perOperable: false, preview: 'images/windows/previews/barrotillos.png', description: 'Perfiles decorativos aplicados sobre el vidrio para crear divisiones visuales (cuarterones).' },
+                'security-lock': { name: 'Cierre Seguridad Mejorado', price: 70000, perOperable: true, preview: 'images/windows/previews/cierre.png', description: 'Para un hogar seguro, recomendamos los herrajes RC en todas las ventanas y puertas. RC1 ofrece puntos de cierre adicionales además de la seguridad básica..' },
+                'exterior-sill': { name: 'Vierteaguas Exterior', price: 35000, perOperable: false, preview: 'images/windows/previews/vierteaguas.png', description: 'Perfil inferior exterior diseñado para evacuar el agua de lluvia lejos de la base de la ventana y la pared de 140mm.' }
+            },
+
+            // Restricciones de Dimensiones
+            DIMENSION_CONSTRAINTS: {
+                '1': { minW: 400, maxW: 1600, minH: 500, maxH: 2800, minPaneW: 400, maxPaneW: 1600 },
+                '2': { minW: 700, maxW: 3000, minH: 500, maxH: 2600, minPaneW: 350, maxPaneW: 1500 },
+                '3': { minW: 1050, maxW: 4200, minH: 600, maxH: 2600, minPaneW: 350, maxPaneW: 1400 }
+            },
+
+            // --- Rutas y Nombres de Archivos ---
+            IMAGE_BASE_PATH: 'images/windows/', // Carpeta de imágenes base canvas
+            BASE_IMAGE_FILENAMES: {
+                1: 'BLANCO1.png',
+                2: 'BLANCOdoble.png',
+                3: 'blancotriple.png'
+            },
+            PREVIEW_IMAGE_BASE_PATH: 'images/windows/previews/', // Path for small previews (openings, accessories)
+            DEFAULT_PREVIEW_ERROR_IMAGE: 'images/previews/preview_error.png', // General error image
+            VISUALIZATION_MAX_HEIGHT_CSS: 400,
+        };
+        console.log("Configuración global (CONFIG):", CONFIG);
+
+        // --- Referencias a Elementos del DOM Esenciales ---
+        const DOMElements = {
+            windowTypeSelect: document.getElementById('window-type'),
+            heightInput: document.getElementById('window-height'),
+            frameColorOptionsContainer: document.getElementById('frame-color-options'),
+            glassTypeSelect: document.getElementById('glass-type'),
+            handleColorSelect: document.getElementById('handle-color'),
+            handleMessageDiv: document.getElementById('handle-message'),
+            accessoryCheckboxes: document.querySelectorAll('.accessory-input'),
+            totalWidthContainer: document.getElementById('total-width-container'),
+            totalWidthInput: document.getElementById('window-width-total'),
+            paneWidthsLabel: document.getElementById('pane-widths-label'),
+            paneWidthsContainer: document.getElementById('pane-widths-container'),
+            paneSpecificConfigsContainer: document.getElementById('pane-specific-configs'),
+            windowCanvas: document.getElementById('window-canvas-visual'),
+            visualizationContainer: document.querySelector('.window-visualization-container'),
+            glassTypePreview: document.getElementById('glass-type-preview'),
+            handleColorPreview: document.getElementById('handle-color-preview'),
+            configSummaryDiv: document.getElementById('config-summary'),
+            totalPriceDisplay: document.getElementById('total-price'),
+            quoteButton: document.getElementById('quote-button'),
+            quoteButtonText: document.getElementById('quote-button').querySelector('.button-text'),
+            pdfStatusDiv: document.getElementById('pdf-status'),
+            // Navbar/Footer elements ya referenciados por la lógica de Starwin añadida arriba
+        };
+
+        // --- Variables Globales del Configurador ---
+        let currentConfigState = {
+            numPanes: 1, height: 0, totalWidth: 0, panes: [],
+            frameColor: '', frameColorText: '',
+            glassType: '', glassTypeText: '', glassTypePreviewSrc: '',
+            handleColor: '', handleColorText: '', handleColorPreviewSrc: '',
+            accessories: {}, accessoriesText: [],
+            isValid: false, price: 0,
+            hasOperablePanes: false, totalAreaM2: 0,
+        };
+        let jsPDF_Instance;
+        let canvasCtx = null;
+        let loadedBaseImages = {};
+        let baseImageLoadError = {};
+
+        // --- Verificación Inicial de Elementos del DOM y Canvas ---
+        let essentialElementsFound = true;
+        for (const key in DOMElements) {
+             if (!DOMElements[key] || (DOMElements[key] instanceof NodeList && DOMElements[key].length === 0)) {
+                 if (!['windowCanvas', 'handleMessageDiv'].includes(key)) { // Solo estos son opcionales para continuar
+                     console.error(`Error Crítico: Elemento del DOM esencial (Configurador) no encontrado: ${key}`);
+                     essentialElementsFound = false;
+                 } else if (!DOMElements[key]) {
+                     console.warn(`Elemento opcional/del configurador no encontrado: ${key}`);
+                 }
+             }
+        }
+        if (DOMElements.windowCanvas) {
+            try { canvasCtx = DOMElements.windowCanvas.getContext('2d'); if (!canvasCtx) throw new Error('No se pudo obtener el contexto 2D.'); console.log("Contexto 2D del Canvas obtenido."); DOMElements.windowCanvas.style.setProperty('--canvas-max-height', `${CONFIG.VISUALIZATION_MAX_HEIGHT_CSS}px`); }
+            catch (e) { console.error("Error Crítico al obtener contexto 2D del Canvas:", e); DOMElements.windowCanvas.innerHTML = "Error al iniciar Canvas."; essentialElementsFound = false; }
+        } else { console.warn("Elemento Canvas '#window-canvas-visual' no encontrado o no soportado."); }
+        try { if (window.jspdf && window.jspdf.jsPDF) { jsPDF_Instance = window.jspdf.jsPDF; console.log("Librería jsPDF cargada."); } else { throw new Error("jsPDF no encontrado."); } }
+        catch (error) { console.error("Error Crítico al cargar jsPDF:", error); if(DOMElements.quoteButton && DOMElements.quoteButtonText) { DOMElements.quoteButton.disabled = true; DOMElements.quoteButtonText.textContent = "Error PDF Lib"; if(DOMElements.pdfStatusDiv) DOMElements.pdfStatusDiv.textContent = "Error: No se puede generar PDF."; } }
+
+        if (!essentialElementsFound) {
+             const missingCritical = Object.keys(DOMElements).filter(k => !DOMElements[k] && !['windowCanvas', 'handleMessageDiv'].includes(k));
+             if (missingCritical.length > 0) { document.body.innerHTML = '<div class="alert alert-danger m-5">Error Crítico: No se pudo inicializar el configurador. Faltan componentes esenciales.</div>'; return; }
+             else { console.warn("Continuando inicialización sin visualización Canvas o mensaje manilla."); }
+        }
+        console.log("Elementos DOM del configurador encontrados.");
+
+
+        // --- Funciones del Configurador (loadSpecificBaseImage, getCurrentBaseImageFilename, drawCanvasError, etc.) ---
+        // (Incluye aquí TODAS las funciones JS del configurador:
+        //  loadSpecificBaseImage, getCurrentBaseImageFilename, drawCanvasError,
+        //  getCurrentConfiguration, createPaneWidthInputs, createPaneSpecificConfigs,
+        //  validateDimensions, calculatePrice, updateOptionPrices, updateVisualization,
+        //  updateSmallOptionPreviews, updateOptionPreview, updateConfigSummary,
+        //  updatePriceDisplay, handleConfigurationChange, handleWindowTypeChange,
+        //  generateQuotePDF, setQuoteButtonLoading, initializeConfigurator
+        //  ...exactamente como estaban en el script original de configurador.html)
+        // --- Función para Cargar Imagen Base Bajo Demanda ---
+        function loadSpecificBaseImage(filename, callback) {
+            if (!canvasCtx) { if (callback) callback(); return; } // No intentar si no hay contexto
+            if (!filename) { console.error("Error: Se intentó cargar imagen base sin nombre."); if (callback) callback(); return; }
+            if (loadedBaseImages[filename] && !baseImageLoadError[filename]) {
+                // console.log(`Imagen base '${filename}' ya cargada.`);
+                if (callback) callback(); return;
+            }
+            if (baseImageLoadError[filename]) { console.warn(`Carga de '${filename}' falló antes.`); if (callback) callback(); return; }
+            if (loadedBaseImages[filename] && !loadedBaseImages[filename].complete) { console.log(`'${filename}' ya en carga.`); return; }
+
+            const imageUrl = `${CONFIG.IMAGE_BASE_PATH}${filename}`;
+            console.log(`Iniciando carga de imagen base: ${imageUrl}`);
+            const img = new Image();
+            loadedBaseImages[filename] = img;
+            baseImageLoadError[filename] = false;
+
+            img.onload = () => {
+                console.log(`Imagen base '${filename}' cargada (${img.width}x${img.height}).`);
+                if (callback) callback();
+            };
+            img.onerror = (error) => {
+                console.error(`Error CRÍTICO al cargar imagen base: ${imageUrl}`, error);
+                baseImageLoadError[filename] = true;
+                alert(`Error: No se pudo cargar la imagen base (${filename}). La visualización puede fallar.`);
+                if (getCurrentBaseImageFilename(currentConfigState.numPanes) === filename) {
+                    drawCanvasError(`Error al cargar ${filename}`);
+                }
+                if (callback) callback();
+            };
+            img.src = imageUrl;
+        }
+
+        // --- Helper para obtener el nombre de archivo de imagen base actual ---
+        function getCurrentBaseImageFilename(numPanes) {
+            return CONFIG.BASE_IMAGE_FILENAMES[numPanes] || CONFIG.BASE_IMAGE_FILENAMES[1]; // Fallback a 1 hoja
+        }
+
+        // --- Dibujar Mensaje de Error en Canvas ---
+        function drawCanvasError(message) {
+            if (!canvasCtx || !DOMElements.windowCanvas) return;
+            const canvas = DOMElements.windowCanvas;
+            canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+            canvas.classList.add('error');
+            canvasCtx.fillStyle = '#DC3545';
+            canvasCtx.font = '14px sans-serif';
+            canvasCtx.textAlign = 'center';
+            canvasCtx.textBaseline = 'middle';
+            // Wrap text basic implementation
+            const words = message.split(' ');
+            let line = '';
+            let y = canvas.height / 2 - (words.length > 5 ? 10 : 0); // Adjust start Y if multiple lines likely
+            const lineHeight = 16;
+            canvasCtx.textBaseline = 'bottom'; // Align from bottom for multi-line
+
+            for(let n = 0; n < words.length; n++) {
+                let testLine = line + words[n] + ' ';
+                let metrics = canvasCtx.measureText(testLine);
+                let testWidth = metrics.width;
+                if (testWidth > canvas.width * 0.9 && n > 0) {
+                    canvasCtx.fillText(line, canvas.width / 2, y);
+                    line = words[n] + ' ';
+                    y += lineHeight;
+                } else {
+                    line = testLine;
+                }
+            }
+            canvasCtx.fillText(line, canvas.width / 2, y);
+             canvas.classList.remove('loading'); // Ensure loading class is off
+        }
+
+        // --- Funciones Principales del Configurador ---
+
+        function getCurrentConfiguration() {
+            const state = currentConfigState;
+
+            state.numPanes = parseInt(DOMElements.windowTypeSelect.value) || 1;
+            state.height = parseInt(DOMElements.heightInput.value) || 0;
+
+            // Color Marco
+            const selectedColorOption = DOMElements.frameColorOptionsContainer.querySelector('.color-option.selected');
+            state.frameColor = selectedColorOption ? selectedColorOption.dataset.colorValue : 'white';
+            state.frameColorText = CONFIG.FRAME_COLOR_PRICES[state.frameColor]?.name || state.frameColor;
+
+            // Vidrio
+            const selectedGlassOption = DOMElements.glassTypeSelect.options[DOMElements.glassTypeSelect.selectedIndex];
+            state.glassType = DOMElements.glassTypeSelect.value;
+            state.glassTypeText = selectedGlassOption ? (CONFIG.GLASS_TYPE_PRICE_PER_M2[state.glassType]?.name || selectedGlassOption.text.split('<')[0].trim()) : 'N/A';
+            state.glassTypePreviewSrc = selectedGlassOption ? (selectedGlassOption.dataset.previewSrc || '') : '';
+
+            // Manilla
+            const selectedHandleOption = DOMElements.handleColorSelect.options[DOMElements.handleColorSelect.selectedIndex];
+            state.handleColor = DOMElements.handleColorSelect.value;
+            state.handleColorText = selectedHandleOption ? (CONFIG.HANDLE_COLOR_PRICES[state.handleColor]?.name || selectedHandleOption.text.split('<')[0].trim()) : 'N/A';
+            state.handleColorPreviewSrc = selectedHandleOption ? (selectedHandleOption.dataset.previewSrc || '') : '';
+
+            // Accesorios
+            state.accessories = {};
+            state.accessoriesText = [];
+            DOMElements.accessoryCheckboxes.forEach(checkbox => {
+                state.accessories[checkbox.id] = checkbox.checked;
+                if (checkbox.checked) {
+                    const label = document.querySelector(`label[for="${checkbox.id}"]`);
+                    state.accessoriesText.push(CONFIG.ACCESSORY_PRICES[checkbox.value]?.name || (label ? label.textContent.trim().split('<')[0].trim() : checkbox.id));
+                }
+            });
+
+            // Panes (Ancho y Apertura) - Lee desde los controles dinámicos
+            state.panes = [];
+            state.totalWidth = 0;
+            state.hasOperablePanes = false; // Reset flag
+
+            const paneConfigSections = DOMElements.paneSpecificConfigsContainer.querySelectorAll('.pane-opening-config');
+            const paneWidthInputs = (state.numPanes > 1) ? DOMElements.paneWidthsContainer.querySelectorAll('.pane-width-input') : [DOMElements.totalWidthInput]; // Use total width input if 1 pane
+
+            if (paneWidthInputs.length !== state.numPanes || (state.numPanes > 0 && paneConfigSections.length !== state.numPanes)) { // Allow 0 panes initially without warning spam
+                 //console.warn(`Discrepancia entre numPanes (${state.numPanes}), widthInputs (${paneWidthInputs.length}) y configSections (${paneConfigSections.length}). Puede haber error al leer config.`);
+            }
+
+            for (let i = 0; i < state.numPanes; i++) {
+                const widthInput = paneWidthInputs[i];
+                const configSection = paneConfigSections[i]; // Get the single config section if numPanes is 1
+
+                if (!widthInput || !configSection) {
+                    console.warn(`Faltan elementos para la hoja ${i + 1}. Saltando.`);
+                    continue; // Skip this pane if elements are missing
+                }
+
+                const width = parseInt(widthInput.value) || 0;
+                state.totalWidth += width;
+
+                let openingType = 'fixed'; // Default fallback
+                let openingTypeText = CONFIG.OPENING_TYPE_DETAILS['fixed'].name;
+
+                const selectedRadio = configSection.querySelector('input[type="radio"]:checked');
+                if (selectedRadio) {
+                    openingType = selectedRadio.value;
+                    const details = CONFIG.OPENING_TYPE_DETAILS[openingType];
+                    if (details) {
+                        openingTypeText = details.name;
+                    } else {
+                        console.warn(`Detalles no encontrados para tipo apertura: ${openingType}`);
+                        openingTypeText = openingType;
+                    }
+                } else {
+                    console.warn(`No se encontró radio seleccionado para hoja ${i + 1}. Usando 'Fijo'.`);
+                }
+
+                state.panes.push({
+                    width: width,
+                    openingType: openingType,
+                    openingTypeText: openingTypeText
+                });
+
+                if (openingType !== 'fixed') {
+                    state.hasOperablePanes = true;
+                }
+            }
+            // Recalculate totalWidth just to be sure if inputs were read correctly
+            state.totalWidth = state.panes.reduce((sum, p) => sum + p.width, 0);
+
+
+            // Calcular área total
+            state.totalAreaM2 = (state.totalWidth / 1000) * (state.height / 1000);
+
+            return state;
+        }
+
+        /**
+         * Crea dinámicamente los inputs para los anchos de cada hoja (si > 1).
+         */
+        function createPaneWidthInputs(numberOfPanes, initialTotalWidth, constraints) {
+            console.log(`-> Ejecutando: createPaneWidthInputs(${numberOfPanes}, ${initialTotalWidth}mm)`);
+            DOMElements.paneWidthsContainer.innerHTML = ''; // Limpiar
+            DOMElements.paneWidthsLabel.style.display = 'block';
+            DOMElements.paneWidthsContainer.style.display = 'flex';
+            DOMElements.totalWidthContainer.style.display = 'none';
+
+            const minPaneW = constraints.minPaneW;
+            const maxPaneW = constraints.maxPaneW;
+
+            // Lógica de Distribución Inteligente
+            const baseWidth = Math.floor(initialTotalWidth / numberOfPanes);
+            let remainder = initialTotalWidth % numberOfPanes;
+            let distributedWidths = [];
+            let currentSum = 0;
+            for (let i = 0; i < numberOfPanes; i++) {
+                 let targetWidth = baseWidth + (remainder > 0 ? 1 : 0);
+                 targetWidth = Math.max(minPaneW, Math.min(maxPaneW, targetWidth));
+                 distributedWidths.push(targetWidth);
+                 currentSum += targetWidth;
+                 if (remainder > 0) remainder--;
+            }
+             let difference = initialTotalWidth - currentSum;
+             let adjustmentAttempts = 0;
+             const maxAttempts = numberOfPanes * 3;
+             while (difference !== 0 && adjustmentAttempts < maxAttempts) {
+                 let adjustIndex = adjustmentAttempts % numberOfPanes;
+                 let adjustment = Math.sign(difference);
+                 let potentialWidth = distributedWidths[adjustIndex] + adjustment;
+                 if (potentialWidth >= minPaneW && potentialWidth <= maxPaneW) {
+                     distributedWidths[adjustIndex] = potentialWidth;
+                     currentSum += adjustment;
+                     difference -= adjustment;
+                 }
+                 adjustmentAttempts++;
+             }
+             if (difference !== 0) {
+                 console.warn(` No se pudo distribuir exactamente ${initialTotalWidth}mm respetando límites (${minPaneW}-${maxPaneW}mm). Suma: ${currentSum}mm.`);
+             }
+
+            // Crear los elementos input
+            distributedWidths.forEach((width, i) => {
+                const paneIndex = i;
+                const col = document.createElement('div');
+                col.className = `col-12 col-sm`;
+                const inputGroup = document.createElement('div');
+                inputGroup.className = 'input-group input-group-sm dimension-input-group';
+
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.className = 'form-control pane-width-input dimension-input';
+                input.id = `pane-width-${paneIndex + 1}`;
+                input.dataset.paneIndex = paneIndex;
+                input.required = true;
+                input.step = 10;
+                input.value = width;
+                input.min = minPaneW;
+                input.max = maxPaneW;
+                input.ariaLabel = `Ancho hoja ${paneIndex + 1} en mm (${minPaneW}-${maxPaneW})`;
+                input.placeholder = `${minPaneW}-${maxPaneW}`;
+
+                const unitSpan = document.createElement('span');
+                unitSpan.className = 'input-group-text';
+                unitSpan.textContent = 'mm';
+
+                inputGroup.appendChild(input);
+                inputGroup.appendChild(unitSpan);
+                col.appendChild(inputGroup);
+                DOMElements.paneWidthsContainer.appendChild(col);
+
+                input.addEventListener('input', handleConfigurationChange);
+                input.addEventListener('change', handleConfigurationChange);
+            });
+            console.log(`<- createPaneWidthInputs() finalizado.`);
+        }
+
+        /**
+         * Crea dinámicamente las opciones de tipo de apertura por hoja.
+         * AHORA SE EJECUTA SIEMPRE.
+         */
+        function createPaneSpecificConfigs(numberOfPanes) {
+            console.log(`-> Ejecutando: createPaneSpecificConfigs(${numberOfPanes})`);
+            DOMElements.paneSpecificConfigsContainer.innerHTML = ''; // Limpiar siempre
+
+            // Add a general title for the section
+            const sectionTitle = document.createElement('h4');
+            sectionTitle.className = 'h5 mb-3 text-muted fw-semibold';
+            sectionTitle.textContent = 'Tipo de Apertura por Hoja:';
+            DOMElements.paneSpecificConfigsContainer.appendChild(sectionTitle);
+
+            DOMElements.paneSpecificConfigsContainer.style.display = 'block'; // Ensure it's visible
+
+            for (let i = 0; i < numberOfPanes; i++) {
+                const paneIndex = i;
+                const paneDiv = document.createElement('div');
+                paneDiv.className = 'mb-4 pane-opening-config'; // Container for one pane's options
+                paneDiv.dataset.paneIndex = paneIndex;
+
+                const openingLabel = document.createElement('h6'); // Label for the pane
+                openingLabel.className = 'mb-3 fw-normal';
+                openingLabel.textContent = `Hoja ${paneIndex + 1}:`;
+                paneDiv.appendChild(openingLabel);
+
+                const optionsContainer = document.createElement('div');
+                optionsContainer.className = 'opening-options-container';
+
+                // Crear una opción por cada tipo definido en CONFIG
+                Object.keys(CONFIG.OPENING_TYPE_DETAILS).forEach(openingType => {
+                    const details = CONFIG.OPENING_TYPE_DETAILS[openingType];
+
+                    const optionWrapper = document.createElement('label'); // Use label as clickable wrapper
+                    optionWrapper.className = 'opening-option';
+                    optionWrapper.htmlFor = `opening-type-${paneIndex}-${openingType}`; // Link to radio
+                    optionWrapper.title = details.description; // Tooltip from config
+
+                    // Input Radio (hidden by CSS)
+                    const radioInput = document.createElement('input');
+                    radioInput.type = 'radio';
+                    radioInput.name = `opening-type-${paneIndex}`; // Group by pane
+                    radioInput.id = `opening-type-${paneIndex}-${openingType}`;
+                    radioInput.value = openingType;
+
+                    // Default: First pane tilt-turn, rest fixed (adjust as needed)
+                    let isDefaultChecked = false;
+                    if (numberOfPanes === 1 && openingType === 'tilt-turn') { isDefaultChecked = true; }
+                    else if (numberOfPanes > 1) {
+                       if (paneIndex === 0 && openingType === 'tilt-turn') isDefaultChecked = true;
+                       else if (paneIndex > 0 && openingType === 'fixed') isDefaultChecked = true;
+                    }
+                    // Fallback if no default set yet for this pane
+                    if (!isDefaultChecked && openingType === 'fixed' && !paneDiv.querySelector('input[type="radio"]:checked')) {
+                         isDefaultChecked = true;
+                    }
+
+
+                    if (isDefaultChecked) {
+                        radioInput.checked = true;
+                        optionWrapper.classList.add('selected'); // Mark visually
+                    }
+                    optionWrapper.appendChild(radioInput);
+
+                    // Imagen Preview
+                    const img = document.createElement('img');
+                    img.src = details.preview || CONFIG.DEFAULT_PREVIEW_ERROR_IMAGE;
+                    img.alt = `Preview ${details.name}`;
+                    img.className = 'opening-preview-image';
+                    img.onerror = function() { this.onerror = null; this.src = CONFIG.DEFAULT_PREVIEW_ERROR_IMAGE; this.classList.add('preview-error'); console.warn(`Error cargando preview apertura: ${details.preview}`); };
+                    optionWrapper.appendChild(img);
+
+                    // Nombre
+                    const nameSpan = document.createElement('span');
+                    nameSpan.className = 'opening-name';
+                    nameSpan.textContent = details.name;
+                    optionWrapper.appendChild(nameSpan);
+
+                    // Precio
+                    const priceSpan = document.createElement('span');
+                    priceSpan.className = 'option-price text-muted small d-block';
+                    optionWrapper.appendChild(priceSpan);
+
+                    optionsContainer.appendChild(optionWrapper);
+
+                    // Add listener for clicks on the wrapper
+                    optionWrapper.addEventListener('click', (e) => {
+                        const currentPaneOptions = paneDiv.querySelectorAll('.opening-option');
+                        currentPaneOptions.forEach(opt => opt.classList.remove('selected'));
+                        optionWrapper.classList.add('selected');
+                        radioInput.checked = true;
+                        handleConfigurationChange({ target: radioInput });
+                    });
+                }); // Fin forEach openingType
+
+                paneDiv.appendChild(optionsContainer);
+                DOMElements.paneSpecificConfigsContainer.appendChild(paneDiv);
+
+            } // Fin for i < numberOfPanes
+
+            console.log("<- createPaneSpecificConfigs() finalizado.");
+        }
+
+        /**
+         * Valida TODAS las dimensiones según las restricciones en CONFIG.
+         */
+        function validateDimensions(state) {
+            let isValidOverall = true;
+            const constraints = CONFIG.DIMENSION_CONSTRAINTS[state.numPanes];
+
+            if (!constraints) { console.error(`Error Validación: No hay restricciones para ${state.numPanes} hojas.`); state.isValid = false; DOMElements.quoteButton.disabled = true; return false; }
+
+            // 1. Validar Altura
+            if (isNaN(state.height) || state.height < constraints.minH || state.height > constraints.maxH) { isValidOverall = false; console.warn(`Validación Alto: ${state.height}mm inválido (Rango: ${constraints.minH}-${constraints.maxH}mm)`); }
+
+            // 2. Validar Ancho(s)
+            let calculatedSum = 0;
+            let individualPaneErrors = false;
+            if (!state.panes || state.panes.length !== state.numPanes) { console.warn(`Validación Ancho: Discrepancia entre numPanes (${state.numPanes}) y state.panes (${state.panes?.length}).`); isValidOverall = false; }
+            else {
+                state.panes.forEach((pane, index) => {
+                    const widthValue = pane.width;
+                    calculatedSum += widthValue;
+                    const minPaneW = (state.numPanes === 1) ? constraints.minW : constraints.minPaneW;
+                    const maxPaneW = (state.numPanes === 1) ? constraints.maxW : constraints.maxPaneW;
+                    if (isNaN(widthValue) || widthValue < minPaneW || widthValue > maxPaneW) { isValidOverall = false; individualPaneErrors = true; console.warn(`Validación Ancho Hoja ${index+1}: ${widthValue}mm inválido (Rango: ${minPaneW}-${maxPaneW}mm)`); }
+                });
+                 if (calculatedSum < constraints.minW || calculatedSum > constraints.maxW) { isValidOverall = false; console.warn(`Validación Ancho Total (Suma ${state.numPanes} Hojas: ${calculatedSum}mm) inválido (Rango: ${constraints.minW}-${constraints.maxW}mm).`); }
+                 else if (individualPaneErrors) { console.warn("Validación Ancho: Al menos un ancho de hoja individual es inválido."); }
+            }
+
+            // Resultado Final
+            state.isValid = isValidOverall;
+            DOMElements.quoteButton.disabled = !state.isValid || !jsPDF_Instance;
+            return state.isValid;
+        }
+
+        /**
+         * Calcula el precio estimado basado en el estado de configuración actual.
+         */
+         function calculatePrice(state) {
+             if (!state.isValid) { state.price = 0; return 0; }
+
+             let price = CONFIG.BASE_PRICE;
+             const totalAreaM2 = state.totalAreaM2;
+             price += totalAreaM2 * CONFIG.PRICE_PER_SQUARE_METER;
+             if (state.numPanes > 1) { price += (state.numPanes - 1) * CONFIG.MULLION_PRICE; }
+
+             let numOperablePanes = 0; let totalOpeningCost = 0;
+             state.panes.forEach(pane => { totalOpeningCost += CONFIG.OPENING_TYPE_DETAILS[pane.openingType]?.price || 0; if (pane.openingType !== 'fixed') { numOperablePanes++; } });
+             price += totalOpeningCost;
+
+             let subtotalForPercentage = price; // Subtotal before glass, handle, frame color %, accessories
+             const glassCostPerM2 = CONFIG.GLASS_TYPE_PRICE_PER_M2[state.glassType]?.price || 0;
+             price += glassCostPerM2 * totalAreaM2;
+             if (numOperablePanes > 0) { price += (CONFIG.HANDLE_COLOR_PRICES[state.handleColor]?.price || 0) * numOperablePanes; }
+
+              const frameColorConfig = CONFIG.FRAME_COLOR_PRICES[state.frameColor];
+              if (frameColorConfig && frameColorConfig.price > 0) {
+                  if (frameColorConfig.type === 'fixed') { price += frameColorConfig.price; }
+                  else if (frameColorConfig.type === 'percentage_on_subtotal') { price += subtotalForPercentage * frameColorConfig.price; }
+              }
+
+             let totalAccessoryCost = 0;
+             for (const accId in state.accessories) {
+                  if (state.accessories[accId]) {
+                     const checkboxElement = document.getElementById(accId); const accKey = checkboxElement ? checkboxElement.value : null;
+                     const accConfig = accKey ? CONFIG.ACCESSORY_PRICES[accKey] : null;
+                      if (accConfig) { totalAccessoryCost += accConfig.perOperable ? accConfig.price * numOperablePanes : accConfig.price; }
+                  }
+             }
+             price += totalAccessoryCost;
+
+             state.price = Math.round(price);
+             return state.price;
+        }
+
+        /**
+         * Actualiza los precios mostrados junto a cada opción.
+         */
+        function updateOptionPrices(state) {
+            const formatPrice = (value) => value > 0 ? `(+${value.toLocaleString('es-CL')} CLP)` : (value < 0 ? `(${value.toLocaleString('es-CL')} CLP)` : '');
+            const formatBase = () => '(Base)';
+
+            if (!state.isValid) { document.querySelectorAll('.option-price').forEach(span => span.textContent = ''); return; }
+
+            // --- Precios de Color de Marco ---
+            const basePriceForColorCalc = calculatePrice({ ...state, frameColor: 'white', isValid: true });
+            DOMElements.frameColorOptionsContainer.querySelectorAll('.color-option').forEach(optionDiv => {
+                const colorValue = optionDiv.dataset.colorValue; const priceSpan = optionDiv.querySelector('.option-price'); if (!priceSpan) return;
+                const colorConfig = CONFIG.FRAME_COLOR_PRICES[colorValue]; if (!colorConfig) { priceSpan.textContent = ''; return; }
+                if (colorValue === 'white') { priceSpan.textContent = formatBase(); }
+                else { const priceWithThisColor = calculatePrice({ ...state, frameColor: colorValue, isValid: true }); priceSpan.textContent = formatPrice(priceWithThisColor - basePriceForColorCalc); }
+            });
+
+             // --- Precios de Tipo de Vidrio ---
+             const basePriceForGlassCalc = calculatePrice({ ...state, glassType: 'single', isValid: true });
+             Array.from(DOMElements.glassTypeSelect.options).forEach(option => {
+                 const glassValue = option.value; const priceSpan = option.querySelector('.option-price'); if (!priceSpan) return;
+                 const glassConfig = CONFIG.GLASS_TYPE_PRICE_PER_M2[glassValue]; if (!glassConfig) { priceSpan.textContent = ''; return; }
+                 if (glassValue === 'single') { priceSpan.textContent = formatBase(); }
+                 else { const priceWithThisGlass = calculatePrice({ ...state, glassType: glassValue, isValid: true }); priceSpan.textContent = formatPrice(priceWithThisGlass - basePriceForGlassCalc); }
+             });
+
+            // --- Precios de Color de Manilla ---
+            const baseHandlePrice = CONFIG.HANDLE_COLOR_PRICES['chrome']?.price || 0;
+            let numOperable = state.panes.filter(p => p.openingType !== 'fixed').length;
+            Array.from(DOMElements.handleColorSelect.options).forEach(option => {
+                const handleValue = option.value; const priceSpan = option.querySelector('.option-price'); if (!priceSpan) return;
+                const handleConfig = CONFIG.HANDLE_COLOR_PRICES[handleValue]; if (!handleConfig) { priceSpan.textContent = ''; return; }
+                const priceDifferencePerHandle = handleConfig.price - baseHandlePrice;
+                priceSpan.textContent = numOperable > 0 ? formatPrice(priceDifferencePerHandle) + (numOperable > 1 ? ` c/u` : '') : '(N/A)';
+            });
+
+            // --- Precios de Accesorios ---
+            DOMElements.accessoryCheckboxes.forEach(checkbox => {
+                const accValue = checkbox.value; const label = document.querySelector(`label[for="${checkbox.id}"]`); const priceSpan = label ? label.querySelector('.option-price') : null; if (!priceSpan) return;
+                const accConfig = CONFIG.ACCESSORY_PRICES[accValue];
+                if (accConfig) {
+                    let priceToShow = accConfig.price; let suffix = '';
+                    if (accConfig.perOperable) { if (numOperable > 0) { suffix = ` c/u (${numOperable} aplic.)`; } else { priceToShow = 0; suffix = ' (N/A)'; } }
+                    priceSpan.textContent = formatPrice(priceToShow) + suffix;
+                } else { priceSpan.textContent = ''; }
+            });
+
+             // --- Precios de Tipo de Apertura ---
+             const baseOpeningPrice = CONFIG.OPENING_TYPE_DETAILS['fixed']?.price || 0;
+             DOMElements.paneSpecificConfigsContainer.querySelectorAll('.opening-option').forEach(optionWrapper => {
+                 const radio = optionWrapper.querySelector('input[type="radio"]'); const priceSpan = optionWrapper.querySelector('.option-price'); if (!radio || !priceSpan) return;
+                 const openingValue = radio.value; const openingConfig = CONFIG.OPENING_TYPE_DETAILS[openingValue];
+                 if (openingConfig) { priceSpan.textContent = formatPrice(openingConfig.price - baseOpeningPrice); } else { priceSpan.textContent = ''; }
+             });
+       }
+
+        /**
+         * Actualiza la visualización usando Canvas con la imagen base correcta.
+         */
+        function updateVisualization(state) {
+            const canvas = DOMElements.windowCanvas;
+            const container = DOMElements.visualizationContainer;
+            if (!canvasCtx || !canvas || !container) return;
+
+            const currentBaseFilename = getCurrentBaseImageFilename(state.numPanes);
+            const baseImg = loadedBaseImages[currentBaseFilename];
+            const isLoading = !baseImg || !baseImg.complete;
+            const loadHadError = baseImageLoadError[currentBaseFilename];
+
+            canvas.classList.toggle('loading', isLoading && !loadHadError);
+
+            // --- 1. Calcular Dimensiones de Display ---
+            const containerPadding = parseFloat(getComputedStyle(container).paddingLeft) + parseFloat(getComputedStyle(container).paddingRight);
+            const availableWidth = container.clientWidth > 50 ? container.clientWidth - containerPadding : 350;
+            const maxVisualHeight = CONFIG.VISUALIZATION_MAX_HEIGHT_CSS;
+            let displayWidth, displayHeight;
+
+            if (state.isValid && state.totalWidth > 0 && state.height > 0) {
+                const inputRatio = state.height / state.totalWidth;
+                displayWidth = availableWidth; displayHeight = displayWidth * inputRatio;
+                if (displayHeight > maxVisualHeight) { displayHeight = maxVisualHeight; displayWidth = displayHeight / inputRatio; }
+                displayWidth = Math.max(50, Math.round(Math.min(displayWidth, availableWidth))); displayHeight = Math.max(50, Math.round(displayHeight));
+                canvas.width = displayWidth; canvas.height = displayHeight; canvas.style.width = `${displayWidth}px`; canvas.style.height = `${displayHeight}px`; canvas.classList.remove('error');
+            } else {
+                canvas.width = canvas.width || 200; canvas.height = canvas.height || 150; canvas.style.width = `${canvas.width}px`; canvas.style.height = `${canvas.height}px`;
+                drawCanvasError("Configuración inválida. Verifique dimensiones.");
+                updateSmallOptionPreviews(state); return;
+            }
+
+            // --- 2. Dibujar en el Canvas ---
+            canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+            if (loadHadError) { drawCanvasError(`Error al cargar imagen base (${currentBaseFilename})`); updateSmallOptionPreviews(state); return; }
+            if (isLoading) { canvasCtx.fillStyle = '#eee'; canvasCtx.fillRect(0, 0, canvas.width, canvas.height); canvasCtx.fillStyle = '#555'; canvasCtx.font = '12px sans-serif'; canvasCtx.textAlign = 'center'; canvasCtx.textBaseline = 'middle'; canvasCtx.fillText(`Cargando imagen (${currentBaseFilename})...`, canvas.width / 2, canvas.height / 2); loadSpecificBaseImage(currentBaseFilename, () => { handleConfigurationChange({ target: { id: 'imageLoadedCallback' }}); }); updateSmallOptionPreviews(state); return; }
+
+            // --- Dibujar la imagen base correcta (ajustada por ancho de hoja) ---
+            let currentDx = 0;
+            for (let i = 0; i < state.numPanes; i++) {
+                const pane = state.panes[i];
+                if (!pane || pane.width <= 0 || state.totalWidth <= 0) continue;
+                const sourcePaneWidth = baseImg.width / state.numPanes; const sx = i * sourcePaneWidth; const sy = 0; const sWidth = sourcePaneWidth; const sHeight = baseImg.height;
+                const paneWidthRatio = pane.width / state.totalWidth; const dWidth = canvas.width * paneWidthRatio; const dx = currentDx; const dy = 0; const dHeight = canvas.height;
+                try { if (sWidth > 0 && sHeight > 0 && dWidth > 0 && dHeight > 0) { canvasCtx.drawImage(baseImg, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight); } }
+                catch (e) { console.error(`Error al ejecutar drawImage hoja ${i+1} (${currentBaseFilename}): `, e); canvasCtx.fillStyle = 'rgba(255,0,0,0.5)'; canvasCtx.fillRect(dx, dy, Math.max(1, dWidth), dHeight); }
+                currentDx += dWidth;
+            }
+            // --- 3. Actualizar Previews Pequeñas ---
+            updateSmallOptionPreviews(state);
+            canvas.classList.remove('loading');
+        }
+
+        /** Helper para actualizar las previews pequeñas (Manilla, Vidrio) */
+        function updateSmallOptionPreviews(state) {
+             updateOptionPreview(DOMElements.handleColorPreview, state.handleColorPreviewSrc, 'color manilla');
+             updateOptionPreview(DOMElements.glassTypePreview, state.glassTypePreviewSrc, 'tipo vidrio');
+        }
+
+        /** Actualiza una imagen de previsualización de opción con manejo de errores. */
+        function updateOptionPreview(imgElement, previewSrc, previewName) {
+             if (!imgElement) return;
+             const defaultErrorSrc = CONFIG.DEFAULT_PREVIEW_ERROR_IMAGE || 'about:blank';
+             const finalSrc = previewSrc && previewSrc.trim() !== '' ? previewSrc : defaultErrorSrc;
+             const needsUpdate = !imgElement.src || !imgElement.src.endsWith(finalSrc.split('/').pop()) || imgElement.classList.contains('preview-error');
+
+             if (!needsUpdate) { return; }
+
+             imgElement.classList.remove('preview-error');
+             imgElement.onerror = function() { console.warn(`ERROR al cargar preview "${previewName}": ${this.src}. Usando fallback: ${defaultErrorSrc}`); this.onerror = null; if (!this.src.endsWith(defaultErrorSrc.split('/').pop())) { this.src = defaultErrorSrc; } this.classList.add('preview-error'); };
+             imgElement.src = finalSrc;
+        }
+
+        /** Actualiza el contenido del div de resumen de configuración. */
+        function updateConfigSummary(state) {
+            let summaryHTML = '<strong>Resumen de Configuración:</strong>';
+            if (!state.isValid) { summaryHTML += '<span class="text-danger mt-2 d-block"><i class="fas fa-exclamation-triangle me-1"></i>Configuración inválida. Verifique dimensiones.</span>'; }
+            else {
+                summaryHTML += `<span><strong>Dimensiones:</strong> ${state.totalWidth}mm Ancho x ${state.height}mm Alto (${state.numPanes} Hoja/s)</span>`;
+                if (state.panes.length > 0) {
+                     summaryHTML += '<span class="mt-2"><strong>Detalle por Hoja:</strong></span>';
+                     state.panes.forEach((pane, index) => { summaryHTML += `<span style="padding-left: 15px;"><i class="fas fa-caret-right fa-xs me-1 text-muted"></i>Hoja ${index + 1}: ${pane.width}mm (${pane.openingTypeText || 'N/A'})</span>`; });
+                } else { summaryHTML += '<span class="text-warning mt-2 d-block">Error: No se pudieron leer detalles de hojas.</span>'; }
+                summaryHTML += `<span class="mt-2"><strong>Acabados y Vidrio:</strong></span>`;
+                summaryHTML += `<span style="padding-left: 15px;"><strong>Marco:</strong> ${state.frameColorText || 'N/A'}</span>`;
+                summaryHTML += `<span style="padding-left: 15px;"><strong>Manilla(s):</strong> ${state.hasOperablePanes ? state.handleColorText || 'N/A' : 'No aplica (Fijo)'}</span>`;
+                summaryHTML += `<span style="padding-left: 15px;"><strong>Vidrio:</strong> ${state.glassTypeText || 'N/A'}</span>`;
+                summaryHTML += `<span class="mt-2"><strong>Accesorios:</strong></span>`;
+                summaryHTML += `<span style="padding-left: 15px;">${state.accessoriesText.length > 0 ? state.accessoriesText.join(', ') : 'Ninguno'}</span>`;
+            }
+            DOMElements.configSummaryDiv.innerHTML = summaryHTML;
+        }
+
+        /** Actualiza el display de precio en el DOM. */
+        function updatePriceDisplay(price, isValid) {
+            DOMElements.totalPriceDisplay.textContent = isValid ? `$${price.toLocaleString('es-CL')} CLP` : '$ --- CLP';
+        }
+
+        /** Función central que orquesta la actualización completa del configurador. */
+        function handleConfigurationChange(event) {
+            const triggerElement = event ? event.target : null;
+            const triggerId = triggerElement ? (triggerElement.id || triggerElement.name || triggerElement.tagName) : 'Inicial/Manual';
+            // console.log(`\n--- Config Change triggered by: ${triggerId} ---`);
+
+            const state = getCurrentConfiguration();
+            validateDimensions(state);
+            const price = calculatePrice(state);
+            updateVisualization(state);
+            updateConfigSummary(state);
+            updatePriceDisplay(price, state.isValid);
+            updateOptionPrices(state);
+
+            if (DOMElements.handleColorSelect && DOMElements.handleMessageDiv) {
+                 DOMElements.handleColorSelect.disabled = !state.hasOperablePanes;
+                 DOMElements.handleMessageDiv.style.display = state.hasOperablePanes ? 'none' : 'block';
+            }
+            // console.log(`--- Config Change complete for: ${triggerId} ---`);
+        }
+
+        /** Maneja el cambio en el selector de tipo de ventana (número de hojas). */
+        function handleWindowTypeChange() {
+            console.log("-> Ejecutando: handleWindowTypeChange()");
+            const numPanes = parseInt(DOMElements.windowTypeSelect.value);
+            const constraints = CONFIG.DIMENSION_CONSTRAINTS[numPanes];
+            if (!constraints) { console.error(`Fatal: No hay restricciones para ${numPanes} hojas.`); return; }
+
+            let currentTotalWidth = currentConfigState.totalWidth;
+            if (currentConfigState.numPanes === 1 && DOMElements.totalWidthInput) { currentTotalWidth = parseInt(DOMElements.totalWidthInput.value) || 0; }
+            else if (currentConfigState.panes && currentConfigState.panes.length > 0) { currentTotalWidth = currentConfigState.panes.reduce((sum, p) => sum + p.width, 0); }
+            currentTotalWidth = currentTotalWidth || constraints.minW; currentTotalWidth = Math.max(constraints.minW, Math.min(constraints.maxW, currentTotalWidth));
+
+            DOMElements.heightInput.min = constraints.minH; DOMElements.heightInput.max = constraints.maxH; DOMElements.heightInput.placeholder = `${constraints.minH}-${constraints.maxH}`;
+            let currentHeight = parseInt(DOMElements.heightInput.value);
+            DOMElements.heightInput.value = Math.max(constraints.minH, Math.min(constraints.maxH, isNaN(currentHeight) ? constraints.minH : currentHeight));
+
+            if (numPanes > 1) { createPaneWidthInputs(numPanes, currentTotalWidth, constraints); }
+            else {
+                 DOMElements.totalWidthContainer.style.display = 'flex'; DOMElements.paneWidthsContainer.innerHTML = ''; DOMElements.paneWidthsContainer.style.display = 'none'; DOMElements.paneWidthsLabel.style.display = 'none';
+                 DOMElements.totalWidthInput.min = constraints.minW; DOMElements.totalWidthInput.max = constraints.maxW; DOMElements.totalWidthInput.placeholder = `${constraints.minW}-${constraints.maxW}`; DOMElements.totalWidthInput.value = currentTotalWidth;
+            }
+            createPaneSpecificConfigs(numPanes);
+
+            const newBaseFilename = getCurrentBaseImageFilename(numPanes);
+            if (canvasCtx) { loadSpecificBaseImage(newBaseFilename, () => { handleConfigurationChange({ target: DOMElements.windowTypeSelect }); }); }
+            handleConfigurationChange({ target: DOMElements.windowTypeSelect });
+            console.log("<- handleWindowTypeChange() finalizado.");
+        }
+
+        /** Genera el PDF de la cotización estimada usando jsPDF. */
+        function generateQuotePDF(state) {
+             console.log("-> Ejecutando: generateQuotePDF()");
+             if (!state.isValid) { alert("La configuración tiene errores de dimensiones. Corríjalos antes de generar el PDF."); const firstDimInput = document.querySelector('.dimension-input'); if(firstDimInput) { firstDimInput.focus(); firstDimInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); } return; }
+             if (!jsPDF_Instance) { alert("Error crítico: No se puede generar PDF."); setQuoteButtonLoading(false); if(DOMElements.pdfStatusDiv) DOMElements.pdfStatusDiv.textContent = 'Error crítico PDF.'; return; }
+
+             console.log("  Iniciando generación de PDF...");
+             setQuoteButtonLoading(true);
+             if(DOMElements.pdfStatusDiv) { DOMElements.pdfStatusDiv.textContent = 'Generando PDF...'; DOMElements.pdfStatusDiv.className = 'mt-3 small text-primary'; }
+
+             setTimeout(() => { // Simulate async operation
+                 try {
+                     const doc = new jsPDF_Instance({ orientation: 'p', unit: 'mm', format: 'a4' });
+                     const pageHeight = doc.internal.pageSize.height; const pageWidth = doc.internal.pageSize.width; const margin = 15; let currentY = margin + 10;
+                     const addTextLine = (text, x, y, options = {}, lineHeight = 6) => { if (y + lineHeight > pageHeight - margin) { doc.addPage(); currentY = margin; y = currentY; } doc.text(text, x, y, options); currentY = y + lineHeight; return currentY; };
+                     const addSectionTitlePDF = (title, y) => { let tempY = y + 4; doc.setFontSize(12); doc.setFont("helvetica", "bold"); tempY = addTextLine(title, margin, tempY, {}, 8); doc.setLineWidth(0.2); doc.setDrawColor(100, 100, 100); doc.line(margin, tempY - 4, margin + 60, tempY - 4); doc.setFontSize(11); doc.setFont("helvetica", "normal"); return tempY; };
+                     const addDetailLinePDF = (label, value, y, indent = 0) => { const labelX = margin + indent; const valueX = labelX + 45; const maxWidthValue = pageWidth - valueX - margin; doc.setFont("helvetica", "bold"); let nextYLabel = addTextLine(`${label}:`, labelX, y, {}, 6); doc.setFont("helvetica", "normal"); let nextYValue = addTextLine(String(value || 'N/A'), valueX, y, { maxWidth: maxWidthValue }, 6); return Math.max(nextYLabel, nextYValue); };
+
+                     // --- Contenido del PDF ---
+                     console.log("    Añadiendo contenido al PDF...");
+                     doc.setFontSize(18); doc.setFont("helvetica", "bold"); currentY = addTextLine("Cotización Estimada - Ventana PVC", pageWidth / 2, currentY, { align: 'center' }, 8);
+                     doc.setFontSize(14); doc.setFont("helvetica", "normal"); currentY = addTextLine("Starwin Chile", pageWidth / 2, currentY, { align: 'center' }, 8); // Usa Starwin
+                     doc.setFontSize(10); currentY = addTextLine(`Fecha: ${new Date().toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric' })}`, pageWidth - margin, currentY, { align: 'right' }, 8);
+                     doc.setLineWidth(0.3); doc.setDrawColor(180, 180, 180); doc.line(margin, currentY, pageWidth - margin, currentY); currentY += 6;
+                     currentY = addSectionTitlePDF("1. Configuración General", currentY);
+                     currentY = addDetailLinePDF("Dimensiones Totales", `${state.totalWidth} mm Ancho x ${state.height} mm Alto`, currentY); currentY = addDetailLinePDF("Número de Hojas", state.numPanes, currentY); currentY += 2;
+                     currentY = addSectionTitlePDF("2. Detalle por Hoja", currentY);
+                     state.panes.forEach((pane, index) => { currentY = addDetailLinePDF(`Hoja ${index + 1}`, `Ancho: ${pane.width} mm, Apertura: ${pane.openingTypeText}`, currentY, 5); }); currentY += 2;
+                     currentY = addSectionTitlePDF("3. Acabados y Vidrio", currentY);
+                     currentY = addDetailLinePDF("Color Marco", state.frameColorText, currentY); currentY = addDetailLinePDF("Color Manilla(s)", state.hasOperablePanes ? state.handleColorText : "No Aplica (Fijo)", currentY); currentY = addDetailLinePDF("Tipo Vidrio", state.glassTypeText, currentY); currentY += 2;
+                     currentY = addSectionTitlePDF("4. Accesorios", currentY);
+                     currentY = addDetailLinePDF("Incluidos", state.accessoriesText.length > 0 ? state.accessoriesText.join(', ') : 'Ninguno', currentY); currentY += 2;
+                     currentY += 6; doc.setLineWidth(0.4); doc.setDrawColor(50, 50, 50); doc.line(margin, currentY, pageWidth - margin, currentY); currentY += 6;
+                     doc.setFontSize(14); doc.setFont("helvetica", "bold"); const priceText = `$ ${state.price.toLocaleString('es-CL')} CLP`;
+                     let priceLabelY = currentY; currentY = addTextLine("Precio Estimado (IVA Incl.):", margin, priceLabelY, {}, 8); currentY = addTextLine(priceText, pageWidth - margin, priceLabelY, { align: 'right' }); currentY = Math.max(currentY, priceLabelY + 8);
+                     doc.setFontSize(9); doc.setFont("helvetica", "italic"); currentY = addTextLine("No incluye instalación ni despacho.", margin , currentY, {}, 8); doc.setLineWidth(0.4); doc.line(margin, currentY, pageWidth - margin, currentY); currentY += 8;
+                     currentY = addSectionTitlePDF("Notas Importantes", currentY);
+                     doc.setFontSize(9); doc.setFont("helvetica", "normal");
+                      const notes = [ "- Cotización estimada sujeta a verificación técnica.", "- Validez: 15 días.", "- Un representante se contactará.", "- Consultas: starwinchile@gmail.com | +56 9 7205 1379." ];
+                      notes.forEach(note => { currentY = addTextLine(note, margin, currentY, { maxWidth: pageWidth - 2 * margin }, 5); }); currentY += 4;
+                     const pageCount = doc.internal.getNumberOfPages();
+                     for(let i = 1; i <= pageCount; i++) { doc.setPage(i); doc.setFontSize(8); doc.setFont("helvetica", "italic"); const footerY = pageHeight - margin / 2; doc.text(`Starwin Chile | Cotización Estimada | Página ${i} de ${pageCount}`, pageWidth / 2, footerY, { align: 'center' }); }
+
+                     const timestamp = new Date().toISOString().replace(/[-:.]/g, '').slice(0, 14);
+                     const filename = `Cotizacion_StarwinPVC_${state.totalWidth}x${state.height}_${timestamp}.pdf`;
+                     console.log(`    Guardando PDF como: "${filename}"`);
+                     doc.save(filename);
+                     console.log("    PDF generado y descarga iniciada.");
+                     if(DOMElements.pdfStatusDiv) { DOMElements.pdfStatusDiv.textContent = `PDF "${filename}" generado.`; DOMElements.pdfStatusDiv.className = 'mt-3 small text-success'; }
+
+                 } catch (error) { console.error("Error CRÍTICO durante generación del PDF:", error); if(DOMElements.pdfStatusDiv) { DOMElements.pdfStatusDiv.textContent = 'Error al generar PDF.'; DOMElements.pdfStatusDiv.className = 'mt-3 small text-danger'; } alert("Hubo un problema al generar el PDF. Revise la consola (F12)."); }
+                 finally { console.log("    Restaurando botón cotización."); setQuoteButtonLoading(false); }
+             }, 100); // End setTimeout
+             console.log("<- generateQuotePDF() finalizado.");
+        }
+
+        /** Actualiza estado visual del botón de cotización (loading/normal). */
+        function setQuoteButtonLoading(isLoading) {
+            const button = DOMElements.quoteButton; const spinner = button.querySelector('.spinner-border'); const buttonTextSpan = DOMElements.quoteButtonText; if (!button || !spinner || !buttonTextSpan) return;
+            if (isLoading) { button.disabled = true; spinner.style.display = 'inline-block'; buttonTextSpan.textContent = "Generando..."; }
+            else { button.disabled = !currentConfigState.isValid || !jsPDF_Instance; spinner.style.display = 'none'; buttonTextSpan.textContent = "Generar PDF y Solicitar Cotización"; }
+        }
+
+        // --- Configuración Inicial y Event Listeners ---
+        function initializeConfigurator() {
+            console.log("\n---=== INICIALIZANDO LOGICA CONFIGURADOR ===---");
+
+            // Restricciones Iniciales y Valores
+            try {
+                const initialNumPanes = parseInt(DOMElements.windowTypeSelect.value) || 1; const initialConstraints = CONFIG.DIMENSION_CONSTRAINTS[initialNumPanes];
+                if (initialConstraints) {
+                    DOMElements.heightInput.min = initialConstraints.minH; DOMElements.heightInput.max = initialConstraints.maxH; DOMElements.heightInput.placeholder = `${initialConstraints.minH}-${initialConstraints.maxH}`;
+                    DOMElements.totalWidthInput.min = initialConstraints.minW; DOMElements.totalWidthInput.max = initialConstraints.maxW; DOMElements.totalWidthInput.placeholder = `${initialConstraints.minW}-${initialConstraints.maxW}`;
+                    DOMElements.heightInput.value = Math.max(initialConstraints.minH, Math.min(initialConstraints.maxH, parseInt(DOMElements.heightInput.value) || 1200));
+                    DOMElements.totalWidthInput.value = Math.max(initialConstraints.minW, Math.min(initialConstraints.maxW, parseInt(DOMElements.totalWidthInput.value) || 1000));
+                } else { throw new Error(`No hay restricciones para ${initialNumPanes} hojas.`); }
+            } catch (e) { console.error("Error al aplicar restricciones iniciales:", e); }
+
+            // Setup Tooltips & Previews (Glass & Accessories)
+            Array.from(DOMElements.glassTypeSelect.options).forEach(option => { const glassValue = option.value; const description = CONFIG.GLASS_TYPE_PRICE_PER_M2[glassValue]?.description; if (description) option.title = description; if (!option.querySelector('.option-price')) { const priceSpan = document.createElement('span'); priceSpan.className = 'option-price text-muted small ms-1'; option.appendChild(priceSpan); } });
+            Array.from(DOMElements.handleColorSelect.options).forEach(option => { if (!option.querySelector('.option-price')) { const priceSpan = document.createElement('span'); priceSpan.className = 'option-price text-muted small ms-1'; option.appendChild(priceSpan); } });
+            DOMElements.accessoryCheckboxes.forEach(checkbox => {
+                 const accValue = checkbox.value; const accConfig = CONFIG.ACCESSORY_PRICES[accValue]; const label = document.querySelector(`label[for="${checkbox.id}"]`); const textSpan = label ? label.querySelector('.accessory-label-text') : null; const priceSpan = label ? label.querySelector('.option-price') : null;
+                 if (accConfig && label && textSpan) {
+                     if (accConfig.description) label.title = accConfig.description;
+                     if (accConfig.preview && !label.querySelector('.accessory-preview-image')) { const img = document.createElement('img'); img.src = accConfig.preview; img.alt = `Preview ${accConfig.name}`; img.className = 'accessory-preview-image'; img.onerror = function() { this.onerror = null; this.src = CONFIG.DEFAULT_PREVIEW_ERROR_IMAGE; this.classList.add('preview-error'); console.warn(`Error cargando preview accesorio: ${accConfig.preview}`); }; label.insertBefore(img, textSpan); }
+                     if (!priceSpan) { const newPriceSpan = document.createElement('span'); newPriceSpan.className = 'option-price text-muted small ms-1'; label.appendChild(newPriceSpan); }
+                 }
+            });
+
+            // Iniciar Carga Imagen Base Inicial y Crear Opciones Apertura Iniciales
+            const initialNumPanes = parseInt(DOMElements.windowTypeSelect.value);
+            createPaneSpecificConfigs(initialNumPanes);
+            const initialBaseFilename = getCurrentBaseImageFilename(initialNumPanes);
+            if (canvasCtx) { loadSpecificBaseImage(initialBaseFilename, () => { handleConfigurationChange({ target: { id: 'initialImageLoad' } }); }); }
+            else { console.warn("No se cargará imagen base (canvas no disponible)."); if (DOMElements.windowCanvas) drawCanvasError("Canvas no disponible"); }
+
+            // Event Listeners
+            console.log("Añadiendo event listeners del configurador...");
+            if (DOMElements.windowTypeSelect) DOMElements.windowTypeSelect.addEventListener('change', handleWindowTypeChange);
+            const setupChangeListener = (element) => { if (!element) return; const eventType = (element.tagName === 'INPUT' && (element.type === 'number' || element.type === 'text')) ? 'input' : 'change'; element.addEventListener(eventType, handleConfigurationChange); if (eventType === 'input') element.addEventListener('change', handleConfigurationChange); };
+            setupChangeListener(DOMElements.heightInput);
+            setupChangeListener(DOMElements.totalWidthInput);
+            setupChangeListener(DOMElements.glassTypeSelect);
+            setupChangeListener(DOMElements.handleColorSelect);
+            DOMElements.accessoryCheckboxes.forEach(setupChangeListener);
+
+            if (DOMElements.frameColorOptionsContainer) {
+                DOMElements.frameColorOptionsContainer.addEventListener('click', (event) => { const targetOption = event.target.closest('.color-option'); if (!targetOption) return; DOMElements.frameColorOptionsContainer.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected')); targetOption.classList.add('selected'); const radio = targetOption.querySelector('input[type="radio"]'); if (radio) radio.checked = true; handleConfigurationChange({ target: radio || targetOption }); });
+            } else { console.warn("Contenedor de opciones de color no encontrado."); }
+
+            if (DOMElements.quoteButton) {
+                DOMElements.quoteButton.addEventListener('click', () => { console.log("Botón 'Generar PDF' clickeado."); handleConfigurationChange({target: DOMElements.quoteButton}); if (currentConfigState.isValid && jsPDF_Instance) { generateQuotePDF(currentConfigState); } else { console.warn("Click en generar PDF, pero config inválida o jsPDF falta."); if (!currentConfigState.isValid) { alert("Revise y corrija las dimensiones antes de generar PDF."); const firstDimInput = document.querySelector('.dimension-input'); if(firstDimInput) { firstDimInput.focus(); firstDimInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); } } else if (!jsPDF_Instance) { alert("Error crítico: Función PDF no disponible."); } } });
+            } else { console.warn("Botón de cotización no encontrado."); }
+
+            console.log("Listeners principales del configurador añadidos.");
+
+            // Ejecutar Primera Actualización Completa
+            console.log("Realizando primera actualización completa del configurador...");
+            handleConfigurationChange(null);
+
+            console.log("---=== INICIALIZACIÓN LÓGICA CONFIGURADOR COMPLETADA ===---");
+        }
+
+        // --- Iniciar el Configurador (si los elementos esenciales están) ---
+        if (essentialElementsFound || (!DOMElements.windowCanvas && Object.keys(DOMElements).filter(k => !DOMElements[k] && !['windowCanvas', 'handleMessageDiv'].includes(k)).length === 0)) {
+             initializeConfigurator();
+        } else {
+             console.error("Inicialización del configurador abortada por falta de elementos DOM críticos.");
+        }
+
+    }); // Fin DOMContentLoaded Global
+</script>
+
+</body>
+</html>

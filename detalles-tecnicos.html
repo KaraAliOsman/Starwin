@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especificaciones Técnicas Avanzadas - Starwin Chile</title>
+    <meta name="description" content="Explora en profundidad las características técnicas de las ventanas uPVC Starwin. Diseño, rendimiento y tecnología que marcan la diferencia.">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts: Inter & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Slick Carousel CSS (Necesario si se usa en algún momento, aunque no en esta página) -->
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/> -->
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/> -->
+
+<style>
+    /* --- 1. Variables y Estilos Base (COPIADO DE INDEX.HTML) --- */
+    :root {
+        /* PALETA: Turquesa, Gris, Naranja */
+        --brand-primary: #17A2B8; /* Turquesa Principal */
+        --brand-primary-dark: #117A8B; /* Turquesa Oscuro (Hover) */
+        --brand-secondary: #6c757d; /* Gris Medio (Texto secundario, bordes) */
+        --brand-accent: #fd7e14;   /* Naranja (CTAs principales) */
+        --brand-accent-dark: #E6710F; /* Naranja Oscuro (Hover) */
+        --brand-dark: #343a40;     /* Gris Oscuro (Texto principal, fondos oscuros) */
+        --brand-lightgray: #f8f9fa; /* Gris Claro (Fondos alternos) */
+        --brand-extralightgray: #e9ecef; /* Gris Muy Claro (Bordes sutiles, fondos) */
+        --brand-white: #ffffff;
+        --brand-navbar-bg: #f8f9fa; /* Gris muy claro para navbar */
+        --text-muted: var(--brand-secondary);
+
+        /* Convertidos a RGB para Bootstrap */
+        --bs-primary-rgb: 23, 162, 184;
+        --bs-secondary-rgb: 108, 117, 125;
+        --bs-dark-rgb: 52, 58, 64;
+        --bs-link-color-rgb: var(--bs-primary-rgb);
+        --bs-link-hover-color-rgb: 17, 122, 139; /* Darker turquoise */
+
+        /* AJUSTE: Tamaños de fuente base aumentados */
+        --base-font-size-lg: 17.5px; /* Ajuste */
+        --base-font-size-md: 16.5px; /* Ajuste */
+        --base-font-size-sm: 16px; /* Ajuste */
+
+        /* Padding estándar para secciones */
+        --section-padding-y: 5.5rem;
+        --section-padding-y-sm: 4rem;
+
+        /* Otros */
+        --border-radius-base: 0.6rem;
+        --border-radius-sm: 0.4rem;
+        --box-shadow-sm: 0 0.125rem 0.35rem rgba(0, 0, 0, 0.07);
+        --box-shadow-md: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.1);
+        --box-shadow-lg: 0 1.2rem 3.5rem rgba(0, 0, 0, 0.13);
+        --transition-base: all 0.3s ease-in-out;
+        --font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        --font-family-headings: 'Poppins', var(--font-family-sans-serif);
+    }
+
+    html {
+        scroll-behavior: smooth;
+        font-size: var(--base-font-size-lg);
+    }
+    /* AJUSTE: Media queries para tamaño base */
+    @media (max-width: 1200px) { html { font-size: var(--base-font-size-md); } }
+    @media (max-width: 768px) { html { font-size: var(--base-font-size-sm); } }
+
+    body {
+        font-family: var(--font-family-sans-serif);
+        color: var(--brand-dark);
+        background-color: var(--brand-white);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        line-height: 1.8; /* AJUSTE: Aumentado para textos más grandes */
+        overflow-x: hidden; /* Prevenir scroll horizontal accidental */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    main {
+        flex-grow: 1;
+    }
+
+    /* --- Tipografía Mejorada (COPIADO DE INDEX.HTML) --- */
+    h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+        margin-top: 0;
+        margin-bottom: 1rem; /* Ajustado para consistencia */
+        font-family: var(--font-family-headings);
+        font-weight: 700;
+        line-height: 1.35;
+        color: var(--brand-dark);
+    }
+    h1, .h1 { font-size: clamp(2.2rem, 6vw, 3.3rem); }
+    h2, .h2 { font-size: clamp(2rem, 5vw, 2.8rem); }
+    h3, .h3 { font-size: clamp(1.5rem, 4vw, 2.1rem); font-weight: 600; /* Añadido de tu CSS original */ }
+    h4, .h4 { font-size: clamp(1.3rem, 3.5vw, 1.7rem); font-weight: 600; /* Añadido de tu CSS original */}
+    h5, .h5 { font-size: clamp(1.15rem, 3vw, 1.4rem); font-weight: 600; }
+    h6, .h6 { font-size: clamp(1.05rem, 2.8vw, 1.25rem); font-weight: 600; }
+
+    p { margin-bottom: 1.3rem; font-size: 1.05rem; color: var(--brand-secondary); /* Ligeramente ajustado vs index */ }
+    p.lead { font-size: clamp(1.15rem, 3vw, 1.4rem); font-weight: 400; color: var(--brand-secondary); line-height: 1.8; }
+    a { color: var(--brand-primary); text-decoration: none; transition: var(--transition-base); }
+    a:hover { color: var(--brand-primary-dark); text-decoration: underline; }
+    strong, b { font-weight: 600; color: var(--brand-dark); }
+    ul { padding-left: 0; list-style: none; margin-bottom: 1.3rem; /* Quitado estilo de lista, ajustado margin */ }
+    li { margin-bottom: 0.9rem; font-size: 1.05rem; /* Ajustado margin */ }
+    /* El estilo específico de LI con icono se define en la sección de detalles */
+
+    /* --- 2. Utilidades Bootstrap Customizadas (COPIADO DE INDEX.HTML) --- */
+    .bg-brand-primary { background-color: var(--brand-primary) !important; }
+    .text-brand-primary { color: var(--brand-primary) !important; }
+    .border-brand-primary { border-color: var(--brand-primary) !important; }
+    .bg-brand-secondary { background-color: var(--brand-secondary) !important; }
+    .text-brand-secondary { color: var(--brand-secondary) !important; }
+    .bg-brand-accent { background-color: var(--brand-accent) !important; }
+    .text-brand-accent { color: var(--brand-accent) !important; }
+    .border-brand-accent { border-color: var(--brand-accent) !important; }
+    .bg-brand-lightgray { background-color: var(--brand-lightgray) !important; }
+    .bg-brand-dark { background-color: var(--brand-dark) !important; }
+    .text-white { color: var(--brand-white) !important; }
+    .text-light-muted { color: rgba(255, 255, 255, 0.85) !important; /* Ajustado para consistencia con detalles */ }
+    .rounded-custom { border-radius: var(--border-radius-base); }
+    .shadow-custom-md { box-shadow: var(--box-shadow-md); }
+    .shadow-custom-lg { box-shadow: var(--box-shadow-lg); }
+
+    /* --- 3. Componentes --- */
+
+    /* --- Botones (COPIADO DE INDEX.HTML) --- */
+    .btn {
+        padding: 0.85rem 1.9rem;
+        font-weight: 500;
+        font-family: var(--font-family-headings);
+        transition: var(--transition-base);
+        border-radius: var(--border-radius-sm);
+        text-transform: none;
+        border: 1px solid transparent;
+        box-shadow: var(--box-shadow-sm);
+        font-size: 1.02rem;
+        letter-spacing: 0.3px;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: var(--box-shadow-md); }
+    .btn:focus, .btn.focus { outline: 0; box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.3); }
+    .btn:active, .btn.active { transform: translateY(-1px); box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
+    .btn-lg { padding: 1.05rem 2.5rem; font-size: 1.15rem; }
+    .btn-sm { padding: 0.65rem 1.4rem; font-size: 0.92rem; }
+    .btn-brand-primary { background-color: var(--brand-primary); border-color: var(--brand-primary); color: var(--brand-white); }
+    .btn-brand-primary:hover, .btn-brand-primary:focus { background-color: var(--brand-primary-dark); border-color: var(--brand-primary-dark); color: var(--brand-white); }
+    .btn-brand-primary:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.5); }
+    .btn-brand-accent { background-color: var(--brand-accent); border-color: var(--brand-accent); color: var(--brand-white); }
+    .btn-brand-accent:hover, .btn-brand-accent:focus { background-color: var(--brand-accent-dark); border-color: var(--brand-accent-dark); color: var(--brand-white); }
+    .btn-brand-accent:focus { box-shadow: 0 0 0 0.25rem rgba(253, 126, 20, 0.5); }
+    .btn-outline-dark { color: var(--brand-dark); border-color: var(--brand-dark); background-color: transparent; }
+     .btn-outline-dark:hover, .btn-outline-dark:focus { background-color: var(--brand-dark); border-color: var(--brand-dark); color: var(--brand-white); }
+     .btn-outline-dark:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-dark-rgb), 0.5); }
+    .btn-light { background-color: rgba(255, 255, 255, 0.95); border-color: rgba(255, 255, 255, 0.95); color: var(--brand-dark); }
+    .btn-light:hover, .btn-light:focus { background-color: var(--brand-white); border-color: var(--brand-white); color: var(--brand-primary); }
+    .btn-outline-light { color: var(--brand-white); border-color: rgba(255, 255, 255, 0.7); } /* Copiado de tu CSS detalles */
+    .btn-outline-light:hover { background-color: var(--brand-white); border-color: var(--brand-white); color: var(--brand-primary); } /* Copiado de tu CSS detalles */
+
+    /* --- Header / Navbar (COPIADO EXACTAMENTE DE INDEX.HTML) --- */
+    .navbar { transition: background-color 0.3s ease, box-shadow 0.3s ease; padding-top: 0.7rem; padding-bottom: 0.7rem; background-color: var(--brand-navbar-bg); border-bottom: 1px solid var(--brand-extralightgray); }
+    .navbar-sticky { box-shadow: var(--box-shadow-md); }
+    .navbar-brand { font-weight: 700; font-size: 1.8rem; color: var(--brand-dark) !important; padding-top: 0; padding-bottom: 0; }
+     .navbar-brand img { max-height: 48px; width: auto; vertical-align: middle; margin-bottom: 4px; }
+    .navbar .nav-link { color: var(--brand-dark); font-weight: 500; font-family: var(--font-family-sans-serif); padding: 0.7rem 1rem; position: relative; transition: color 0.3s ease; text-decoration: none; font-size: 1rem; margin: 0 0.3rem; border-radius: var(--border-radius-sm); }
+    .navbar .nav-link:hover, .navbar .nav-link:focus { color: var(--brand-primary); background-color: rgba(var(--bs-primary-rgb), 0.08); text-decoration: none; }
+    .navbar .nav-link.active { color: var(--brand-primary); font-weight: 600; background-color: rgba(var(--bs-primary-rgb), 0.12); }
+     .navbar .nav-link::after { display: none; } /* Remove default Bootstrap caret if needed */
+    /* Dropdown Indicator */
+    .navbar .dropdown-indicator {
+        display: inline-block;
+        transition: transform 0.2s ease-in-out;
+        font-size: 0.8em; /* Slightly smaller icon */
+        vertical-align: middle; /* Align with text */
+        opacity: 0.7;
+    }
+    .navbar .dropdown-toggle.show .dropdown-indicator {
+        transform: rotate(180deg);
+    }
+    .navbar .dropdown-menu {
+        border-radius: var(--border-radius-sm);
+        border: 1px solid var(--brand-extralightgray);
+        box-shadow: var(--box-shadow-md);
+        margin-top: 0.3rem; /* Initial small gap */
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        transition: opacity 0.2s ease, visibility 0.2s ease, margin-top 0.2s ease;
+    }
+    .navbar .dropdown-menu.show {
+        margin-top: 0.5rem; /* Apply margin when shown by JS/BS */
+    }
+    .navbar .dropdown-item { font-size: 0.98rem; padding: 0.55rem 1.2rem; color: var(--brand-dark); transition: background-color 0.2s ease, color 0.2s ease; font-family: var(--font-family-sans-serif); }
+     .navbar .dropdown-item:hover, .navbar .dropdown-item:focus { background-color: var(--brand-lightgray); color: var(--brand-primary); }
+     .navbar .dropdown-item.active, .navbar .dropdown-item:active { background-color: var(--brand-primary); color: var(--brand-white); }
+    .navbar-toggler { border: none; padding: 0.6rem; }
+    .navbar-toggler:focus { box-shadow: none; }
+    .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
+    .navbar .btn-cta { padding: 0.65rem 1.5rem; font-size: 0.98rem; }
+    /* Ajustes responsive Navbar (COPIADO EXACTAMENTE DE INDEX.HTML) */
+    @media (max-width: 991.98px) {
+      .navbar-collapse { margin-top: 1rem; border-top: 1px solid var(--brand-extralightgray); padding-top: 1rem; background-color: var(--brand-navbar-bg); max-height: 75vh; overflow-y: auto; }
+      .navbar .navbar-nav { align-items: stretch; }
+      .navbar .nav-item { margin-bottom: 0.5rem; width: 100%; }
+      .navbar .nav-link { padding: 0.8rem 1rem; display: block; text-align: center; }
+      .navbar .nav-item.dropdown .dropdown-toggle { display: flex; justify-content: center; align-items: center; }
+      .navbar .nav-item.dropdown .dropdown-indicator { margin-left: 8px; }
+      .navbar .dropdown-menu { box-shadow: none; border: none; margin-top: 0 !important; padding-left: 1.5rem; background-color: var(--brand-extralightgray); position: static !important; float: none !important; width: auto !important; text-align: center; }
+      .navbar .dropdown-item { padding: 0.65rem 1rem; text-align: center; }
+      .navbar .btn-cta { width: 100%; text-align: center; margin-top: 1rem; padding: 0.85rem 1.5rem; }
+    }
+
+    /* --- Footer (COPIADO EXACTAMENTE DE INDEX.HTML) --- */
+    footer#contacto { background-color: var(--brand-dark); color: var(--brand-lightgray); padding-top: var(--section-padding-y); padding-bottom: 2rem; font-size: 0.98rem; }
+    footer#contacto h5 { font-size: 1.2rem; font-weight: 600; font-family: var(--font-family-headings); color: var(--brand-white); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.8px; }
+    footer#contacto a { color: var(--brand-lightgray); text-decoration: none; transition: color 0.2s ease; }
+    footer#contacto a:hover { color: var(--brand-primary); text-decoration: none; }
+    footer#contacto .footer-links li { margin-bottom: 0.75rem; }
+    footer#contacto .footer-links a:hover { text-decoration: underline; }
+    footer#contacto .contact-info li { display: flex; align-items: flex-start; margin-bottom: 0.9rem; }
+    footer#contacto .contact-info i { color: var(--brand-primary); margin-right: 1rem; margin-top: 4px; width: 1.2em; text-align: center; flex-shrink: 0; font-size: 1.1em; }
+    footer#contacto address { font-style: normal; line-height: 1.6; }
+    footer#contacto .social-icons a { color: var(--brand-lightgray); font-size: 1.5rem; margin: 0 0.6rem; transition: color 0.2s ease, transform 0.2s ease; display: inline-block; }
+    footer#contacto .social-icons a:hover { color: var(--brand-primary); transform: scale(1.15) translateY(-2px); }
+    footer#contacto .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 1.8rem; margin-top: 3.5rem; }
+    footer#contacto .copyright { font-size: 0.92rem; color: var(--brand-secondary); }
+
+
+    /* ============================================ */
+    /* === ESTILOS MODERNOS DETALLES TÉCNICOS === */
+    /*        (Refinados y Consistentes)          */
+    /* ============================================ */
+
+    /* --- Hero Intro Section (Refinada) --- */
+    #tech-hero {
+        padding: var(--section-padding-y) 1rem; /* Usar variable */
+        background-color: var(--brand-dark);
+        color: var(--brand-white);
+        text-align: center;
+    }
+    #tech-hero h1 {
+        color: var(--brand-white);
+        margin-bottom: 1.5rem; /* Más espacio */
+        font-size: clamp(2.4rem, 7vw, 3.5rem); /* Tamaño consistente con index */
+    }
+    #tech-hero p.lead {
+        color: var(--text-light-muted); /* Usar variable */
+        max-width: 850px; /* Un poco más ancho */
+        margin: 0 auto;
+        font-weight: 400; /* Consistente con index */
+        line-height: 1.8;
+    }
+
+    /* --- Estructura Principal Alternante (Refinada) --- */
+    .tech-section {
+        overflow: hidden; /* Mantener */
+        padding: 0; /* Quitar padding de la sección, se maneja en columnas */
+    }
+    .tech-row {
+        display: flex;
+        flex-wrap: wrap;
+        /* AJUSTE: Altura de las filas reducida */
+        min-height: 65vh; /* Reducido desde 80vh */
+        align-items: stretch; /* Asegura que las columnas tengan la misma altura si el contenido difiere */
+    }
+    .image-column {
+        flex: 0 0 50%; /* Ocupa el 50% en desktop */
+        position: relative;
+        background-color: var(--brand-extralightgray);
+        overflow: hidden;
+        min-height: 350px; /* Reducido desde 400px */
+        display: flex; /* Para centrar la imagen si es necesario */
+        align-items: center; /* Centrar verticalmente */
+        justify-content: center; /* Centrar horizontalmente */
+    }
+    .image-column img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+        transition: transform 0.9s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.6s ease; /* Animación más suave */
+        opacity: 0.9; /* Sutil efecto inicial */
+    }
+    .image-column:hover img {
+         transform: scale(1.04); /* Zoom más sutil */
+         opacity: 1;
+     }
+
+    .text-column {
+        flex: 0 0 50%; /* Ocupa el 50% en desktop */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* AJUSTE: Padding vertical ligeramente reducido para balancear la altura */
+        padding: calc(var(--section-padding-y) * 0.9) 4rem; /* Padding lateral mantenido */
+        background-color: var(--brand-white);
+    }
+    /* Fondo alternante */
+    .tech-section.bg-alternate > .tech-row > .text-column {
+         background-color: var(--brand-lightgray);
+    }
+    /* Caso especial: Texto en fondo oscuro debe ser claro */
+    .tech-section.bg-brand-dark > .tech-row > .text-column {
+        background-color: var(--brand-dark);
+        color: var(--brand-lightgray);
+    }
+     .tech-section.bg-brand-dark > .tech-row > .text-column h2,
+     .tech-section.bg-brand-dark > .tech-row > .text-column h3,
+     .tech-section.bg-brand-dark > .tech-row > .text-column strong {
+        color: var(--brand-white);
+    }
+     .tech-section.bg-brand-dark > .tech-row > .text-column p,
+     .tech-section.bg-brand-dark > .tech-row > .text-column li {
+        color: var(--text-light-muted);
+    }
+    .tech-section.bg-brand-dark > .tech-row > .text-column h3::after {
+        background-color: var(--brand-accent); /* Mantener acento visible */
+    }
+    .tech-section.bg-brand-dark > .tech-row > .text-column li::before {
+        color: var(--brand-accent); /* Mantener acento visible */
+    }
+
+
+    .text-column h2 { /* Título principal de la sección de texto */
+        color: var(--brand-primary);
+        margin-bottom: 1.8rem; /* Más espacio */
+        font-weight: 700;
+        font-size: clamp(2.1rem, 5.5vw, 2.9rem); /* Tamaño consistente */
+    }
+     .text-column h3 { /* Subtítulos dentro del texto */
+        color: var(--brand-dark); /* Color base */
+        font-size: clamp(1.4rem, 3.5vw, 1.8rem); /* Tamaño ajustado */
+        font-weight: 600;
+        margin-top: 3rem; /* Más espacio antes */
+        margin-bottom: 1.2rem; /* Más espacio después */
+        position: relative;
+        padding-bottom: 0.6rem; /* Espacio para línea */
+    }
+     /* Línea decorativa bajo h3 */
+     .text-column h3::after {
+         content: '';
+         position: absolute;
+         bottom: 0;
+         left: 0;
+         width: 60px; /* Un poco más larga */
+         height: 4px; /* Un poco más gruesa */
+         background-color: var(--brand-accent);
+         border-radius: 2px; /* Bordes redondeados */
+         opacity: 0.9;
+     }
+
+    /* Estilo mejorado para items de lista */
+    .text-column ul { /* Contenedor de la lista */
+         margin-top: 1.5rem; /* Espacio antes de la lista */
+    }
+    .text-column li {
+        padding-left: 2.8rem; /* Más espacio para el icono */
+        margin-bottom: 1.1rem; /* Espacio entre items */
+        line-height: 1.85; /* Mejor legibilidad */
+        position: relative; /* Necesario para ::before */
+    }
+    .text-column li::before {
+        content: '\f058'; /* Icono: check-circle solid */
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900; /* Solid weight */
+        position: absolute;
+        left: 0;
+        top: 0.4em; /* Ajuste vertical fino */
+        color: var(--brand-accent); /* Color acento */
+        font-size: 1.25em; /* Icono más prominente */
+        opacity: 1;
+        transition: transform 0.2s ease;
+    }
+     /* Efecto sutil al pasar el mouse sobre el item */
+     .text-column li:hover::before {
+        transform: scale(1.1);
+     }
+
+    /* --- Adaptabilidad Móvil Refinada (Consistente) --- */
+    @media (max-width: 991.98px) {
+        .tech-row {
+            min-height: auto; /* Altura automática en móvil */
+            flex-direction: column; /* Cambia a columna */
+        }
+        /* Las clases order-lg-* NO tienen efecto aquí, se usa el orden del HTML */
+        .image-column,
+        .text-column {
+            flex: 1 1 100%; /* Ocupan todo el ancho */
+            /* IMPORTANTE: Resetear order explícitamente si fuera necesario,
+               aunque Bootstrap lo hace implícito al no aplicar order-lg-* aquí */
+            /* order: 0; */ /* No es estrictamente necesario si no se usan otras clases de order */
+        }
+
+         /* Control altura imagen móvil/tablet */
+        .image-column {
+            /* Ya no necesita min-height aquí si la fila es auto */
+            /* min-height: 300px; */
+            max-height: 60vh; /* Límite superior */
+        }
+        .image-column img {
+            aspect-ratio: 4 / 3; /* Ratio común para estas imágenes */
+            height: auto; /* Altura automática basada en aspect ratio */
+            /* AJUSTE: min-height ya no es estrictamente necesario pero puede dejarse como safeguard */
+             min-height: 250px; /* Ligeramente reducido, ajustar según se vea */
+            max-height: 60vh; /* Asegurar que no exceda el límite */
+            width: 100%; /* Asegurar que ocupe el contenedor */
+            object-fit: cover; /* Mantener */
+        }
+
+        .text-column {
+            padding: var(--section-padding-y-sm) 1.5rem; /* Padding móvil estándar */
+        }
+        .text-column h2 { font-size: clamp(1.9rem, 6vw, 2.4rem); }
+        .text-column h3 { font-size: clamp(1.4rem, 5vw, 1.7rem); margin-top: 2.5rem; }
+    }
+
+
+    /* --- CTA Final (Refinada) --- */
+    #cta-final-tech {
+        padding: var(--section-padding-y) 1.5rem; /* Usar variables */
+        background-color: var(--brand-primary-dark); /* Fondo primario oscuro */
+        color: var(--brand-white);
+        /* Usar imagen de fondo más genérica o un degradado/patrón sutil */
+        background-image: linear-gradient(rgba(17, 122, 139, 0.85), rgba(17, 122, 139, 0.95)), url('https://images.unsplash.com/photo-1558999689-c27a69c79749?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxfDB8MXxyYW5kb218MHx8YWJzdHJhY3QsYmx1ZSxwYXR0ZXJufHx8fHx8MTcxNjQxMTQ0OQ&ixlib=rb-4.0.3&q=80&w=1080');
+        background-size: cover;
+        background-position: center;
+        text-align: center; /* Centrar contenido */
+    }
+    #cta-final-tech h2 {
+        color: var(--brand-white); /* Título blanco sobre fondo oscuro */
+        font-size: clamp(2.1rem, 6vw, 3rem); /* Tamaño consistente */
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        margin-bottom: 1.5rem;
+    }
+    #cta-final-tech p { /* Usar p.lead para consistencia */
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 800px; /* Ancho consistente */
+        margin: 0 auto 3rem auto; /* Más margen inferior */
+        font-size: 1.15rem; /* Tamaño consistente */
+        line-height: 1.8;
+    }
+    #cta-final-tech .btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.2rem; /* Espacio entre botones */
+    }
+    /* Botones ya usan estilos globales .btn y .btn-lg */
+     #cta-final-tech .btn {
+         margin-top: 0; /* Quitar margen superior individual */
+     }
+     #cta-final-tech .btn-brand-accent { /* Estilo específico para botón principal CTA */
+         /* Ya tiene estilos base */
+     }
+     #cta-final-tech .btn-outline-light { /* Estilo específico para botón secundario CTA */
+         /* Ya tiene estilos base */
+         border-width: 2px; /* Borde un poco más grueso */
+     }
+
+
+    /* --- Animaciones (Usando la misma lógica de index.html) --- */
+    /* Keyframes ya definidos en tu CSS original, mantenerlos */
+    @keyframes slideInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+
+    .animate-on-scroll {
+        opacity: 0;
+        transition: opacity 0.7s ease-out, transform 0.7s ease-out; /* Duración ligeramente mayor */
+    }
+    .animate-on-scroll.slide-in-up { transform: translateY(40px); }
+    .animate-on-scroll.slide-in-left { transform: translateX(-45px); } /* Ajuste ligero */
+    .animate-on-scroll.slide-in-right { transform: translateX(45px); } /* Ajuste ligero */
+
+    .animate-on-scroll.is-visible {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+    /* Estilo Beta Highlight (Copiado de Index) */
+    .beta-highlight {
+        color: turquoise; /* O puedes usar un código hexadecimal específico como #40E0D0 */
+        /* Opcional: si quieres que sea un poco más llamativo */
+        /* font-weight: bold; */
+        /* font-size: 0.9em; */ /* Ligeramente más pequeño si lo deseas */
+    }
+</style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!--      HEADER / NAVBAR (COPIADO DE INDEX)      -->
+<!-- ============================================ -->
+<header class="sticky-top shadow-sm">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" title="Inicio - Starwin Chile">
+                <img src="logostarwin.png" alt="Starwin Logo" >
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a> <!-- AJUSTE: href a index.html -->
+                    </li>
+                    <li class="nav-item dropdown">
+                        <!-- AJUSTE: Añadido 'active' al dropdown toggle padre -->
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownProductos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Nuestras Ventanas
+                            <span class="dropdown-indicator ms-1"><i class="fas fa-chevron-down fa-xs"></i></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownProductos">
+                            <li><a class="dropdown-item" href="productos.html">Catálogo de Productos</a></li>
+                            <li><a class="dropdown-item" href="colores.html">Colores y Acabados</a></li>
+                            <!-- AJUSTE: Añadido 'active' al item actual -->
+                            <li><a class="dropdown-item active" href="detalles-tecnicos.html">Detalles Técnicos</a></li>
+                            <li><a class="dropdown-item" href="beneficios.html">Principales Beneficios</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="configurador.html">COTIZADOR ONLINE <span class="beta-highlight">beta</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nosotros.html">¿Quienes somos?</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="proceso.html">Proceso</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://wa.me/56972051379">Contacto</a> <!-- Mantenido enlace a ancla -->
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <!-- AJUSTE: Enlace a sección presupuesto de index.html -->
+                        <a href="cotizar.html" class="btn btn-brand-accent btn-cta shadow-sm">Cotizar Ahora</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <!-- Hero Intro (Estilo refinado aplicado) -->
+    <section id="tech-hero">
+        <div class="container">
+            <h1 class="animate-on-scroll slide-in-up">Ingeniería y Rendimiento Starwin</h1> <!-- Texto ajustado -->
+            <p class="lead animate-on-scroll slide-in-up" data-delay="100">
+                Explora la ingeniería, materiales y especificaciones que definen la calidad superior y el rendimiento excepcional de nuestras ventanas uPVC.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--      NOTA IMPORTANTE SOBRE IMAGENES        -->
+    <!-- ============================================ -->
+    <!--
+        Para REDUCIR EL TAMAÑO (peso en KB/MB) de las imágenes, debes optimizarlas
+        ANTES de subirlas a tu servidor. Usa herramientas como:
+        - TinyPNG / TinyJPG (online)
+        - Squoosh.app (online, más opciones)
+        - Photoshop (Guardar para Web)
+        - GIMP (Exportar como...)
+        Apunta a un buen balance entre calidad visual y tamaño de archivo pequeño.
+        El CSS controla cómo se MUESTRA la imagen, no su peso original.
+    -->
+    <!-- ============================================ -->
+
+
+    <!-- Sección 1: Perfil uPVC -->
+    <!-- HTML: text-column PRIMERO, image-column SEGUNDO -->
+    <!-- DESKTOP: Queremos Imagen Izquierda, Texto Derecha -->
+    <section class="tech-section" id="perfil-upvc">
+        <div class="tech-row">
+            <!-- Columna de Texto (siempre primero en el source) -->
+            <!-- En Desktop (lg): aparecerá a la DERECHA (order-lg-2) -->
+            <div class="text-column order-lg-2 animate-on-scroll slide-in-right" data-delay="150">
+                <h2>Ingeniería del Perfil uPVC</h2>
+                <p>Utilizamos perfiles de uPVC (Policloruro de Vinilo no plastificado) de alta gama, formulados para máxima durabilidad, resistencia UV superior (Clase S) y eficiencia óptima en el diverso clima chileno.</p>
+                <h3>Características Clave del Perfil:</h3>
+                <ul>
+                    <li><strong>Diseño Multicámara:</strong> Estructura interna con 3, 5 o más cámaras de aire que optimizan el aislamiento térmico y acústico, aportando además una excepcional rigidez estructural.</li>
+                    <li><strong>Espesor de Paredes Robusto:</strong> Cumplimiento de normativas europeas (ej. Clase A según EN 12608) para paredes exteriores (~3mm), garantizando estabilidad y durabilidad.</li>
+                    <li><strong>Refuerzos de Acero Estratégicos:</strong> Perfiles de acero galvanizado insertados en las cámaras principales de marco y hoja, dimensionados bajo análisis estructural para resistir cargas de viento y prevenir deformaciones.</li>
+                    <li><strong>Sistema de Juntas Avanzado:</strong> Doble o triple barrera de sellado con juntas coextruidas de EPDM o TPE de alta calidad, asegurando una hermeticidad superior contra aire, agua y polvo.</li>
+                    <li><strong>Máxima Protección UV:</strong> Formulación especial con dióxido de titanio (TiO₂) y estabilizadores avanzados para resistir la decoloración y el deterioro por exposición solar prolongada.</li>
+                </ul>
+            </div>
+            <!-- Columna de Imagen (siempre segundo en el source) -->
+            <!-- En Desktop (lg): aparecerá a la IZQUIERDA (order-lg-1) -->
+            <div class="image-column order-lg-1 animate-on-scroll slide-in-left">
+                <img src="muestra.jpg"
+                     alt="Sección detallada de perfil uPVC multicámara con refuerzo de acero"
+                     loading="lazy"
+                     onerror="this.onerror=null; this.src='https://placehold.co/1080/17A2B8/ffffff?text=Perfil+uPVC';">
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección 2: Herrajes y Seguridad -->
+    <!-- HTML: text-column PRIMERO, image-column SEGUNDO -->
+    <!-- DESKTOP: Queremos Texto Izquierda, Imagen Derecha -->
+    <section class="tech-section bg-alternate" id="herrajes-seguridad"> <!-- Fondo alterno -->
+        <div class="tech-row">
+            <!-- Columna de Texto (primero en source) -->
+            <!-- En Desktop (lg): aparecerá a la IZQUIERDA (order-lg-1) -->
+            <div class="text-column order-lg-1 animate-on-scroll slide-in-left">
+                <h2>Herrajes Europeos y Seguridad Integral</h2>
+                <p>La funcionalidad suave, la comodidad de uso diario y la protección de tu hogar son garantizadas por herrajes de precisión de marcas europeas líderes, diseñados para durar y resistir el paso del tiempo.</p>
+                <h3>Componentes de Seguridad y Funcionalidad:</h3>
+                <ul>
+                    <li><strong>Cierre Multipunto Perimetral:</strong> Bulones de seguridad tipo champiñón anti-enganche que se anclan firmemente en múltiples puntos del marco, dificultando enormemente el apalancamiento desde el exterior.</li>
+                    <li><strong>Mecanismos Oscilobatientes Inteligentes:</strong> Sistemas fiables con puntos de cierre adicionales y función anti-falsa maniobra integrada para evitar daños y asegurar la ventilación controlada.</li>
+                    <li><strong>Bisagras de Alta Resistencia:</strong> Componentes robustos con alta capacidad de carga, regulables tridimensionalmente y fabricados en materiales resistentes a la corrosión.</li>
+                    <li><strong>Manillas Ergonómicas y Seguras:</strong> Opciones con bloqueo por llave o botón para incrementar la seguridad, especialmente en plantas bajas o zonas de fácil acceso.</li>
+                    <li><strong>Compatibilidad con Vidrios de Seguridad:</strong> Nuestros perfiles admiten vidrios laminados y templados para una protección anti-impacto y anti-intrusión de nivel superior.</li>
+                    <li><strong>Certificación Anti-efracción Opcional:</strong> Posibilidad de configurar los herrajes para cumplir normativas europeas de resistencia al robo, como RC2 (anteriormente WK2).</li>
+                </ul>
+            </div>
+            <!-- Columna de Imagen (segundo en source) -->
+            <!-- En Desktop (lg): aparecerá a la DERECHA (order-lg-2) -->
+            <div class="image-column order-lg-2 animate-on-scroll slide-in-right" data-delay="150">
+                <img src="oscilo sistm.jpeg"
+                     alt="Detalle de manilla con llave y mecanismo de cierre multipunto robusto en ventana uPVC"
+                     loading="lazy"
+                     onerror="this.onerror=null; this.src='https://placehold.co/1080/fd7e14/ffffff?text=Herrajes+Seguridad';">
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección 3: Acristalamiento -->
+    <!-- HTML: text-column PRIMERO, image-column SEGUNDO -->
+    <!-- DESKTOP: Queremos Imagen Izquierda, Texto Derecha -->
+    <section class="tech-section" id="acristalamiento">
+        <div class="tech-row">
+             <!-- Columna de Texto (primero en source) -->
+             <!-- En Desktop (lg): aparecerá a la DERECHA (order-lg-2) -->
+            <div class="text-column order-lg-2 animate-on-scroll slide-in-right" data-delay="150">
+                <h2>Acristalamiento de Alto Rendimiento (DVH)</h2>
+                <p>El Doble Vidriado Hermético (DVH), comúnmente conocido como Termopanel, es un componente crucial. Ofrecemos múltiples configuraciones para adaptar el rendimiento a cada necesidad específica de aislamiento térmico, acústico, seguridad y control solar.</p>
+                <h3>Tecnologías y Opciones Disponibles:</h3>
+                 <ul>
+                    <li><strong>Termopanel (DVH) Base:</strong> Configuración estándar con cámara de aire deshidratada y sellada (ej. 4mm vidrio / 12mm cámara / 4mm vidrio). Mejora drástica del aislamiento respecto a un vidrio simple.</li>
+                    <li><strong>Cámara con Gas Argón:</strong> Relleno opcional de la cámara intermedia con gas inerte Argón (Ar), que posee menor conductividad térmica que el aire, mejorando significativamente el valor U (transmitancia térmica).</li>
+                    <li><strong>Espaciador Warm-Edge (Borde Cálido):</strong> Uso de perfiles separadores fabricados en materiales de baja conductividad térmica (composite, acero inoxidable especial) en lugar del tradicional aluminio, minimizando puentes térmicos en el perímetro del vidrio.</li>
+                    <li><strong>Vidrios Low-E (Baja Emisividad):</strong> Aplicación de capas metálicas microscópicas e incoloras que reflejan el calor radiante (infrarrojo), manteniendo el calor interior en invierno y bloqueando el calor exterior en verano. Esencial para la eficiencia energética.</li>
+                    <li><strong>Vidrios de Control Solar:</strong> Vidrios con capas especiales o tintados en masa que reducen selectivamente la transmisión de energía solar directa (Factor Solar 'g' bajo), manteniendo los interiores más frescos y reduciendo el deslumbramiento.</li>
+                    <li><strong>Vidrios Laminados (Seguridad y Acústica):</strong> Dos o más vidrios unidos por láminas intermedias de alta resistencia (PVB, SGP). Aumentan drásticamente la seguridad anti-impacto, anti-robo y atenúan eficazmente el ruido exterior.</li>
+                    <li><strong>Vidrios Acústicos Específicos:</strong> Combinaciones optimizadas de vidrios de distintos espesores y/o laminados con PVB acústico para una máxima reducción del ruido en entornos exigentes.</li>
+                </ul>
+            </div>
+            <!-- Columna de Imagen (segundo en source) -->
+            <!-- En Desktop (lg): aparecerá a la IZQUIERDA (order-lg-1) -->
+            <div class="image-column order-lg-1 animate-on-scroll slide-in-left">
+                 <img src="SOSTENIBILIDAD.jpg"
+                     alt="Esquema de capas de un Doble Vidriado Hermético (DVH / Termopanel) mostrando espaciador warm-edge y gas argón"
+                     loading="lazy"
+                     onerror="this.onerror=null; this.src='https://placehold.co/1080/17A2B8/ffffff?text=Acristalamiento+DVH';">
+            </div>
+        </div>
+    </section>
+
+     <!-- Sección 4: Rendimiento y Estanqueidad -->
+     <!-- HTML: text-column PRIMERO, image-column SEGUNDO -->
+     <!-- DESKTOP: Queremos Texto Izquierda, Imagen Derecha -->
+    <section class="tech-section bg-alternate" id="rendimiento"> <!-- Fondo alterno -->
+        <div class="tech-row">
+             <!-- Columna de Texto (primero en source) -->
+             <!-- En Desktop (lg): aparecerá a la IZQUIERDA (order-lg-1) -->
+            <div class="text-column order-lg-1 animate-on-scroll slide-in-left">
+                <h2>Rendimiento Certificable y Estanqueidad</h2>
+                <p>Nuestros sistemas de ventanas son diseñados y fabricados para cumplir con rigurosos estándares y pueden ser sometidos a ensayos bajo normativas europeas (EN) para garantizar y certificar su desempeño en condiciones climáticas reales y exigentes.</p>
+                <h3>Parámetros Clave de Rendimiento (Valores Típicos*):</h3>
+                 <ul>
+                    <li><strong>Transmitancia Térmica (Uw):</strong> Medida del aislamiento térmico total de la ventana (marco + vidrio). Valores bajos indican mejor aislamiento. Logramos Uw ≤ 1.6 W/(m²K) como estándar, optimizable a valores inferiores con configuraciones avanzadas (Low-E, Argón, Warm-Edge).</li>
+                    <li><strong>Aislamiento Acústico (Rw):</strong> Capacidad de la ventana para reducir el ruido aéreo exterior (tráfico, etc.), medido en decibelios (dB). Alcanzamos valores desde 32 dB hasta más de 45 dB con vidrios acústicos especializados.</li>
+                    <li><strong>Permeabilidad al Aire:</strong> Resistencia a las infiltraciones de aire no deseadas a través de la ventana cerrada. Alcanzamos la Clasificación Clase 4 (la máxima según norma EN 12207), asegurando confort y eficiencia.</li>
+                    <li><strong>Estanqueidad al Agua:</strong> Capacidad de impedir el paso de agua de lluvia bajo presión de viento simulada. Clasificación hasta Clase 9A / E900 (alta resistencia según EN 12208), apta para condiciones severas.</li>
+                    <li><strong>Resistencia a la Carga de Viento:</strong> Capacidad estructural de la ventana para soportar la presión ejercida por el viento sin deformarse excesivamente ni comprometer la seguridad. Clasificación hasta Clase C5 / B5 (muy alta según EN 12210).</li>
+                </ul>
+                 <p class="small text-muted mt-4 fst-italic"><i>*Los valores de rendimiento son referenciales y dependen de la serie de perfil específica, tipo y configuración del vidrio, dimensiones de la ventana y sistema de apertura. Solicita la ficha técnica detallada para tu proyecto específico.</i></p>
+            </div>
+             <!-- Columna de Imagen (segundo en source) -->
+             <!-- En Desktop (lg): aparecerá a la DERECHA (order-lg-2) -->
+             <div class="image-column order-lg-2 animate-on-scroll slide-in-right" data-delay="150">
+                <img src="fijo cafe.jpg"
+                     alt="Ventana uPVC resistiendo condiciones climáticas adversas de lluvia intensa y viento fuerte"
+                     loading="lazy"
+                     onerror="this.onerror=null; this.src='https://placehold.co/1080/fd7e14/ffffff?text=Rendimiento+Estanqueidad';">
+             </div>
+        </div>
+    </section>
+
+    <!-- CTA Final (Estilo refinado aplicado) -->
+    <section id="cta-final-tech">
+        <div class="container">
+            <h2 class="animate-on-scroll slide-in-up">Ingeniería Superior para Tu Confort</h2> <!-- Texto ajustado -->
+            <p class="lead animate-on-scroll slide-in-up" data-delay="100">
+                Invierte en calidad duradera, confort térmico/acústico y eficiencia energética superior. Nuestras ventanas uPVC están diseñadas para superar tus expectativas. Contáctanos para discutir tus necesidades técnicas o solicitar un presupuesto sin compromiso.
+            </p>
+            <div class="btn-group animate-on-scroll slide-in-up" data-delay="200">
+                 <a href="index.html#presupuesto" class="btn btn-brand-accent btn-lg">
+                     <i class="fas fa-file-alt me-2"></i> Solicitar Presupuesto Online
+                 </a>
+                 <a href="#contacto" class="btn btn-outline-light btn-lg">
+                     <i class="fas fa-headset me-2"></i> Contactar Asesor Técnico <!-- Icono cambiado -->
+                 </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ============================================ -->
+<!--       FOOTER (COPIADO DE INDEX.HTML)         -->
+<!-- ============================================ -->
+<footer id="contacto">
+    <div class="container">
+        <div class="row gy-4 gy-lg-5">
+            <div class="col-lg-4 col-md-12 text-center-md">
+                <a href="index.html" title="Inicio - Starwin Chile" class="d-inline-block mb-3">
+                    <img src="logostarwin.png" alt="Starwin Chile Logo Footer" style="max-height: 55px; filter: brightness(0) invert(1);">
+                </a>
+                <p class="small text-light-muted pe-lg-4 mt-2">Expertos en diseño, fabricación e instalación de ventanas y puertas uPVC de alta eficiencia en Concepción y la Región del Biobío. Calidad europea, atención local personalizada.</p>
+                <div class="social-icons mt-4">
+                    <a href="https://www.facebook.com/Starwinchile/" title="Facebook Starwin" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/starwincl/" title="Instagram Starwin (Próximamente)" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a> <a href="https://wa.me/56972051379" title="WhatsApp Starwin" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                 </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-6 text-center-md">
+                <h5 class="mb-4">Navegación</h5>
+                <ul class="list-unstyled small footer-links">
+                     <li><a href="index.html">Inicio</a></li>
+                     <li><a href="productos.html">Catálogo</a></li>
+                     <li><a href="proceso.html">Proceso</a></li>
+                     <li><a href="beneficios.html">Beneficios</a></li>
+                     <li><a href="c">Cotizar</a></li>
+                     <li><a href="https://wa.me/56972051379">Contacto</a></li>
+                </ul>
+            </div>
+             <div class="col-lg-3 col-md-4 col-6 text-center-md">
+                 <h5 class="mb-4">Información</h5>
+                 <ul class="list-unstyled small footer-links">
+                     <li><a href="faq.html">Preguntas Frecuentes</a></li>
+                     <li><a href="garantia.html">Garantía</a></li>
+                     <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
+                     <li><a href="terminos-condiciones.html">Términos y Condiciones</a></li>
+                     <li><a href="detalles-tecnicos.html">Detalles Técnicos</a></li> <!-- Enlace mantenido -->
+                 </ul>
+            </div>
+            <div class="col-lg-3 col-md-4 col-12 text-center-md">
+                 <h5 class="mb-4">Contáctanos</h5>
+                 <ul class="list-unstyled small contact-info">
+                     <li><i class="fas fa-map-marker-alt fa-fw"></i><address class="mb-0">Pedro de Valdivia 733,<br> Concepción, Biobío, Chile</address></li>
+                     <li><i class="fas fa-phone fa-fw"></i><a href="tel:+56972051379">+56 9 7205 1379</a></li>
+                      <li><i class="fab fa-whatsapp fa-fw"></i><a href="https://wa.me/56972051379" target="_blank" rel="noopener noreferrer">WhatsApp Directo</a></li>
+                     <li><i class="fas fa-envelope fa-fw"></i><a href="mailto:starwinchile@gmail.com">starwinchile@gmail.com</a></li>
+                     <li><i class="fas fa-clock fa-fw"></i><span>Lun - Vie: 9:00 - 18:30 hrs</span></li>
+                 </ul>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p class="small copyright mb-0">© <span id="current-year"></span> Starwin Chile - Ventanas uPVC. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ============================================ -->
+<!--        SCRIPTS (COPIADO DE INDEX.HTML)       -->
+<!-- ============================================ -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!-- Slick Carousel JS (Necesario si se usa en algún momento, pero no es crítico para esta página si no hay carruseles) -->
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
+
+<!-- Script Personalizado (COPIADO EXACTAMENTE DE INDEX.HTML - incluyendo Navbar, Scroll Anim, Footer Year) -->
+<script>
+    $(document).ready(function(){
+
+        // --- Inicializar Sliders (Si hubiera alguno en esta página) ---
+        // function initSlickSliders() { /* ...código sliders... */ }
+        // initSlickSliders(); // Descomentar si se añaden sliders
+
+        // --- Navbar Dropdown Mejorado (Click y Hover con Timers) ---
+        function setupNavbarDropdowns() {
+            let hoverTimerEnter;
+            let hoverTimerLeave;
+            const enterDelay = 200; // 0.2 segundos para abrir con hover
+            const leaveDelay = 1000; // 1 segundo para cerrar al salir
+
+            $('.navbar .nav-item.dropdown').off('mouseenter mouseleave click');
+            $('.navbar .dropdown-toggle').off('click');
+
+            if (window.innerWidth >= 992) { // Escritorio
+                $('.navbar .nav-item.dropdown').each(function() {
+                    const $dropdown = $(this);
+                    const $toggle = $dropdown.find('.dropdown-toggle');
+                    const $menu = $dropdown.find('.dropdown-menu');
+                    let menuInstance = bootstrap.Dropdown.getOrCreateInstance($toggle[0]);
+                    let isOpenByClick = false;
+
+                    $toggle.on('click', function(e) {
+                        e.preventDefault(); e.stopPropagation();
+                        clearTimeout(hoverTimerEnter); clearTimeout(hoverTimerLeave);
+                        if ($menu.hasClass('show')) {
+                            menuInstance.hide(); isOpenByClick = false;
+                        } else {
+                            $('.navbar .nav-item.dropdown .dropdown-menu.show').each(function() {
+                                bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide();
+                            });
+                            menuInstance.show(); isOpenByClick = true;
+                        }
+                    });
+
+                    $dropdown.on('mouseenter', function() {
+                        if (isOpenByClick) return;
+                        clearTimeout(hoverTimerLeave);
+                        hoverTimerEnter = setTimeout(() => {
+                             $('.navbar .nav-item.dropdown .dropdown-menu.show').not($menu).each(function() {
+                                bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide();
+                             });
+                            if (!$menu.hasClass('show')) { menuInstance.show(); }
+                        }, enterDelay);
+                    });
+
+                    $dropdown.on('mouseleave', function() {
+                        clearTimeout(hoverTimerEnter);
+                        hoverTimerLeave = setTimeout(() => {
+                            if ($menu.hasClass('show')) {
+                                menuInstance.hide(); isOpenByClick = false;
+                            }
+                        }, leaveDelay);
+                    });
+
+                    $menu.find('.dropdown-item').on('click', function() {
+                        menuInstance.hide(); isOpenByClick = false;
+                    });
+                });
+
+                $(document).on('click', function(e) {
+                    if (!$(e.target).closest('.navbar .nav-item.dropdown').length) {
+                        $('.navbar .nav-item.dropdown .dropdown-menu.show').each(function() {
+                           bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide();
+                        });
+                    }
+                });
+
+            } else { // Móvil
+                $('.navbar .dropdown-toggle').attr('data-bs-toggle', 'dropdown');
+                $('.navbar .dropdown-item').on('click', function() {
+                    const $navbarCollapse = $(this).closest('.navbar-collapse');
+                    if ($navbarCollapse.hasClass('show')) {
+                        bootstrap.Collapse.getOrCreateInstance($navbarCollapse[0]).hide();
+                    }
+                    const $dropdownMenu = $(this).closest('.dropdown-menu');
+                    if ($dropdownMenu.hasClass('show')) {
+                        const $toggle = $dropdownMenu.prev('.dropdown-toggle');
+                        bootstrap.Dropdown.getOrCreateInstance($toggle[0]).hide();
+                    }
+                });
+            }
+        }
+        setupNavbarDropdowns();
+        $(window).on('resize', setupNavbarDropdowns);
+
+        // --- Funcionalidad Menú Móvil (Cerrar al hacer click en link normal) ---
+        const mobileMenu = document.getElementById('navbarNav');
+        if (mobileMenu) {
+            const mobileLinks = mobileMenu.querySelectorAll('a.nav-link:not(.dropdown-toggle)');
+            const bsCollapse = bootstrap.Collapse.getOrCreateInstance(mobileMenu, { toggle: false });
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const href = link.getAttribute('href');
+                    // Modificado: No cerrar si el enlace es a otra página (ej. index.html)
+                    // Cerrar solo si es ancla (#contacto) O si es la PÁGINA ACTUAL (detalles-tecnicos.html#algun-id)
+                    const isCurrentPageAnchor = href && href.startsWith('#');
+                    const isSamePageLink = href && href.split('#')[0] === window.location.pathname.split('/').pop(); // Compara nombre de archivo
+
+                    if ((isCurrentPageAnchor || (isSamePageLink && href.includes('#'))) && window.innerWidth < 992 && mobileMenu.classList.contains('show')) {
+                         bsCollapse.hide();
+                    }
+                    // No cerramos si va a index.html, productos.html, etc.
+                });
+            });
+            document.addEventListener('click', function (event) {
+                const isClickInsideNav = mobileMenu.contains(event.target);
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                const isToggler = navbarToggler ? navbarToggler.contains(event.target) : false;
+                const isNavOpen = mobileMenu.classList.contains('show');
+                if (!isClickInsideNav && !isToggler && isNavOpen && window.innerWidth < 992) {
+                    bsCollapse.hide();
+                }
+            });
+        }
+
+        // --- Actualizar Año del Footer ---
+        const yearSpan = document.getElementById('current-year');
+        if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+
+        // --- Lógica Color Picker (COPIADO DE INDEX.HTML - aunque no se use aquí, por si acaso) ---
+        const colourSection = document.getElementById('colores'); // No existe en esta página, el código interno no se ejecutará
+        if (colourSection) {
+            // ... (Todo el código del color picker de index.html iría aquí)
+            // Como no hay #colores, esta parte no hará nada, lo cual está bien.
+            console.log("Color picker logic loaded but not needed on this page.");
+        }
+
+        // --- Simple Scroll Animation Trigger (Intersection Observer) (COPIADO DE INDEX.HTML) ---
+         const animatedElements = document.querySelectorAll(
+            '.animate-on-scroll' // Selector genérico para cualquier elemento animado
+         );
+         const observerOptions = {
+            root: null, rootMargin: '0px 0px -50px 0px', /* Ajustado vs index */ threshold: 0.15
+         };
+         const observerCallback = (entries, observer) => {
+             entries.forEach((entry) => {
+                 if (entry.isIntersecting) {
+                     const el = entry.target;
+                     const delay = el.dataset.delay || 0; // Obtener delay del atributo data-delay
+
+                     // Aplicar la clase 'is-visible' después del delay
+                     setTimeout(() => {
+                        el.classList.add('is-visible');
+                     }, parseInt(delay));
+
+                     // Animación escalonada para steps si existieran (copiado por si acaso)
+                     if (el.classList.contains('step-item') && !el.style.transitionDelay) {
+                         const parentColumn = el.closest('.content-column');
+                         const stepSiblings = parentColumn ? Array.from(parentColumn.querySelectorAll('.step-item')) : [];
+                         const stepIndex = stepSiblings.indexOf(el);
+                         requestAnimationFrame(() => { el.style.transitionDelay = `${stepIndex * 0.15}s`; });
+                     }
+                     observer.unobserve(el);
+                 }
+             });
+         };
+        // Solo crear observer si hay elementos para observar
+        if (animatedElements.length > 0) {
+            if ("IntersectionObserver" in window) {
+                const intersectionObserver = new IntersectionObserver(observerCallback, observerOptions);
+                animatedElements.forEach(el => intersectionObserver.observe(el));
+            } else {
+                // Fallback si no hay IntersectionObserver: mostrar todo inmediatamente
+                console.warn("IntersectionObserver not supported, animations disabled.");
+                animatedElements.forEach(el => {
+                    el.classList.add('is-visible'); // O simplemente remover la clase 'animate-on-scroll'
+                });
+            }
+        }
+
+    }); // Fin $(document).ready
+</script>
+
+</body>
+</html>
