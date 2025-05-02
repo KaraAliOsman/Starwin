@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="canonical" href="https://starwinpvc.cl/productos.html" />
+
+<meta property="og:title" content="Starwin PVC | Catálogo de Productos" />
+<meta property="og:description" content="Descubre el catálogo de productos Starwin: ventanas abatibles, corredizas, fijas y oscilobatientes de PVC con alta calidad y estilo." />
+<meta property="og:url" content="https://starwinpvc.cl/productos.html" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://starwinpvc.cl/assets/og-default.jpg" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título específico para el Catálogo -->
+    <title>Catálogo de Ventanas y Puertas PVC</title>
+    <!-- Descripción específica para el Catálogo -->
+    <meta name="description" content="Explora nuestro catálogo completo de ventanas PVC Starwin: corredizas, abatibles, oscilobatientes, fijas y más. Encuentra la solución perfecta para tu hogar en Concepción.">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+    
+    <!-- Iconos para Android -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+    
+    <!-- Icono para iOS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    
+    <!-- Manifest para PWA -->
+    <link rel="manifest" href="/favicon/site.webmanifest">    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts: Inter & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Slick Carousel CSS (Aunque no se use aquí, lo mantenemos por si acaso y por consistencia del head) -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+<style>
+    /* --- 1. Variables y Estilos Base --- */
+    :root {
+        /* PALETA: Turquesa, Gris, Naranja */
+        --brand-primary: #17A2B8; /* Turquesa Principal */
+        --brand-primary-dark: #117A8B; /* Turquesa Oscuro (Hover) */
+        --brand-secondary: #6c757d; /* Gris Medio (Texto secundario, bordes) */
+        --brand-accent: #fd7e14;   /* Naranja (CTAs principales) */
+        --brand-accent-dark: #E6710F; /* Naranja Oscuro (Hover) */
+        --brand-dark: #343a40;     /* Gris Oscuro (Texto principal, fondos oscuros) */
+        --brand-lightgray: #f8f9fa; /* Gris Claro (Fondos alternos) */
+        --brand-extralightgray: #e9ecef; /* Gris Muy Claro (Bordes sutiles, fondos) */
+        --brand-white: #ffffff;
+        --brand-navbar-bg: #f8f9fa; /* Gris muy claro para navbar */
+        --text-muted: var(--brand-secondary);
+
+        /* Convertidos a RGB para Bootstrap */
+        --bs-primary-rgb: 23, 162, 184;
+        --bs-secondary-rgb: 108, 117, 125;
+        --bs-dark-rgb: 52, 58, 64;
+        --bs-link-color-rgb: var(--bs-primary-rgb);
+        --bs-link-hover-color-rgb: 17, 122, 139; /* Darker turquoise */
+
+        /* AJUSTE: Tamaños de fuente base aumentados */
+        --base-font-size-lg: 17.5px; /* Ajuste */
+        --base-font-size-md: 16.5px; /* Ajuste */
+        --base-font-size-sm: 16px; /* Ajuste */
+
+        /* Padding estándar para secciones */
+        --section-padding-y: 5.5rem;
+        --section-padding-y-sm: 4rem;
+
+        /* Otros */
+        --border-radius-base: 0.6rem;
+        --border-radius-sm: 0.4rem;
+        --box-shadow-sm: 0 0.125rem 0.35rem rgba(0, 0, 0, 0.07);
+        --box-shadow-md: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.1);
+        --box-shadow-lg: 0 1.2rem 3.5rem rgba(0, 0, 0, 0.13);
+        --transition-base: all 0.3s ease-in-out;
+        --font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        --font-family-headings: 'Poppins', var(--font-family-sans-serif);
+    }
+
+    html {
+        scroll-behavior: smooth;
+        font-size: var(--base-font-size-lg);
+    }
+    /* AJUSTE: Media queries para tamaño base */
+    @media (max-width: 1200px) { html { font-size: var(--base-font-size-md); } }
+    @media (max-width: 768px) { html { font-size: var(--base-font-size-sm); } }
+
+    body {
+        font-family: var(--font-family-sans-serif);
+        color: var(--brand-dark);
+        background-color: var(--brand-white);
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        line-height: 1.8; /* AJUSTE: Aumentado para textos más grandes */
+        overflow-x: hidden; /* Prevenir scroll horizontal accidental */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    main {
+        flex-grow: 1;
+    }
+
+    /* --- Tipografía Mejorada --- */
+    h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        font-family: var(--font-family-headings);
+        font-weight: 700;
+        line-height: 1.35;
+        color: var(--brand-dark);
+    }
+    /* AJUSTE: Clamp values for headings */
+    h1, .h1 { font-size: clamp(2.2rem, 6vw, 3.3rem); }
+    h2, .h2 { font-size: clamp(2rem, 5vw, 2.8rem); }
+    h3, .h3 { font-size: clamp(1.5rem, 4vw, 2.1rem); }
+    h4, .h4 { font-size: clamp(1.3rem, 3.5vw, 1.7rem); }
+    h5, .h5 { font-size: clamp(1.15rem, 3vw, 1.4rem); font-weight: 600; }
+    h6, .h6 { font-size: clamp(1.05rem, 2.8vw, 1.25rem); font-weight: 600; }
+
+    /* AJUSTE: Tamaño de párrafos y listas aumentado */
+    p { margin-bottom: 1.2rem; font-size: 1.05rem; color: var(--brand-secondary); } /* Era 1.08rem */
+    p.lead { font-size: clamp(1.15rem, 3vw, 1.4rem); font-weight: 400; color: var(--brand-secondary); line-height: 1.8; } /* Era 1.45rem */
+    a { color: var(--brand-primary); text-decoration: none; transition: var(--transition-base); }
+    a:hover { color: var(--brand-primary-dark); text-decoration: underline; }
+    strong, b { font-weight: 600; color: var(--brand-dark); }
+    ul, ol { padding-left: 1.8rem; margin-bottom: 1.1rem; }
+    li { margin-bottom: 0.7rem; font-size: 1.03rem; } /* Era 1.05rem */
+
+    /* --- Color Títulos Específicos (Ajustado para Catálogo) --- */
+    .section-title h2,
+    #catalogo-productos .feature-block h2 { /* Títulos principales de sección y productos */
+        color: var(--brand-primary);
+    }
+     /* Título Hero Catálogo */
+     #catalogo-hero h1 {
+        color: var(--brand-white);
+        text-shadow: 2px 3px 8px rgba(0,0,0,0.65);
+     }
+    /* Título CTA */
+    #catalogo-cta h2 {
+        color: var(--brand-accent); /* Naranja para CTA */
+    }
+    /* Iconos lista características producto */
+    #catalogo-productos .feature-block li::before {
+        color: var(--brand-accent); /* Naranja para iconos check */
+    }
+
+    /* --- 2. Utilidades Bootstrap Customizadas (Sin cambios) --- */
+    .bg-brand-primary { background-color: var(--brand-primary) !important; }
+    .text-brand-primary { color: var(--brand-primary) !important; }
+    .border-brand-primary { border-color: var(--brand-primary) !important; }
+    .bg-brand-secondary { background-color: var(--brand-secondary) !important; }
+    .text-brand-secondary { color: var(--brand-secondary) !important; }
+    .bg-brand-accent { background-color: var(--brand-accent) !important; }
+    .text-brand-accent { color: var(--brand-accent) !important; }
+    .border-brand-accent { border-color: var(--brand-accent) !important; }
+    .bg-brand-lightgray { background-color: var(--brand-lightgray) !important; }
+    .bg-brand-dark { background-color: var(--brand-dark) !important; }
+    .text-white { color: var(--brand-white) !important; }
+    .text-light-muted { color: rgba(255, 255, 255, 0.75) !important; }
+    .rounded-custom { border-radius: var(--border-radius-base); }
+    .shadow-custom-md { box-shadow: var(--box-shadow-md); }
+    .shadow-custom-lg { box-shadow: var(--box-shadow-lg); }
+
+    /* --- 3. Componentes --- */
+
+    /* --- Botones (Sin cambios) --- */
+    .btn {
+        padding: 0.85rem 1.9rem; /* AJUSTE: Ligero ajuste */
+        font-weight: 500;
+        font-family: var(--font-family-headings);
+        transition: var(--transition-base);
+        border-radius: var(--border-radius-sm);
+        text-transform: none;
+        border: 1px solid transparent;
+        box-shadow: var(--box-shadow-sm);
+        font-size: 1.02rem; /* AJUSTE: Ligero ajuste */
+        letter-spacing: 0.3px;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: var(--box-shadow-md); }
+    .btn:focus, .btn.focus { outline: 0; box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.3); }
+    .btn:active, .btn.active { transform: translateY(-1px); box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
+    .btn-lg { padding: 1.05rem 2.5rem; font-size: 1.15rem; } /* AJUSTE */
+    .btn-sm { padding: 0.65rem 1.4rem; font-size: 0.92rem; } /* AJUSTE */
+    /* Estilos específicos de botones (sin cambios) */
+    .btn-brand-primary { background-color: var(--brand-primary); border-color: var(--brand-primary); color: var(--brand-white); }
+    .btn-brand-primary:hover, .btn-brand-primary:focus { background-color: var(--brand-primary-dark); border-color: var(--brand-primary-dark); color: var(--brand-white); }
+    .btn-brand-primary:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.5); }
+    .btn-brand-accent { background-color: var(--brand-accent); border-color: var(--brand-accent); color: var(--brand-white); }
+    .btn-brand-accent:hover, .btn-brand-accent:focus { background-color: var(--brand-accent-dark); border-color: var(--brand-accent-dark); color: var(--brand-white); }
+    .btn-brand-accent:focus { box-shadow: 0 0 0 0.25rem rgba(253, 126, 20, 0.5); }
+    .btn-outline-dark { color: var(--brand-dark); border-color: var(--brand-dark); background-color: transparent; }
+     .btn-outline-dark:hover, .btn-outline-dark:focus { background-color: var(--brand-dark); border-color: var(--brand-dark); color: var(--brand-white); }
+     .btn-outline-dark:focus { box-shadow: 0 0 0 0.25rem rgba(var(--bs-dark-rgb), 0.5); }
+    .btn-light { background-color: rgba(255, 255, 255, 0.95); border-color: rgba(255, 255, 255, 0.95); color: var(--brand-dark); }
+    .btn-light:hover, .btn-light:focus { background-color: var(--brand-white); border-color: var(--brand-white); color: var(--brand-primary); }
+
+    /* --- Header / Navbar --- */
+    .navbar { transition: background-color 0.3s ease, box-shadow 0.3s ease; padding-top: 0.7rem; padding-bottom: 0.7rem; background-color: var(--brand-navbar-bg); border-bottom: 1px solid var(--brand-extralightgray); }
+    .navbar-sticky { box-shadow: var(--box-shadow-md); }
+    .navbar-brand { font-weight: 700; font-size: 1.8rem; color: var(--brand-dark) !important; padding-top: 0; padding-bottom: 0; }
+     .navbar-brand img { max-height: 48px; width: auto; vertical-align: middle; margin-bottom: 4px; }
+    .navbar .nav-link { color: var(--brand-dark); font-weight: 500; font-family: var(--font-family-sans-serif); padding: 0.7rem 1rem; position: relative; transition: color 0.3s ease; text-decoration: none; font-size: 1rem; margin: 0 0.3rem; border-radius: var(--border-radius-sm); }
+    .navbar .nav-link:hover, .navbar .nav-link:focus { color: var(--brand-primary); background-color: rgba(var(--bs-primary-rgb), 0.08); text-decoration: none; }
+    .navbar .nav-link.active { color: var(--brand-primary); font-weight: 600; background-color: rgba(var(--bs-primary-rgb), 0.12); }
+     .navbar .nav-link::after { display: none; }
+    .navbar .dropdown-indicator { display: inline-block; transition: transform 0.2s ease-in-out; font-size: 0.8em; vertical-align: middle; opacity: 0.7; }
+    .navbar .dropdown-toggle.show .dropdown-indicator { transform: rotate(180deg); }
+    .navbar .dropdown-menu { border-radius: var(--border-radius-sm); border: 1px solid var(--brand-extralightgray); box-shadow: var(--box-shadow-md); margin-top: 0.3rem; padding-top: 0.5rem; padding-bottom: 0.5rem; transition: opacity 0.2s ease, visibility 0.2s ease, margin-top 0.2s ease; }
+    .navbar .dropdown-menu.show { margin-top: 0.5rem; }
+    .navbar .dropdown-item { font-size: 0.98rem; padding: 0.55rem 1.2rem; color: var(--brand-dark); transition: background-color 0.2s ease, color 0.2s ease; font-family: var(--font-family-sans-serif); }
+     .navbar .dropdown-item:hover, .navbar .dropdown-item:focus { background-color: var(--brand-lightgray); color: var(--brand-primary); }
+     .navbar .dropdown-item.active, .navbar .dropdown-item:active { background-color: var(--brand-primary); color: var(--brand-white); }
+    .navbar-toggler { border: none; padding: 0.6rem; }
+    .navbar-toggler:focus { box-shadow: none; }
+    .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
+    .navbar .btn-cta { padding: 0.65rem 1.5rem; font-size: 0.98rem; }
+    @media (min-width: 100px) and (max-width: 1400px) {
+        .navbar-brand img { max-height: 33px; width: auto; vertical-align: middle; margin-bottom: 4px; }
+
+    }
+
+    @media (max-width: 991.98px) {
+        .navbar-brand img { max-height: 28px; width: auto; vertical-align: middle; margin-bottom: 4px; }
+      .navbar-collapse { margin-top: 1rem; border-top: 1px solid var(--brand-extralightgray); padding-top: 1rem; background-color: var(--brand-navbar-bg); max-height: 75vh; overflow-y: auto; }
+      .navbar .navbar-nav { align-items: stretch; }
+      .navbar .nav-item { margin-bottom: 0.5rem; width: 100%; }
+      .navbar .nav-link { padding: 0.8rem 1rem; display: block; text-align: center; }
+      .navbar .nav-item.dropdown .dropdown-toggle { display: flex; justify-content: center; align-items: center; }
+      .navbar .nav-item.dropdown .dropdown-indicator { margin-left: 8px; }
+      .navbar .dropdown-menu { box-shadow: none; border: none; margin-top: 0 !important; padding-left: 1.5rem; background-color: var(--brand-extralightgray); position: static !important; float: none !important; width: auto !important; text-align: center; }
+      .navbar .dropdown-item { padding: 0.65rem 1rem; text-align: center; }
+      .navbar .btn-cta { width: 100%; text-align: center; margin-top: 1rem; padding: 0.85rem 1.5rem; }
+    }
+
+    
+@media(min-width: 992) {.navbar .nav-link{font-size: 0.9em;}}
+    @media(max-width: 1400px){.navbar .nav-link {font-size: 0.9rem;}
+}
+
+    @media(min-width: 992) {.navbar .navbar .btn-cta {font-size: 0.9em;}}
+    @media(max-width: 1400px){.navbar .navbar .btn-cta {font-size: 0.9rem;}
+}
+
+
+    /* --- Footer (Sin cambios, heredado de index) --- */
+    footer#contacto { background-color: var(--brand-dark); color: var(--brand-lightgray); padding-top: var(--section-padding-y); padding-bottom: 2rem; font-size: 0.98rem; }
+    footer#contacto h5 { font-size: 1.2rem; font-weight: 600; font-family: var(--font-family-headings); color: var(--brand-white); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.8px; }
+    footer#contacto a { color: var(--brand-lightgray); text-decoration: none; transition: color 0.2s ease; }
+    footer#contacto a:hover { color: var(--brand-primary); text-decoration: none; }
+    footer#contacto .footer-links li { margin-bottom: 0.75rem; }
+    footer#contacto .footer-links a:hover { text-decoration: underline; }
+    footer#contacto .contact-info li { display: flex; align-items: flex-start; margin-bottom: 0.9rem; }
+    footer#contacto .contact-info i { color: var(--brand-primary); margin-right: 1rem; margin-top: 4px; width: 1.2em; text-align: center; flex-shrink: 0; font-size: 1.1em; }
+    footer#contacto address { font-style: normal; line-height: 1.6; }
+    footer#contacto .social-icons a { color: var(--brand-lightgray); font-size: 1.5rem; margin: 0 0.6rem; transition: color 0.2s ease, transform 0.2s ease; display: inline-block; }
+    footer#contacto .social-icons a:hover { color: var(--brand-primary); transform: scale(1.15) translateY(-2px); }
+    footer#contacto .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 1.8rem; margin-top: 3.5rem; }
+    footer#contacto .copyright { font-size: 0.92rem; color: var(--brand-secondary); }
+
+    /* --- 4. Estilos por Sección (Adaptados para Catálogo) --- */
+
+    /* --- Estilos Generales de Sección --- */
+    section { padding-top: var(--section-padding-y); padding-bottom: var(--section-padding-y); position: relative; overflow-x: hidden; }
+    @media (max-width: 768px) { section { padding-top: var(--section-padding-y-sm); padding-bottom: var(--section-padding-y-sm); } }
+    .section-title { margin-bottom: 3.5rem; }
+    .section-title h2 { margin-bottom: 1rem; }
+    .section-title p.lead { color: var(--text-muted); max-width: 800px; margin-left: auto; margin-right: auto; font-size: 1.15rem; }
+    .section-title .subtitle { display: none; } /* Ocultar si no se usa */
+
+    /* --- Estilos Hero Catálogo --- */
+    #catalogo-hero {
+        padding: 8rem 0; /* Mayor padding vertical */
+        background-color: var(--brand-dark); /* Color de fondo si la imagen falla */
+        background-size: cover;
+        background-position: center center;
+        position: relative;
+        color: var(--brand-white);
+        text-align: center;
+        min-height: 55vh; /* Altura mínima */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #catalogo-hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.4)); /* Overlay más oscuro */
+        z-index: 1;
+    }
+    #catalogo-hero .container {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+    }
+    #catalogo-hero h1 {
+        font-size: clamp(2.5rem, 7vw, 4rem); /* Tamaño responsivo */
+        margin-bottom: 1rem;
+    }
+    #catalogo-hero .lead {
+        font-size: clamp(1.15rem, 3.5vw, 1.5rem);
+        color: var(--brand-lightgray);
+        opacity: 0.95;
+        max-width: 750px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    @media (max-width: 768px) {
+        #catalogo-hero { min-height: 45vh; padding: 6rem 0; }
+    }
+
+
+    /* --- Estilos Catálogo Productos (Basado en #caracteristicas-detalladas) --- */
+    #catalogo-productos { background-color: var(--brand-white); }
+    #catalogo-productos .feature-block {
+        margin-bottom: var(--section-padding-y); /* Espacio entre productos */
+        opacity: 0; /* Inicialmente invisible para animación */
+        transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        transform: translateY(50px); /* Animación desde abajo */
+    }
+    #catalogo-productos .feature-block.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    #catalogo-productos .feature-block:last-child { margin-bottom: 0; }
+
+    /* --- !MODIFICACIÓN IMAGEN PRODUCTO! --- */
+    #catalogo-productos img.img-fluid {
+        width: 100%;
+        height: 450px; /* <-- ALTURA FIJA (AJUSTAR VALOR) */
+        object-fit: cover; /* <-- CUBRIR CONTENEDOR, RECORTAR EXCESO */
+        /* min-height y max-height eliminados */
+        background-color: var(--brand-lightgray); /* Fondo para carga o si la imagen no cubre perfectamente */
+        border-radius: var(--border-radius-base);
+        box-shadow: var(--box-shadow-lg);
+        border: 1px solid var(--brand-extralightgray);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        /* object-position: center center; /* (Opcional: controlar recorte) */
+    }
+    #catalogo-productos .feature-block:hover img.img-fluid {
+        transform: scale(1.04); /* Sutil zoom al pasar el mouse */
+        box-shadow: 0 1.6rem 4.2rem rgba(0, 0, 0, 0.16);
+    }
+    /* --- Fin Modificación Imagen Producto --- */
+
+    #catalogo-productos p, #catalogo-productos ul {
+        color: var(--brand-secondary);
+        margin-bottom: 1.2rem;
+        font-size: 1.1rem;
+        line-height: 1.85;
+    }
+    #catalogo-productos ul {
+        padding-left: 0;
+        list-style: none;
+    }
+    #catalogo-productos li {
+        position: relative;
+        padding-left: 2.2rem;
+        margin-bottom: 0.9rem;
+        font-size: 1.05rem;
+    }
+    #catalogo-productos li::before { /* Ícono check */
+        content: '\f00c'; /* Font Awesome check icon */
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        top: 7px; /* Ajustar verticalmente si es necesario */
+        color: var(--brand-accent); /* Color del check */
+        font-size: 1.1em;
+    }
+    #catalogo-productos .text-content { padding: 1.5rem 0; }
+    /* Botón CTA del producto */
+    #catalogo-productos .btn-producto-cta {
+        margin-top: 1.5rem; /* Espacio sobre el botón */
+        display: inline-block; /* Para que no ocupe todo el ancho */
+    }
+
+    /* --- Layout Alternado y Responsivo (como en #caracteristicas-detalladas) --- */
+    @media (min-width: 992px) {
+        #catalogo-productos .text-col { display: flex; flex-direction: column; justify-content: center; }
+        #catalogo-productos .feature-block:nth-child(even) .image-col { order: lg-2; }
+        #catalogo-productos .feature-block:nth-child(even) .text-col { order: lg-1; padding-right: 3rem; padding-left: 0; }
+         #catalogo-productos .feature-block:nth-child(odd) .text-col { padding-left: 3rem; padding-right: 0; }
+        #catalogo-productos .text-content { padding: 1.5rem 0; } /* Ajuste de padding lateral en text-col */
+    }
+    @media (max-width: 991.98px) {
+         /* --- !MODIFICACIÓN RESPONSIVA IMAGEN (TABLET)! --- */
+         #catalogo-productos img.img-fluid {
+             margin-bottom: 2.5rem;
+             height: 380px; /* <-- ALTURA FIJA TABLET (AJUSTAR VALOR) */
+             /* min-height y max-height eliminados */
+         }
+         /* --- Fin Modificación --- */
+         #catalogo-productos .text-content { padding: 1rem 0; text-align: center; } /* Centrar texto en móvil */
+         #catalogo-productos ul { text-align: left; display: inline-block; } /* Alinear lista a la izquierda dentro del centro */
+         #catalogo-productos li { text-align: left; }
+         #catalogo-productos .btn-producto-cta { margin-left: auto; margin-right: auto; display: block; max-width: fit-content; }
+    }
+    @media (max-width: 768px) {
+         #catalogo-productos .section-title h2 { font-size: 1.9rem; }
+         #catalogo-productos .feature-block h2 { font-size: 1.8rem; }
+         /* --- !MODIFICACIÓN RESPONSIVA IMAGEN (MÓVIL)! --- */
+         #catalogo-productos img.img-fluid {
+            height: 300px; /* <-- ALTURA FIJA MÓVIL (AJUSTAR VALOR) */
+            /* min-height y max-height eliminados */
+         }
+         /* --- Fin Modificación --- */
+    }
+
+    /* --- Estilos Sección CTA Final --- */
+    #catalogo-cta {
+        background-color: var(--brand-lightgray); /* Fondo claro */
+        text-align: center;
+    }
+    #catalogo-cta h2 {
+         margin-bottom: 1.5rem;
+    }
+    #catalogo-cta p {
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 2.5rem;
+        font-size: 1.15rem;
+    }
+     #catalogo-cta .btn {
+        padding: 1.05rem 2.8rem; /* Botón más grande */
+        font-size: 1.1rem;
+    }
+
+
+    /* --- 5. Animaciones Básicas (Sin cambios, heredado) --- */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes fadeInRight { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: translateX(0); } }
+
+    /* --- 6. Media Queries Generales Finales (Sin cambios, heredado) --- */
+     @media (max-width: 768px) {
+         .section-title { margin-bottom: 2.5rem; }
+         .section-title h2 { font-size: clamp(1.8rem, 5vw, 2.4rem); }
+         .section-title p.lead { font-size: 1.05rem; }
+         footer#contacto { padding-top: var(--section-padding-y-sm); }
+         footer#contacto .text-center-md { text-align: center !important; }
+         footer#contacto .mb-md-4 { margin-bottom: 2rem !important; }
+         footer#contacto .col-lg-2, footer#contacto .col-lg-3, footer#contacto .col-lg-4 { text-align: center; }
+         footer#contacto .contact-info li { justify-content: center; }
+         footer#contacto .social-icons { justify-content: center; display: flex; margin-bottom: 1.5rem;}
+     }
+     .beta-highlight {
+  color: turquoise; /* O puedes usar un código hexadecimal específico como #40E0D0 */
+  /* Opcional: si quieres que sea un poco más llamativo */
+  /* font-weight: bold; */
+  /* font-size: 0.9em; */ /* Ligeramente más pequeño si lo deseas */
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!--                 HEADER / NAVBAR              -->
+<!-- ============================================ -->
+<header class="sticky-top shadow-sm">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" title="Inicio - Starwin Chile">
+                <img src="logostarwin.png" alt="Starwin Logo" >
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#inicio">Inicio</a> <!-- Link a index -->
+                    </li>
+                    <li class="nav-item dropdown">
+                         <!-- Añadir 'active' al toggle si estamos en una página del dropdown -->
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownProductos" role="button" aria-expanded="false">
+                            Nuestras Ventanas
+                            <span class="dropdown-indicator ms-1"><i class="fas fa-chevron-down fa-xs"></i></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownProductos">
+                            <!-- Marcar este item como activo -->
+                            <li><a class="dropdown-item active" aria-current="page" href="productos.html">Catálogo de Productos</a></li>
+                            <li><a class="dropdown-item" href="colores.html">Colores y Acabados</a></li>
+                            <li><a class="dropdown-item" href="detalles-tecnicos.html">Detalles Técnicos</a></li>
+                            <li><a class="dropdown-item" href="beneficios.html">¿Porque Elegirnos?</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="configurador.html">COTIZADOR ONLINE <span class="beta-highlight">beta</span></a></li>                        
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nosotros.html">¿Quienes somos?</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="proceso.html">Proceso</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Enlace "Blog" activo porque estamos en una página de blog individual -->
+                        <a class="nav-link" href="blogs.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://wa.me/56972051379">Contacto</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a href="cotizar.html" class="btn btn-brand-accent btn-cta shadow-sm">Cotizar Ahora</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+
+    <!-- ============================================ -->
+    <!--              HERO CATÁLOGO                 -->
+    <!-- ============================================ -->
+    <section id="catalogo-hero" style="background-image: url('prtdf.jpg');">
+         <div class="container">
+            <h1 class="display-4">Nuestras ventanas de PVC</h1>
+            <p class="lead">Descubre la versatilidad, eficiencia y diseño de las soluciones Starwin para cada necesidad y estilo arquitectónico.</p>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--           LISTADO DE PRODUCTOS             -->
+    <!-- ============================================ -->
+    <section id="catalogo-productos">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2 class="display-5">Soluciones a tu Medida</h2>
+                 <p class="lead">Explora los diferentes tipos de ventanas y elige la que mejor se adapta a tus espacios y preferencias.</p>
+            </div>
+
+            <!-- Producto 1: Proyectante (Opcional) -->
+            <div class="feature-block">
+                <div class="row g-4 g-lg-5 align-items-center">
+                    <div class="col-lg-6 image-col">
+                        <img src="apertura exterior.jpg" alt="Ventana Proyectante PVC Starwin" class="img-fluid" onerror="this.onerror=null; this.src='https://placehold.co/700x600/ffc107/000000?text=Ventana+Proyectante';">
+                   </div>
+                   <div class="col-lg-6 text-col">
+                        <div class="text-content">
+                           <h2>Ventana Proyectante</h2>
+                           <p>Se abre hacia el exterior desde la base, creando un alero que permite la ventilación incluso con lluvia ligera. Suelen ser más anchas que altas y son comunes en baños, cocinas o sobre otras ventanas fijas.</p>
+                           <ul>
+                               <li>Ventilación protegida de la lluvia.</li>
+                               <li>Buen nivel de seguridad al abrirse limitadamente.</li>
+                               <li>Operación simple con manilla o cierre manual.</li>
+                               <li>Ideal para espacios que requieren privacidad y ventilación.</li>
+                               <li>Diseño limpio y funcional.</li>
+                           </ul>
+                           <a href="producto-proyectante.html" class="btn btn-brand-primary btn-producto-cta">Mas Información <i class="fas fa-chevron-right ms-2"></i></a>
+                        </div>
+                   </div>
+               </div>
+           </div>
+
+
+             <!-- Producto 2: Ventana Abatible / Practicable -->
+            <div class="feature-block">
+                <div class="row g-4 g-lg-5 align-items-center">
+                     <div class="col-lg-6 image-col order-lg-2">
+                        <img src="abatible1.jpg" alt="Ventana Abatible PVC Starwin" class="img-fluid" onerror="this.onerror=null; this.src='https://placehold.co/700x600/fd7e14/ffffff?text=Ventana+Abatible';">
+                    </div>
+                    <div class="col-lg-6 text-col order-lg-1">
+                        <div class="text-content">
+                            <h2>Ventana Abatible / Practicable</h2>
+                            <p>Apertura lateral clásica hacia el interior o exterior. Proporciona el máximo nivel de aislamiento térmico y acústico gracias a su cierre de compresión perimetral. Permite una ventilación total del espacio.</p>
+                            <ul>
+                                <li>Sellado hermético superior contra aire y agua.</li>
+                                <li>Seguridad reforzada con múltiples puntos de cierre.</li>
+                                <li>Ideal para dormitorios, baños y cocinas.</li>
+                                <li>Fácil acceso para limpieza del vidrio exterior (apertura interior).</li>
+                                <li>Disponible en 1 ó 2 hojas.</li>
+                            </ul>
+                            <a href="producto-abatible.html" class="btn btn-brand-primary btn-producto-cta">Mas Información <i class="fas fa-chevron-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Producto 3: Ventana Oscilobatiente -->
+             <div class="feature-block">
+                 <div class="row g-4 g-lg-5 align-items-center">
+                     <div class="col-lg-6 image-col">
+                         <img src="portada.jpg" alt="Ventana Oscilobatiente PVC Starwin" class="img-fluid" onerror="this.onerror=null; this.src='https://placehold.co/700x600/6f42c1/ffffff?text=Ventana+Oscilobatiente';">
+                    </div>
+                    <div class="col-lg-6 text-col">
+                         <div class="text-content">
+                            <h2>Ventana Oscilobatiente</h2>
+                            <p>Combina dos tipos de apertura en una sola ventana: lateral (abatible) para máxima ventilación y superior (oscilante/batiente) para una ventilación segura y continua, incluso en días de lluvia. La solución más versátil y funcional.</p>
+                            <ul>
+                                <li>Doble funcionalidad: Abatible + Oscilante.</li>
+                                <li>Ventilación segura sin comprometer la protección.</li>
+                                <li>Máxima hermeticidad y aislamiento (como abatible).</li>
+                                <li>Operación sencilla con una sola manilla.</li>
+                                <li>Perfecta para cualquier estancia del hogar.</li>
+                            </ul>
+                            <a href="producto-oscilobatiente.html" class="btn btn-brand-primary btn-producto-cta">Mas Información <i class="fas fa-chevron-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Producto 4: Paño Fijo -->
+            <div class="feature-block">
+                 <div class="row g-4 g-lg-5 align-items-center">
+                    <div class="col-lg-6 image-col order-lg-2">
+                        <img src="AdobeStock_592191188.jpeg" alt="Paño Fijo PVC Starwin" class="img-fluid" onerror="this.onerror=null; this.src='https://placehold.co/700x600/20c997/ffffff?text=Paño+Fijo';">
+                    </div>
+                    <div class="col-lg-6 text-col order-lg-1">
+                        <div class="text-content">
+                            <h2>Paño Fijo</h2>
+                            <p>Diseñado para maximizar la entrada de luz natural y las vistas donde no se requiere ventilación. Ofrece el mayor aislamiento y seguridad al no tener partes móviles. Ideal para combinar con otros tipos de ventanas o para crear grandes superficies acristaladas.</p>
+                            <ul>
+                                <li>Máxima luminosidad y conexión visual con el exterior.</li>
+                                <li>Aislamiento térmico y acústico óptimo.</li>
+                                <li>Seguridad intrínseca al no poder abrirse.</li>
+                                <li>Versátil para diseños arquitectónicos modernos.</li>
+                                <li>Combinable con ventanas operables.</li>
+                            </ul>
+                            <a href="producto-fijo.html" class="btn btn-brand-primary btn-producto-cta">Mas Información <i class="fas fa-chevron-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- Producto 5: Ventana Corrediza -->
+<div class="feature-block">
+    <div class="row g-4 g-lg-5 align-items-center">
+        <div class="col-lg-6 image-col">
+           <img src="slid.jpg" alt="Ventana Corrediza PVC Starwin" class="img-fluid" onerror="this.onerror=null; this.src='https://placehold.co/700x600/17A2B8/ffffff?text=Ventana+Corrediza';">
+       </div>
+       <div class="col-lg-6 text-col">
+           <div class="text-content">
+               <h2>Ventana Corrediza</h2>
+               <p>Ideal para espacios limitados y grandes vanos. Ofrece una apertura lateral suave y vistas panorámicas sin obstrucciones. Su diseño práctico maximiza la entrada de luz y facilita la ventilación controlada.</p>
+               <ul>
+                   <li>Deslizamiento silencioso y sin esfuerzo.</li>
+                   <li>Excelente hermeticidad con burletes dobles.</li>
+                   <li>Disponible en 2, 3 ó 4 hojas móviles o fijas.</li>
+                   <li>Adaptable a balcones, terrazas y salones.</li>
+                   <li>Fácil limpieza y mínimo mantenimiento.</li>
+               </ul>
+               <a href="producto-corredora.html" class="btn btn-brand-primary btn-producto-cta">Mas Información <i class="fas fa-chevron-right ms-2"></i></a>
+            </div>
+       </div>
+   </div>
+</div>
+
+            <!-- Puedes añadir más productos aquí siguiendo la misma estructura -->
+
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!--                 CTA FINAL                    -->
+    <!-- ============================================ -->
+    <section id="catalogo-cta">
+        <div class="container">
+            <h2 class="display-5">¿Encontraste la Ventana Ideal?</h2>
+            <p class="lead">Nuestro equipo está listo para asesorarte y ayudarte a configurar la solución perfecta para tu proyecto. Contáctanos hoy mismo para obtener un presupuesto detallado sin compromiso.</p>
+            <a href="cotizar.html" class="btn btn-brand-accent btn-lg">
+                <i class="fas fa-file-invoice me-2"></i> Obtener mi Presupuesto Ahora
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<!-- ============================================ -->
+<!--                    FOOTER                    -->
+<!-- ============================================ -->
+<footer id="contacto">
+    <div class="container">
+        <div class="row gy-4 gy-lg-5">
+            <!-- Columna Logo y Descripción -->
+            <div class="col-lg-4 col-md-12 text-center text-lg-start mb-4 mb-lg-0">
+                <a href="index.html" title="Inicio - Starwin Chile" class="d-inline-block mb-3">
+                     <img src="logostarwin.png" alt="Starwin Chile Logo Footer Blanco" style="max-height: 50px; filter: brightness(0) invert(1);" width="auto" height="50">
+                 </a>
+                <p class="small text-light-muted pe-lg-3 mt-2">Expertos en ventanas y puertas PVC de alta eficiencia. Diseño, fabricación e instalación en Concepción y Región del Biobío.</p>
+                <div class="social-icons mt-4 justify-content-center justify-content-lg-start">
+                    <a href="https://www.facebook.com/Starwinchile/" title="Facebook Starwin" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/starwincl/" title="Instagram Starwin" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/56972051379" title="WhatsApp Starwin" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                 </div>
+            </div>
+            <!-- Columna Navegación -->
+            <div class="col-lg-2 col-md-4 col-6 text-center text-lg-start">
+                <h5 class="mb-4">Navegación</h5>
+                <ul class="list-unstyled small footer-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Catálogo</a></li>
+                    <li><a href="proceso.html">Proceso</a></li>
+                     <li><a href="beneficios.html">Beneficios</a></li>
+                     <li><a href="blogs.html">Blog</a></li>
+                     <li><a href="cotizar.html">Cotizar</a></li>
+                     <li><a href="https://wa.me/56972051379" target="_blank" rel="noopener noreferrer">Contacto</a></li>
+                </ul>
+            </div>
+            <!-- Columna Información -->
+             <div class="col-lg-3 col-md-4 col-6 text-center text-lg-start">
+                <h5 class="mb-4">Información</h5>
+                <ul class="list-unstyled small footer-links">
+                    <li><a href="faq.html">Preguntas Frecuentes</a></li>
+                    <li><a href="garantia.html">Garantía</a></li>
+                    <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
+                    <li><a href="terminos-condiciones.html">Términos y Condiciones</a></li>
+                </ul>
+            </div>
+            <!-- Columna Contacto -->
+            <div class="col-lg-3 col-md-4 col-12 text-center text-lg-start">
+                 <h5 class="mb-4">Contáctanos</h5>
+                 <ul class="list-unstyled small contact-info">
+                     <li><i class="fas fa-map-marker-alt fa-fw"></i><address class="mb-0 d-inline">Pedro de Valdivia 733,<br class="d-none d-lg-block"> Concepción, Biobío</address></li>
+                     <li><i class="fas fa-phone fa-fw"></i><a href="tel:+56972051379">+56 9 7205 1379</a></li>
+                      <li><i class="fab fa-whatsapp fa-fw"></i><a href="https://wa.me/56972051379" target="_blank" rel="noopener noreferrer">WhatsApp Directo</a></li>
+                     <li><i class="fas fa-envelope fa-fw"></i><a href="mailto:starwinchile@gmail.com">starwinchile@gmail.com</a></li>
+                     <li><i class="fas fa-clock fa-fw"></i><span>Lun - Vie: 9:00 - 18:30 hrs</span></li>
+                 </ul>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p class="small copyright mb-0">© <span id="current-year"></span> Starwin Chile - Ventanas PVC. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ============================================ -->
+<!--                   SCRIPTS                    -->
+<!-- ============================================ -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!-- Slick Carousel JS (Lo mantenemos por consistencia, aunque no se use activamente aquí) -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<!-- Script Personalizado (Adaptado - Sin inicialización de Sliders/Color Picker) -->
+<script>
+    $(document).ready(function(){
+
+        // --- Inicializar Sliders (AHORA CON CHEQUEO - No se ejecutará aquí) ---
+        function initSlickSliders() {
+            // Hero Slider
+            if ($('#hero-slider').length && !$('#hero-slider').hasClass('slick-initialized')) {
+                 console.log("Intentando inicializar Hero Slider (No debería en productos.html)");
+            }
+            // Carrusel Colores Populares
+            if ($('.color-carousel').length && !$('.color-carousel').hasClass('slick-initialized')) {
+                 console.log("Intentando inicializar Color Carousel (No debería en productos.html)");
+            }
+        }
+        initSlickSliders(); // Llamada segura
+
+        // --- Navbar Dropdown Mejorado (Se mantiene igual) ---
+        function setupNavbarDropdowns() {
+            let hoverTimerEnter;
+            let hoverTimerLeave;
+            const enterDelay = 200;
+            const leaveDelay = 1000;
+
+            $('.navbar .nav-item.dropdown').off('mouseenter mouseleave click');
+            $('.navbar .dropdown-toggle').off('click');
+
+            if (window.innerWidth >= 992) {
+                $('.navbar .nav-item.dropdown').each(function() {
+                    const $dropdown = $(this);
+                    const $toggle = $dropdown.find('.dropdown-toggle');
+                    const $menu = $dropdown.find('.dropdown-menu');
+                    let menuInstance = bootstrap.Dropdown.getOrCreateInstance($toggle[0]);
+                    let isOpenByClick = false;
+
+                    $toggle.on('click', function(e) {
+                        e.preventDefault(); e.stopPropagation();
+                        clearTimeout(hoverTimerEnter); clearTimeout(hoverTimerLeave);
+                        if ($menu.hasClass('show')) { menuInstance.hide(); isOpenByClick = false; }
+                        else {
+                            $('.navbar .nav-item.dropdown .dropdown-menu.show').each(function() {
+                                bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide();
+                            });
+                            menuInstance.show(); isOpenByClick = true;
+                        }
+                    });
+                    $dropdown.on('mouseenter', function() {
+                        if (isOpenByClick) return;
+                        clearTimeout(hoverTimerLeave);
+                        hoverTimerEnter = setTimeout(() => {
+                             $('.navbar .nav-item.dropdown .dropdown-menu.show').not($menu).each(function() {
+                                bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide();
+                             });
+                            if (!$menu.hasClass('show')) { menuInstance.show(); }
+                        }, enterDelay);
+                    });
+                    $dropdown.on('mouseleave', function() {
+                        clearTimeout(hoverTimerEnter);
+                        hoverTimerLeave = setTimeout(() => {
+                            if ($menu.hasClass('show')) { menuInstance.hide(); isOpenByClick = false; }
+                        }, leaveDelay);
+                    });
+                    $menu.find('.dropdown-item').on('click', function() {
+                        menuInstance.hide(); isOpenByClick = false;
+                    });
+                });
+                $(document).on('click', function(e) {
+                    if (!$(e.target).closest('.navbar .nav-item.dropdown').length) {
+                        $('.navbar .nav-item.dropdown .dropdown-menu.show').each(function() {
+                           bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide();
+                        });
+                    }
+                });
+            } else {
+                $('.navbar .dropdown-toggle').attr('data-bs-toggle', 'dropdown');
+                $('.navbar .dropdown-item').on('click', function() {
+                    const $navbarCollapse = $(this).closest('.navbar-collapse');
+                    if ($navbarCollapse.hasClass('show')) { bootstrap.Collapse.getOrCreateInstance($navbarCollapse[0]).hide(); }
+                    const $dropdownMenu = $(this).closest('.dropdown-menu');
+                    if ($dropdownMenu.hasClass('show')) {
+                        const $toggle = $dropdownMenu.prev('.dropdown-toggle');
+                        bootstrap.Dropdown.getOrCreateInstance($toggle[0]).hide();
+                    }
+                });
+            }
+        }
+        setupNavbarDropdowns();
+        $(window).on('resize', setupNavbarDropdowns);
+
+        // --- Funcionalidad Menú Móvil (Se mantiene igual) ---
+        const mobileMenu = document.getElementById('navbarNav');
+        if (mobileMenu) {
+            const mobileLinks = mobileMenu.querySelectorAll('a.nav-link:not(.dropdown-toggle)');
+            const bsCollapse = bootstrap.Collapse.getOrCreateInstance(mobileMenu, { toggle: false });
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const href = link.getAttribute('href');
+                     // Cierra si es link interno A OTRA PÁGINA o link interno A ESTA PÁGINA
+                     if (href && window.innerWidth < 992 && mobileMenu.classList.contains('show')) {
+                          if (!href.startsWith('#') || (href.startsWith('#') && window.location.pathname.endsWith('productos.html'))) {
+                             bsCollapse.hide();
+                          }
+                     }
+                });
+            });
+            document.addEventListener('click', function (event) {
+                const isClickInsideNav = mobileMenu.contains(event.target);
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                const isToggler = navbarToggler ? navbarToggler.contains(event.target) : false;
+                const isNavOpen = mobileMenu.classList.contains('show');
+                if (!isClickInsideNav && !isToggler && isNavOpen && window.innerWidth < 992) {
+                    bsCollapse.hide();
+                }
+            });
+        }
+
+        // --- Actualizar Año del Footer (Se mantiene igual) ---
+        const yearSpan = document.getElementById('current-year');
+        if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
+
+        // --- Lógica Color Picker (AHORA CON CHEQUEO - No se ejecutará aquí) ---
+        const colourSection = document.getElementById('colores');
+        if (colourSection) {
+            console.log("Intentando configurar Color Picker (No debería en catalogo.html)");
+        } else {
+            // console.log("Color Picker no encontrado en esta página."); // Opcional: Mensaje de depuración
+        }
+
+        // --- Simple Scroll Animation Trigger (Se aplica a .feature-block en esta página) ---
+        const animatedElements = document.querySelectorAll(
+            '.feature-block' // Ahora solo buscamos .feature-block
+        );
+        if (animatedElements.length > 0) {
+            const observerOptions = {
+                root: null, rootMargin: '0px', threshold: 0.15 // Umbral para que se vea un poco antes de entrar
+            };
+            const observerCallback = (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        el.classList.add('is-visible');
+                        observer.unobserve(el); // Dejar de observar una vez animado
+                    }
+                });
+            };
+            const intersectionObserver = new IntersectionObserver(observerCallback, observerOptions);
+            animatedElements.forEach(el => intersectionObserver.observe(el));
+        }
+
+    }); // Fin $(document).ready
+</script>
+
+</body>
+</html>
