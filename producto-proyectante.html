@@ -4,16 +4,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17023112953"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V7XMTT9BD4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-      gtag('config', 'AW-17023112953');
-        gtag('config', 'G-V7XMTT9BD4');    // Tu configuración de Google Analytics 4
-
-    </script>   
+  gtag('config', 'G-V7XMTT9BD4'); // GA4
+  gtag('config', 'AW-17023112953'); // Ads
+</script>   
         <!-- SEO Meta Tags Esenciales -->
         <title>Ventanas Proyectantes de PVC Termoacústicas | Starwin Concepción</title>
         <meta name="description" content="Ventanas proyectantes de PVC, ideales para ventilación incluso en días de lluvia. Diseño funcional y alto aislamiento. Starwin en Concepción.">
@@ -262,19 +261,23 @@
     }
      #product-intro-proyectante .image-block img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--border-radius-base); box-shadow: var(--box-shadow-md); /* Reducido */ transition: transform 0.4s ease, box-shadow 0.4s ease; }
      #product-intro-proyectante .image-block:hover img { transform: scale(1.03); box-shadow: var(--box-shadow-lg); }
-     #product-intro-proyectante .content-block { padding-left: 0; position: relative; z-index: 1; }
+     #product-intro-proyectante .content-block { /* padding-left: 0;  No es necesario si el orden HTML es correcto y se usan clases de Bootstrap para alineación */ position: relative; z-index: 1; }
      #product-intro-proyectante .content-block h2 { color: var(--brand-dark); margin-bottom: 1.8rem; }
      #product-intro-proyectante .content-block p { font-size: 1.08rem; line-height: 1.9; }
      /* Intro en Desktop */
      @media (min-width: 992px) {
-        #product-intro-proyectante .content-block { padding-right: 4rem; /* Cambiado a padding-right porque el texto va primero */ }
+        /* El texto está a la izquierda por orden HTML. padding-right da espacio entre texto e imagen */
+        #product-intro-proyectante .content-block { padding-right: 4rem; } /* CAMBIO: Se mantiene padding-right ya que texto está a la izquierda */
         #product-intro-proyectante .row { align-items: center; }
      }
      /* Intro en Móviles - Asegura orden y espaciado */
      @media (max-width: 991.98px) {
         /* El orden text/image ya se controla con la estructura HTML */
-        #product-intro-proyectante .content-block { margin-bottom: 3rem; text-align: left; } /* Añadido margen inferior */
-        #product-intro-proyectante h2 { text-align: center; }
+        #product-intro-proyectante .content-block {
+            margin-bottom: 3rem; /* Añadido margen inferior */
+            /* text-align: left; /* CAMBIO: Eliminado, Bootstrap maneja centrado con text-center */
+        }
+        /* #product-intro-proyectante h2 { text-align: center; } /* CAMBIO: Eliminado, Bootstrap en .content-block maneja centrado */
      }
 
     /* Custom Manufacturing Section - Adaptado para Móviles (Texto primero) */
@@ -475,16 +478,18 @@
          <!-- CAMBIO IMPORTANTE: Estructura HTML modificada para el orden responsivo -->
          <!-- Texto (content-block) AHORA va PRIMERO en el HTML -->
          <!-- Imagen (image-block) AHORA va SEGUNDO en el HTML -->
-         <!-- En pantallas pequeñas (<lg), el texto (primero en HTML) aparecerá arriba. -->
+         <!-- En pantallas pequeñas (<lg), el texto (primero en HTML) aparecerá arriba Y CENTRADO. -->
          <!-- En pantallas grandes (lg+), Bootstrap colocará las col-lg-6 una al lado de la otra (Texto a la izquierda, Imagen a la derecha). -->
          <div class="row g-5 g-lg-6 align-items-center">
-            <div class="col-lg-6 content-block my-auto reveal"> <!-- Columna de Texto (AHORA PRIMERO) -->
+            <!-- CAMBIO: content-block ahora es el primero y tiene clases de alineación responsiva -->
+            <div class="col-lg-6 content-block my-auto reveal text-center text-lg-start">
                 <h2 class="mb-4">Ventilación Inteligente, Diseño Compacto</h2>
                 <p>Las ventanas proyectantes Starwin son la opción ideal cuando se busca ventilación controlada sin sacrificar espacio ni protección. Su diseño, con bisagras en la parte superior, permite que la hoja se abra hacia afuera desde la base, creando una barrera natural contra la lluvia ligera mientras permite circular el aire.</p>
                 <p>Perfectas para baños, cocinas, sótanos o ubicaciones elevadas, estas ventanas combinan funcionalidad y estética. Como toda nuestra línea en Concepción, están fabricadas con perfiles PVC de alta resistencia y termopaneles, asegurando un excelente aislamiento, durabilidad y un sellado hermético cuando están cerradas.</p>
                 <a href="beneficios.html" class="btn btn-outline-primary mt-3">Explorar Beneficios <i class="fas fa-arrow-right"></i></a>
             </div>
-            <div class="col-lg-6 image-block reveal" style="transition-delay: 0.2s;"> <!-- Columna de Imagen (AHORA SEGUNDO) -->
+            <!-- CAMBIO: image-block ahora es el segundo y tiene clases de alineación responsiva -->
+            <div class="col-lg-6 image-block reveal text-center text-lg-end" style="transition-delay: 0.2s;">
                  <img src="Ventana_Proyectante_2.webp" alt="Ventana proyectante de PVC instalada en un baño" class="img-fluid" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x450/dee2e6/495057?text=Ventana+Instalada'; this.style.backgroundColor='#eee';">
             </div>
         </div>

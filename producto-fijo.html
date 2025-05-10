@@ -4,16 +4,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17023112953"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V7XMTT9BD4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-      gtag('config', 'AW-17023112953');
-        gtag('config', 'G-V7XMTT9BD4');    // Tu configuración de Google Analytics 4
-
-    </script>
+  gtag('config', 'G-V7XMTT9BD4'); // GA4
+  gtag('config', 'AW-17023112953'); // Ads
+</script>
         <!-- SEO Meta Tags Esenciales -->
         <title>Paños Fijos de PVC Termoacústicos | Starwin Concepción</title>
         <meta name="description" content="Maximiza la luz natural y las vistas con nuestros paños fijos de PVC. Excelente aislamiento termoacústico y diseño minimalista. Starwin en Concepción.">
@@ -370,7 +369,7 @@
         #product-hero-fija .d-grid { display: flex !important; } /* Asegura flex en desktop si se usó d-grid antes */
     }
 
-    /* Product Intro */
+    /* Product Intro - MODIFICADO */
     #product-intro {
          background-color: var(--brand-white);
          position: relative;
@@ -380,26 +379,52 @@
          #product-intro .image-block img { aspect-ratio: 5 / 4; }
      }
      #product-intro .image-block:hover img { transform: scale(1.04); box-shadow: 0 1.8rem 4.5rem rgba(0, 0, 0, 0.15); }
-     #product-intro .content-block { padding-left: 0; position: relative; z-index: 1; }
-     #product-intro .content-block h2 { color: var(--brand-dark); margin-bottom: 1.5rem; text-align: center; } /* Centrado en móvil */
-     #product-intro .content-block p { font-size: 1.08rem; line-height: 1.85; }
-     @media (min-width: 992px) { /* Estilos Intro Desktop */
-         #product-intro .content-block { padding-left: 4.5rem; }
-         #product-intro .content-block h2 { text-align: left; margin-bottom: 2rem; } /* Alineado a la izquierda */
-         #product-intro .row { align-items: center; }
-         #product-intro .content-block p { font-size: 1.12rem; line-height: 1.95; }
+     
+     #product-intro .content-block {
+         /* padding-left: 0; /* Se maneja en desktop */
+         position: relative;
+         z-index: 1;
+         text-align: center; /* Centrado por defecto (móvil y tabletas pequeñas) */
      }
-     /* **[CLAVE RESPONSIVA]** Asegurar que el texto esté antes de la imagen en pantallas pequeñas (móvil) */
+     #product-intro .content-block h2 {
+         color: var(--brand-dark);
+         margin-bottom: 1.5rem;
+         /* text-align heredado de .content-block */
+     }
+     #product-intro .content-block p {
+         font-size: 1.08rem;
+         line-height: 1.85;
+         /* text-align heredado de .content-block */
+     }
+
+     @media (min-width: 992px) { /* Estilos Intro Desktop */
+         #product-intro .content-block {
+             padding-left: 4.5rem;
+             text-align: left; /* Alineado a la izquierda en desktop */
+         }
+         #product-intro .content-block h2 {
+             /* text-align heredado de .content-block */
+             margin-bottom: 2rem;
+         }
+         #product-intro .row { align-items: center; }
+         #product-intro .content-block p {
+             font-size: 1.12rem;
+             line-height: 1.95;
+             /* text-align heredado de .content-block */
+         }
+     }
+     
+     /* **[CLAVE RESPONSIVA]** Orden de elementos en móvil */
      @media (max-width: 991.98px) {
-         #product-intro .row > div:first-child { /* Selecciona el primer hijo directo de la fila */
-             order: 1; /* Asegura que el primer elemento en HTML (que ahora es el texto) venga primero */
+         #product-intro .row > div:first-child { /* Texto */
+             order: 1;
              margin-bottom: 2.5rem; /* Espacio entre texto e imagen en móvil */
          }
-         #product-intro .row > div:last-child { /* Selecciona el último hijo directo de la fila */
-             order: 2; /* Asegura que el segundo elemento en HTML (que ahora es la imagen) venga después */
+         #product-intro .row > div:last-child { /* Imagen */
+             order: 2;
          }
          #product-intro .image-block { margin-bottom: 0; } /* Resetear margen inferior si se aplicó antes */
-         #product-intro .content-block { text-align: left; } /* O mantener centrado si se prefiere: text-align: center; */
+         /* #product-intro .content-block { text-align: left; }  ELIMINADO: Centrado es el defecto ahora */
      }
 
 

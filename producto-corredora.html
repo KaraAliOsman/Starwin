@@ -4,16 +4,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17023112953"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V7XMTT9BD4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-      gtag('config', 'AW-17023112953');
-        gtag('config', 'G-V7XMTT9BD4');    // Tu configuración de Google Analytics 4
-
-    </script>
+  gtag('config', 'G-V7XMTT9BD4'); // GA4
+  gtag('config', 'AW-17023112953'); // Ads
+</script>
         <!-- SEO Meta Tags Esenciales -->
         <title>Ventanas Corredizas de PVC Termoacústicas | Starwin Concepción</title>
         <meta name="description" content="Descubre nuestras ventanas corredizas de PVC, ideales para optimizar espacio con diseño moderno y alta eficiencia termoacústica. Starwin PVC en Concepción.">
@@ -352,8 +351,12 @@
      @media (max-width: 991.98px) {
         /* Orden asegurado por clases order-lg-* en HTML */
          #product-intro .image-block { margin-top: 3rem; } /* Imagen va después del texto */
-         #product-intro .content-block { text-align: left; }
-         #product-intro h2 { text-align: center; } /* Título centrado en móvil */
+         #product-intro .content-block {
+             text-align: center; /* MODIFICADO: Centra todo el contenido del bloque en móviles */
+         }
+         #product-intro h2 {
+             text-align: center; /* Título centrado en móvil (esta regla es ahora redundante si .content-block lo centra, pero no causa problemas) */
+         }
      }
 
     /* --- SECCIÓN: Fabricamos a tu Medida (Simplificada) --- */

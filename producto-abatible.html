@@ -4,16 +4,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17023112953"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V7XMTT9BD4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-      gtag('config', 'AW-17023112953');
-        gtag('config', 'G-V7XMTT9BD4');    // Tu configuración de Google Analytics 4
-
-    </script>
+  gtag('config', 'G-V7XMTT9BD4'); // GA4    
+  gtag('config', 'AW-17023112953'); // Ads
+</script>
         <!-- SEO Meta Tags Esenciales -->
         <title>Ventanas Abatibles de PVC Termoacústicas | Starwin Concepción</title>
         <meta name="description" content="Excelente hermeticidad y aislamiento con nuestras ventanas abatibles de PVC. Calidad y diseño Starwin para tu hogar en Concepción.">
@@ -353,53 +352,59 @@
          background-color: #eee; /* Placeholder */
      }
      #product-intro .image-block:hover img { transform: scale(1.04); box-shadow: 0 1.8rem 4.5rem rgba(0, 0, 0, 0.15); }
+     
+     /* === INICIO DE CAMBIOS SOLICITADOS (Y APLICADOS) === */
      #product-intro .content-block {
-         padding-left: 0; /* Sin padding izquierdo en mobile */
+         /* padding-left: 0;  <-- ELIMINADO para arreglar el centrado en móvil */
          position: relative;
          z-index: 1;
-         text-align: center; /* Centrar texto en mobile */
+         text-align: center; /* Centrar texto en mobile POR DEFECTO */
      }
      #product-intro .content-block h2 {
          color: var(--brand-dark);
          margin-bottom: 2rem;
-         text-align: center; /* Asegurar centrado del título en mobile */
+         /* text-align: center; ya lo hereda de .content-block en mobile, y se sobreescribe en desktop */
      }
      #product-intro .content-block p {
          font-size: 1.12rem;
          line-height: 1.95;
-         text-align: left; /* Justificar o alinear a la izquierda el párrafo */
+         /* text-align: left;  Quitado de aquí para que herede 'center' en mobile */
      }
      /* En pantallas pequeñas (por debajo de lg), el texto (order-1) va primero */
      @media (max-width: 991.98px) {
          #product-intro .image-block {
-             margin-top: 3.5rem; /* Espacio entre texto e imagen en mobile */
+             margin-top: 3.5rem; 
          }
          #product-intro .btn {
-             display: block; /* Botón ocupa ancho completo */
+             display: block; 
              margin-left: auto;
              margin-right: auto;
-             max-width: 300px; /* Ancho máximo para el botón */
+             max-width: 300px; 
          }
      }
      /* En pantallas grandes (lg y superior) */
      @media (min-width: 992px) {
          #product-intro .content-block {
-             padding-left: 4.5rem; /* Padding izquierdo para separar de imagen */
-             text-align: left; /* Alinear texto a la izquierda */
+             padding-left: 4.5rem; /* Se mantiene para el diseño de desktop */
+             text-align: left; /* Alinear texto del bloque a la izquierda en desktop */
          }
          #product-intro .content-block h2 {
-             text-align: left; /* Alinear título a la izquierda */
+             text-align: left; /* Alinear título a la izquierda en desktop */
+         }
+         #product-intro .content-block p {
+             text-align: left; /* AÑADIDO: Alinear párrafos a la izquierda en desktop */
          }
          #product-intro .row {
-             align-items: center; /* Centrar verticalmente contenido y imagen */
+             align-items: center; 
          }
          #product-intro .btn {
-             display: inline-block; /* Botón normal */
+             display: inline-block; 
              margin-left: 0;
              margin-right: 0;
              max-width: none;
          }
      }
+    /* === FIN DE CAMBIOS SOLICITADOS === */
 
 
     /* Fabricación a medida: Ajustes para responsividad */
