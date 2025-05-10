@@ -1512,8 +1512,7 @@
             </div>
         </section>
 
-        <!-- 10. PRESUPUESTO / COTIZACIÓN -->
-             
+        <!-- Sección de Presupuesto usando Web3Forms -->
 <section id="presupuesto" aria-labelledby="quote-title">
     <div class="container">
         <div class="row g-5 align-items-center">
@@ -1526,63 +1525,63 @@
                     <p class="mb-4">Completa el formulario con los detalles de tu proyecto de ventanas o puertas PVC. Nuestro equipo experto en Concepción te asesorará y entregará una cotización personalizada a la brevedad. También puedes contactarnos directamente:</p>
                     <h3 class="h6 fw-semibold mb-3">Contacto Directo Starwin PVC Chile:</h3>
                     <ul class="quote-contact-info list-unstyled">
-                        <li><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:starwinchile@gmail.com">starwinchile@gmail.com</a></li>
-                        <li><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+56966003771">+56 9 6600 3771</a></li>
-                        <li><i class="fab fa-whatsapp" aria-hidden="true"></i><a href="https://wa.me/56966003771" target="_blank" rel="noopener noreferrer">WhatsApp +56 9 6600 3771</a></li>
-                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>Visítanos (previa cita): Pedro de Valdivia 733, Concepción</span></li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto:starwinchile@gmail.com">starwinchile@gmail.com</a></li>
+                        <li><i class="fas fa-phone"></i><a href="tel:+56966003771">+56 9 6600 3771</a></li>
+                        <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/56966003771" target="_blank">WhatsApp +56 9 6600 3771</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i><span>Pedro de Valdivia 733, Concepción</span></li>
                     </ul>
                 </div>
             </div>
-             <div class="col-lg-7 order-1 order-lg-2">
+            <div class="col-lg-7 order-1 order-lg-2">
                 <div class="quote-form-block">
                     <h3 class="mb-4 fw-semibold text-center" id="form-title-presupuesto">Cuéntanos sobre tu Proyecto</h3>
-                    <!-- MODIFICACIONES AQUÍ para Cloudflare Forms -->
-                    <form method="POST" action="/gracias.html" data-CFR-FORM-ID="presupuesto-starwin" aria-labelledby="form-title-presupuesto">
-                        <!-- Cloudflare maneja el spam, no necesitas un honeypot visible explícito como con Netlify,
-                             pero tampoco hace daño si lo dejas. Cloudflare tiene sus propios métodos. -->
+                    <!-- Formulario modificado para Web3Forms -->
+                    <form action="https://api.web3forms.com/submit" method="POST" aria-labelledby="form-title-presupuesto">
+                        <input type="hidden" name="access_key" value="f5e64bd9-94c5-497d-9f99-19ee3482fc0d">
+                        <input type="hidden" name="redirect" value="https://starwinpvc.cl/gracias.html">
+
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label for="quoteName" class="form-label">Nombre Completo <span class="text-danger" aria-hidden="true">*</span></label>
-                                <input type="text" class="form-control" id="quoteName" name="Nombre_Completo" required autocomplete="name" placeholder="Ej: Juan Pérez González" aria-required="true">
+                                <label for="quoteName" class="form-label">Nombre Completo <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="quoteName" name="Nombre_Completo" required autocomplete="name" placeholder="Ej: Juan Pérez González">
                             </div>
                             <div class="col-md-6">
-                                <label for="quoteEmail" class="form-label">Correo Electrónico <span class="text-danger" aria-hidden="true">*</span></label>
-                                <input type="email" class="form-control" id="quoteEmail" name="Correo_Electronico" required autocomplete="email" placeholder="tu.correo@dominio.cl" aria-required="true">
+                                <label for="quoteEmail" class="form-label">Correo Electrónico <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="quoteEmail" name="Correo_Electronico" required autocomplete="email" placeholder="tu.correo@dominio.cl">
                             </div>
                             <div class="col-md-6">
-                                <label for="quotePhone" class="form-label">Teléfono / WhatsApp <span class="text-danger" aria-hidden="true">*</span></label>
-                                <input type="tel" class="form-control" id="quotePhone" name="Telefono" required autocomplete="tel" placeholder="+56 9 XXXX XXXX" aria-required="true">
+                                <label for="quotePhone" class="form-label">Teléfono / WhatsApp <span class="text-danger">*</span></label>
+                                <input type="tel" class="form-control" id="quotePhone" name="Telefono" required autocomplete="tel" placeholder="+56 9 XXXX XXXX">
                             </div>
                             <div class="col-md-6">
                                  <label for="quoteSubject" class="form-label">Asunto</label>
                                  <input type="text" class="form-control" id="quoteSubject" name="Asunto_Usuario" placeholder="Ej: Cotización ventanas casa">
                             </div>
                             <div class="col-12">
-                                <label for="quoteMessage" class="form-label">Mensaje / Detalles del Proyecto <span class="text-danger" aria-hidden="true">*</span></label>
-                                <textarea class="form-control" id="quoteMessage" name="Mensaje" rows="5" required placeholder="Indica tipo de ventanas (corredora, abatible, etc.), medidas aproximadas (ancho x alto), cantidad, color deseado, y cualquier otro detalle relevante..." aria-required="true"></textarea>
+                                <label for="quoteMessage" class="form-label">Mensaje / Detalles del Proyecto <span class="text-danger">*</span></label>
+                                <textarea class="form-control" id="quoteMessage" name="Mensaje" rows="5" required placeholder="Indica tipo de ventanas, medidas aproximadas, cantidad, color deseado, y otros detalles..."></textarea>
                             </div>
                             <div class="col-12">
                                 <div class="form-check small">
-                                    <input class="form-check-input" type="checkbox" value="Aceptado" id="privacyCheck" name="Politica_Privacidad" required aria-required="true">
+                                    <input class="form-check-input" type="checkbox" value="Aceptado" id="privacyCheck" name="Politica_Privacidad" required>
                                     <label class="form-check-label text-muted" for="privacyCheck">
-                                        He leído y acepto la <a href="politica-privacidad.html" target="_blank" class="text-muted text-decoration-underline" rel="noopener">política de privacidad</a>. <span class="text-danger" aria-hidden="true">*</span>
+                                        He leído y acepto la <a href="politica-privacidad.html" target="_blank" class="text-muted text-decoration-underline">política de privacidad</a>. <span class="text-danger">*</span>
                                     </label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-brand-accent btn-submit">
-                                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                                    Enviar Solicitud de Presupuesto
+                                    <i class="fas fa-paper-plane"></i> Enviar Solicitud de Presupuesto
                                 </button>
                             </div>
                         </div>
-                        <!-- Ya no necesitas los hidden inputs de formsubmit.co -->
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
     
 
