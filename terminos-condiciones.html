@@ -10,7 +10,6 @@
     <title>Términos y Condiciones</title>
     <!-- Descripción específica -->
     <meta name="description" content="Consulta los Términos y Condiciones de uso del sitio web de Starwin Chile, fabricante de ventanas y puertas de PVC en Concepción.">
-    <meta name="robots" content="noindex, follow"> <!-- Sugerencia: Evitar que motores de búsqueda indexen esta página legal directamente -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
@@ -174,13 +173,14 @@
         .btn-brand-accent { background-color: var(--brand-accent); border-color: var(--brand-accent); color: var(--brand-white); }
         .btn-brand-accent:hover, .btn-brand-accent:focus { background-color: var(--brand-accent-dark); border-color: var(--brand-accent-dark); color: var(--brand-white); }
         /* ... (resto de estilos de botones) ... */
-       /* --- Header / Navbar --- */
-    .navbar { transition: background-color 0.3s ease, box-shadow 0.3s ease; padding-top: 0.7rem; padding-bottom: 0.7rem; background-color: var(--brand-navbar-bg); border-bottom: 1px solid var(--brand-extralightgray); }
+      /* --- Header / Navbar --- */
+    .navbar { transition: background-color 0.3s ease, box-shadow 0.3s ease; padding-top: 0.7rem; background-color: var(--brand-navbar-bg); border-bottom: 1px solid var(--brand-extralightgray); }
     .navbar-sticky { box-shadow: var(--box-shadow-md); }
     .navbar-brand { font-weight: 700; font-size: 1.8rem; color: var(--brand-dark) !important; padding-top: 0; padding-bottom: 0; }
      .navbar-brand img { max-height: 48px; width: auto; vertical-align: middle; margin-bottom: 4px; }
     .navbar .nav-link { color: var(--brand-dark); font-weight: 500; font-family: var(--font-family-sans-serif); padding: 0.7rem 1rem; position: relative; transition: color 0.3s ease; text-decoration: none; font-size: 1rem; margin: 0 0.3rem; border-radius: var(--border-radius-sm); }
     .navbar .nav-link:hover, .navbar .nav-link:focus { color: var(--brand-primary); background-color: rgba(var(--bs-primary-rgb), 0.08); text-decoration: none; }
+    .navbar .nav-link.active { color: var(--brand-primary); font-weight: 600; background-color: rgba(var(--bs-primary-rgb), 0.12); }
      .navbar .nav-link::after { display: none; }
     .navbar .dropdown-indicator { display: inline-block; transition: transform 0.2s ease-in-out; font-size: 0.8em; vertical-align: middle; opacity: 0.7; }
     .navbar .dropdown-toggle.show .dropdown-indicator { transform: rotate(180deg); }
@@ -188,6 +188,7 @@
     .navbar .dropdown-menu.show { margin-top: 0.5rem; }
     .navbar .dropdown-item { font-size: 0.98rem; padding: 0.55rem 1.2rem; color: var(--brand-dark); transition: background-color 0.2s ease, color 0.2s ease; font-family: var(--font-family-sans-serif); }
      .navbar .dropdown-item:hover, .navbar .dropdown-item:focus { background-color: var(--brand-lightgray); color: var(--brand-primary); }
+     .navbar .dropdown-item.active, .navbar .dropdown-item:active { background-color: var(--brand-primary); color: var(--brand-white); }
     .navbar-toggler { border: none; padding: 0.6rem; }
     .navbar-toggler:focus { box-shadow: none; }
     .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
@@ -220,21 +221,20 @@
 }
 
 
-        /* --- Footer (Copiado de index.html) --- */
-        footer#contacto { background-color: var(--brand-dark); color: var(--brand-lightgray); padding-top: var(--section-padding-y); padding-bottom: 2rem; font-size: 0.98rem; }
-        footer#contacto h5 { font-size: 1.2rem; font-weight: 600; font-family: var(--font-family-headings); color: var(--brand-white); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.8px; }
-        footer#contacto a { color: var(--brand-lightgray); text-decoration: none; transition: color 0.2s ease; }
-        footer#contacto a:hover { color: var(--brand-primary); text-decoration: none; }
-        footer#contacto .footer-links li { margin-bottom: 0.75rem; }
-        footer#contacto .footer-links a:hover { text-decoration: underline; }
-        footer#contacto .contact-info li { display: flex; align-items: flex-start; margin-bottom: 0.9rem; }
-        footer#contacto .contact-info i { color: var(--brand-primary); margin-right: 1rem; margin-top: 4px; width: 1.2em; text-align: center; flex-shrink: 0; font-size: 1.1em; }
-        footer#contacto address { font-style: normal; line-height: 1.6; }
-        footer#contacto .social-icons a { color: var(--brand-lightgray); font-size: 1.5rem; margin: 0 0.6rem; transition: color 0.2s ease, transform 0.2s ease; display: inline-block; }
-        footer#contacto .social-icons a:hover { color: var(--brand-primary); transform: scale(1.15) translateY(-2px); }
-        footer#contacto .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 1.8rem; margin-top: 3.5rem; }
-        footer#contacto .copyright { font-size: 0.92rem; color: var(--brand-secondary); }
-
+    /* --- Footer (Sin cambios, heredado de index) --- */
+    footer#contacto { background-color: var(--brand-dark); color: var(--brand-lightgray); padding-top: var(--section-padding-y); padding-bottom: 2rem; font-size: 0.98rem; }
+    footer#contacto h5 { font-size: 1.2rem; font-weight: 600; font-family: var(--font-family-headings); color: var(--brand-white); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.8px; }
+    footer#contacto a { color: var(--brand-lightgray); text-decoration: none; transition: color 0.2s ease; }
+    footer#contacto a:hover { color: var(--brand-primary); text-decoration: none; }
+    footer#contacto .footer-links li { margin-bottom: 0.75rem; }
+    footer#contacto .footer-links a:hover { text-decoration: underline; }
+    footer#contacto .contact-info li { display: flex; align-items: flex-start; margin-bottom: 0.9rem; }
+    footer#contacto .contact-info i { color: var(--brand-primary); margin-right: 1rem; margin-top: 4px; width: 1.2em; text-align: center; flex-shrink: 0; font-size: 1.1em; }
+    footer#contacto address { font-style: normal; line-height: 1.6; }
+    footer#contacto .social-icons a { color: var(--brand-lightgray); font-size: 1.5rem; margin: 0 0.6rem; transition: color 0.2s ease, transform 0.2s ease; display: inline-block; }
+    footer#contacto .social-icons a:hover { color: var(--brand-primary); transform: scale(1.15) translateY(-2px); }
+    footer#contacto .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 1.8rem; margin-top: 3.5rem; }
+    footer#contacto .copyright { font-size: 0.92rem; color: var(--brand-secondary); }
         /* --- Estilos Específicos para T&C --- */
         .content-section {
             padding-top: var(--section-padding-y-sm);
@@ -290,10 +290,8 @@
 <header class="sticky-top shadow-sm">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <!-- Logo Imagen debe estar presente para usar en PDF -->
             <a class="navbar-brand" href="index.html" title="Inicio - Starwin Chile">
-                <!-- Make sure logostarwin.png is in the same folder or provide the correct path -->
-                <img id="navbar-logo" src="logostarwin.png" alt="Starwin Logo" >
+                <img src="logostarwin.png" alt="Starwin Logo" > <!-- No se agrega loading="lazy" aquí por ser above-the-fold y crítico -->
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -301,20 +299,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Inicio</a>
+                        <a class="nav-link" href="index.html">Inicio</a> <!-- Link a index -->
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProductos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         <!-- toggle si estamos en una página del dropdown -->
+                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownProductos" role="button" aria-expanded="false">
                             Nuestras Ventanas
                             <span class="dropdown-indicator ms-1"><i class="fas fa-chevron-down fa-xs"></i></span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownProductos">
-                            <li><a class="dropdown-item" href="productos.html">Catálogo de Productos</a></li>
+                            <!-- Marcar este item como activo -->
+                            <li><a class="dropdown-item " aria-current="page" href="productos.html">Catálogo de Productos</a></li>
                             <li><a class="dropdown-item" href="colores.html">Colores y Acabados</a></li>
                             <li><a class="dropdown-item" href="detalles-tecnicos.html">Detalles Técnicos</a></li>
-                            <li><a class="dropdown-item" href="beneficios.html">Principales Beneficios</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" aria-current="page" href="configurador.html">COTIZADOR ONLINE </a></li>
+                            <li><a class="dropdown-item" href="beneficios.html">¿Porque Elegirnos?</a></li>
+                            
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -324,13 +324,14 @@
                         <a class="nav-link" href="proceso.html">Proceso</a>
                     </li>
                     <li class="nav-item">
+                        <!-- Enlace "Blog" activo porque estamos en una página de blog individual -->
                         <a class="nav-link" href="blogs.html">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://wa.me/56972051379" target="_blank" rel="noopener noreferrer">Contacto</a>
+                        <a class="nav-link" href="contacto.html">Contacto</a>
                     </li>
                     <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-                        <a href="cotizar.html" class="btn btn-brand-accent btn-cta shadow-sm">Cotizar Ahora</a>
+                        <a href="configurador.html" class="btn btn-brand-accent btn-cta shadow-sm">Cotizar Online</a>
                     </li>
                 </ul>
             </div>
@@ -401,7 +402,7 @@
                     <p>Si tiene alguna pregunta sobre estos Términos y Condiciones, puede contactarnos a través de:</p>
                     <ul>
                         <li>Correo Electrónico: <a href="mailto:starwinchile@gmail.com">starwinchile@gmail.com</a></li>
-                        <li>Teléfono: <a href="tel:+56972051379">+56 9 7205 1379</a></li>
+                        <li>Teléfono: <a href="https://wa.me/56966003771">+56 9 6600 3771</a></li>
                         <li>Dirección Postal: Pedro de Valdivia 733, Concepción, Biobío, Chile.</li>
                     </ul>
 
@@ -422,13 +423,13 @@
             <!-- Columna Logo y Descripción -->
             <div class="col-lg-4 col-md-12 text-center text-lg-start mb-4 mb-lg-0">
                 <a href="index.html" title="Inicio - Starwin Chile" class="d-inline-block mb-3">
-                     <img src="logostarwin.png" alt="Starwin Chile Logo Footer Blanco" style="max-height: 50px; filter: brightness(0) invert(1);" width="auto" height="50">
+                     <img src="logostarwin.png" alt="Starwin Chile Logo Footer Blanco" style="max-height: 50px; filter: brightness(0) invert(1);" width="auto" height="50"> <!-- No se agrega loading="lazy" aquí -->
                  </a>
-                <p class="small text-light-muted pe-lg-3 mt-2">Expertos en ventanas y puertas PVC de alta eficiencia. Diseño, fabricación e instalación en Concepción y Región del Biobío.</p>
+                <p class="small text-light-muted pe-lg-3 mt-2">Expertos en ventanas y puertas PVC de alta eficiencia. Diseño, fabricación e instalación de ventanas de PVC en Concepción y Región del Biobío.</p>
                 <div class="social-icons mt-4 justify-content-center justify-content-lg-start">
                     <a href="https://www.facebook.com/Starwinchile/" title="Facebook Starwin" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/starwincl/" title="Instagram Starwin" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/56972051379" title="WhatsApp Starwin" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://wa.me/56966003771" title="WhatsApp Starwin" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                  </div>
             </div>
             <!-- Columna Navegación -->
@@ -440,8 +441,8 @@
                     <li><a href="proceso.html">Proceso</a></li>
                      <li><a href="beneficios.html">Beneficios</a></li>
                      <li><a href="blogs.html">Blog</a></li>
-                     <li><a href="cotizar.html">Cotizar</a></li>
-                     <li><a href="https://wa.me/56972051379" target="_blank" rel="noopener noreferrer">Contacto</a></li>
+                     <li><a href="configurador.html">Cotizar</a></li>
+                     <li><a href="contacto.html" target="_blank" rel="noopener noreferrer">Contacto</a></li>
                 </ul>
             </div>
             <!-- Columna Información -->
@@ -459,8 +460,8 @@
                  <h5 class="mb-4">Contáctanos</h5>
                  <ul class="list-unstyled small contact-info">
                      <li><i class="fas fa-map-marker-alt fa-fw"></i><address class="mb-0 d-inline">Pedro de Valdivia 733,<br class="d-none d-lg-block"> Concepción, Biobío</address></li>
-                     <li><i class="fas fa-phone fa-fw"></i><a href="tel:+56972051379">+56 9 7205 1379</a></li>
-                      <li><i class="fab fa-whatsapp fa-fw"></i><a href="https://wa.me/56972051379" target="_blank" rel="noopener noreferrer">WhatsApp Directo</a></li>
+                     <li><i class="fas fa-phone fa-fw"></i><a href="tel:+56966003771">+56 9 6600 3771</a></li>
+                      <li><i class="fab fa-whatsapp fa-fw"></i><a href="https://wa.me/56966003771" target="_blank" rel="noopener noreferrer">WhatsApp Directo</a></li>
                      <li><i class="fas fa-envelope fa-fw"></i><a href="mailto:starwinchile@gmail.com">starwinchile@gmail.com</a></li>
                      <li><i class="fas fa-clock fa-fw"></i><span>Lun - Vie: 9:00 - 18:30 hrs</span></li>
                  </ul>

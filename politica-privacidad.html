@@ -4,12 +4,22 @@
     <link rel="canonical" href="https://starwinpvc.cl/politica-privacidad.html" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17023112953"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-17023112953');
+        gtag('config', 'G-V7XMTT9BD4');    // Tu configuración de Google Analytics 4
+
+    </script>
     <!-- Título de la página -->
     <title>Política de Privacidad - Starwin Chile</title>
     <!-- Descripción -->
     <meta name="description" content="Política de Privacidad de Starwin Chile. Conoce cómo recopilamos, usamos y protegemos tu información personal en nuestro sitio web.">
     <!-- No Index (Opcional, pero recomendado para páginas legales) -->
-    <meta name="robots" content="noindex, follow">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
@@ -196,12 +206,13 @@
     .btn-light:hover, .btn-light:focus { background-color: var(--brand-white); border-color: var(--brand-white); color: var(--brand-primary); }
 
    /* --- Header / Navbar --- */
-   .navbar { transition: background-color 0.3s ease, box-shadow 0.3s ease; padding-top: 0.7rem; padding-bottom: 0.7rem; background-color: var(--brand-navbar-bg); border-bottom: 1px solid var(--brand-extralightgray); }
+    .navbar { transition: background-color 0.3s ease, box-shadow 0.3s ease; padding-top: 0.7rem; background-color: var(--brand-navbar-bg); border-bottom: 1px solid var(--brand-extralightgray); }
     .navbar-sticky { box-shadow: var(--box-shadow-md); }
     .navbar-brand { font-weight: 700; font-size: 1.8rem; color: var(--brand-dark) !important; padding-top: 0; padding-bottom: 0; }
      .navbar-brand img { max-height: 48px; width: auto; vertical-align: middle; margin-bottom: 4px; }
     .navbar .nav-link { color: var(--brand-dark); font-weight: 500; font-family: var(--font-family-sans-serif); padding: 0.7rem 1rem; position: relative; transition: color 0.3s ease; text-decoration: none; font-size: 1rem; margin: 0 0.3rem; border-radius: var(--border-radius-sm); }
     .navbar .nav-link:hover, .navbar .nav-link:focus { color: var(--brand-primary); background-color: rgba(var(--bs-primary-rgb), 0.08); text-decoration: none; }
+    .navbar .nav-link.active { color: var(--brand-primary); font-weight: 600; background-color: rgba(var(--bs-primary-rgb), 0.12); }
      .navbar .nav-link::after { display: none; }
     .navbar .dropdown-indicator { display: inline-block; transition: transform 0.2s ease-in-out; font-size: 0.8em; vertical-align: middle; opacity: 0.7; }
     .navbar .dropdown-toggle.show .dropdown-indicator { transform: rotate(180deg); }
@@ -209,6 +220,7 @@
     .navbar .dropdown-menu.show { margin-top: 0.5rem; }
     .navbar .dropdown-item { font-size: 0.98rem; padding: 0.55rem 1.2rem; color: var(--brand-dark); transition: background-color 0.2s ease, color 0.2s ease; font-family: var(--font-family-sans-serif); }
      .navbar .dropdown-item:hover, .navbar .dropdown-item:focus { background-color: var(--brand-lightgray); color: var(--brand-primary); }
+     .navbar .dropdown-item.active, .navbar .dropdown-item:active { background-color: var(--brand-primary); color: var(--brand-white); }
     .navbar-toggler { border: none; padding: 0.6rem; }
     .navbar-toggler:focus { box-shadow: none; }
     .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
@@ -241,8 +253,7 @@
 }
 
 
-
-    /* --- Footer (Sin cambios visuales mayores) --- */
+    /* --- Footer (Sin cambios, heredado de index) --- */
     footer#contacto { background-color: var(--brand-dark); color: var(--brand-lightgray); padding-top: var(--section-padding-y); padding-bottom: 2rem; font-size: 0.98rem; }
     footer#contacto h5 { font-size: 1.2rem; font-weight: 600; font-family: var(--font-family-headings); color: var(--brand-white); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.8px; }
     footer#contacto a { color: var(--brand-lightgray); text-decoration: none; transition: color 0.2s ease; }
@@ -256,14 +267,6 @@
     footer#contacto .social-icons a:hover { color: var(--brand-primary); transform: scale(1.15) translateY(-2px); }
     footer#contacto .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 1.8rem; margin-top: 3.5rem; }
     footer#contacto .copyright { font-size: 0.92rem; color: var(--brand-secondary); }
-     /* CAMBIO: Estilo para imagen del footer */
-    footer#contacto .footer-logo-img {
-        max-height: 55px;
-        filter: brightness(0) invert(1);
-        width: auto; /* Mantiene proporción */
-        height: auto; /* Mantiene proporción */
-        /* El navegador usará width/height para aspect-ratio */
-    }
 
 
     /* --- Estilos específicos para esta página --- */
@@ -330,8 +333,7 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="index.html" title="Inicio - Starwin Chile">
-                <!-- CAMBIO: Añadido width y height. ¡USA LAS DIMENSIONES REALES DE TU IMAGEN! -->
-                <img src="logostarwin.png" alt="Starwin Logo" width="180" height="60">
+                <img src="logostarwin.png" alt="Starwin Logo" > <!-- No se agrega loading="lazy" aquí por ser above-the-fold y crítico -->
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -339,26 +341,28 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.html#inicio">Inicio</a>
+                        <a class="nav-link" href="index.html">Inicio</a> <!-- Link a index -->
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProductos" role="button" aria-expanded="false">
+                         <!-- toggle si estamos en una página del dropdown -->
+                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownProductos" role="button" aria-expanded="false">
                             Nuestras Ventanas
                             <span class="dropdown-indicator ms-1"><i class="fas fa-chevron-down fa-xs"></i></span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownProductos">
-                             <li><a class="dropdown-item" href="productos.html">Catálogo de Productos</a></li>
+                            <!-- Marcar este item como activo -->
+                            <li><a class="dropdown-item " aria-current="page" href="productos.html">Catálogo de Productos</a></li>
                             <li><a class="dropdown-item" href="colores.html">Colores y Acabados</a></li>
                             <li><a class="dropdown-item" href="detalles-tecnicos.html">Detalles Técnicos</a></li>
-                            <li><a class="dropdown-item" href="beneficios.html">¿Porque Elegirnos?</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="configurador.html">COTIZADOR ONLINE <span class="beta-highlight">beta</span></a></li>
+                            <li><a class="dropdown-item" href="beneficios.html">¿Porque Elegirnos?</a></li>
+                            
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="nosotros.html">¿Quienes somos?</a>
+                        <a class="nav-link" href="nosotros.html">¿Quienes somos?</a>
                     </li>
-                    <li class="nav-item">
+                     <li class="nav-item">
                         <a class="nav-link" href="proceso.html">Proceso</a>
                     </li>
                     <li class="nav-item">
@@ -366,10 +370,10 @@
                         <a class="nav-link" href="blogs.html">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://wa.me/56972051379">Contacto</a>
+                        <a class="nav-link" href="contacto.html">Contacto</a>
                     </li>
                     <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-                        <a href="#presupuesto" class="btn btn-brand-accent btn-cta shadow-sm">Cotizar Ahora</a>
+                        <a href="configurador.html" class="btn btn-brand-accent btn-cta shadow-sm">Cotizar Online</a>
                     </li>
                 </ul>
             </div>
@@ -397,7 +401,7 @@
                     <strong>Starwin Chile</strong><br>
                     Dirección: Pedro de Valdivia 733, Concepción, Biobío, Chile<br>
                     Correo Electrónico: <a href="mailto:starwinchile@gmail.com">starwinchile@gmail.com</a><br>
-                    Teléfono: <a href="tel:+56972051379">+56 9 7205 1379</a>
+                    Teléfono: <a href="https://wa.me/56966003771">+56 9 6600 3771</a>
                 </p>
 
                 <h2>3. Información que Recopilamos</h2>
@@ -469,7 +473,7 @@
                 <p>
                     <strong>Starwin Chile</strong><br>
                     Correo Electrónico: <a href="mailto:starwinchile@gmail.com">starwinchile@gmail.com</a><br>
-                    Teléfono: <a href="tel:+56972051379">+56 9 7205 1379</a><br>
+                    Teléfono: <a href="https://wa.me/56966003771">+56 9 6600 3771</a><br>
                     Dirección: Pedro de Valdivia 733, Concepción, Biobío, Chile
                 </p>
 
@@ -487,9 +491,9 @@
             <!-- Columna Logo y Descripción -->
             <div class="col-lg-4 col-md-12 text-center text-lg-start mb-4 mb-lg-0">
                 <a href="index.html" title="Inicio - Starwin Chile" class="d-inline-block mb-3">
-                     <img src="logostarwin.png" alt="Starwin Chile Logo Footer Blanco" style="max-height: 50px; filter: brightness(0) invert(1);" width="auto" height="50">
+                     <img src="logostarwin.png" alt="Starwin Chile Logo Footer Blanco" style="max-height: 50px; filter: brightness(0) invert(1);" width="auto" height="50"> <!-- No se agrega loading="lazy" aquí -->
                  </a>
-                <p class="small text-light-muted pe-lg-3 mt-2">Expertos en ventanas y puertas PVC de alta eficiencia. Diseño, fabricación e instalación en Concepción y Región del Biobío.</p>
+                <p class="small text-light-muted pe-lg-3 mt-2">Expertos en ventanas y puertas PVC de alta eficiencia. Diseño, fabricación e instalación de ventanas de PVC en Concepción y Región del Biobío.</p>
                 <div class="social-icons mt-4 justify-content-center justify-content-lg-start">
                     <a href="https://www.facebook.com/Starwinchile/" title="Facebook Starwin" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/starwincl/" title="Instagram Starwin" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -505,8 +509,8 @@
                     <li><a href="proceso.html">Proceso</a></li>
                      <li><a href="beneficios.html">Beneficios</a></li>
                      <li><a href="blogs.html">Blog</a></li>
-                     <li><a href="cotizar.html">Cotizar</a></li>
-                     <li><a href="https://wa.me/56972051379" target="_blank" rel="noopener noreferrer">Contacto</a></li>
+                     <li><a href="configurador.html">Cotizar</a></li>
+                     <li><a href="contacto.html" target="_blank" rel="noopener noreferrer">Contacto</a></li>
                 </ul>
             </div>
             <!-- Columna Información -->
@@ -524,8 +528,8 @@
                  <h5 class="mb-4">Contáctanos</h5>
                  <ul class="list-unstyled small contact-info">
                      <li><i class="fas fa-map-marker-alt fa-fw"></i><address class="mb-0 d-inline">Pedro de Valdivia 733,<br class="d-none d-lg-block"> Concepción, Biobío</address></li>
-                     <li><i class="fas fa-phone fa-fw"></i><a href="tel:+56972051379">+56 9 7205 1379</a></li>
-                      <li><i class="fab fa-whatsapp fa-fw"></i><a href="https://wa.me/56972051379" target="_blank" rel="noopener noreferrer">WhatsApp Directo</a></li>
+                     <li><i class="fas fa-phone fa-fw"></i><a href="tel:+56966003771">+56 9 6600 3771</a></li>
+                      <li><i class="fab fa-whatsapp fa-fw"></i><a href="https://wa.me/56966003771" target="_blank" rel="noopener noreferrer">WhatsApp Directo</a></li>
                      <li><i class="fas fa-envelope fa-fw"></i><a href="mailto:starwinchile@gmail.com">starwinchile@gmail.com</a></li>
                      <li><i class="fas fa-clock fa-fw"></i><span>Lun - Vie: 9:00 - 18:30 hrs</span></li>
                  </ul>
@@ -552,166 +556,108 @@
     // incluso con 'defer'. Usar DOMContentLoaded es más robusto.
     document.addEventListener('DOMContentLoaded', function() {
 
-        // --- Navbar Dropdown Mejorado (Click y Hover con Timers) ---
+        // --- Navbar Dropdown Mejorado (Se mantiene igual) ---
         function setupNavbarDropdowns() {
             let hoverTimerEnter;
             let hoverTimerLeave;
-            const enterDelay = 200; // 0.2 segundos para abrir con hover
-            const leaveDelay = 1000; // 1 segundo para cerrar al salir
+            const enterDelay = 200;
+            const leaveDelay = 1000;
 
-            // Limpiar manejadores previos para evitar duplicados en resize
             $('.navbar .nav-item.dropdown').off('mouseenter mouseleave click');
-            $('.navbar .dropdown-toggle').off('click'); // Limpiar posible click handler conflictivo
+            $('.navbar .dropdown-toggle').off('click');
 
-            // --- Lógica para Escritorio (> 991px) ---
             if (window.innerWidth >= 992) {
                 $('.navbar .nav-item.dropdown').each(function() {
                     const $dropdown = $(this);
                     const $toggle = $dropdown.find('.dropdown-toggle');
                     const $menu = $dropdown.find('.dropdown-menu');
                     let menuInstance = bootstrap.Dropdown.getOrCreateInstance($toggle[0]);
-                    let isOpenByClick = false; // Flag para saber si se abrió con click
+                    let isOpenByClick = false;
 
-                    // Click en el Toggle (Abre/Cierra y activa flag)
                     $toggle.on('click', function(e) {
-                        e.preventDefault(); // Prevenir comportamiento default si es un enlace '#'
-                        e.stopPropagation(); // Prevenir que el click cierre inmediatamente
-
-                        clearTimeout(hoverTimerEnter);
-                        clearTimeout(hoverTimerLeave);
-
-                        if ($menu.hasClass('show')) {
-                            menuInstance.hide();
-                            isOpenByClick = false;
-                        } else {
-                            // Cerrar otros dropdowns abiertos
+                        e.preventDefault(); e.stopPropagation();
+                        clearTimeout(hoverTimerEnter); clearTimeout(hoverTimerLeave);
+                        if ($menu.hasClass('show')) { menuInstance.hide(); isOpenByClick = false; }
+                        else {
                             $('.navbar .nav-item.dropdown .dropdown-menu.show').each(function() {
-                                const otherToggle = $(this).prev('.dropdown-toggle')[0];
-                                if (otherToggle) {
-                                    bootstrap.Dropdown.getOrCreateInstance(otherToggle).hide();
-                                }
+                                bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide();
                             });
-                            menuInstance.show();
-                            isOpenByClick = true; // Marcamos que se abrió con click
+                            menuInstance.show(); isOpenByClick = true;
                         }
                     });
-
-                    // Mouse Enter en el Item Dropdown (Activa timer para abrir)
                     $dropdown.on('mouseenter', function() {
-                        if (isOpenByClick) return; // Si está abierto por click, no hacer nada al entrar
-
-                        clearTimeout(hoverTimerLeave); // Cancela cierre pendiente si re-entro
+                        if (isOpenByClick) return;
+                        clearTimeout(hoverTimerLeave);
                         hoverTimerEnter = setTimeout(() => {
-                             // Cerrar otros dropdowns abiertos antes de abrir este
                              $('.navbar .nav-item.dropdown .dropdown-menu.show').not($menu).each(function() {
-                                const otherToggle = $(this).prev('.dropdown-toggle')[0];
-                                if (otherToggle) {
-                                    bootstrap.Dropdown.getOrCreateInstance(otherToggle).hide();
-                                }
+                                bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide();
                              });
-
-                            if (!$menu.hasClass('show')) {
-                                menuInstance.show();
-                            }
+                            if (!$menu.hasClass('show')) { menuInstance.show(); }
                         }, enterDelay);
                     });
-
-                    // Mouse Leave del Item Dropdown (Activa timer para cerrar)
                     $dropdown.on('mouseleave', function() {
-                        clearTimeout(hoverTimerEnter); // Cancela apertura pendiente si salí antes
-
+                        clearTimeout(hoverTimerEnter);
                         hoverTimerLeave = setTimeout(() => {
-                            if ($menu.hasClass('show')) {
-                                menuInstance.hide();
-                                isOpenByClick = false; // Resetear flag al cerrar por leave
-                            }
+                            if ($menu.hasClass('show')) { menuInstance.hide(); isOpenByClick = false; }
                         }, leaveDelay);
                     });
-
-                    // Click en un item del menú (Cierra el menú)
                     $menu.find('.dropdown-item').on('click', function() {
-                        menuInstance.hide();
-                        isOpenByClick = false;
+                        menuInstance.hide(); isOpenByClick = false;
                     });
                 });
-
-                // Cerrar dropdowns si se hace click fuera
                 $(document).on('click', function(e) {
                     if (!$(e.target).closest('.navbar .nav-item.dropdown').length) {
                         $('.navbar .nav-item.dropdown .dropdown-menu.show').each(function() {
-                           const otherToggle = $(this).prev('.dropdown-toggle')[0];
-                            if (otherToggle) {
-                                bootstrap.Dropdown.getOrCreateInstance(otherToggle).hide();
-                            }
+                           bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide();
                         });
                     }
                 });
-
             } else {
-                // --- Lógica para Móvil (<= 991px) ---
-                // Asegurar que el toggle de Bootstrap funcione en móvil
-                 $('.navbar .dropdown-toggle').each(function() {
-                     const toggleElement = this;
-                     const dropdown = bootstrap.Dropdown.getOrCreateInstance(toggleElement);
-                     // Bootstrap 5 maneja esto automáticamente con data-bs-toggle="dropdown",
-                     // pero nos aseguramos que esté activo si se deshabilitó por resize.
-                     $(toggleElement).attr('data-bs-toggle', 'dropdown');
-                 });
-
-
-                // Opcional: Cerrar el menú principal al hacer click en un item de dropdown en móvil
+                $('.navbar .dropdown-toggle').attr('data-bs-toggle', 'dropdown');
                 $('.navbar .dropdown-item').on('click', function() {
                     const $navbarCollapse = $(this).closest('.navbar-collapse');
-                    if ($navbarCollapse.hasClass('show')) {
-                        bootstrap.Collapse.getOrCreateInstance($navbarCollapse[0]).hide();
-                    }
-                     // También cerrar el submenú dropdown si está abierto
+                    if ($navbarCollapse.hasClass('show')) { bootstrap.Collapse.getOrCreateInstance($navbarCollapse[0]).hide(); }
                     const $dropdownMenu = $(this).closest('.dropdown-menu');
                     if ($dropdownMenu.hasClass('show')) {
                         const $toggle = $dropdownMenu.prev('.dropdown-toggle');
-                        if ($toggle.length > 0) {
-                            bootstrap.Dropdown.getOrCreateInstance($toggle[0]).hide();
-                        }
+                        bootstrap.Dropdown.getOrCreateInstance($toggle[0]).hide();
                     }
                 });
             }
         }
-        setupNavbarDropdowns(); // Ejecutar al cargar
-        $(window).on('resize', setupNavbarDropdowns); // Re-ejecutar en resize
+        setupNavbarDropdowns();
+        $(window).on('resize', setupNavbarDropdowns);
 
-        // --- Funcionalidad Menú Móvil (Cerrar al hacer click en link normal) ---
+        // --- Funcionalidad Menú Móvil (Se mantiene igual) ---
         const mobileMenu = document.getElementById('navbarNav');
         if (mobileMenu) {
             const mobileLinks = mobileMenu.querySelectorAll('a.nav-link:not(.dropdown-toggle)');
             const bsCollapse = bootstrap.Collapse.getOrCreateInstance(mobileMenu, { toggle: false });
-
             mobileLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
-                    // Solo cerrar si el menú está visible y el link es normal (no dropdown)
-                    if (window.innerWidth < 992 && mobileMenu.classList.contains('show')) {
-                         bsCollapse.hide();
-                    }
+                    const href = link.getAttribute('href');
+                     // Cierra si es link interno A OTRA PÁGINA o link interno A ESTA PÁGINA
+                     if (href && window.innerWidth < 992 && mobileMenu.classList.contains('show')) {
+                          if (!href.startsWith('#') || (href.startsWith('#') && window.location.pathname.endsWith('productos.html'))) {
+                             bsCollapse.hide();
+                          }
+                     }
                 });
             });
-             // Cerrar si se hace click fuera del nav en móvil
-             document.addEventListener('click', function (event) {
-                const navbarToggler = document.querySelector('.navbar-toggler');
+            document.addEventListener('click', function (event) {
                 const isClickInsideNav = mobileMenu.contains(event.target);
+                const navbarToggler = document.querySelector('.navbar-toggler');
                 const isToggler = navbarToggler ? navbarToggler.contains(event.target) : false;
-
-                // Solo cerrar si está abierto, el click fue fuera Y no fue en el toggler
-                if (mobileMenu.classList.contains('show') && !isClickInsideNav && !isToggler && window.innerWidth < 992) {
+                const isNavOpen = mobileMenu.classList.contains('show');
+                if (!isClickInsideNav && !isToggler && isNavOpen && window.innerWidth < 992) {
                     bsCollapse.hide();
                 }
             });
         }
 
-
-        // --- Actualizar Año del Footer ---
+        // --- Actualizar Año del Footer (Se mantiene igual) ---
         const yearSpan = document.getElementById('current-year');
         if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
-
-        // --- No se necesitan los scripts de Slider, Color Picker o Animaciones de Scroll aquí ---
 
     }); // Fin DOMContentLoaded
 </script>

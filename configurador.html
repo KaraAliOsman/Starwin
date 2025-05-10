@@ -7,11 +7,12 @@
 <meta property="og:description" content="Configura tus ventanas de PVC Starwin con nuestra herramienta online: elige modelos, colores y tamaños personalizados." />
 <meta property="og:url" content="https://starwinpvc.cl/configurador.html" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://starwinpvc.cl/assets/og-default.jpg" />
+<meta property="og:image" content="https://starwinpvc.cl/fijo.webp" />
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotizador Online Ventanas PVC (Beta) - Starwin Chile</title>
+    <title>Cotizador Online Ventanas Pvc - Starwin Chile</title>
+    
     <meta name="description" content="Configura y cotiza online tus ventanas PVC a medida. Elige dimensiones, aperturas, colores y accesorios.">
 
     <!-- Bootstrap CSS -->
@@ -37,6 +38,17 @@
     
     <!-- Manifest para PWA -->
     <link rel="manifest" href="/favicon/site.webmanifest">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17023112953"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-17023112953');
+        gtag('config', 'G-V7XMTT9BD4');    // Tu configuración de Google Analytics 4
+
+    </script>
 <style>
     /* --- Variables y Estilos Base Mejorados --- */
     :root {
@@ -603,7 +615,7 @@
     .btn-light { background-color: rgba(255, 255, 255, 0.95); border-color: rgba(255, 255, 255, 0.95); color: var(--brand-dark); }
     .btn-light:hover, .btn-light:focus { background-color: var(--brand-white); border-color: var(--brand-white); color: var(--brand-primary); }
     /* --- Header / Navbar --- */
-    .navbar { transition: background-color 0.3s ease, box-shadow 0.3s ease; padding-top: 0.7rem; padding-bottom: 0.7rem; background-color: var(--brand-navbar-bg); border-bottom: 1px solid var(--brand-extralightgray); }
+    .navbar { transition: background-color 0.3s ease, box-shadow 0.3s ease; padding-top: 0.7rem; background-color: var(--brand-navbar-bg); border-bottom: 1px solid var(--brand-extralightgray); }
     .navbar-sticky { box-shadow: var(--box-shadow-md); }
     .navbar-brand { font-weight: 700; font-size: 1.8rem; color: var(--brand-dark) !important; padding-top: 0; padding-bottom: 0; }
      .navbar-brand img { max-height: 48px; width: auto; vertical-align: middle; margin-bottom: 4px; }
@@ -649,7 +661,9 @@
     @media(max-width: 1400px){.navbar .navbar .btn-cta {font-size: 0.9rem;}
 }
 
-    footer#contacto { background-color: var(--brand-dark); color: var(--brand-lightgray) !important; padding-top: var(--section-padding-y); padding-bottom: 2rem; font-size: 0.98rem; margin-top: 4rem; }
+
+    /* --- Footer (Sin cambios, heredado de index) --- */
+    footer#contacto { background-color: var(--brand-dark); color: var(--brand-lightgray); padding-top: var(--section-padding-y); padding-bottom: 2rem; font-size: 0.98rem; }
     footer#contacto h5 { font-size: 1.2rem; font-weight: 600; font-family: var(--font-family-headings); color: var(--brand-white); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.8px; }
     footer#contacto a { color: var(--brand-lightgray); text-decoration: none; transition: color 0.2s ease; }
     footer#contacto a:hover { color: var(--brand-primary); text-decoration: none; }
@@ -662,16 +676,6 @@
     footer#contacto .social-icons a:hover { color: var(--brand-primary); transform: scale(1.15) translateY(-2px); }
     footer#contacto .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 1.8rem; margin-top: 3.5rem; }
     footer#contacto .copyright { font-size: 0.92rem; color: var(--brand-secondary); }
-     @media (max-width: 768px) {
-         footer#contacto { padding-top: var(--section-padding-y-sm); }
-         footer#contacto .text-center-md { text-align: center !important; }
-         footer#contacto .mb-md-4 { margin-bottom: 2rem !important; }
-         footer#contacto .col-lg-2, footer#contacto .col-lg-3, footer#contacto .col-lg-4 { text-align: center; }
-         footer#contacto .contact-info li { justify-content: center; }
-         footer#contacto .social-icons { justify-content: center; display: flex; margin-bottom: 1.5rem;}
-     }
-    /* --- Fin Estilos Navbar/Footer --- */
-
 </style>
 </head>
 <body>
@@ -682,10 +686,8 @@
 <header class="sticky-top shadow-sm">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <!-- Logo Imagen debe estar presente para usar en PDF -->
             <a class="navbar-brand" href="index.html" title="Inicio - Starwin Chile">
-                <!-- Make sure logostarwin.png is in the same folder or provide the correct path -->
-                <img id="navbar-logo" src="logostarwin.png" alt="Starwin Logo" >
+                <img src="logostarwin.png" alt="Starwin Logo" > <!-- No se agrega loading="lazy" aquí por ser above-the-fold y crítico -->
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -693,20 +695,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-lg-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Inicio</a>
+                        <a class="nav-link" href="index.html">Inicio</a> <!-- Link a index -->
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownProductos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                         <!-- Añadir al toggle si estamos en una página del dropdown -->
+                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownProductos" role="button" aria-expanded="false">
                             Nuestras Ventanas
                             <span class="dropdown-indicator ms-1"><i class="fas fa-chevron-down fa-xs"></i></span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownProductos">
-                            <li><a class="dropdown-item" href="productos.html">Catálogo de Productos</a></li>
+                            <!-- Marcar este item como activo -->
+                            <li><a class="dropdown-item " aria-current="page" href="productos.html">Catálogo de Productos</a></li>
                             <li><a class="dropdown-item" href="colores.html">Colores y Acabados</a></li>
                             <li><a class="dropdown-item" href="detalles-tecnicos.html">Detalles Técnicos</a></li>
-                            <li><a class="dropdown-item" href="beneficios.html">Principales Beneficios</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item active" aria-current="page" href="#">COTIZADOR ONLINE <span class="beta-highlight">beta</span></a></li>
+                            <li><a class="dropdown-item" href="beneficios.html">¿Porque Elegirnos?</a></li>
+                            
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -716,13 +720,14 @@
                         <a class="nav-link" href="proceso.html">Proceso</a>
                     </li>
                     <li class="nav-item">
+                        <!-- Enlace "Blog" activo porque estamos en una página de blog individual -->
                         <a class="nav-link" href="blogs.html">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://wa.me/56972051379" target="_blank" rel="noopener noreferrer">Contacto</a>
+                        <a class="nav-link" href="contacto.html">Contacto</a>
                     </li>
-                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-                        <a href="cotizar.html" class="btn btn-brand-accent btn-cta shadow-sm">Cotizar Ahora</a>
+                    <li class="nav-item  ms-lg-3 mt-3 mt-lg-0">
+                        <a href="configurador.html" class="btn btn-brand-accent btn-cta shadow-sm">Cotizar Online</a>
                     </li>
                 </ul>
             </div>
@@ -734,9 +739,9 @@
     <div class="container">
          <!-- Título de la página del Configurador -->
         <div class="text-center mb-5">
-             <h1 class="fw-bold">Cotizador Online de Ventanas PVC <span class="beta-highlight">beta</span></h1>
-             <p class="lead text-muted">Diseña tu ventana ideal paso a paso y obtén una cotización estimada al instante.</p> <!-- Text color muted -->
-             <p class="small text-muted">(Versión Beta - Precios y opciones sujetos a confirmación final)</p>
+             <h1 class="fw-bold">Cotizador Online de Ventanas PVC</h1>
+             <p class="lead text-muted">Diseña tu ventana de pvc ideal paso a paso y obtén una cotización estimada al instante.</p> <!-- Text color muted -->
+             <p class="small text-muted">(Precios y opciones sujetos a confirmación final)</p>
         </div>
 
         <!-- El wrapper del configurador -->
@@ -926,9 +931,9 @@
                          <p class="text-muted mb-4">Revisa la configuración y el precio estimado. Haz clic abajo para generar un resumen PDF.</p>
                          <button class="btn btn-brand-accent btn-lg w-100 shadow-sm" id="quote-button" type="button" disabled>
                              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
-                             <span class="button-text">Generar PDF y Solicitar Cotización</span>
+                             <span class="button-text">Generar Cotización PDF</span>
                          </button>
-                          <p class="small text-muted mt-3">Al generar el PDF, nos pondremos en contacto para confirmar detalles y plazos.</p>
+                          <p class="small text-muted mt-3">Al generar el PDF, contactanos para confirmar detalles y plazos.</p>
                           <div id="pdf-status" class="mt-3 small" style="min-height: 20px;"></div>
                      </div>
                 </div>
@@ -947,13 +952,13 @@
             <!-- Columna Logo y Descripción -->
             <div class="col-lg-4 col-md-12 text-center text-lg-start mb-4 mb-lg-0">
                 <a href="index.html" title="Inicio - Starwin Chile" class="d-inline-block mb-3">
-                     <img src="logostarwin.png" alt="Starwin Chile Logo Footer Blanco" style="max-height: 50px; filter: brightness(0) invert(1);" width="auto" height="50">
+                     <img src="logostarwin.png" alt="Starwin Chile Logo Footer Blanco" style="max-height: 50px; filter: brightness(0) invert(1);" width="auto" height="50"> <!-- No se agrega loading="lazy" aquí -->
                  </a>
-                <p class="small text-light-muted pe-lg-3 mt-2">Expertos en ventanas y puertas PVC de alta eficiencia. Diseño, fabricación e instalación en Concepción y Región del Biobío.</p>
+                <p class="small text-light-muted pe-lg-3 mt-2">Expertos en ventanas y puertas PVC de alta eficiencia. Diseño, fabricación e instalación de ventanas de PVC en Concepción y Región del Biobío.</p>
                 <div class="social-icons mt-4 justify-content-center justify-content-lg-start">
                     <a href="https://www.facebook.com/Starwinchile/" title="Facebook Starwin" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://www.instagram.com/starwincl/" title="Instagram Starwin" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/56972051379" title="WhatsApp Starwin" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://wa.me/56966003771" title="WhatsApp Starwin" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                  </div>
             </div>
             <!-- Columna Navegación -->
@@ -965,8 +970,8 @@
                     <li><a href="proceso.html">Proceso</a></li>
                      <li><a href="beneficios.html">Beneficios</a></li>
                      <li><a href="blogs.html">Blog</a></li>
-                     <li><a href="cotizar.html">Cotizar</a></li>
-                     <li><a href="https://wa.me/56972051379" target="_blank" rel="noopener noreferrer">Contacto</a></li>
+                     <li><a href="configurador.html">Cotizar</a></li>
+                     <li><a href="contacto.html" target="_blank" rel="noopener noreferrer">Contacto</a></li>
                 </ul>
             </div>
             <!-- Columna Información -->
@@ -984,8 +989,8 @@
                  <h5 class="mb-4">Contáctanos</h5>
                  <ul class="list-unstyled small contact-info">
                      <li><i class="fas fa-map-marker-alt fa-fw"></i><address class="mb-0 d-inline">Pedro de Valdivia 733,<br class="d-none d-lg-block"> Concepción, Biobío</address></li>
-                     <li><i class="fas fa-phone fa-fw"></i><a href="tel:+56972051379">+56 9 7205 1379</a></li>
-                      <li><i class="fab fa-whatsapp fa-fw"></i><a href="https://wa.me/56972051379" target="_blank" rel="noopener noreferrer">WhatsApp Directo</a></li>
+                     <li><i class="fas fa-phone fa-fw"></i><a href="tel:+56966003771">+56 9 6600 3771</a></li>
+                      <li><i class="fab fa-whatsapp fa-fw"></i><a href="https://wa.me/56966003771" target="_blank" rel="noopener noreferrer">WhatsApp Directo</a></li>
                      <li><i class="fas fa-envelope fa-fw"></i><a href="mailto:starwinchile@gmail.com">starwinchile@gmail.com</a></li>
                      <li><i class="fas fa-clock fa-fw"></i><span>Lun - Vie: 9:00 - 18:30 hrs</span></li>
                  </ul>
@@ -1025,34 +1030,106 @@
     document.addEventListener('DOMContentLoaded', function() {
         console.log("--- DOM Cargado. Iniciando Configurador Starwin (v4.1 - Límites Visuales Canvas) ---");
 
-        // --- LÓGICA NAVBAR Y FOOTER (Adaptada de Starwin index.html - Sin Cambios Funcionales) ---
-        // --- (Se omite por brevedad, es idéntica a la proporcionada) ---
+       // --- Navbar Dropdown Mejorado (Se mantiene igual) ---
         function setupNavbarDropdowns() {
-             let hoverTimerEnter; let hoverTimerLeave; const enterDelay = 200; const leaveDelay = 1000;
-             $('.navbar .nav-item.dropdown').off('mouseenter mouseleave click'); $('.navbar .dropdown-toggle').off('click');
-             if (window.innerWidth >= 992) {
-                 $('.navbar .nav-item.dropdown').each(function() {
-                     const $dropdown = $(this); const $toggle = $dropdown.find('.dropdown-toggle'); const $menu = $dropdown.find('.dropdown-menu');
-                     let menuInstance = bootstrap.Dropdown.getOrCreateInstance($toggle[0]); let isOpenByClick = false;
-                     $toggle.on('click', function(e) { e.preventDefault(); e.stopPropagation(); clearTimeout(hoverTimerEnter); clearTimeout(hoverTimerLeave); if ($menu.hasClass('show')) { menuInstance.hide(); isOpenByClick = false; } else { $('.navbar .nav-item.dropdown .dropdown-menu.show').each(function() { bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide(); }); menuInstance.show(); isOpenByClick = true; } });
-                     $dropdown.on('mouseenter', function() { if (isOpenByClick) return; clearTimeout(hoverTimerLeave); hoverTimerEnter = setTimeout(() => { $('.navbar .nav-item.dropdown .dropdown-menu.show').not($menu).each(function() { bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide(); }); if (!$menu.hasClass('show')) { menuInstance.show(); } }, enterDelay); });
-                     $dropdown.on('mouseleave', function() { clearTimeout(hoverTimerEnter); hoverTimerLeave = setTimeout(() => { if ($menu.hasClass('show')) { menuInstance.hide(); isOpenByClick = false; } }, leaveDelay); });
-                     $menu.find('.dropdown-item').on('click', function() { menuInstance.hide(); isOpenByClick = false; });
-                 });
-                 $(document).on('click', function(e) { if (!$(e.target).closest('.navbar .nav-item.dropdown').length) { $('.navbar .nav-item.dropdown .dropdown-menu.show').each(function() { bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide(); }); } });
-             } else {
-                 $('.navbar .dropdown-toggle').attr('data-bs-toggle', 'dropdown');
-                 $('.navbar .dropdown-item').on('click', function() { const $navbarCollapse = $(this).closest('.navbar-collapse'); if ($navbarCollapse.hasClass('show')) { bootstrap.Collapse.getOrCreateInstance($navbarCollapse[0]).hide(); } const $dropdownMenu = $(this).closest('.dropdown-menu'); if ($dropdownMenu.hasClass('show')) { const $toggle = $dropdownMenu.prev('.dropdown-toggle'); bootstrap.Dropdown.getOrCreateInstance($toggle[0]).hide(); } });
-             }
-         }
+            let hoverTimerEnter;
+            let hoverTimerLeave;
+            const enterDelay = 200;
+            const leaveDelay = 1000;
+
+            $('.navbar .nav-item.dropdown').off('mouseenter mouseleave click');
+            $('.navbar .dropdown-toggle').off('click');
+
+            if (window.innerWidth >= 992) {
+                $('.navbar .nav-item.dropdown').each(function() {
+                    const $dropdown = $(this);
+                    const $toggle = $dropdown.find('.dropdown-toggle');
+                    const $menu = $dropdown.find('.dropdown-menu');
+                    let menuInstance = bootstrap.Dropdown.getOrCreateInstance($toggle[0]);
+                    let isOpenByClick = false;
+
+                    $toggle.on('click', function(e) {
+                        e.preventDefault(); e.stopPropagation();
+                        clearTimeout(hoverTimerEnter); clearTimeout(hoverTimerLeave);
+                        if ($menu.hasClass('show')) { menuInstance.hide(); isOpenByClick = false; }
+                        else {
+                            $('.navbar .nav-item.dropdown .dropdown-menu.show').each(function() {
+                                bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide();
+                            });
+                            menuInstance.show(); isOpenByClick = true;
+                        }
+                    });
+                    $dropdown.on('mouseenter', function() {
+                        if (isOpenByClick) return;
+                        clearTimeout(hoverTimerLeave);
+                        hoverTimerEnter = setTimeout(() => {
+                             $('.navbar .nav-item.dropdown .dropdown-menu.show').not($menu).each(function() {
+                                bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide();
+                             });
+                            if (!$menu.hasClass('show')) { menuInstance.show(); }
+                        }, enterDelay);
+                    });
+                    $dropdown.on('mouseleave', function() {
+                        clearTimeout(hoverTimerEnter);
+                        hoverTimerLeave = setTimeout(() => {
+                            if ($menu.hasClass('show')) { menuInstance.hide(); isOpenByClick = false; }
+                        }, leaveDelay);
+                    });
+                    $menu.find('.dropdown-item').on('click', function() {
+                        menuInstance.hide(); isOpenByClick = false;
+                    });
+                });
+                $(document).on('click', function(e) {
+                    if (!$(e.target).closest('.navbar .nav-item.dropdown').length) {
+                        $('.navbar .nav-item.dropdown .dropdown-menu.show').each(function() {
+                           bootstrap.Dropdown.getOrCreateInstance($(this).prev('.dropdown-toggle')[0]).hide();
+                        });
+                    }
+                });
+            } else {
+                $('.navbar .dropdown-toggle').attr('data-bs-toggle', 'dropdown');
+                $('.navbar .dropdown-item').on('click', function() {
+                    const $navbarCollapse = $(this).closest('.navbar-collapse');
+                    if ($navbarCollapse.hasClass('show')) { bootstrap.Collapse.getOrCreateInstance($navbarCollapse[0]).hide(); }
+                    const $dropdownMenu = $(this).closest('.dropdown-menu');
+                    if ($dropdownMenu.hasClass('show')) {
+                        const $toggle = $dropdownMenu.prev('.dropdown-toggle');
+                        bootstrap.Dropdown.getOrCreateInstance($toggle[0]).hide();
+                    }
+                });
+            }
+        }
         setupNavbarDropdowns();
         $(window).on('resize', setupNavbarDropdowns);
+
+        // --- Funcionalidad Menú Móvil (Se mantiene igual) ---
         const mobileMenu = document.getElementById('navbarNav');
         if (mobileMenu) {
-             const mobileLinks = mobileMenu.querySelectorAll('a.nav-link:not(.dropdown-toggle)'); const bsCollapse = bootstrap.Collapse.getOrCreateInstance(mobileMenu, { toggle: false });
-             mobileLinks.forEach(link => { link.addEventListener('click', (e) => { const href = link.getAttribute('href'); if (href && href.startsWith('#') && window.innerWidth < 992 && mobileMenu.classList.contains('show')) { bsCollapse.hide(); } }); });
-             document.addEventListener('click', function (event) { const isClickInsideNav = mobileMenu.contains(event.target); const navbarToggler = document.querySelector('.navbar-toggler'); const isToggler = navbarToggler ? navbarToggler.contains(event.target) : false; const isNavOpen = mobileMenu.classList.contains('show'); if (!isClickInsideNav && !isToggler && isNavOpen && window.innerWidth < 992) { bsCollapse.hide(); } });
-         }
+            const mobileLinks = mobileMenu.querySelectorAll('a.nav-link:not(.dropdown-toggle)');
+            const bsCollapse = bootstrap.Collapse.getOrCreateInstance(mobileMenu, { toggle: false });
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const href = link.getAttribute('href');
+                     // Cierra si es link interno A OTRA PÁGINA o link interno A ESTA PÁGINA
+                     if (href && window.innerWidth < 992 && mobileMenu.classList.contains('show')) {
+                          if (!href.startsWith('#') || (href.startsWith('#') && window.location.pathname.endsWith('productos.html'))) {
+                             bsCollapse.hide();
+                          }
+                     }
+                });
+            });
+            document.addEventListener('click', function (event) {
+                const isClickInsideNav = mobileMenu.contains(event.target);
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                const isToggler = navbarToggler ? navbarToggler.contains(event.target) : false;
+                const isNavOpen = mobileMenu.classList.contains('show');
+                if (!isClickInsideNav && !isToggler && isNavOpen && window.innerWidth < 992) {
+                    bsCollapse.hide();
+                }
+            });
+        }
+
+        // --- Actualizar Año del Footer (Se mantiene igual) ---
         const yearSpan = document.getElementById('current-year');
         if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
 
@@ -2363,10 +2440,9 @@
                       currentY = addSectionTitlePDF("Notas Importantes", currentY);
                       doc.setFontSize(9); doc.setFont("helvetica", "normal");
                       const notes = [
-                          "- Esta es una cotización estimada generada automáticamente online (Versión Beta).",
+                          "- Esta es una cotización estimada generada automáticamente online.",
                           "- Validez de la estimación: 15 días desde la fecha de generación.",
-                          "- Un representante de Starwin Chile se pondrá en contacto para verificar los detalles, confirmar el precio final, plazos de entrega e instalación.",
-                          "- Para consultas, contáctenos en: starwinchile@gmail.com | +56 9 7205 1379."
+                          "- Para consultas, contáctenos en: starwinchile@gmail.com | +56 9 6600 3770."
                       ];
                        notes.forEach(note => {
                            currentY = addTextLinePDF(note, margin, currentY, { maxWidth: contentWidth, fontSize: 9 }, 5);
@@ -2381,7 +2457,7 @@
                            doc.setFontSize(8);
                            doc.setFont("helvetica", "italic");
                            const footerY = pageHeight - margin / 2;
-                           doc.text(`Starwin Chile | Cotizador Online Beta | Página ${i} de ${pageCount}`, pageWidth / 2, footerY, { align: 'center' });
+                           doc.text(`Starwin Chile | Cotizador Online  | Página ${i} de ${pageCount}`, pageWidth / 2, footerY, { align: 'center' });
                        }
 
                       // 7. Guardar PDF
