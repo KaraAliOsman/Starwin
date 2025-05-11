@@ -418,7 +418,7 @@
 
     /* --- Estilos Generales de Sección --- */
     section { padding-top: var(--section-padding-y); padding-bottom: var(--section-padding-y); position: relative; overflow-x: hidden; }
-    @media (max-width: 768px) { section { padding-top: var(--section-padding-y-sm); padding-bottom: var(--section-padding-y-sm); } }
+    @media (max-width: 768px) { section { padding-top: 1.5rem; padding-bottom: var(--section-padding-y-sm); } }
     .section-title { margin-bottom: 2.8rem; } 
     .section-title h2 { margin-bottom: 0.8rem; } 
     .section-title p.lead { color: var(--text-default); max-width: 750px; margin-left: auto; margin-right: auto; font-size: clamp(1.05rem, 2.8vw, 1.2rem); } 
@@ -604,6 +604,11 @@
     #introduccion { background-color: var(--brand-lightgray); }
     #introduccion .content-block { padding-right: 2.5rem; } /* Espacio a la derecha del texto */
     #introduccion h2#intro-title { color: var(--brand-primary); font-weight: 700; font-size: 2.2rem; }
+    @media (max-width: 767.98px) { /* Ocultar flechas en mobile, dots son suficientes */
+        #introduccion h2#intro-title { font-size: 1.8rem; }
+       
+    }
+
     #introduccion p.lead { margin-bottom: 1.2rem; } 
     #introduccion p { font-size: 1.1rem; }
     #introduccion .link-arrow { 
