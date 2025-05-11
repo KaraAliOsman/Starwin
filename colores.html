@@ -132,6 +132,10 @@
     html {
         scroll-behavior: smooth;
         font-size: var(--base-font-size-lg);
+        -webkit-text-size-adjust: 100%; /* CORRECCIÓN */
+        -moz-text-size-adjust: 100%;    /* CORRECCIÓN */
+        -ms-text-size-adjust: 100%;     /* CORRECCIÓN */
+        text-size-adjust: 100%;         /* CORRECCIÓN */
     }
     /* AJUSTE: Media queries para tamaño base */
     @media (max-width: 1200px) { html { font-size: var(--base-font-size-md); } }
@@ -147,7 +151,7 @@
         line-height: 1.8; /* AJUSTE: Aumentado para textos más grandes */
         overflow-x: hidden; /* Prevenir scroll horizontal accidental */
         -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+        -moz-osx-font-smoothing: grayscale; /* Esta declaración es correcta */
     }
 
     main {
@@ -267,13 +271,13 @@
     .navbar-toggler:focus { box-shadow: none; }
     .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2.5' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); }
     .navbar .btn-cta { padding: 0.65rem 1.5rem; font-size: 0.98rem; }
+    
     @media (min-width: 100px) and (max-width: 1400px) {
         .navbar-brand img { max-height: 33px; width: auto; vertical-align: middle; margin-bottom: 4px; }
-
     }
 
     @media (max-width: 991.98px) {
-        .navbar-brand img { max-height: 28px; width: auto; vertical-align: middle; margin-bottom: 4px; }
+      .navbar-brand img { max-height: 28px; width: auto; vertical-align: middle; margin-bottom: 4px; }
       .navbar-collapse { margin-top: 1rem; border-top: 1px solid var(--brand-extralightgray); padding-top: 1rem; background-color: var(--brand-navbar-bg); max-height: 75vh; overflow-y: auto; }
       .navbar .navbar-nav { align-items: stretch; }
       .navbar .nav-item { margin-bottom: 0.5rem; width: 100%; }
@@ -285,15 +289,21 @@
       .navbar .btn-cta { width: 100%; text-align: center; margin-top: 1rem; padding: 0.85rem 1.5rem; }
     }
 
-    
-@media(min-width: 992) {.navbar .nav-link{font-size: 0.9em;}}
-    @media(max-width: 1400px){.navbar .nav-link {font-size: 0.9rem;}
-}
+    /* CORREGIDO: Añadida la unidad 'px' */
+    @media(min-width: 992px) {
+        .navbar .nav-link { font-size: 0.9em; }
+    }
+    @media(max-width: 1400px) {
+        .navbar .nav-link { font-size: 0.9rem; }
+    }
 
-    @media(min-width: 992) {.navbar .navbar .btn-cta {font-size: 0.9em;}}
-    @media(max-width: 1400px){.navbar .navbar .btn-cta {font-size: 0.9rem;}
-}
-
+    /* CORREGIDO: Añadida la unidad 'px' y simplificado selector */
+    @media(min-width: 992px) {
+        .navbar .btn-cta { font-size: 0.9em; }
+    }
+    @media(max-width: 1400px) {
+        .navbar .btn-cta { font-size: 0.9rem; }
+    }
 
     /* --- Footer (Sin cambios, heredado de index) --- */
     footer#contacto { background-color: var(--brand-dark); color: var(--brand-lightgray); padding-top: var(--section-padding-y); padding-bottom: 2rem; font-size: 0.98rem; }
@@ -323,7 +333,7 @@
     #hero-colores {
         padding: 7rem 0;
         background-color: var(--brand-lightgray);
-        background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url('color.WEBP'); /* Usa una imagen relevante */
+        background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url('color1.WEBP'); /* Usa una imagen relevante */
         background-size: cover;
         background-position: center;
         color: var(--brand-white);
@@ -492,11 +502,11 @@
          footer#contacto .social-icons { justify-content: center; display: flex; margin-bottom: 1.5rem;}
      }
      .beta-highlight {
-  color: turquoise; /* O puedes usar un código hexadecimal específico como #40E0D0 */
-  /* Opcional: si quieres que sea un poco más llamativo */
-  /* font-weight: bold; */
-  /* font-size: 0.9em; */ /* Ligeramente más pequeño si lo deseas */
-}
+        color: turquoise; /* O puedes usar un código hexadecimal específico como #40E0D0 */
+        /* Opcional: si quieres que sea un poco más llamativo */
+        /* font-weight: bold; */
+        /* font-size: 0.9em; */ /* Ligeramente más pequeño si lo deseas */
+    }
 </style>
 </head>
 <body>
