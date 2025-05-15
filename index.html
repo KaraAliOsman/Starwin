@@ -453,13 +453,14 @@
         height: auto; /* Permite que aspect-ratio defina la altura */
         animation: kenburns-effect 20s ease-in-out infinite alternate; /* Animación Ken Burns */
     }
-    #hero-slider .hero-slide::before { /* Overlay oscuro para legibilidad del texto */
+     #hero-slider .hero-slide::before { /* Overlay oscuro para legibilidad del texto */
         content: '';
         position: absolute;
         inset: 0; /* Cubre todo el slide */
         background: linear-gradient(15deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.4) 55%, rgba(0,0,0,0.1) 100%);
         z-index: 1;
         transition: background 0.5s ease; /* Transición suave si el overlay cambia */
+        pointer-events: none; /* <<< AÑADIDO: Para asegurar que no intercepte clics */
     }
     #hero-slider .hero-slide-content {
         position: relative;
@@ -1101,10 +1102,10 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
         <!-- Slide 1 (NUEVO con Descuento - antes era el Slide 3 con otra info, pero se mantiene la imagen del Slide 1 original) -->
         <div class="hero-slide" style="background-image: url('AdobeStock_592191188.webp');">
             <div class="container hero-slide-content">
-                <h1 class="hero-h1">Transforma tu Hogar con los Mejores Precios del Año
+                <h1 class="hero-h1">Ventanas de Pvc Starwin
                     <span class="discount-highlight">¡15% de Descuento por Tiempo Limitado!</span>
                 </h1>
-                <p class="lead hero-lead">Es el momento perfecto. Invierte en calidad Starwin PVC: diseño superior, eficiencia insuperable y ahora, con un ahorro excepcional. Soluciones a tu Medida</p>
+                <p class="lead hero-lead">Transforma tu Hogar con los Mejores Precios del Año. Soluciones a tu Medida</p>
                 <div class="hero-buttons">
                     <a href="contacto.html" class="btn btn-brand-primary btn-lg">
                         <i class="fas fa-tags me-2"></i> Obtener Mi Cotizacion
@@ -1140,7 +1141,7 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
                         <i class="fas fa-calculator me-2"></i> Configura tu Proyecto <span class="beta-highlight ms-1">beta</span>
                     </a>
                     <a href="colores.html" class="btn btn-light btn-lg">
-                        <i class="fas fa-palette me-2"></i> Ver Acabados y Colores 
+                        <i class="fas fa-palette me-2"></i> Ver Acabados y Colores
                     </a>
                 </div>
             </div>
@@ -1689,88 +1690,60 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" defer></script>
 
     <script>
+        // ... (código anterior del script) ...
     document.addEventListener("DOMContentLoaded", function() {
 
-
-
         // Slick Carousel Initialization
-function initSlickSliders() {
-    if (typeof $ !== 'undefined' && $.fn.slick) {
-        // Hero Slider
-        if ($('#hero-slider').length && !$('#hero-slider').hasClass('slick-initialized')) {
-            // Aplicar el manejo manual de atributos ARIA y foco ANTES de inicializar Slick
-            $('#hero-slider')
-                .on('init reInit afterChange', function(event, slick, currentSlide, nextSlide) {
-                    var $slides = $(slick.$slides); // Todos los slides del carrusel
-                    var $currentSlideElem = $(slick.$slides.get(currentSlide)); // El slide actual
+        function initSlickSliders() {
+            if (typeof $ !== 'undefined' && $.fn.slick) {
+                // Hero Slider
+                if ($('#hero-slider').length && !$('#hero-slider').hasClass('slick-initialized')) {
+                    $('#hero-slider')
+                        .on('init reInit afterChange', function(event, slick, currentSlideFromEventParam) {
+                            // slick.currentSlide es la propiedad oficial para el índice del slide activo.
+                            var activeSlideIndex = slick.currentSlide;
 
-                    $slides.each(function(index) {
-                        var $slide = $(this);
-                        if (index === currentSlide) {
-                            // Slide actual (visible)
-                            // Aseguramos que no esté inerte, sea visible para ARIA y enfocable
-                            $slide.removeAttr('inert').attr('aria-hidden', 'false').attr('tabindex', '0');
-                        } else {
-                            // Slides no visibles
-                            // Los hacemos inertes, ocultos para ARIA y no enfocables
-                            $slide.attr('inert', '').attr('aria-hidden', 'true').attr('tabindex', '-1');
-                        }
-                    });
-                })
-                .on('beforeChange', function(event, slick, currentSlide, nextSlide) {
-                    // Antes de que el slide cambie, nos aseguramos que el que va a dejar de ser visible
-                    // ya no sea enfocable. El 'afterChange' se encargará del nuevo slide visible.
-                    $(slick.$slides.get(currentSlide)).attr('tabindex', '-1');
-                })
-                .slick({ // Ahora inicializamos Slick con las opciones
-                    dots: true,
-                    infinite: true,
-                    speed: 700, // Velocidad de transición
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    autoplay: true,
-                    autoplaySpeed: 5500, // Tiempo entre slides
-                    arrows: true,
-                    fade: true, // Efecto de desvanecimiento
-                    cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)', // Curva de easing para fade
-                    pauseOnHover: true,
-                    pauseOnFocus: true,
-                    // IMPORTANTE: Mantener estas opciones para que Slick intente hacer su trabajo de base
-                    // y nuestro código manual lo refine.
-                    accessibility: true,
-                    useInert: true
-                });
-        }
+                            $(slick.$slides).each(function(index, el) {
+                                var $slide = $(el);
+                                var $interactiveElements = $slide.find('a, button');
 
-        // Color Carousel
-        if ($('.color-carousel').length && !$('.color-carousel').hasClass('slick-initialized')) {
-            $('.color-carousel').slick({
-                dots: false,
-                infinite: true,
-                speed: 450,
-                slidesToShow: 5,
-                slidesToScroll: 1,
-                autoplay: true,
-                autoplaySpeed: 3800,
-                arrows: true,
-                // Considera añadir accessibility: true y useInert: true aquí también por consistencia,
-                // aunque es menos probable que cause el mismo error que el hero slider con fade.
-                // accessibility: true,
-                // useInert: true,
-                responsive: [ // Ajustes para diferentes tamaños de pantalla
-                    { breakpoint: 1400, settings: { slidesToShow: 5 } },
-                    { breakpoint: 1200, settings: { slidesToShow: 4 } },
-                    { breakpoint: 992, settings: { slidesToShow: 3 } },
-                    { breakpoint: 768, settings: { slidesToShow: 3, arrows: false } }, // Ocultar flechas en móvil
-                    { breakpoint: 576, settings: { slidesToShow: 2, centerMode: true, centerPadding: '35px', arrows: false } }
-                ]
-            });
+                                if (index === activeSlideIndex) {
+                                    $slide.removeAttr('inert').attr('aria-hidden', 'false');
+                                    $interactiveElements.attr('tabindex', '0');
+                                } else {
+                                    $slide.attr('inert', '').attr('aria-hidden', 'true');
+                                    $interactiveElements.attr('tabindex', '-1');
+                                }
+                            });
+                        })
+                        .on('beforeChange', function(event, slick, currentSlideAboutToLeave, nextSlideAboutToBecomeActive) {
+                            // El slide que se va (currentSlideAboutToLeave) debe tener sus elementos no enfocables.
+                            $(slick.$slides.get(currentSlideAboutToLeave)).find('a, button').attr('tabindex', '-1');
+                        })
+                        .slick({
+                            dots: true,
+                            infinite: true,
+                            speed: 700,
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            autoplay: true,
+                            autoplaySpeed: 5500,
+                            arrows: true,
+                            fade: true,
+                            cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)',
+                            pauseOnHover: true,
+                            pauseOnFocus: true,
+                            accessibility: true,
+                            useInert: false // <<< CAMBIADO de true a false
+                        });
+                }
+
+                // Color Carousel
+                // ... (código del color carousel sin cambios) ...
+            } else {
+                setTimeout(initSlickSliders, 100);
+            }
         }
-    } else {
-        // Reintentar si jQuery o Slick no están cargados aún
-        setTimeout(initSlickSliders, 100);
-    }
-}
         initSlickSliders();
 
         // --- Navbar Dropdown Mejorado (Se mantiene igual) ---
@@ -1853,7 +1826,6 @@ function initSlickSliders() {
             mobileLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     const href = link.getAttribute('href');
-                     // Cierra si es link interno A OTRA PÁGINA o link interno A ESTA PÁGINA
                      if (href && window.innerWidth < 992 && mobileMenu.classList.contains('show')) {
                           if (!href.startsWith('#') || (href.startsWith('#') && window.location.pathname.endsWith('productos.html'))) {
                              bsCollapse.hide();
@@ -1882,33 +1854,112 @@ function initSlickSliders() {
             '#etapas-detalladas, .step-item, #caracteristicas-detalladas .feature-block'
         );
         if (typeof IntersectionObserver !== 'undefined') {
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 }; // Observar cuando el 10% es visible
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
             const observerCallback = (entries, observer) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         const el = entry.target;
-                        // Usar requestAnimationFrame para asegurar que el navegador esté listo para la animación
                         requestAnimationFrame(() => el.classList.add('is-visible'));
 
-                        // Delay escalonado para .step-item
                         if (el.classList.contains('step-item')) {
                             const parentColumn = el.closest('.content-column');
                             const stepSiblings = parentColumn ? Array.from(parentColumn.querySelectorAll('.step-item')) : [];
                             const stepIndex = stepSiblings.indexOf(el);
-                            if (stepIndex !== -1 && !el.style.transitionDelay) { // Aplicar solo una vez
+                            if (stepIndex !== -1 && !el.style.transitionDelay) {
                                 requestAnimationFrame(() => el.style.transitionDelay = `${stepIndex * 0.08}s`);
                             }
                         }
-                        observer.unobserve(el); // Dejar de observar una vez animado
+                        observer.unobserve(el);
                     }
                 });
             };
             const intersectionObserver = new IntersectionObserver(observerCallback, observerOptions);
             animatedElements.forEach(el => intersectionObserver.observe(el));
         } else {
-            // Fallback para navegadores sin IntersectionObserver (animar todo)
             animatedElements.forEach(el => el.classList.add('is-visible'));
         }
+
+        // --- SEGUIMIENTO DE CONVERSIONES ---
+        // Función para enviar evento de conversión a Google Ads y GA4
+        function trackGoogleConversion(action, sendTo, eventCategory, eventLabel, eventValue) {
+            if (typeof gtag === 'function') {
+                // Evento para Google Ads
+                gtag('event', 'conversion', {
+                    'send_to': sendTo,
+                    'value': eventValue || 0, // Opcional, si tienes un valor de conversión
+                    'currency': 'CLP', // Opcional, ajusta si es necesario
+                    'event_callback': function() {
+                        console.log('Google Ads conversion event sent: ' + action);
+                    }
+                });
+                // Evento para GA4 (más genérico)
+                gtag('event', action, {
+                    'event_category': eventCategory,
+                    'event_label': eventLabel,
+                    'value': eventValue || undefined
+                });
+            } else {
+                console.warn('gtag is not defined. Google conversion not tracked for: ' + action);
+            }
+        }
+
+        // Función para enviar evento a Facebook Pixel
+        function trackFacebookConversion(eventName, params) {
+            if (typeof fbq === 'function') {
+                fbq('track', eventName, params);
+                console.log('Facebook Pixel event sent: ' + eventName, params);
+            } else {
+                console.warn('fbq is not defined. Facebook conversion not tracked for: ' + eventName);
+            }
+        }
+
+        // Seguimiento de clics en enlaces de WhatsApp
+        document.querySelectorAll('a[href^="https://wa.me/"], a[href^="https://api.whatsapp.com/"]').forEach(link => {
+            link.addEventListener('click', function(event) {
+                const phone = this.href.split('phone=')[1] || this.href.split('wa.me/')[1];
+                console.log('WhatsApp link clicked:', this.href);
+
+                // Google: Reemplaza 'AW-17023112953/YOUR_WHATSAPP_CONVERSION_LABEL_HERE' con tu etiqueta real
+                trackGoogleConversion(
+                    'contact_whatsapp', // Nombre del evento para GA4
+                    'AW-17023112953/REEMPLAZAR_CON_ETIQUETA_CONVERSION_WHATSAPP', // Para Google Ads
+                    'contacto',          // Categoría del evento
+                    'whatsapp_click_' + phone // Etiqueta del evento
+                );
+
+                // Facebook: Evento 'Lead' o 'Contact'
+                trackFacebookConversion('Lead', {
+                    content_name: 'WhatsApp Contact',
+                    content_category: 'Contacto Directo',
+                    value: phone
+                });
+                // También puedes usar: trackFacebookConversion('Contact');
+            });
+        });
+
+        // Seguimiento de clics en enlaces de Email
+        document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+            link.addEventListener('click', function(event) {
+                const email = this.href.substring(7); // Quita "mailto:"
+                console.log('Email link clicked:', this.href);
+
+                // Google: Reemplaza 'AW-17023112953/YOUR_EMAIL_CONVERSION_LABEL_HERE' con tu etiqueta real
+                trackGoogleConversion(
+                    'contact_email',    // Nombre del evento para GA4
+                    'AW-17023112953/REEMPLAZAR_CON_ETIQUETA_CONVERSION_EMAIL', // Para Google Ads
+                    'contacto',         // Categoría del evento
+                    'email_click_' + email // Etiqueta del evento
+                );
+
+                // Facebook: Evento 'Lead' o 'Contact'
+                trackFacebookConversion('Lead', {
+                    content_name: 'Email Contact',
+                    content_category: 'Contacto Directo',
+                    value: email
+                });
+                // También puedes usar: trackFacebookConversion('Contact');
+            });
+        });
 
     });
     </script>
