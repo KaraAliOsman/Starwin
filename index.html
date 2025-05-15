@@ -544,7 +544,7 @@
         }
     }
 
-    /* Keyframes para animación de contenido y Ken Burns */
+        /* Keyframes para animación de contenido y Ken Burns */
     @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(30px); }
         to { opacity: 1; transform: translateY(0); }
@@ -606,8 +606,15 @@
     @media (max-width: 767.98px) { /* Ocultar flechas en mobile, dots son suficientes */
         #hero-slider .slick-prev, #hero-slider .slick-next { display: none !important; }
         .slick-dots { bottom: 10px; }
-    }
 
+        /* --- AJUSTE PARA EL EFECTO EN MOBILE --- */
+        #hero-slider .hero-slide {
+            animation: none; /* Desactivar el efecto Ken Burns en mobile */
+            background-size: cover !important; /* Asegurar que la imagen cubra bien y mantenga su proporción */
+            /* background-position: center center; Ya está en la regla base y no se sobrescribe por la animación */
+        }
+        /* --- FIN DE AJUSTE --- */
+    }
 
     /* --- Sección Introducción (`#introduccion`) --- */
     #introduccion { background-color: var(--brand-lightgray); }
