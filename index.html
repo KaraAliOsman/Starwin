@@ -1672,7 +1672,7 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
                  <ul class="list-unstyled small contact-info">
                      <li><i class="fas fa-map-marker-alt fa-fw"></i><address class="mb-0 d-inline">Pedro de Valdivia 733,<br class="d-none d-lg-block"> Concepción, Biobío</address></li>
                      <li><i class="fas fa-phone fa-fw"></i><a href="tel:+56966003771">+56 9 6600 3771</a></li>
-                      <li><i class="fab fa-whatsapp fa-fw"></i><a href="https://wa.me/56966003771" target="_blank" rel="noopener noreferrer">Conversemos por WhatsApp</a></li>
+                      <li><i class="fab fa-whatsapp fa-fw"></i><a href="https://wa.me/56966003771" target="_blank">Contactar por WhatsApp</a></li>
                      <li><i class="fas fa-envelope fa-fw"></i><a href="mailto:starwinchile@gmail.com">starwinchile@gmail.com</a></li>
                      <li><i class="fas fa-clock fa-fw"></i><span>Lun - Vie: 9:00 - 18:30 hrs</span></li>
                  </ul>
@@ -1690,7 +1690,6 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" defer></script>
 
     <script>
-        // ... (código anterior del script) ...
     document.addEventListener("DOMContentLoaded", function() {
 
         // Slick Carousel Initialization
@@ -1700,13 +1699,10 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
                 if ($('#hero-slider').length && !$('#hero-slider').hasClass('slick-initialized')) {
                     $('#hero-slider')
                         .on('init reInit afterChange', function(event, slick, currentSlideFromEventParam) {
-                            // slick.currentSlide es la propiedad oficial para el índice del slide activo.
                             var activeSlideIndex = slick.currentSlide;
-
                             $(slick.$slides).each(function(index, el) {
                                 var $slide = $(el);
                                 var $interactiveElements = $slide.find('a, button');
-
                                 if (index === activeSlideIndex) {
                                     $slide.removeAttr('inert').attr('aria-hidden', 'false');
                                     $interactiveElements.attr('tabindex', '0');
@@ -1717,7 +1713,6 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
                             });
                         })
                         .on('beforeChange', function(event, slick, currentSlideAboutToLeave, nextSlideAboutToBecomeActive) {
-                            // El slide que se va (currentSlideAboutToLeave) debe tener sus elementos no enfocables.
                             $(slick.$slides.get(currentSlideAboutToLeave)).find('a, button').attr('tabindex', '-1');
                         })
                         .slick({
@@ -1734,19 +1729,37 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
                             pauseOnHover: true,
                             pauseOnFocus: true,
                             accessibility: true,
-                            useInert: false // <<< CAMBIADO de true a false
+                            useInert: false
                         });
                 }
 
-                // Color Carousel
-                // ... (código del color carousel sin cambios) ...
+               // Color Carousel
+                if ($('.color-carousel').length && !$('.color-carousel').hasClass('slick-initialized')) {
+                    $('.color-carousel').slick({
+                        dots: false,
+                        infinite: true,
+                        speed: 450,
+                        slidesToShow: 5,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 3800,
+                        arrows: true,
+                        responsive: [
+                            { breakpoint: 1400, settings: { slidesToShow: 5 } },
+                            { breakpoint: 1200, settings: { slidesToShow: 4 } },
+                            { breakpoint: 992, settings: { slidesToShow: 3 } },
+                            { breakpoint: 768, settings: { slidesToShow: 3, arrows: false } },
+                            { breakpoint: 576, settings: { slidesToShow: 2, centerMode: true, centerPadding: '35px', arrows: false } }
+                        ]
+                    });
+                }
             } else {
                 setTimeout(initSlickSliders, 100);
             }
         }
         initSlickSliders();
 
-        // --- Navbar Dropdown Mejorado (Se mantiene igual) ---
+        // --- Navbar Dropdown Mejorado ---
         function setupNavbarDropdowns() {
             let hoverTimerEnter;
             let hoverTimerLeave;
@@ -1818,7 +1831,7 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
         setupNavbarDropdowns();
         $(window).on('resize', setupNavbarDropdowns);
 
-        // --- Funcionalidad Menú Móvil (Se mantiene igual) ---
+        // --- Funcionalidad Menú Móvil ---
         const mobileMenu = document.getElementById('navbarNav');
         if (mobileMenu) {
             const mobileLinks = mobileMenu.querySelectorAll('a.nav-link:not(.dropdown-toggle)');
@@ -1844,7 +1857,7 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
             });
         }
 
-        // --- Actualizar Año del Footer (Se mantiene igual) ---
+        // --- Actualizar Año del Footer ---
         const yearSpan = document.getElementById('current-year');
         if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
 
@@ -1878,88 +1891,6 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
         } else {
             animatedElements.forEach(el => el.classList.add('is-visible'));
         }
-
-        // --- SEGUIMIENTO DE CONVERSIONES ---
-        // Función para enviar evento de conversión a Google Ads y GA4
-        function trackGoogleConversion(action, sendTo, eventCategory, eventLabel, eventValue) {
-            if (typeof gtag === 'function') {
-                // Evento para Google Ads
-                gtag('event', 'conversion', {
-                    'send_to': sendTo,
-                    'value': eventValue || 0, // Opcional, si tienes un valor de conversión
-                    'currency': 'CLP', // Opcional, ajusta si es necesario
-                    'event_callback': function() {
-                        console.log('Google Ads conversion event sent: ' + action);
-                    }
-                });
-                // Evento para GA4 (más genérico)
-                gtag('event', action, {
-                    'event_category': eventCategory,
-                    'event_label': eventLabel,
-                    'value': eventValue || undefined
-                });
-            } else {
-                console.warn('gtag is not defined. Google conversion not tracked for: ' + action);
-            }
-        }
-
-        // Función para enviar evento a Facebook Pixel
-        function trackFacebookConversion(eventName, params) {
-            if (typeof fbq === 'function') {
-                fbq('track', eventName, params);
-                console.log('Facebook Pixel event sent: ' + eventName, params);
-            } else {
-                console.warn('fbq is not defined. Facebook conversion not tracked for: ' + eventName);
-            }
-        }
-
-        // Seguimiento de clics en enlaces de WhatsApp
-        document.querySelectorAll('a[href^="https://wa.me/"], a[href^="https://api.whatsapp.com/"]').forEach(link => {
-            link.addEventListener('click', function(event) {
-                const phone = this.href.split('phone=')[1] || this.href.split('wa.me/')[1];
-                console.log('WhatsApp link clicked:', this.href);
-
-                // Google: Reemplaza 'AW-17023112953/YOUR_WHATSAPP_CONVERSION_LABEL_HERE' con tu etiqueta real
-                trackGoogleConversion(
-                    'contact_whatsapp', // Nombre del evento para GA4
-                    'AW-17023112953/REEMPLAZAR_CON_ETIQUETA_CONVERSION_WHATSAPP', // Para Google Ads
-                    'contacto',          // Categoría del evento
-                    'whatsapp_click_' + phone // Etiqueta del evento
-                );
-
-                // Facebook: Evento 'Lead' o 'Contact'
-                trackFacebookConversion('Lead', {
-                    content_name: 'WhatsApp Contact',
-                    content_category: 'Contacto Directo',
-                    value: phone
-                });
-                // También puedes usar: trackFacebookConversion('Contact');
-            });
-        });
-
-        // Seguimiento de clics en enlaces de Email
-        document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
-            link.addEventListener('click', function(event) {
-                const email = this.href.substring(7); // Quita "mailto:"
-                console.log('Email link clicked:', this.href);
-
-                // Google: Reemplaza 'AW-17023112953/YOUR_EMAIL_CONVERSION_LABEL_HERE' con tu etiqueta real
-                trackGoogleConversion(
-                    'contact_email',    // Nombre del evento para GA4
-                    'AW-17023112953/REEMPLAZAR_CON_ETIQUETA_CONVERSION_EMAIL', // Para Google Ads
-                    'contacto',         // Categoría del evento
-                    'email_click_' + email // Etiqueta del evento
-                );
-
-                // Facebook: Evento 'Lead' o 'Contact'
-                trackFacebookConversion('Lead', {
-                    content_name: 'Email Contact',
-                    content_category: 'Contacto Directo',
-                    value: email
-                });
-                // También puedes usar: trackFacebookConversion('Contact');
-            });
-        });
 
     });
     </script>
