@@ -352,7 +352,7 @@
 
 
     /* --- Header / Navbar --- */
-    .navbar { transition: background-color 0.3s ease, box-shadow 0.3s ease; padding-top: 0.7rem; background-color: var(--brand-navbar-bg); border-bottom: 1px solid var(--brand-extralightgray); }
+    .navbar { transition: background-color 0.3s ease, box-shadow 0.3s ease; padding-top: 0.7rem; padding-bottom: 0.7rem; background-color: var(--brand-navbar-bg); border-bottom: 1px solid var(--brand-extralightgray); }
     .navbar-sticky { box-shadow: var(--box-shadow-md); }
     .navbar-brand { font-weight: 700; font-size: 1.8rem; color: var(--brand-dark) !important; padding-top: 0; padding-bottom: 0; }
      .navbar-brand img { max-height: 48px; width: auto; vertical-align: middle; margin-bottom: 4px; }
@@ -389,12 +389,12 @@
       .navbar .btn-cta { width: 100%; text-align: center; margin-top: 1rem; padding: 0.85rem 1.5rem; }
     }
 
-
-@media(min-width: 992px) {.navbar .nav-link{font-size: 0.9em;}}
+    
+@media(min-width: 992) {.navbar .nav-link{font-size: 0.9em;}}
     @media(max-width: 1400px){.navbar .nav-link {font-size: 0.9rem;}
 }
 
-    @media(min-width: 992px) {.navbar .navbar .btn-cta {font-size: 0.9em;}}
+    @media(min-width: 992) {.navbar .navbar .btn-cta {font-size: 0.9em;}}
     @media(max-width: 1400px){.navbar .navbar .btn-cta {font-size: 0.9rem;}
 }
 
@@ -656,7 +656,7 @@
     #caracteristicas-detalladas img { width: 100%; height: auto; max-height: 480px; min-height: 300px; object-fit: cover; border-radius: var(--border-radius-base); box-shadow: var(--box-shadow-lg); transform: scale(1.0); transition: transform 0.4s ease, box-shadow 0.4s ease; }
     #caracteristicas-detalladas .feature-block:hover img { transform: scale(1.02); box-shadow: 0 1.3rem 3.6rem rgba(0, 0, 0, 0.11); }
 
-    #caracteristicas-detalladas .feature-block h3 { font-size: clamp(1.45rem, 4.5vw, 1.9rem); margin-bottom: 0.8rem; color: var(--brand-dark) !important; }
+    #caracteristicas-detalladas .feature-block h3 { font-size: clamp(1.45rem, 4.5vw, 1.9rem); margin-bottom: 0.8rem; color: #00b8ff !important; }
     #caracteristicas-detalladas p, #caracteristicas-detalladas ul { color: var(--text-default); margin-bottom: 0.9rem; font-size: 0.98rem; line-height: 1.7; }
     #caracteristicas-detalladas ul { padding-left: 0; list-style: none; }
     #caracteristicas-detalladas li { position: relative; padding-left: 1.8rem; margin-bottom: 0.6rem; font-size: 0.96rem; }
@@ -694,7 +694,7 @@
     /* --- Sección Características Tabs (`#caracteristicas-tabs`) --- */
     #caracteristicas-tabs { background-color: #fbfdff; }
     #caracteristicas-tabs .nav-tabs { border-bottom: 2px solid var(--brand-extralightgray); margin-bottom: 2.5rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; padding-bottom: 0; }
-    #caracteristicas-tabs .nav-link { margin-bottom: -2px; border: none; border-bottom: 2px solid transparent; border-top-left-radius: var(--border-radius-sm); border-top-right-radius: var(--border-radius-sm); padding: 0.75rem 1.2rem; color: var(--brand-secondary); text-align: center; font-size: 0.98rem; font-weight: 500; font-family: var(--font-family-headings); transition: all 0.2s ease-in-out; background-color: transparent; white-space: nowrap; margin: 0; flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.4rem; }
+    #caracteristicas-tabs .nav-link { margin-bottom: -2px; border: none; border-bottom: 2px solid transparent; border-top-left-radius: var(--border-radius-sm); border-top-right-radius: var(--border-radius-sm); padding: 0.75rem 1.2rem; color: #eb6604; text-align: center; font-size: 0.98rem; font-weight: 500; font-family: var(--font-family-headings); transition: all 0.2s ease-in-out; background-color: transparent; white-space: nowrap; margin: 0; flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.4rem; }
     #caracteristicas-tabs .nav-link i { font-size: 1.1em; line-height: 1; } /* For FA icons */
     #caracteristicas-tabs .nav-link:hover { border-bottom-color: var(--brand-accent); color: var(--brand-accent); background-color: rgba(253, 126, 20, 0.04); }
     #caracteristicas-tabs .nav-link.active {
@@ -1759,7 +1759,7 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
         }
         initSlickSliders();
 
-        // --- Navbar Dropdown Mejorado ---
+        // --- Navbar Dropdown Mejorado (Se mantiene igual) ---
         function setupNavbarDropdowns() {
             let hoverTimerEnter;
             let hoverTimerLeave;
@@ -1831,7 +1831,7 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
         setupNavbarDropdowns();
         $(window).on('resize', setupNavbarDropdowns);
 
-        // --- Funcionalidad Menú Móvil ---
+        // --- Funcionalidad Menú Móvil (Se mantiene igual) ---
         const mobileMenu = document.getElementById('navbarNav');
         if (mobileMenu) {
             const mobileLinks = mobileMenu.querySelectorAll('a.nav-link:not(.dropdown-toggle)');
@@ -1839,6 +1839,7 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
             mobileLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     const href = link.getAttribute('href');
+                     // Cierra si es link interno A OTRA PÁGINA o link interno A ESTA PÁGINA
                      if (href && window.innerWidth < 992 && mobileMenu.classList.contains('show')) {
                           if (!href.startsWith('#') || (href.startsWith('#') && window.location.pathname.endsWith('productos.html'))) {
                              bsCollapse.hide();
@@ -1857,7 +1858,7 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
             });
         }
 
-        // --- Actualizar Año del Footer ---
+        // --- Actualizar Año del Footer (Se mantiene igual) ---
         const yearSpan = document.getElementById('current-year');
         if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
 
