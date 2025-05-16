@@ -471,13 +471,13 @@
     }
 
     /* Animación para el contenido del slide */
-    #hero-slider .hero-h1,
+    #hero-slider .hero-h1, /* This class is used for h1 and h2 in slides */
     #hero-slider .hero-lead,
     #hero-slider .hero-buttons {
         opacity: 0; /* Estado inicial para la animación */
         animation: fadeInUp 0.8s ease-out forwards; /* Animación de entrada */
     }
-    #hero-slider .hero-h1 {
+    #hero-slider .hero-h1 { /* Styles for the main text of each slide, whether h1 or h2 */
         font-size: clamp(2.2rem, 7vw, 4.0rem);
         font-weight: 800;
         font-family: 'Inter', sans-serif;
@@ -1125,7 +1125,7 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
         <!-- Slide 2 (Contenido original del Slide 2) -->
         <div class="hero-slide" style="background-image: url('friocaliente.webp');">
             <div class="container hero-slide-content">
-                <h1 class="hero-h1">Confort Absoluto. Eficiencia Energética Superior.</h1>
+                <h2 class="hero-h1">Confort Absoluto. Eficiencia Energética Superior.</h2>
                 <p class="lead hero-lead">Con Starwin PVC, experimenta la serenidad de un hogar perfectamente aislado. Temperatura ideal, silencio y ahorro energético se fusionan en una solución de vanguardia.</p>
                 <div class="hero-buttons">
                      <a href="beneficios.html" class="btn btn-brand-primary btn-lg">
@@ -1140,7 +1140,7 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
         <!-- Slide 3 (Contenido original del Slide 1) -->
         <div class="hero-slide" style="background-image: url('AdobeStock_445299294.webp');">
             <div class="container hero-slide-content">
-                <h1 class="hero-h1">Eleva el Estándar de tu Hogar con la ultima tecnologia en ventanas.</h1>
+                <h2 class="hero-h1">Eleva el Estándar de tu Hogar con la ultima tecnologia en ventanas.</h2>
                 <p class="lead hero-lead">Innovación, diseño y la más alta eficiencia termoacústica para transformar tus espacios. Elige la inversión inteligente que tu hogar merece con Starwin PVC.</p>
                 <div class="hero-buttons">
                     <a href="configurador.html" class="btn btn-brand-primary btn-lg">
