@@ -786,7 +786,7 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
                              <div class="price-display-box">
                                 <div class="price-label">Precio Estimado</div>
                                 <div class="price-amount" id="total-price">$0 CLP</div>
-                                <small class="d-block mt-1">IVA incluido. Costo de instalación no incluido.</small>
+                                <small class="d-block mt-1">Costo de instalación no incluido.</small>
                              </div>
                          </div>
                     </div>
@@ -2444,7 +2444,7 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
                       doc.setFontSize(14); doc.setFont("helvetica", "bold");
                       const priceText = `$ ${state.price.toLocaleString('es-CL')} CLP`;
                       let priceLabelY = currentY; // Guardar Y para alinear
-                      addTextLinePDF("Precio Estimado (IVA Incl.):", margin, priceLabelY, { fontSize: 14 }, 8); // Etiqueta
+                      addTextLinePDF("Precio Estimado:", margin, priceLabelY, { fontSize: 14 }, 8); // Etiqueta
                       addTextLinePDF(priceText, pageWidth - margin, priceLabelY, { align: 'right', fontSize: 14 }, 8); // Precio
                       currentY = priceLabelY + 8; // Avanzar Y después de la línea de precio
 
