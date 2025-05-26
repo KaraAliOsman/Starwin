@@ -40,7 +40,7 @@
     <meta name="twitter:title" content="Starwin PVC: 15% Descuento en Ventanas y Puertas PVC | Precios Únicos">
     <meta name="twitter:description" content="Transforma tu hogar con Starwin. Aprovecha el 15% OFF y los mejores precios del año en ventanas PVC termoacústicas. Calidad y diseño en Concepción.">
     <meta name="twitter:image" content="https://starwinpvc.cl/friocaliente.webp"> <!-- Usar URL absoluta -->
-    <!-- <meta name="twitter:site" content="@TuUsuarioTwitter"> --> <!-- Opcional: Si tienes cuenta de Twitter para la empresa -->
+    <meta name="twitter:site" content="@starwinchile"> 
 
     <!-- Favicons y PWA -->
     <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
@@ -86,7 +86,7 @@
         "streetAddress": "Pedro de Valdivia 733",
         "addressLocality": "Concepción",
         "addressRegion": "Biobío",
-        "postalCode": "4070080",
+        "postalCode": "4040324",
         "addressCountry": "CL"
       },
       "geo": {
@@ -698,111 +698,152 @@
     }
 
 
-    /* --- Sección Características Tabs (`#caracteristicas-tabs`) --- */
-    #caracteristicas-tabs { background-color: #fbfdff; }
-    #caracteristicas-tabs .nav-tabs { border-bottom: 2px solid var(--brand-extralightgray); margin-bottom: 2.5rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem; padding-bottom: 0; }
-    #caracteristicas-tabs .nav-link { margin-bottom: -2px; border: none; border-bottom: 2px solid transparent; border-top-left-radius: var(--border-radius-sm); border-top-right-radius: var(--border-radius-sm); padding: 0.75rem 1.2rem; color: #eb6604; text-align: center; font-size: 0.98rem; font-weight: 500; font-family: var(--font-family-headings); transition: all 0.2s ease-in-out; background-color: transparent; white-space: nowrap; margin: 0; flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.4rem; }
-    #caracteristicas-tabs .nav-link i { font-size: 1.1em; line-height: 1; } /* For FA icons */
-    #caracteristicas-tabs .nav-link:hover { border-bottom-color: var(--brand-accent); color: var(--brand-accent); background-color: rgba(253, 126, 20, 0.04); }
-    #caracteristicas-tabs .nav-link.active {
-        color: var(--brand-primary);
-        background-color: var(--brand-lightgray);
-        border-color: var(--brand-primary);
-        font-weight: 600;
-        box-shadow: 0 -2px 5px rgba(0,0,0,0.03);
-    }
-    #caracteristicas-tabs .tab-pane { padding: 1rem 0; animation: fadeIn 0.5s ease-in-out; }
-    #caracteristicas-tabs .icon-list i { /* For FA icons in list */
-        color: var(--brand-primary);
-        margin-right: 8px;
-        width: 1.1em; /* Controls icon size via font-size relationship */
-        text-align: center;
-        /* margin-top: 0px; */ /* Usually not needed for FA */
-        font-size: 1rem; /* Base icon size */
-        line-height: 1; /* Ensure good vertical alignment */
-        flex-shrink: 0;
-    }
-    #caracteristicas-tabs .icon-list li { display: flex; align-items: flex-start; margin-bottom: 0.65rem; font-size: 0.98rem; }
-    #caracteristicas-tabs .hardware-img { width: 100%; max-width: 55px; height: auto; opacity: 0.85; transition: opacity 0.2s ease, transform 0.2s ease; }
-    #caracteristicas-tabs .hardware-img:hover { opacity: 1; transform: scale(1.08); }
-    #caracteristicas-tabs .tab-heading { font-size: clamp(1.45rem, 4vw, 1.8rem); font-weight: 600; margin-bottom: 0.8rem; color: var(--brand-primary); }
-    #caracteristicas-tabs .tab-lead { font-size: 1rem; line-height: 1.7; font-weight: 400; color: var(--brand-secondary); margin-bottom: 1.3rem; }
-    #caracteristicas-tabs .tab-pane img.img-fluid { max-width: 90%; height: auto; display: block; margin: 0 auto; border-radius: var(--border-radius-sm); }
-    @media (max-width: 767.98px) {
-        #caracteristicas-tabs .nav-link { padding: 0.7rem 0.5rem; font-size: 0.92rem; }
-        #caracteristicas-tabs .tab-pane { padding-top: 1rem; }
-        #caracteristicas-tabs .tab-pane .row > div:not(:has(img)) { text-align: center; }
-        #caracteristicas-tabs .tab-pane .row > div:has(img) { margin-bottom: 1.8rem; }
-        #caracteristicas-tabs .icon-list { justify-content: center; padding-left: 0; }
-        #caracteristicas-tabs .icon-list li { justify-content: flex-start; text-align: left; max-width: 380px; margin-left: auto; margin-right: auto; }
-        #caracteristicas-tabs .hardware-img { max-width: 48px; }
-        #caracteristicas-tabs .hardware-img + span { font-size: 0.78rem; }
-    }
 
     /* --- Sección Colores Populares (`#colores-populares`) --- */
-    #colores-populares { background-color: var(--brand-lightgray); }
-    .color-carousel .slick-slide { padding: 0 8px; }
-    .color-carousel .slick-slide figure {
-        margin: 0;
-        position: relative;
-        overflow: hidden;
-        border-radius: var(--border-radius-base);
-        box-shadow: var(--box-shadow-sm);
-        transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
-        background-color: var(--brand-extralightgray); /* Fallback */
+#colores-populares {
+    background-color: var(--brand-lightgray);
+    padding-top: 4rem; /* Añadido para más espacio arriba */
+    padding-bottom: 4rem; /* Añadido para más espacio abajo */
+}
+
+.color-carousel .slick-slide {
+    padding: 0 10px; /* Un poco más de padding entre slides */
+}
+
+.color-carousel .slick-slide figure {
+    margin: 0;
+    position: relative;
+    overflow: hidden; /* Crucial para el zoom de la imagen y el figcaption */
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow-sm);
+    transition: box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Solo transicionamos la sombra aquí */
+    background-color: var(--brand-extralightgray); /* Fallback */
+}
+
+.color-carousel .slick-slide figure:hover {
+    /* transform: translateY(-6px); */ /* Eliminado el desplazamiento vertical */
+    box-shadow: var(--box-shadow-lg); /* Sombra más pronunciada al hacer hover */
+}
+
+.color-carousel .slick-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border: none;
+    transform: scale(1.0); /* Estado inicial */
+    transition: transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1); /* Transición más suave para el zoom */
+}
+
+.color-carousel .slick-slide figure:hover img {
+    transform: scale(1.05); /* Zoom más sutil y elegante */
+}
+
+.color-carousel .slick-slide figcaption {
+    position: absolute;
+    bottom: 0; /* Lo empezamos un poco abajo para que suba */
+    left: 0;
+    right: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%, transparent 100%); /* Gradiente más pronunciado abajo */
+    color: var(--brand-white);
+    padding: 1rem 1.2rem; /* Más padding */
+    font-size: clamp(0.9rem, 1.5vw, 1.05rem); /* Ligeramente más grande y responsive */
+    font-weight: 600;
+    text-align: center;
+    opacity: 0;  /* Inicia invisible */
+    transform: translateY(15px); /* Inicia ligeramente desplazado hacia abajo */
+    transition: opacity 0.35s ease-out, transform 0.35s ease-out, background 0.3s ease;
+    font-family: var(--font-family-headings);
+    line-height: 1.35;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7); /* Sombra de texto un poco más definida */
+    /* Aseguramos que el figcaption no cause overflow antes de la animación */
+    /* Esto ya se maneja con el overflow:hidden de figure */
+}
+
+.color-carousel .slick-slide figure:hover figcaption {
+    opacity: 1; /* Se vuelve visible */
+    transform: translateY(0); /* Sube a su posición final */
+    background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.65) 60%, transparent 100%); /* Fondo un poco más intenso al mostrarse */
+}
+
+
+/* Flechas específicas para el carrusel de colores, más sutiles */
+.color-carousel .slick-prev,
+.color-carousel .slick-next {
+    background-color: rgba(var(--bs-dark-rgb), 0.25); /* Ligeramente más visible */
+    width: 38px; /* Un poco más grandes */
+    height: 38px; /* Un poco más grandes */
+    border-radius: 50%; /* Circulares */
+    transition: background-color 0.2s ease-out, transform 0.2s ease-out;
+    z-index: 10; /* Asegurar que estén por encima */
+}
+
+.color-carousel .slick-prev:hover,
+.color-carousel .slick-next:hover {
+    background-color: rgba(var(--bs-dark-rgb), 0.5);
+    transform: translateY(-50%) scale(1.1); /* Sutil escalado en hover */
+}
+
+.color-carousel .slick-prev::before,
+.color-carousel .slick-next::before {
+    /* Iconos de flecha más oscuros y centrados */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512' fill='%23FFFFFF'%3E%3Cpath d='M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z'/%3E%3C/svg%3E");
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3)); /* Sombra para el icono */
+    width: 12px; /* Ajustar tamaño si es necesario */
+    height: 12px; /* Ajustar tamaño si es necesario */
+    /* Slick por defecto centra los ::before, así que no se necesita mucho más */
+    opacity: 0.9; /* Ligeramente más suave */
+}
+.color-carousel .slick-prev:hover::before,
+.color-carousel .slick-next:hover::before {
+    opacity: 1;
+}
+
+.color-carousel .slick-next::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512' fill='%23FFFFFF'%3E%3Cpath d='M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8-12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z'/%3E%3C/svg%3E");
+}
+
+/* Posición de flechas más profesional, ligeramente dentro o al borde */
+.color-carousel .slick-prev {
+    left: 15px; /* Ajustado desde -10px */
+}
+.color-carousel .slick-next {
+    right: 15px; /* Ajustado desde -10px */
+}
+
+@media (max-width: 767.98px) {
+    .color-carousel .slick-prev {
+        left: 5px;
     }
-    .color-carousel .slick-slide figure:hover {
-        transform: translateY(-6px);
-        box-shadow: var(--box-shadow-lg);
-    }
-    .color-carousel .slick-slide img {
-        width: 100%;
-        height: auto;
-        display: block;
-        aspect-ratio: 16 / 10;
-        object-fit: cover;
-        border: none;
-        transform: scale(1.0);
-        transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    .color-carousel .slick-slide figure:hover img {
-        transform: scale(1.10); /* Zoom un poco más notable y moderno */
+    .color-carousel .slick-next {
+        right: 5px;
     }
     .color-carousel .slick-slide figcaption {
-        position: absolute;
-        bottom: 0; left: 0; right: 0;
-        background: linear-gradient(transparent, rgba(0,0,0,0.85));
-        color: var(--brand-white);
-        padding: 0.9rem 1rem;
-        font-size: clamp(0.88rem, 2vw, 1rem);
-        font-weight: 600;
-        text-align: center;
-        opacity: 1;
-        transition: background-color 0.3s ease;
-        font-family: var(--font-family-headings);
-        line-height: 1.3;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.6); /* Sombra sutil en texto */
+        padding: 0.8rem 1rem;
+        font-size: clamp(0.85rem, 1.5vw, 0.95rem);
     }
-    /* Flechas específicas para el carrusel de colores, más sutiles */
-    .color-carousel .slick-prev, .color-carousel .slick-next { background-color: rgba(var(--bs-dark-rgb), 0.18); width: 34px; height: 34px; }
-    .color-carousel .slick-prev:hover, .color-carousel .slick-next:hover { background-color: rgba(var(--bs-dark-rgb), 0.4); transform: translateY(-50%) scale(1.05); }
-    .color-carousel .slick-prev::before, .color-carousel .slick-next::before { /* Iconos de flecha más oscuros */
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512' fill='%23343a40'%3E%3Cpath d='M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z'/%3E%3C/svg%3E");
-        width: 13px; height: 13px;
-    }
-    .color-carousel .slick-next::before {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512' fill='%23343a40'%3E%3Cpath d='M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8-12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z'/%3E%3C/svg%3E");
-    }
-    .color-carousel .slick-prev { left: -10px; } /* Posición de flechas */
-    .color-carousel .slick-next { right: -10px; } /* Posición de flechas */
-    @media (max-width: 767.98px) {
-        .color-carousel .slick-prev { left: -6px; }
-        .color-carousel .slick-next { right: -6px; }
-    }
-    @media (max-width: 575.98px) {
-        .color-carousel .slick-slide figcaption { padding: 0.7rem 0.8rem; font-size: 0.85rem; }
-    }
+}
 
+@media (max-width: 575.98px) {
+    .color-carousel .slick-slide figcaption {
+        padding: 0.7rem 0.8rem;
+        font-size: 0.8rem;
+         /* En móvil, podríamos querer el figcaption visible por defecto si el hover no es ideal */
+        /* opacity: 1; */
+        /* transform: translateY(0); */
+    }
+    .color-carousel .slick-prev,
+    .color-carousel .slick-next {
+        width: 32px;
+        height: 32px;
+    }
+    .color-carousel .slick-prev::before,
+    .color-carousel .slick-next::before {
+        width: 10px;
+        height: 10px;
+    }
+}
 
     /* --- Sección Inspección Técnica Gratuita (`#inspeccion-tecnica`) --- */
     #inspeccion-tecnica { background-color: var(--brand-dark); color: var(--brand-lightgray); }
@@ -1106,7 +1147,7 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
 <section id="inicio" aria-label="Promociones Destacadas Starwin PVC">
     <div id="hero-slider">
         <!-- Slide 1 (NUEVO con Descuento - antes era el Slide 3 con otra info, pero se mantiene la imagen del Slide 1 original) -->
-        <div class="hero-slide" style="background-image: url('AdobeStock_592191188.webp');">
+        <div class="hero-slide" style="background-image: url('color1.webp');">
             <div class="container hero-slide-content">
                 <h1 class="hero-h1">Ventanas de Pvc Starwin
                     <span class="discount-highlight">¡15% de Descuento por Tiempo Limitado!</span>
@@ -1168,7 +1209,7 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
                         <p class="lead mb-3">Experimenta la diferencia con soluciones en PVC Para Proyectos Personalizados. Fusionamos durabilidad, estética y un mantenimiento mínimo para tu tranquilidad.</p>
                         <p class="mb-4">Nuestra ingeniería de perfiles, combinada con herrajes europeos de élite, asegura un aislamiento termoacústico superior y una seguridad robusta. Una inversión que valoriza tu propiedad y tu bienestar.</p>
                         <a href="beneficios.html" class="link-arrow">
-                            Descubre el universo de ventajas Starwin
+                            ventajas de las ventanas de pvc starwin
                             <i class="fas fa-arrow-right ms-1" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -1268,149 +1309,6 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
         </div>
     </section>
 
-        <!-- 4. CARACTERÍSTICAS TABS (Especificaciones) -->
-        <section id="caracteristicas-tabs" aria-labelledby="specs-title">
-            <div class="container">
-                <div class="section-title text-center">
-                    <h2 id="specs-title">Los Componentes Detras de Nuestras Ventanas</h2>
-                    <p class="lead">Desglosamos los componentes clave que posicionan a nuestras ventanas PVC como líderes en calidad, rendimiento y precio en Biobío-Chile.</p>
-                </div>
-                <ul class="nav nav-tabs" id="windowTab" role="tablist">
-                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="appearance-tab" data-bs-toggle="tab" data-bs-target="#appearance-tab-pane" type="button" role="tab" aria-controls="appearance-tab-pane" aria-selected="true">
-                            <i class="fas fa-puzzle-piece me-2" aria-hidden="true"></i> Perfiles PVC
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="hardware-tab" data-bs-toggle="tab" data-bs-target="#hardware-tab-pane" type="button" role="tab" aria-controls="hardware-tab-pane" aria-selected="false">
-                            <i class="fas fa-cogs me-2" aria-hidden="true"></i> Herrajes
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="hinges-tab" data-bs-toggle="tab" data-bs-target="#hinges-tab-pane" type="button" role="tab" aria-controls="hinges-tab-pane" aria-selected="false">
-                            <i class="fas fa-door-open me-2" aria-hidden="true"></i> Bisagras
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security-tab-pane" type="button" role="tab" aria-controls="security-tab-pane" aria-selected="false">
-                            <i class="fas fa-shield-alt me-2" aria-hidden="true"></i> Seguridad
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="glass-tab" data-bs-toggle="tab" data-bs-target="#glass-tab-pane" type="button" role="tab" aria-controls="glass-tab-pane" aria-selected="false">
-                            <i class="fas fa-clone me-2" aria-hidden="true"></i> Acristalamiento
-                        </button>
-                    </li>
-                </ul>
-                <div class="tab-content pt-3 pt-md-4" id="windowTabContent">
-                    <div class="tab-pane fade show active" id="appearance-tab-pane" role="tabpanel" aria-labelledby="appearance-tab" tabindex="0">
-                        <div class="row g-4 g-lg-5 align-items-center justify-content-center">
-                            <div class="col-md-7 order-md-1">
-                                <h3 class="tab-heading">Perfiles Starwin PVC: Durabilidad de por Vida.</h3>
-                                <p class="tab-lead">Diseñados para un rendimiento excepcional, nuestros perfiles multicámara son la base de la eficiencia y durabilidad que nos distingue. Calidad que se siente y se vive.</p>
-                                <ul class="list-unstyled icon-list">
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span>Sistema multicámara: aislamiento térmico y acústico optimizado, rigidez estructural superior.</span></li>
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span>Versatilidad estética: diseños contemporáneos y clásicos para armonizar con tu arquitectura.</span></li>
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span>Resistencia certificada: alta durabilidad frente a deformaciones e impactos, con garantía Starwin.</span></li>
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span>Acabados premium: superficies lisas o foliados texturizados (imitación madera) de alta resistencia UV.</span></li>
-                                </ul>
-                            </div>
-                            <div class="col-md-5 order-md-2">
-                                <img src="casement-window.webp" class="img-fluid" alt="Detalle de un perfil de ventana PVC blanco Starwin mostrando sus cámaras internas." width="600" height="450" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x450/e0e0e0/a0a0a0?text=Perfil+PVC'; this.width=600; this.height=450;">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="hardware-tab-pane" role="tabpanel" aria-labelledby="hardware-tab" tabindex="0">
-                          <div class="row">
-                            <div class="col-12">
-                                <h3 class="tab-heading text-center">Herrajes Europeos: Precisión y Larga Vida Útil.</h3>
-                                <p class="tab-lead text-center mx-auto" style="max-width: 700px;">Incorporamos manillas y sistemas de cierre de marcas europeas líderes (Roto, GU, etc.), asegurando una operatividad fluida, seguridad confiable y una estética impecable por años.</p>
-                                <div class="row justify-content-center g-3 mt-3">
-                                    <div class="col-4 col-sm-3 col-md-2 text-center">
-                                        <img src="window-handle-chrome.png" class="hardware-img mb-1" alt="Manilla de ventana PVC en acabado cromo brillante." width="80" height="80" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/80x80/e5e7eb/9ca3af?text=Cromo';">
-                                        <span class="text-muted small d-block fw-medium">Cromo</span>
-                                    </div>
-                                    <div class="col-4 col-sm-3 col-md-2 text-center">
-                                        <img src="window-handle-white.png" class="hardware-img mb-1" alt="Manilla de ventana PVC en color blanco." width="80" height="80" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/80x80/f9fafb/6b7280?text=Blanco';">
-                                        <span class="text-muted small d-block fw-medium">Blanco</span>
-                                    </div>
-                                    <div class="col-4 col-sm-3 col-md-2 text-center">
-                                        <img src="window-handle-black.png" class="hardware-img mb-1" alt="Manilla de ventana PVC en color negro mate." width="80" height="80" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/80x80/1f2937/e5e7eb?text=Negro';">
-                                        <span class="text-muted small d-block fw-medium">Negro</span>
-                                    </div>
-                                    <div class="col-4 col-sm-3 col-md-2 text-center">
-                                        <img src="window-handle-brushed.png" class="hardware-img mb-1" alt="Manilla de ventana PVC en acabado acero cepillado." width="80" height="80" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/80x80/d1d5db/4b5563?text=Acero+Cepillado';">
-                                        <span class="text-muted small d-block fw-medium">Acero Cepillado</span>
-                                    </div>
-                                    <div class="col-4 col-sm-3 col-md-2 text-center">
-                                        <img src="window-handle-gold.png" class="hardware-img mb-1" alt="Manilla de ventana PVC en acabado dorado." width="80" height="80" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/80x80/fde047/ca8a04?text=Gold';">
-                                        <span class="text-muted small d-block fw-medium">Gold</span>
-                                    </div>
-                                    <div class="col-4 col-sm-3 col-md-2 text-center">
-                                        <img src="window-handle-smoked.png" class="hardware-img mb-1" alt="Manilla de ventana PVC en acabado grafito ahumado." width="80" height="80" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/80x80/404040/a3a3a3?text=Grafito';">
-                                        <span class="text-muted small d-block fw-medium">Grafito (Smoked)</span>
-                                    </div>
-                                </div>
-                                <p class="text-center small text-muted mt-3">Consulta por nuestra gama extendida de acabados y modelos de herrajes.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="hinges-tab-pane" role="tabpanel" aria-labelledby="hinges-tab" tabindex="0">
-                        <div class="row g-4 g-lg-5 align-items-center justify-content-center">
-                            <div class="col-md-7 order-md-1">
-                                <h3 class="tab-heading">Bisagras de Alto Rendimiento: Movimiento Preciso y Silencioso.</h3>
-                                <p class="tab-lead">Nuestras bisagras están diseñadas para soportar un uso intensivo, garantizando una apertura y cierre suaves, seguros y perfectamente ajustados a lo largo del tiempo.</p>
-                                <ul class="list-unstyled icon-list">
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span>Bisagras de fricción ajustables: control total de la apertura y sellado hermético.</span></li>
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span>Mecanismos oscilobatientes robustos: versatilidad y fiabilidad en cada movimiento.</span></li>
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span>Materiales anti-corrosión: máxima resistencia al desgaste y a los agentes climáticos.</span></li>
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span>Ajuste milimétrico: para una eficiencia energética y acústica impecable.</span></li>
-                                </ul>
-                            </div>
-                            <div class="col-md-5 order-md-2">
-                                <img src="window-hinge-placeholder.webp" class="img-fluid" alt="Detalle de bisagras robustas utilizadas en ventanas PVC Starwin." width="600" height="450" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x450/bfdbfe/1e40af?text=Bisagras'; this.width=600; this.height=450;">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="security-tab-pane" role="tabpanel" aria-labelledby="security-tab" tabindex="0">
-                        <div class="row g-4 g-lg-5 align-items-center justify-content-center">
-                            <div class="col-md-7 order-md-1">
-                                <h3 class="tab-heading">Seguridad Integral: Tu Paz Mental es Prioridad.</h3>
-                                <p class="tab-lead">En Starwin, la seguridad no es un opcional. Integramos múltiples niveles de protección para ofrecerte una barrera eficaz y disuasoria en tu hogar en Concepción.</p>
-                                <ul class="list-unstyled mb-0 icon-list">
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span>Cierre perimetral multipunto: estándar de facto para una protección superior.</span></li>
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span>Refuerzos internos de acero galvanizado: corazón de acero en marco y hoja.</span></li>
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span>Junquillos interiores: diseño inteligente que impide el desmontaje exterior del vidrio.</span></li>
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span>Opcionales avanzados: vidrios de seguridad (laminados/templados) y herrajes con certificación anti-efracción.</span></li>
-                                </ul>
-                            </div>
-                            <div class="col-md-5 order-md-2">
-                                <img src="window-shootbolts.webp" class="img-fluid" alt="Mecanismo de seguridad multipunto (shootbolts) en una ventana PVC Starwin." width="600" height="400" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/fecaca/b91c1c?text=Seguridad'; this.width=600; this.height=400;">
-                            </div>
-                        </div>
-                    </div>
-                     <div class="tab-pane fade" id="glass-tab-pane" role="tabpanel" aria-labelledby="glass-tab" tabindex="0">
-                        <div class="row g-4 g-lg-5 align-items-center justify-content-center">
-                            <div class="col-md-7 order-md-1">
-                                <h3 class="tab-heading">Acristalamiento de Vanguardia: Claridad, Confort y Protección.</h3>
-                                <p class="tab-lead">Elige la configuración de vidrio ideal para tus ventanas PVC, optimizando aislamiento, seguridad, control acústico y protección solar según tus necesidades específicas.</p>
-                                <h4 class="fw-semibold mt-3 mb-1">Soluciones de Acristalamiento Starwin:</h4>
-                                <ul class="list-unstyled icon-list">
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Termopanel (DVH)</strong>: Doble Vidriado Hermético, nuestro estándar para un aislamiento termoacústico de excelencia.</span></li>
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Vidrio Laminado</strong>: Incrementa la seguridad ante impactos, intentos de robo y filtra los rayos UV.</span></li>
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Vidrio Templado</strong>: Resistencia superior a golpes y cambios térmicos, hasta 5 veces más fuerte.</span></li>
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Vidrio de Control Solar / Low-E</strong>: Máxima eficiencia energética al reducir la ganancia o pérdida de calor.</span></li>
-                                    <li><i class="fas fa-check" aria-hidden="true"></i><span><strong>Vidrios Acústicos Especiales</strong>: Composiciones diseñadas para una atenuación superior del ruido exterior.</span></li>
-                                </ul>
-                            </div>
-                           <div class="col-md-5 order-md-2">
-                                <img src="vidrios.jpg" class="img-fluid" alt="Muestra de diferentes tipos de termopanel (DVH) ofrecidos por Starwin PVC." width="600" height="450" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x450/cffafe/0e7490?text=Vidrios+DVH'; this.width=600; this.height=450;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- 5. COLORES POPULARES (Acabados) -->
         <section id="colores-populares" aria-labelledby="colors-title">
@@ -1492,63 +1390,64 @@ src="https://www.facebook.com/tr?id=675431382021364&ev=PageView&noscript=1"
         </section>
 
         <!-- 9. CATÁLOGO DE PRODUCTOS -->
-        <section id="catalogo" aria-labelledby="catalog-title">
-            <div class="container">
-                <div class="section-title text-center">
-                    <h2 id="catalog-title">Soluciones Starwin PVC: Diseño y Funcionalidad a tu Medida.</h2>
-                    <p class="lead">Explora nuestra selecta gama de ventanas PVC, diseñadas para superar tus expectativas en Concepción y todo Chile. Calidad y precios que marcan la diferencia.</p>
-                </div>
-                <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-lg-4 justify-content-center">
-                    <div class="col">
-                        <a href="producto-corredora.html" class="product-card">
-                            <div class="product-image-wrapper"><img src="corrediza.webp" alt="Ventana Corrediza de PVC blanca, ideal para espacios optimizados." class="product-image" width="400" height="400" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/475569?text=Corrediza';"></div>
-                            <div class="product-content">
-                                <h3 class="product-title">Ventana Corrediza PVC</h3>
-                                <span class="btn btn-brand-primary btn-sm btn-view-product">
-                                    Conocer Más <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                                </span>
-                            </div>
-                        </a>
+<section id="catalogo" aria-labelledby="catalog-title">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2 id="catalog-title">Soluciones Starwin PVC: Diseño y Funcionalidad a tu Medida.</h2>
+            <p class="lead">Explora nuestra selecta gama de ventanas PVC, diseñadas para superar tus expectativas en Concepción y todo Chile. Calidad y precios que marcan la diferencia.</p>
+        </div>
+        <!-- AQUÍ EL CAMBIO -->
+        <div class="row g-4 row-cols-2 row-cols-lg-4 justify-content-center">
+            <div class="col">
+                <a href="producto-corredora.html" class="product-card">
+                    <div class="product-image-wrapper"><img src="corrediza.webp" alt="Ventana Corrediza de PVC blanca, ideal para espacios optimizados." class="product-image" width="400" height="400" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/475569?text=Corrediza';"></div>
+                    <div class="product-content">
+                        <h3 class="product-title">Ventana Corrediza PVC</h3>
+                        <span class="btn btn-brand-primary btn-sm btn-view-product">
+                            Conocer Más <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </span>
                     </div>
-                    <div class="col">
-                        <a href="producto-abatible.html" class="product-card">
-                            <div class="product-image-wrapper"><img src="batientepvc.webp" alt="Ventana Abatible o Practicable de PVC blanca, apertura lateral." class="product-image" width="400" height="400" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/475569?text=Abatible';"></div>
-                            <div class="product-content">
-                                <h3 class="product-title">Ventana Abatible / Practicable PVC</h3>
-                                <span class="btn btn-brand-primary btn-sm btn-view-product">
-                                    Conocer Más <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                                </span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="producto-oscilobatiente.html" class="product-card">
-                            <div class="product-image-wrapper"><img src="oscilobatiente.jpg" alt="Ventana Oscilobatiente de PVC blanca, doble funcionalidad de apertura." class="product-image" width="400" height="400" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/475569?text=Oscilo';"></div>
-                            <div class="product-content">
-                                <h3 class="product-title">Ventana Oscilobatiente PVC</h3>
-                                <span class="btn btn-brand-primary btn-sm btn-view-product">
-                                    Conocer Más <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                                </span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="producto-fijo.html" class="product-card">
-                            <div class="product-image-wrapper"><img src="fijo.webp" alt="Paño Fijo de PVC blanco, para máxima entrada de luz." class="product-image" width="400" height="400" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/475569?text=Fijo';"></div>
-                            <div class="product-content">
-                                <h3 class="product-title">Paño Fijo PVC</h3>
-                                <span class="btn btn-brand-primary btn-sm btn-view-product">
-                                    Conocer Más <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                                </span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                 <div class="text-center mt-4">
-                    <a href="productos.html" class="btn btn-brand-accent btn-lg">Ver Catálogo Completo</a>
-                </div>
+                </a>
             </div>
-        </section>
+            <div class="col">
+                <a href="producto-abatible.html" class="product-card">
+                    <div class="product-image-wrapper"><img src="batientepvc.webp" alt="Ventana Abatible o Practicable de PVC blanca, apertura lateral." class="product-image" width="400" height="400" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/475569?text=Abatible';"></div>
+                    <div class="product-content">
+                        <h3 class="product-title">Ventana Abatible / Practicable PVC</h3>
+                        <span class="btn btn-brand-primary btn-sm btn-view-product">
+                            Conocer Más <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="producto-oscilobatiente.html" class="product-card">
+                    <div class="product-image-wrapper"><img src="oscilobatiente.jpg" alt="Ventana Oscilobatiente de PVC blanca, doble funcionalidad de apertura." class="product-image" width="400" height="400" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/475569?text=Oscilo';"></div>
+                    <div class="product-content">
+                        <h3 class="product-title">Ventana Oscilobatiente PVC</h3>
+                        <span class="btn btn-brand-primary btn-sm btn-view-product">
+                            Conocer Más <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="producto-fijo.html" class="product-card">
+                    <div class="product-image-wrapper"><img src="fijo.webp" alt="Paño Fijo de PVC blanco, para máxima entrada de luz." class="product-image" width="400" height="400" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/400x400/e2e8f0/475569?text=Fijo';"></div>
+                    <div class="product-content">
+                        <h3 class="product-title">Paño Fijo PVC</h3>
+                        <span class="btn btn-brand-primary btn-sm btn-view-product">
+                            Conocer Más <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+         <div class="text-center mt-4">
+            <a href="productos.html" class="btn btn-brand-accent btn-lg">Ver Catálogo Completo</a>
+        </div>
+    </div>
+</section>
 
         <!-- Sección de Presupuesto usando Web3Forms -->
 <section id="presupuesto" aria-labelledby="quote-title">
