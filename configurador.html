@@ -1168,19 +1168,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         // --- Constantes y Configuración Detallada ---
         const CONFIG = {
             // Precios Base
-            PROFILE_PRICE_PER_M2_WHITE: 110000,
-            PROFILE_PRICE_PER_M2_OTHER: 140000,
+            PROFILE_PRICE_PER_M2_WHITE: 130000,
+            PROFILE_PRICE_PER_M2_OTHER: 155000,
             GLASS_BASE_PRICE_PER_M2: 32000,
-            MULLION_PRICE: 22000,
+            MULLION_PRICE_PER_M2: 5000,
             HANDLE_FLAT_PRICE: 6590,
 
             // Detalles de Apertura
             OPENING_TYPE_DETAILS: {
                 'fixed': { name: 'Fijo', price: 0, preview: 'images/windows/previews/fija.png', description: 'Ventana que no se abre.' },
-                'proyectante': { name: 'Proyectante', price: 30000, preview: 'images/windows/previews/proyectante.png', description: 'Apertura inferior hacia afuera (+30.000 CLP).' },
-                'casement': { name: 'Abatible', price: 30000, preview: 'images/windows/previews/abatible.png', description: 'Apertura lateral completa (+30.000 CLP).' },
-                'tilt-turn': { name: 'Oscilobatiente', price: 45000, preview: 'images/windows/previews/oscilo-batiente.png', description: 'Doble apertura: lateral y proyectante (+45.000 CLP).' },
-                'sliding': { name: 'Corrediza', price: 40000, preview: 'images/windows/previews/corrediza.png', description: 'Deslizamiento horizontal de hojas (+40.000 CLP).'}
+                'proyectante': { name: 'Proyectante', price: 25000, preview: 'images/windows/previews/proyectante.png', description: 'Apertura inferior hacia afuera (+25.000 CLP).' },
+                'casement': { name: 'Abatible', price: 25000, preview: 'images/windows/previews/abatible.png', description: 'Apertura lateral completa (+25.000 CLP).' },
+                'tilt-turn': { name: 'Oscilobatiente', price: 35000, preview: 'images/windows/previews/oscilo-batiente.png', description: 'Doble apertura: lateral y proyectante (+35.000 CLP).' },
+                'sliding': { name: 'Corrediza', pricePerM2: 30000, price: 0, preview: 'images/windows/previews/corrediza.png', description: 'Deslizamiento horizontal de hojas (+30.000 CLP/m²).'}
             },
             SLIDING_RESTRICTED_TYPES: ['proyectante', 'casement', 'tilt-turn'],
 
@@ -1695,16 +1695,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
              price += glassCostPerM2_Additional * totalAreaM2;
 
              // 4. Costo por divisiones (mullions)
-             if (state.numPanes > 1) {
-                 price += (state.numPanes - 1) * CONFIG.MULLION_PRICE;
-             }
+            if (state.numPanes > 1) {
+                price += (state.numPanes - 1) * CONFIG.MULLION_PRICE_PER_M2 * totalAreaM2;
+            }
 
              // 5. Costo por tipo de apertura
-             let openingCost = 0;
-             state.panes.forEach(pane => {
-                 openingCost += CONFIG.OPENING_TYPE_DETAILS[pane.openingType]?.price || 0;
-             });
-             price += openingCost;
+            let openingCost = 0;
+            let slidingApplied = false;
+            state.panes.forEach(pane => {
+                const details = CONFIG.OPENING_TYPE_DETAILS[pane.openingType];
+                if (!details) return;
+                if (pane.openingType === 'sliding') {
+                    if (!slidingApplied) {
+                        openingCost += (details.pricePerM2 || 0) * totalAreaM2;
+                        slidingApplied = true;
+                    }
+                } else {
+                    openingCost += details.price || 0;
+                }
+            });
+            price += openingCost;
 
              // 6. Costo por manillas
              const handleCost = state.numOperablePanes * CONFIG.HANDLE_FLAT_PRICE;
@@ -1805,10 +1815,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
             // --- Precios Tipo Apertura ---
+            const getOpeningPrice = (type) => {
+                const d = CONFIG.OPENING_TYPE_DETAILS[type];
+                if (!d) return 0;
+                return type === 'sliding' ? (d.pricePerM2 || 0) * totalAreaM2 : (d.price || 0);
+            };
+
             state.panes.forEach((pane, paneIndex) => {
                 const paneDiv = DOMElements.paneSpecificConfigsContainer.querySelector(`.pane-opening-config[data-pane-index="${paneIndex}"]`);
                 if (!paneDiv) return;
-                const baseOpeningPriceThisPane = CONFIG.OPENING_TYPE_DETAILS[pane.openingType]?.price || 0;
+                const baseOpeningPriceThisPane = getOpeningPrice(pane.openingType);
 
                 paneDiv.querySelectorAll('.opening-option').forEach(optionWrapper => {
                     const radio = optionWrapper.querySelector('input[type="radio"]');
@@ -1819,7 +1835,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     const isSelected = radio.checked;
 
                     if (openingConfig) {
-                        const priceDiff = openingConfig.price - baseOpeningPriceThisPane;
+                        const priceDiff = getOpeningPrice(openingValue) - baseOpeningPriceThisPane;
                         priceSpan.textContent = isSelected ? formatBase('Seleccionado') : formatPriceDiff(priceDiff);
                     } else { priceSpan.textContent = ''; }
                 });
