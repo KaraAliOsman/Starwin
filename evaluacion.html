@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación de Ventanas PVC | Starwin</title>
+    <meta name="description" content="Herramienta para evaluar el rendimiento de tus ventanas de PVC basada en cinco criterios esenciales." />
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+:root {
+    --brand-primary: #17A2B8;
+    --brand-primary-dark: #117A8B;
+    --brand-secondary: #5A6268;
+    --brand-accent: #fd7e14;
+    --brand-accent-dark: #E6710F;
+    --brand-dark: #343a40;
+    --brand-lightgray: #f8f9fa;
+    --brand-extralightgray: #e9ecef;
+    --brand-white: #ffffff;
+    --brand-navbar-bg: #f8f9fa;
+
+    --text-default: var(--brand-dark);
+    --text-muted: var(--brand-secondary);
+    --bs-primary-rgb: 23, 162, 184;
+    --bs-link-color-rgb: var(--bs-primary-rgb);
+}
+body{font-family:'Inter',sans-serif;color:var(--text-default);background:var(--brand-white);}
+.navbar{background-color:var(--brand-navbar-bg);}
+footer#contacto{background-color:var(--brand-dark);color:var(--brand-lightgray);padding-top:3rem;padding-bottom:2rem;font-size:0.98rem;}
+footer#contacto a{color:var(--brand-lightgray);}
+footer#contacto a:hover{color:var(--brand-primary);text-decoration:none;}
+.slider-value{font-weight:600;margin-left:0.5rem;}
+</style>
+</head>
+<body>
+<header class="sticky-top shadow-sm">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" title="Inicio - Starwin Chile">
+                <img src="logostarwin.png" alt="Starwin Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProductos" role="button" aria-expanded="false">Nuestras Ventanas<span class="dropdown-indicator ms-1"><i class="fas fa-chevron-down fa-xs"></i></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownProductos">
+                            <li><a class="dropdown-item" href="productos.html">Catálogo de Productos</a></li>
+                            <li><a class="dropdown-item" href="colores.html">Colores y Acabados</a></li>
+                            <li><a class="dropdown-item" href="detalles-tecnicos.html">Detalles Técnicos</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="beneficios.html">¿Porque Elegirnos?</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="nosotros.html">¿Quienes somos?</a></li>
+                    <li class="nav-item"><a class="nav-link" href="proceso.html">Proceso</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blogs.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="evaluacion.html">Evaluación</a></li>
+                        <li class="nav-item"><a class="nav-link" href="evaluacion.html">Evaluación</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0"><a href="configurador.html" class="btn btn-brand-accent btn-cta shadow-sm" style="background-color:var(--brand-accent);color:var(--brand-white);border-color:var(--brand-accent);">Cotizar Online</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="container py-5">
+    <h1 class="mb-4">Evalúa tus Ventanas de PVC</h1>
+    <p class="mb-5">Asigna una puntuación a cada criterio para conocer el rendimiento total de tu ventana.</p>
+    <form id="eval-form">
+        <div class="mb-4">
+            <label class="form-label">1. Rendimiento Termoacústico (0-35)</label>
+            <input type="range" class="form-range" min="0" max="35" value="0" id="crit1">
+            <span class="slider-value" id="val1">0</span>
+        </div>
+        <div class="mb-4">
+            <label class="form-label">2. Seguridad (0-20)</label>
+            <input type="range" class="form-range" min="0" max="20" value="0" id="crit2">
+            <span class="slider-value" id="val2">0</span>
+        </div>
+        <div class="mb-4">
+            <label class="form-label">3. Calidad Visual y Vista (0-15)</label>
+            <input type="range" class="form-range" min="0" max="15" value="0" id="crit3">
+            <span class="slider-value" id="val3">0</span>
+        </div>
+        <div class="mb-4">
+            <label class="form-label">4. Funcionalidad (0-15)</label>
+            <input type="range" class="form-range" min="0" max="15" value="0" id="crit4">
+            <span class="slider-value" id="val4">0</span>
+        </div>
+        <div class="mb-4">
+            <label class="form-label">5. Estética y Compatibilidad (0-15)</label>
+            <input type="range" class="form-range" min="0" max="15" value="0" id="crit5">
+            <span class="slider-value" id="val5">0</span>
+        </div>
+    </form>
+    <div class="mt-4">
+        <h4>Puntuación Total: <span id="total">0</span>/100</h4>
+        <p id="comentario" class="mt-3"></p>
+    </div>
+</main>
+<footer id="contacto">
+    <div class="container">
+        <div class="row gy-4 gy-lg-5">
+            <div class="col-lg-4 col-md-12 text-center text-lg-start mb-4 mb-lg-0">
+                <a href="index.html" class="d-inline-block mb-3"><img src="logostarwin.png" alt="Starwin Chile Logo Footer Blanco" style="max-height:50px;filter:brightness(0) invert(1);"></a>
+                <p class="small text-light-muted pe-lg-3 mt-2">Starwin PVC: Liderazgo en ventanas y puertas PVC de alta eficiencia. Diseño, fabricación e instalación experta en Concepción y toda la Región del Biobío.</p>
+                <div class="social-icons mt-4 justify-content-center justify-content-lg-start">
+                    <a href="https://www.facebook.com/Starwinchile/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/starwincl/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/56966003771" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-6 text-center text-lg-start">
+                <h5 class="mb-4">Explorar</h5>
+                <ul class="list-unstyled small footer-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Catálogo</a></li>
+                    <li><a href="proceso.html">Nuestro Proceso</a></li>
+                    <li><a href="beneficios.html">Beneficios Starwin</a></li>
+                    <li><a href="evaluacion.html">Evaluación</a></li>
+                    <li><a href="blogs.html">Blog & Noticias</a></li>
+                    <li><a href="configurador.html">Cotizador Online</a></li>
+                    <li><a href="contacto.html">Contacto Directo</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 text-center text-lg-start">
+                <h5 class="mb-4">Soporte</h5>
+                <ul class="list-unstyled small footer-links">
+                    <li><a href="faq.html">Preguntas Frecuentes (FAQ)</a></li>
+                    <li><a href="garantia.html">Nuestra Garantía</a></li>
+                    <li><a href="politica-privacidad.html">Política de Privacidad</a></li>
+                    <li><a href="terminos-condiciones.html">Términos y Condiciones</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-4 col-12 text-center text-lg-start">
+                <h5 class="mb-4">Visítanos o Llámanos</h5>
+                <ul class="list-unstyled small contact-info">
+                    <li><i class="fas fa-map-marker-alt fa-fw"></i><address class="mb-0 d-inline">Pedro de Valdivia 733,<br class="d-none d-lg-block"> Concepción, Biobío</address></li>
+                    <li><i class="fas fa-phone fa-fw"></i><a href="tel:+56966003771">+56 9 6600 3771</a></li>
+                    <li><i class="fab fa-whatsapp fa-fw"></i><a href="https://wa.me/56966003771" target="_blank">Contactar por WhatsApp</a></li>
+                    <li><i class="fas fa-envelope fa-fw"></i><a href="mailto:starwinchile@gmail.com">starwinchile@gmail.com</a></li>
+                    <li><i class="fas fa-clock fa-fw"></i><span>Lun - Vie: 9:00 - 18:30 hrs</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p class="small mb-0">© <span id="current-year"></span> Starwin Chile - Ventanas PVC. Excelencia e Innovación. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+    const sliders=[{el:'crit1',max:35,val:'val1'},{el:'crit2',max:20,val:'val2'},{el:'crit3',max:15,val:'val3'},{el:'crit4',max:15,val:'val4'},{el:'crit5',max:15,val:'val5'}];
+    function update(){
+        let total=0;
+        sliders.forEach(s=>{const v=parseInt(document.getElementById(s.el).value);document.getElementById(s.val).textContent=v;total+=v;});
+        document.getElementById('total').textContent=total;
+        const c=document.getElementById('comentario');
+        if(total>=90)c.textContent='Ventana de alto rendimiento y gran estética.';
+        else if(total>=70)c.textContent='Muy buena ventana. Cumple con lo necesario.';
+        else if(total>=50)c.textContent='Aceptable. Algunas áreas pueden mejorar.';
+        else c.textContent='Bajo rendimiento. Requiere mejoras.';
+    }
+    sliders.forEach(s=>document.getElementById(s.el).addEventListener('input',update));
+    update();
+    const yearSpan=document.getElementById('current-year'); if(yearSpan){yearSpan.textContent=new Date().getFullYear();}
+});
+</script>
+</body>
+</html>
