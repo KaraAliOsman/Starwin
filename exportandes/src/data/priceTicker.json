@@ -1,0 +1,23 @@
+{
+  "updatedAt": "Hoy 09:30",
+  "prices": [
+    {
+      "id": "cobre",
+      "material": "Cobre",
+      "priceClpKg": 4650,
+      "change": "sube"
+    },
+    {
+      "id": "aluminio",
+      "material": "Aluminio",
+      "priceClpKg": 1450,
+      "change": "baja"
+    },
+    {
+      "id": "acero",
+      "material": "Acero",
+      "priceClpKg": 520,
+      "change": "estable"
+    }
+  ]
+}
