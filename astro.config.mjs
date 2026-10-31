@@ -7,6 +7,7 @@ import {site} from './src/config/site.ts';
 export default defineConfig({
   site: site.url,
   output: 'static',
+  build: {inlineStylesheets:'always'},
   trailingSlash: 'always',
   devToolbar: {enabled:false},
   integrations: [react(), sitemap()],

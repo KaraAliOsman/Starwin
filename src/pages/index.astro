@@ -16,5 +16,5 @@ const schema=[{
  hasOfferCatalog:{'@type':'OfferCatalog',name:'Ventanas de PVC Starwin',itemListElement:products.map(product=>({'@type':'OfferCatalog',name:product.name,url:canonicalUrl(`/ventanas/${product.slug}/`)}))}
 }];
 ---
-<Layout title="Ventanas de PVC en Biobío y Concepción | Starwin" description="Fabricamos e instalamos ventanas de PVC y termopanel en toda la Región del Biobío. Desde Concepción a Los Ángeles y Arauco. Consulta tu proyecto o estima online." schema={schema}><HomeShowroom/></Layout>
+<Layout title="Ventanas de PVC en Biobío y Concepción | Starwin" description="Fabricamos e instalamos ventanas de PVC y termopanel en toda la Región del Biobío. Desde Concepción a Los Ángeles y Arauco. Consulta tu proyecto o estima online." schema={schema}><link slot="head" rel="preload" as="image" href="/images/studio-white-480.webp" imagesrcset="/images/studio-white-480.webp 480w, /images/studio-white-600.webp 600w, /images/studio-white-900.webp 900w" imagesizes="(max-width:700px) 64vw, (max-width:1050px) 48vw, 43vw" fetchpriority="high"/><HomeShowroom/></Layout>
 <script>import '../scripts/home-motion';</script>

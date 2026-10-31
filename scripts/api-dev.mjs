@@ -27,6 +27,13 @@ export async function apiNode(req,res) {
   for await(const chunk of req){size+=chunk.length;if(size>max){res.writeHead(413,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end(JSON.stringify({message:'La solicitud supera el tamaño permitido.'}));req.resume();return;}chunks.push(chunk);}
   const origin=`http://${req.headers.host||'127.0.0.1:3006'}`;
   const request=new Request(new URL(req.url,origin),{method:req.method,headers:req.headers,...(!['GET','HEAD'].includes(req.method)?{body:Buffer.concat(chunks)}:{})});
+  if(visualizer&&process.env.VISUALIZER_REMOTE_ORIGIN==='https://starwinpvc.cl'){
+   if(req.headers.origin&&req.headers.origin!==origin||req.headers['sec-fetch-site']==='cross-site'){res.writeHead(403);res.end();return;}
+   const target=new URL(req.url,'https://starwinpvc.cl'),headers=new Headers(request.headers);headers.set('Origin','https://starwinpvc.cl');headers.delete('host');headers.delete('sec-fetch-site');
+   const response=await fetch(target,{method:req.method,headers,...(!['GET','HEAD'].includes(req.method)?{body:Buffer.concat(chunks)}:{}),redirect:'error'});
+   const outgoing=new Headers(response.headers),cookie=outgoing.get('set-cookie');if(cookie)outgoing.set('set-cookie',cookie.replace(/; Secure/gi,''));outgoing.delete('content-encoding');outgoing.delete('content-length');
+   res.writeHead(response.status,Object.fromEntries(outgoing));res.end(Buffer.from(await response.arrayBuffer()));return;
+  }
   const response=visualizer?await service.handle(request):await handleContactRequest(request,{env:process.env,ip:req.socket.remoteAddress||'local'});
   res.writeHead(response.status,Object.fromEntries(response.headers));res.end(Buffer.from(await response.arrayBuffer()));
  } catch {if(!res.headersSent)res.writeHead(500,{'Content-Type':'application/json','Cache-Control':'no-store'});res.end(JSON.stringify({message:'No pudimos procesar la solicitud. Inténtalo otra vez.'}));}
