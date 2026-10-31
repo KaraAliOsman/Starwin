@@ -18,7 +18,7 @@ export default {
   if(!/^\/api\/visualizations(?:\/|$)/.test(url.pathname))return error('not_found','Ruta no disponible.',404);
   const config=url.pathname==='/api/visualizations/config';
   let session=cookie(request),fresh=false;
-  if(!session||!/^[a-f\d-]{36}$/.test(session)){if(!config||request.method!=='GET')return error('session_required','Recarga el visualizador antes de generar.',428);session=crypto.randomUUID();fresh=true;}
+  if(!session||!/^[a-f\d-]{36}$/.test(session)){if(!config||request.method!=='GET')return error('session_required','Recarga el visualizador antes de generar.',request.method==='GET'?404:428);session=crypto.randomUUID();fresh=true;}
   const response=await env.VISUALIZER_SESSIONS.getByName(session).fetch(request);
   if(!fresh)return response;
   const next=new Headers(response.headers);next.set('Set-Cookie',`${COOKIE}=${session}; HttpOnly; Secure; SameSite=Strict; Path=/api/visualizations; Max-Age=86400`);

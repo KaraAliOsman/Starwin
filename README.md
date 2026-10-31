@@ -1,6 +1,6 @@
 # Starwin · showroom de ventanas
 
-Astro con 35 páginas HTML, 34 URL indexables y 50 redirecciones permanentes. Identidad cian/oro, Switzer de Indian Type Foundry y composición móvil propia. Dos secuencias reversibles controladas por scroll: acercamiento a través del paño hasta el ambiente y despliegue de tres acabados. Implementación nativa para PC y celular, sin interceptar los gestos ni cargar una biblioteca de animación.
+Astro con 36 páginas HTML, 35 URL indexables y 61 redirecciones permanentes. Ventanas de PVC para Concepción y las 33 comunas del Biobío. Identidad cian/oro, Switzer y portada de Patagonia chilena. Dos secuencias reversibles controladas por scroll, para PC y celular.
 
 ## Ejecutar
 
@@ -12,26 +12,21 @@ La dirección está en [DESIGN.md](DESIGN.md). La revisión vigente es [Scroll n
 
 Cotizar abre WhatsApp, correo y estimador opcional. Hero invita a explorar. Se conservan fotografías de aperturas, selección táctil de acabados, 3D opcional y PDF de varias ventanas. La primera ventana es fija blanca de 100 × 100 cm con termopanel. «Corredera Serie Pro70». Nota vigente: «Referencia sujeta a revisión de medidas, configuración y factibilidad.». No se menciona IVA en la UI; el PDF añade + IVA pequeño junto al total final únicamente. Motor original Starwinpvc: 945 equivalencias de precios verificadas.
 
-## Generación gratuita de muestras
+## Visualizador en producción
 
-La conexión implementada usa la API pública del espacio oficial Qwen Image Edit 2511 en Hugging Face, no un servicio de inferencia de pago. Requiere `HF_TOKEN` propio de una cuenta personal gratuita. Configuración en `.env`:
+Cloudflare Pages delega `/api/visualizations` al servicio `starwin-visualizer`. Usa FLUX.2 Klein 4B mediante el binding Workers AI y Durable Objects SQLite por sesión, más un coordinador del cupo global. No requiere publicar una API key ni utiliza la cola pública de Hugging Face. El modelo edita la foto recibida; se comprobó una generación real antes de conectarlo.
 
-```dotenv
-VISUALIZER_PROVIDER=qwen-space
-VISUALIZER_ALLOW_FREE_GENERATION=true
-HF_TOKEN=
-GEMINI_ALLOW_PAID_GENERATION=false
-```
+La foto se prepara en el navegador a 480 px, se decodifica y recodifica en servidor para retirar metadatos, y solo se envía tras consentimiento. Los resultados privados caducan en una hora. Idempotencia, borrado, aislamiento de sesiones y cupos persisten. Límite: tres solicitudes por sesión y 30 generaciones por día para el sitio; no se reintenta automáticamente ni se cambia a Google. La cuota gratuita de Cloudflare es compartida con otros usos de la cuenta y puede agotarse.
 
-No se incluyen claves en el código ni en el build. La credencial propia está configurada localmente y autentica correctamente. El espacio oficial rechazó la duración GPU y la variante Fast terminó en RuntimeError; ninguna prueba autenticada produjo una imagen. La generación real sigue pendiente del proveedor. Sin token, Generar permanece deshabilitado. Las cuentas PRO/desconocidas se rechazan antes de subir la foto para evitar consumo de créditos tras la cuota gratuita. La oferta gratuita tiene cola y cuota diaria; no proporciona capacidad continua para todos los visitantes.
+Fuente del Worker: `worker/visualizer.mjs`; empaquetado: `node scripts/build-worker.mjs`. Bindings: `AI`, `VISUALIZER_SESSIONS`, `VISUALIZER_BUDGET`; variable `VISUALIZER_ENABLED=true`. Pages usa `VISUALIZER_COORDINATOR` como service binding. Cambios al Worker requieren publicar también su bundle; el push a GitHub actualiza automáticamente las páginas mediante el proyecto Pages existente.
 
-Las fotos se envían solo al generar con consentimiento, se normalizan y se eliminan de este servicio al caducar. El espacio público del proveedor tiene condiciones propias: los archivos remotos no deben considerarse privados. Cancelar no garantiza detener una operación externa iniciada. No se reintenta una generación automáticamente ni se cambia a Google de forma silenciosa.
+Los adaptadores anteriores de Qwen y Google permanecen aislados para desarrollo local y pruebas; no son el proveedor de producción. Los secretos locales no se incluyen en el repositorio.
 
 Google queda como adaptador alternativo separado, sujeto a habilitación explícita de pago. El formulario sigue preparando borradores de correo hasta configurar el servicio de envío.
 
 ## Comprobar
 
-- `npm test`: 35 pruebas, incluyendo precios originales, SEO, formularios y APIs simuladas.
+- `npm test`: 37 pruebas, incluyendo precios originales, SEO, formularios y almacenamiento/API de producción con transporte de IA simulado.
 - `npm run typecheck` y `npm run check`: tipos, metadatos, sitemap, enlaces, archivos y schema.
 - `npm run test:browser`: recorrido funcional de navegación, formulario, estimador, PDF, 3D y visualizador simulado.
 - `node scripts/performance-check.mjs inicio`: Lighthouse móvil local. Última medición: 99 rendimiento y 100 accesibilidad/buenas prácticas/SEO; LCP 2,1 s, CLS 0, TBT 0 ms.
