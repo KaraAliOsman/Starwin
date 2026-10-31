@@ -1,0 +1,7 @@
+---
+import Picture from './Picture.astro';
+import {articlePhotos} from '../data/article-photos';
+const {article}=Astro.props;
+const photo=articlePhotos[article.image];
+---
+<article class="article-card"><div class="article-thumb"><Picture name={photo.name} alt="" sourceMaxWidth={photo.maxWidth} width={800} height={500} sizes="(max-width: 700px) 100vw, 33vw"/></div><div class="article-meta"><span>{article.category}</span><span>{article.minutes} min de lectura</span></div><h3>{article.title}</h3><p>{article.description}</p><span class="text-link" aria-hidden="true">Leer guía <span>↗</span></span><a href={`/blog/${article.slug}/`} aria-label={`Leer: ${article.title}`}></a></article>

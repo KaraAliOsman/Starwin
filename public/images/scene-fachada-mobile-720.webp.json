@@ -1,0 +1,18 @@
+{
+  "file": "public/images/scene-fachada-mobile-720.webp",
+  "sourceUrl": "https://a.storyblok.com/f/280153/1200x900/f14741ed63/haus-au_en-90.png",
+  "sourcePage": "https://www.internorm.com/en-us/products/photo-gallery",
+  "company": "Internorm",
+  "usage": "Ambiente, no obra Starwin; no implica modelo o sistema propio.",
+  "reason": "Vista exterior cercana al ventanal y al umbral. El producto tiene escala y la carpintería se ve abierta; sustituye la cabaña sin relación con el recorrido.",
+  "transform": {
+    "crop": {
+      "left": 360,
+      "top": 0,
+      "width": 720,
+      "height": 900
+    },
+    "width": 720
+  },
+  "sha256": "f1c6696b9ccd0fe26f41e6bb1828f94215ee84db656f59daceac0726b56caee8"
+}

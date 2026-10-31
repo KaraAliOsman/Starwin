@@ -1,0 +1,10 @@
+{
+  "origin": "../baufens-reverse-engineering/recursos/imagenes/ca58ba74bc91__6000-series-outward-opening-glass-3-1200x960.png",
+  "prompt": "Origen: corte BauFens de la Serie 6000 con vidrio, recuperado del sitio del proveedor. Solo redimensionado y convertido a WebP; no representa Pro70 ni acredita una instalación Starwin.",
+  "transform": {
+    "width": 480,
+    "withoutEnlargement": true,
+    "format": "webp"
+  },
+  "createdAt": "2026-10-23T14:06:16.479Z"
+}

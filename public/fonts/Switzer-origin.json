@@ -1,0 +1,11 @@
+{
+  "family": "Switzer",
+  "foundry": "Indian Type Foundry",
+  "source": "https://www.fontshare.com/fonts/switzer",
+  "official_package": "https://api.fontshare.com/v2/fonts/download/switzer",
+  "license": "ITF Free Font License 2.0",
+  "license_file": "Switzer-FFL.txt",
+  "file": "switzer-variable.woff2",
+  "weights": "100–900",
+  "use": "Starwin marketing pages and tools, self-hosted without modification"
+}

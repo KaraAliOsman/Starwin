@@ -1,0 +1,6 @@
+---
+import Icon from './Icon.astro';
+import {wa} from '../config/site';
+const {title='Conversemos de tu proyecto.',description='Cuéntanos qué quieres mejorar y en qué comuna estás. Una foto ayuda; no necesitas tener las medidas resueltas.',message='Hola Starwin, quiero orientación para un proyecto de ventanas de PVC.'}=Astro.props;
+---
+<section class="cta-section" data-contact-section><div class="wrap cta-inner"><div><h2>{title}</h2><p>{description}</p></div><div class="cta-actions"><a class="btn" href={wa(message)} target="_blank" rel="noopener noreferrer">Hablar por WhatsApp <Icon name="chat"/></a><a class="text-link" href="/contacto/#consulta">Escribir por correo <Icon name="mail" size={18}/></a></div></div></section>

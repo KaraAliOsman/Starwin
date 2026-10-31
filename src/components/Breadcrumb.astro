@@ -1,0 +1,8 @@
+---
+import {breadcrumbSchema, serializeJsonLd, type BreadcrumbItem} from '../lib/seo';
+interface Props {items?: BreadcrumbItem[];}
+const {items=[]}=Astro.props;
+const links=[{name:'Inicio',href:'/'},...items];
+---
+<nav class="breadcrumb wrap" aria-label="Ruta de navegación"><ol>{links.map((i,index)=><li>{index<links.length-1?<a href={i.href}>{i.name}</a>:<span aria-current="page">{i.name}</span>}</li>)}</ol></nav>
+{links.length>1&&<script type="application/ld+json" set:html={serializeJsonLd(breadcrumbSchema(links))}/>}

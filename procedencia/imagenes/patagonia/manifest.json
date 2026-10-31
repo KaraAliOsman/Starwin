@@ -1,0 +1,50 @@
+{
+  "title": "Cuernos del Paine y lago Pehoé, Patagonia chilena",
+  "creator": "Marek Piwnicki",
+  "sourcePage": "https://unsplash.com/it/foto/una-catena-montuosa-con-un-lago-in-primo-piano-wgsu3WzFZ5c",
+  "sourceImage": "https://images.unsplash.com/photo-1712921675065-b248fa2c569f?auto=format&fit=max&w=2560&q=90",
+  "license": "Unsplash License",
+  "licenseUrl": "https://unsplash.com/license",
+  "attributionRequired": false,
+  "verification": "Indexed Unsplash photo result identifies author, Chile and free image. Unsplash License permits commercial use without mandatory attribution.",
+  "downloadedAt": "2026-10-31T19:01:31.682Z",
+  "original": "procedencia/imagenes/patagonia/torres-del-paine-marek-piwnicki.jpg",
+  "sha256": "f79d944afea08416ffbe5c30361bee0925503c427bbaff5bb238f34ad100b366",
+  "dimensions": {
+    "width": 2560,
+    "height": 1914
+  },
+  "mobileCrop": {
+    "left": 1280,
+    "top": 0,
+    "width": 1200,
+    "height": 1500
+  },
+  "files": [
+    {
+      "file": "public/images/patagonia-chilena-mobile-480.avif",
+      "bytes": 26697
+    },
+    {
+      "file": "public/images/patagonia-chilena-mobile-480.webp",
+      "bytes": 66320
+    },
+    {
+      "file": "public/images/patagonia-chilena-mobile-720.avif",
+      "bytes": 60098
+    },
+    {
+      "file": "public/images/patagonia-chilena-mobile-720.webp",
+      "bytes": 148268
+    },
+    {
+      "file": "public/images/patagonia-chilena-1920.avif",
+      "bytes": 319570
+    },
+    {
+      "file": "public/images/patagonia-chilena-1920.webp",
+      "bytes": 723430
+    }
+  ],
+  "usage": "Hero landscape and scroll arrival. Landscape is an illustrative view of Chile, not a Starwin project."
+}

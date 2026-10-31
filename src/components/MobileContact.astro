@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+import {wa} from '../config/site';
+---
+<nav class="mobile-contact" aria-label="Contacto rápido" hidden><a href={wa()} target="_blank" rel="noopener noreferrer"><Icon name="chat" size={21}/>WhatsApp</a></nav>
+<script>
+ const quickContact=document.querySelector<HTMLElement>('.mobile-contact');
+ if(quickContact){
+  document.body.classList.add('has-mobile-contact');
+  const visibleContacts=new Set<Element>();
+  let queued=false;
+  const update=()=>{queued=false;quickContact.hidden=window.scrollY<340||visibleContacts.size>0||!!document.querySelector('#cotizar-opciones[open],.menu-open');};
+  document.addEventListener('starwin:menu-state',update);
+  document.querySelector('#cotizar-opciones')?.addEventListener('close',update);
+  window.addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(update);}},{passive:true});
+  const contactObserver=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting)visibleContacts.add(entry.target);else visibleContacts.delete(entry.target);}update();});
+  document.querySelectorAll('.hero-contact,.project-guide-links,[data-contact-section],.site-footer,.product-opening-controls,.opening-selector,.material-choices,.home-tool-links').forEach(el=>contactObserver.observe(el));
+  update();
+ }
+</script>
+<style>
+ .mobile-contact{display:none}
+ @media(max-width:700px){.mobile-contact:not([hidden]){display:block;position:fixed;right:max(16px,env(safe-area-inset-right));bottom:calc(14px + env(safe-area-inset-bottom));z-index:40}.mobile-contact a{min-height:50px;display:flex;gap:10px;align-items:center;justify-content:center;font-size:15px;padding:12px 18px;background:var(--ink);color:#fff;border-radius:30px;box-shadow:0 3px 18px #102b3624;border:2px solid #fff}.mobile-contact a:focus-visible{outline-color:var(--blue)}}
+ @media print{.mobile-contact{display:none!important}}
+</style>

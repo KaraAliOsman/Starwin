@@ -1,0 +1,102 @@
+---
+import Icon from './Icon.astro';
+import QuoteOptions from './QuoteOptions.astro';
+---
+<dialog class="quote-dialog" id="cotizar-opciones" aria-labelledby="quote-heading">
+ <div class="quote-dialog-content">
+  <div class="quote-dialog-header"><h2 id="quote-heading">¿Cómo quieres cotizar?</h2><button class="quote-close" type="button" aria-label="Cerrar opciones de cotización" autofocus><Icon name="close" size={22}/></button></div>
+  <QuoteOptions/>
+ </div>
+</dialog>
+<script>
+ const quoteDialog=document.querySelector<HTMLDialogElement>('#cotizar-opciones');
+ if(quoteDialog && typeof quoteDialog.showModal==='function'){
+  const dialog=quoteDialog;
+  const closeButton=dialog.querySelector<HTMLButtonElement>('.quote-close');
+  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  const mobileSheet=window.matchMedia('(max-width: 700px)');
+  const body=document.body;
+  const root=document.documentElement;
+  const lockProperties=['position','top','left','right','overflow','padding-right'] as const;
+  let savedBody:{property:string;value:string;priority:string}[]=[];
+  let savedScroll={x:0,y:0};
+  let opener:HTMLElement|null=null;
+  let opening:Animation|null=null;
+  let backdropPointer=false;
+  const triggers=[...document.querySelectorAll<HTMLElement>('[data-quote-open]')];
+  triggers.forEach(trigger=>{trigger.setAttribute('aria-haspopup','dialog');trigger.setAttribute('aria-controls',dialog.id);trigger.setAttribute('aria-expanded','false');});
+
+  function lockPage(){
+   savedScroll={x:window.scrollX,y:window.scrollY};
+   savedBody=lockProperties.map(property=>({property,value:body.style.getPropertyValue(property),priority:body.style.getPropertyPriority(property)}));
+   const scrollbar=Math.max(0,window.innerWidth-root.clientWidth);
+   const padding=parseFloat(getComputedStyle(body).paddingRight)||0;
+   body.style.position='fixed';
+   body.style.top=`-${savedScroll.y}px`;
+   body.style.left=`-${savedScroll.x}px`;
+   body.style.right='0';
+   body.style.overflow='hidden';
+   body.style.paddingRight=`${padding+scrollbar}px`;
+  }
+  function unlockPage(){
+   savedBody.forEach(({property,value,priority})=>value?body.style.setProperty(property,value,priority):body.style.removeProperty(property));
+   savedBody=[];
+   const behavior=root.style.getPropertyValue('scroll-behavior');
+   const priority=root.style.getPropertyPriority('scroll-behavior');
+   root.style.setProperty('scroll-behavior','auto','important');
+   window.scrollTo(savedScroll.x,savedScroll.y);
+   if(behavior)root.style.setProperty('scroll-behavior',behavior,priority);else root.style.removeProperty('scroll-behavior');
+   opener?.focus({preventScroll:true});
+   opener=null;
+  }
+  function closeQuote(event?:Event){
+   if(opener&&(event?.type==='cancel'||event instanceof MouseEvent&&event.detail===0))opener.dataset.actionInstant='true';
+   opening?.cancel();
+   opening=null;
+   dialog.close();
+  }
+  document.addEventListener('click',event=>{
+   if(!(event instanceof MouseEvent) || event.defaultPrevented || event.button!==0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)return;
+   const target=event.target instanceof Element?event.target.closest<HTMLElement>('[data-quote-open]'):null;
+   if(!target || dialog.open)return;
+   event.preventDefault();
+   document.dispatchEvent(new Event('starwin:menu-close'));
+   opener=target;
+   target.dataset.actionInstant=String(event.detail===0);
+   lockPage();
+   try{dialog.showModal();}catch{unlockPage();window.location.assign(target.getAttribute('href')||'/cotizar/');return;}
+   target.setAttribute('aria-expanded','true');
+   const menuButton=document.querySelector<HTMLButtonElement>('.menu-button');
+   menuButton?.setAttribute('aria-expanded','false');
+   menuButton?.setAttribute('aria-label','Abrir menú');
+   document.querySelector('.site-header')?.classList.remove('menu-open');
+   if(event.detail>0 && !reduceMotion.matches){
+    opening=dialog.animate(mobileSheet.matches?[{transform:'translateY(36px)'},{transform:'translateY(0)'}]:[{transform:'translateY(8px) scale(.98)'},{transform:'translateY(0) scale(1)'}],{duration:220,easing:'cubic-bezier(.32,.72,0,1)'});
+    opening.onfinish=()=>{opening=null;};
+   }
+  });
+  closeButton?.addEventListener('click',closeQuote);
+  dialog.addEventListener('cancel',event=>{event.preventDefault();closeQuote(event);});
+  dialog.addEventListener('close',()=>{opening?.cancel();opening=null;triggers.forEach(trigger=>trigger.setAttribute('aria-expanded','false'));unlockPage();});
+  const outside=(event:PointerEvent|MouseEvent)=>{const bounds=dialog.getBoundingClientRect();return event.clientX<bounds.left || event.clientX>bounds.right || event.clientY<bounds.top || event.clientY>bounds.bottom;};
+  dialog.addEventListener('pointerdown',event=>{backdropPointer=event.target===dialog && outside(event);});
+  dialog.addEventListener('pointercancel',()=>{backdropPointer=false;});
+  dialog.addEventListener('click',event=>{if(backdropPointer && event.target===dialog && outside(event))closeQuote();backdropPointer=false;});
+  dialog.querySelectorAll<HTMLAnchorElement>('a').forEach(link=>link.addEventListener('click',()=>{if(dialog.open)closeQuote();}));
+  reduceMotion.addEventListener('change',event=>{if(event.matches){opening?.cancel();opening=null;}});
+ }
+</script>
+<style>
+ .quote-dialog{width:min(520px,calc(100% - 40px));max-width:none;max-height:calc(100dvh - 48px);margin:auto;padding:0;border:0;border-radius:8px;background:#fff;color:var(--ink);box-shadow:0 24px 80px #0d303b33;overflow:auto;overscroll-behavior:contain;scrollbar-color:#8eacb8 #eff3f4}
+ .quote-dialog::backdrop{background:#123e5066}
+ .quote-dialog-content{padding:30px}
+ .quote-dialog-header{display:flex;align-items:start;justify-content:space-between;gap:16px;margin-bottom:14px;padding-bottom:12px;position:sticky;top:12px;z-index:2;background:#fff}
+ .quote-dialog-header h2{font-size:27px;line-height:1.2;letter-spacing:-.025em;padding-top:5px}
+ .quote-close{flex-shrink:0;display:grid;place-items:center;width:44px;height:44px;margin:-5px -9px 0 0;border-radius:4px;touch-action:manipulation;user-select:none;-webkit-user-select:none;transition:background-color 120ms ease,transform 100ms cubic-bezier(.23,1,.32,1)}
+ .quote-close:active{background:#eff3f4;transform:scale(.96)}
+ @media(hover:hover) and (pointer:fine){.quote-close:hover{background:#eff3f4}}
+ @media(max-width:700px){.quote-dialog{position:fixed;inset:auto 0 0;width:100%;max-height:calc(100dvh - max(20px,env(safe-area-inset-top,0px)));margin:0;border-radius:14px 14px 0 0}.quote-dialog-content{padding:25px max(22px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(22px,env(safe-area-inset-left,0px))}.quote-dialog-header{margin-bottom:20px}.quote-dialog-header h2{font-size:25px;max-width:15ch}}
+ @media(max-width:359px){.quote-dialog-content{padding-inline:16px}.quote-dialog-header h2{font-size:23px}}
+ @media(prefers-reduced-motion:reduce){.quote-close{transition:none}.quote-close:active{transform:none}}
+ @media print{.quote-dialog{display:none!important}}
+</style>

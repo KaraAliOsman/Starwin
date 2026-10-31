@@ -1,0 +1,12 @@
+---
+const {type='fixed'}=Astro.props;
+const shapes:Record<string,string>={
+ sliding:'M16 5v22M7 16h7m-3-3 3 3-3 3m8-3h6m-3-3 3 3-3 3',
+ casement:'M5 5 24 10v12L5 27M24 16h-3',
+ tilt:'M9 5h14l5 22H4L9 5Z',
+ awning:'M4 5h24l-4 18H8L4 5Z',
+ fixed:'M20 9h4m-1 0v4'
+};
+const key=String(type).startsWith('sliding')?'sliding':type;
+---
+<svg class="opening-mark" width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 5h24v22H4V5Z"/><path d={shapes[key]||shapes.fixed}/></svg>

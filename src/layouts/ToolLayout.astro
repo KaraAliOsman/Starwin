@@ -1,0 +1,18 @@
+---
+import Layout from './Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import {absolute} from '../config/site';
+import {tools} from '../features/tools/model';
+import '../styles/tools.css';
+interface Props {title:string;description:string;heading:string;intro:string;slug:string;}
+const {title,description,heading,intro,slug}=Astro.props;
+const schema={'@context':'https://schema.org','@type':'WebApplication',name:heading,url:absolute(`/${slug}/`),applicationCategory:'UtilitiesApplication',operatingSystem:'Web',inLanguage:'es-CL',isAccessibleForFree:true,description,creator:{'@id':absolute('/#empresa')}};
+---
+<Layout title={`${title} | Starwin`} description={description} schema={schema}>
+ <div class="window-tool" data-tool-page>
+  <Breadcrumb items={[{name:'Herramientas',href:'/herramientas/'},{name:heading,href:`/${slug}/`}]}/>
+  <header class="tool-intro wrap"><h1>{heading}</h1><p>{intro}</p></header>
+  <slot/>
+  <aside class="tool-related wrap" aria-labelledby="other-tools-title"><h2 id="other-tools-title">Sigue explorando.</h2><nav aria-label="Otras herramientas">{tools.filter(tool=>tool.slug!==slug).map(tool=><a href={`/${tool.slug}/`}>{tool.name}<span aria-hidden="true">↗</span></a>)}<a href="/herramientas/">Todas las herramientas<span aria-hidden="true">↗</span></a></nav></aside>
+ </div>
+</Layout>

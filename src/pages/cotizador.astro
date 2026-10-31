@@ -1,0 +1,26 @@
+---
+import StarwinEstimator from '../features/estimator/app/Estimator';
+import '../features/estimator/src/styles/tokens.css';
+import '../features/estimator/src/features/canvas/canvas.css';
+import '../features/estimator/app/style.css';
+import {site,absolute} from '../config/site';
+import {buildPageSEO,serializeJsonLd} from '../lib/seo';
+const title='Cotizador de ventanas PVC en Biobío y Concepción | Starwin';
+const description='Cotiza varias ventanas de PVC con tus medidas, color y vidrio. Referencia sujeta a revisión de medidas, configuración y factibilidad. Vista 3D y presupuesto conjunto en PDF con Starwin.';
+const seo=buildPageSEO({title,description,pathname:'/cotizador/',schema:{'@context':'https://schema.org','@type':'WebApplication',name:'Cotizador de ventanas Starwin',url:absolute('/cotizador/'),applicationCategory:'BusinessApplication',operatingSystem:'Web',inLanguage:'es-CL',description,creator:{'@id':absolute('/#empresa')}}});
+---
+<!DOCTYPE html><html lang="es-CL"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content"/><meta name="theme-color" content="#ffffff"/><title>Cotizador de ventanas PVC en Biobío y Concepción | Starwin</title><meta name="description" content="Cotiza varias ventanas de PVC con tus medidas, color y vidrio. Referencia sujeta a revisión de medidas, configuración y factibilidad. Vista 3D y presupuesto conjunto en PDF con Starwin."/><link rel="canonical" href={seo.canonical}/><meta name="robots" content={seo.robots}/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:url" content={absolute('/cotizador/')}/><meta property="og:image" content={absolute('/images/og-starwin.jpg')}/><meta name="twitter:card" content="summary_large_image"/><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="preload" href="/fonts/figtree-latin-variable.woff2" as="font" type="font/woff2" crossorigin/>{seo.schemas.map(schema=><script type="application/ld+json" set:html={serializeJsonLd(schema)}/>)}</head><body><noscript><div class="estimator-loading">Activa JavaScript para actualizar precios y crear tu PDF, o <a href="/contacto/">contacta a Starwin</a>.</div></noscript><StarwinEstimator client:load/><section class="estimator-info"><details><summary>Sobre esta estimación</summary><p>Configura cada ventana de tu proyecto y agrega cantidades iguales. Puedes volver a editar, elegir el vidrio, revisar el diseño en 3D y descargar un solo PDF con tu presupuesto.</p><p>Referencia sujeta a revisión de medidas, configuración y factibilidad. Antes de fabricar se confirman medidas, configuración y condiciones con Starwin.</p></details><div><a href="/">← Volver a Starwin</a><a href="/blog/como-medir-ventanas/">Cómo medir</a><a href="/condiciones/">Condiciones</a><a href="/contacto/">Ayuda y contacto ↗</a></div></section></body></html>
+<style is:global>
+ .estimator-loading{width:min(1080px,calc(100% - 64px));margin:30px auto;padding-block:20px;line-height:1.6}
+ .estimator-loading a{color:#086e92}
+ .estimator-info{width:min(1080px,calc(100% - 64px));margin:36px auto 0;padding-bottom:calc(150px + env(safe-area-inset-bottom,0px));color:#59696f;font-size:13px;line-height:1.7}
+ .estimator-info summary{min-height:48px;padding-top:13px;font-size:13px;cursor:pointer}
+ .estimator-info details{border-top:1px solid #d7dfe2}
+ .estimator-info details p{max-width:700px;margin-top:12px}
+ .estimator-info>div{display:flex;flex-wrap:wrap;gap:0 25px;padding-top:15px;border-top:1px solid #d7dfe2;margin-top:18px}
+ .estimator-info a{display:inline-flex;align-items:center;min-height:44px;color:#086e92;text-decoration:none;font-size:13px}
+ .quote-contact{display:inline-flex;align-items:center;min-height:44px;margin-top:5px;color:#086e92;font-size:14px;text-decoration:underline;text-underline-offset:4px}
+ .app{padding-bottom:0}
+ @media(max-width:699px){.estimator-loading,.estimator-info{width:calc(100% - 44px)}.estimator-info{margin-top:28px}.estimator-info>div{gap:0 20px}.estimator-info a{font-size:12px}}
+ @media(max-width:359px){.estimator-loading,.estimator-info{width:calc(100% - 32px)}}
+</style>

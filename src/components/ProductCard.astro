@@ -1,0 +1,6 @@
+---
+import Picture from './Picture.astro';
+import Icon from './Icon.astro';
+const {product}=Astro.props;
+---
+<article class="product-card"><div class={`product-art product-art-${product.type}`}><Picture name={product.image} alt={`${product.short}`} width={1000} height={1000} sizes="(max-width: 700px) 90vw, 45vw"/></div><div class="card-info"><div><span class="eyebrow">{product.opening}</span><h3>{product.short}</h3><p>{product.description}</p></div><Icon name="diagonal" size={24}/></div><a href={`/ventanas/${product.slug}/`} aria-label={`Conocer ${product.name}`}></a></article>

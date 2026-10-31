@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Picture from '../../components/Picture.astro';
+import Icon from '../../components/Icon.astro';
+import {articles} from '../../data/articles';
+import '../../styles/interior-2026.css';
+const lead=articles.find(article=>article.slug==='elegir-apertura-ventana')!;
+const reading=articles.filter(article=>article.slug!==lead.slug);
+---
+<Layout title="Guías de ventanas de PVC, termopanel y precios | Starwin" description="Resuelve dudas sobre aperturas, termopanel, precios, medición y cuidado de ventanas. Guías para preparar tu proyecto con Starwin.">
+ <div class="interior-page guides-page">
+  <Breadcrumb items={[{name:'Guías',href:'/blog/'}]}/>
+  <header class="interior-intro wrap"><h1>Guías de ventanas.</h1><p>Aperturas, precios y cuidados, explicados con claridad.</p></header>
+  <section class="guide-lead wrap" aria-labelledby="lead-title">
+   <figure><Picture name="interior-garden" alt="Ventana blanca entre cortinas, con luz natural y vista al jardín" width={1920} height={2880} eager sizes="(max-width:700px) 100vw, 50vw"/></figure>
+   <div class="guide-lead-copy"><h2 id="lead-title">¿Corredera, abatible<br/>o proyectante?</h2><p>Compara cómo abren y cuánto espacio necesitan.</p><a class="interior-button" href={`/blog/${lead.slug}/`}>Elegir una apertura <Icon name="arrow" size={19}/></a><p class="guide-duration">{lead.minutes} min de lectura</p></div>
+  </section>
+  <section class="reading-section wrap" aria-labelledby="reading-title"><h2 id="reading-title">Resuelve tus dudas.</h2><div class="reading-list">{reading.map(article=><article class="reading-row"><h3><a href={`/blog/${article.slug}/`}>{article.title}<Icon name="arrow" size={21}/></a></h3><p>{article.category}<span>{article.minutes} min</span></p></article>)}</div></section>
+  <section class="interior-help wrap"><div><h2>Consulta por tu proyecto.</h2><p>Podemos orientarte aunque aún no tengas las medidas.</p></div><a class="interior-primary" href="/cotizar/" data-quote-open>Cotizar con Starwin <Icon name="arrow" size={19}/></a></section>
+ </div>
+</Layout>

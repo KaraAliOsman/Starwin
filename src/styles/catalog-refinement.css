@@ -1,0 +1,94 @@
+/* The catalogue uses the same vivid cyan as the home material scene. */
+.catalog-page .catalog-intro {
+  gap: 0;
+  align-items: stretch;
+  padding-block: 28px 40px;
+}
+.catalog-page .catalog-intro-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(32px, 4vw, 64px);
+  background: #1595c3;
+  color: #06232f;
+}
+.catalog-page .catalog-intro-copy h1 {
+  color: #fff;
+  font-size: clamp(38px, 4.5vw, 64px);
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -.035em;
+}
+.catalog-page .catalog-intro-copy > p:not(.interior-note) {
+  color: #06232f;
+  margin: 24px 0 28px;
+  max-width: 30ch;
+}
+.catalog-page .catalog-room img {
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+}
+.catalog-page .aperture-list { padding-block: 66px 62px; }
+.catalog-page .aperture-list .interior-section-heading { margin-bottom: 32px; }
+.catalog-page .aperture-list h2 {
+  font-size: clamp(36px, 4.3vw, 60px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+.catalog-page .aperture-row {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .9fr);
+  grid-template-rows: auto auto;
+  gap: 0 7%;
+  padding-block: 34px;
+}
+.catalog-page .aperture-image {
+  grid-row: 1 / 3;
+  height: auto;
+  aspect-ratio: 1.42;
+  overflow: hidden;
+}
+.catalog-page .aperture-image img { transition: transform 350ms cubic-bezier(.22,1,.36,1); }
+.catalog-page .aperture-summary { align-self: end; }
+.catalog-page .aperture-summary h3 { font-size: clamp(28px, 3vw, 42px); font-weight: 500; line-height: 1.12; }
+.catalog-page .aperture-summary > p { margin-top: 18px; }
+.catalog-page .aperture-actions { align-self: start; margin-top: 20px; }
+.catalog-page .aperture-actions .interior-link { color: #14566c; }
+.catalog-page .interior-help { background: #e4f3f8; }
+
+/* A product's real opening gets room before details and options. */
+.product-page .product-hero-v2 { gap: 0 clamp(38px, 5vw, 80px); }
+.product-page .product-hero-v2 h1 { font-size: clamp(39px, 4.5vw, 64px); font-weight: 500; line-height: 1.08; letter-spacing: -.035em; }
+.product-page .product-hero-v2 .product-photo img { height: clamp(460px, 43vw, 610px); }
+.product-page .product-details { gap: clamp(45px, 8vw, 120px); padding-block: 60px; }
+.product-page .product-benefits li { border-bottom: 1px solid var(--interior-line); padding-block: 14px; }
+.product-page .product-alternatives { padding-block: 60px; }
+.product-page .interior-help { background: #e4f3f8; }
+@media (hover:hover) and (pointer:fine) {
+  .catalog-page .aperture-image:hover img { transform: scale(1.025); }
+}
+@media (max-width:700px) {
+  .catalog-page .catalog-intro { gap: 0; padding-block: 18px 28px; }
+  .catalog-page .catalog-intro-copy { padding: 30px 24px 32px; }
+  .catalog-page .catalog-intro-copy h1 { font-size: clamp(36px, 9vw, 44px); max-width: 13ch; }
+  .catalog-page .catalog-intro-copy > p:not(.interior-note) { margin: 16px 0 22px; font-size: 16px; }
+  .catalog-page .catalog-room img { height: auto; min-height: 0; aspect-ratio: 1.35; object-position: 58% 53%; }
+  .catalog-page .aperture-list { padding-block: 42px 40px; }
+  .catalog-page .aperture-list .interior-section-heading { margin-bottom: 25px; }
+  .catalog-page .aperture-list h2 { font-size: 35px; }
+  .catalog-page .aperture-row { grid-template-columns: minmax(0,1fr); grid-template-rows: auto; gap: 0; padding-block: 22px 25px; }
+  .catalog-page .aperture-image { grid-row: auto; aspect-ratio: 1.5; height: auto; }
+  .catalog-page .aperture-summary { padding-top: 20px; }
+  .catalog-page .aperture-summary h3 { font-size: 27px; }
+  .catalog-page .aperture-summary > p { margin-top: 9px; font-size: 16px; }
+  .catalog-page .aperture-actions { grid-column: 1; margin-top: 8px; }
+  .product-page .product-hero-v2 { gap: 20px; }
+  .product-page .product-hero-v2 h1 { font-size: clamp(36px, 9vw, 44px); }
+  .product-page .product-hero-v2 .product-photo img { height: auto; aspect-ratio: 1.06; }
+  .product-page .product-buy .interior-primary { width: 100%; max-width: 380px; }
+  .product-page .product-details { padding-block: 38px; gap: 36px; }
+  .product-page .product-alternatives { padding-block: 38px; }
+}
+@media (prefers-reduced-motion:reduce) { .catalog-page .aperture-image img { transition: none; } }

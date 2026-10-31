@@ -1,0 +1,5 @@
+{
+  "directories": ["src", "public", "scripts", "tests", "functions", "worker", ".github"],
+  "files": ["package.json", "package-lock.json", "astro.config.mjs", "tsconfig.json", ".gitignore", ".env.example", "README.md", "DESIGN.md", "PRODUCT.md"],
+  "excluded": [".env", ".tools", "node_modules", "dist", "verificacion", "output", ".taste-skill"]
+}

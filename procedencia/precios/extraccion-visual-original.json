@@ -1,0 +1,812 @@
+{
+  "extracted_at": "2026-10-18T22:21:07.213Z",
+  "source": "C:/Users/alios/Downloads/framedex",
+  "branch": "claude/v1-implementacion",
+  "head": "6f78e3299d93816991fb7c2fe2a2044458fc5e7a",
+  "source_is_dirty": true,
+  "mode": "Current working files, including local modifications. Source checkout left untouched.",
+  "scope": [
+    "window design 2D",
+    "window visualization 3D",
+    "quotation PDF presentation"
+  ],
+  "excluded": [
+    "price engine",
+    "costs/margins/taxes computation",
+    "authentication/accounts",
+    "projects database",
+    "billing",
+    "purchasing",
+    "production",
+    "AI",
+    "secrets/.env"
+  ],
+  "files": [
+    {
+      "source": "frontend/src/features/canvas/ProductFrontSvg.tsx",
+      "output": "src/features/canvas/ProductFrontSvg.tsx",
+      "source_sha256": "d7d4e2aba963981c007f933a6e756e53048a57a3e83f8b7c22440697cc265a00",
+      "output_sha256": "0050804c9c4481124a42cc6c0c0d0f05dfbfbd971d1f4915aec8d68c4a98b316",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/api/generated/models/assemblyMeasure.ts",
+      "output": "src/contracts/models/assemblyMeasure.ts",
+      "source_sha256": "666e210878a73c24239f4097d1d2b632c0571510dbd939887c3c2f7041ff20b7",
+      "output_sha256": "666e210878a73c24239f4097d1d2b632c0571510dbd939887c3c2f7041ff20b7",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/assemblyModuleMeasure.ts",
+      "output": "src/contracts/models/assemblyModuleMeasure.ts",
+      "source_sha256": "b63aaa071f5325c600d820a457fb8056c346576f0a180b549eabf4cd9966667e",
+      "output_sha256": "b63aaa071f5325c600d820a457fb8056c346576f0a180b549eabf4cd9966667e",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/productIssue.ts",
+      "output": "src/contracts/models/productIssue.ts",
+      "source_sha256": "a59583588d071088bf76fe98f46bc3d1372a687fb5f68d24449b02ac022e0649",
+      "output_sha256": "a59583588d071088bf76fe98f46bc3d1372a687fb5f68d24449b02ac022e0649",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/productIssueParams.ts",
+      "output": "src/contracts/models/productIssueParams.ts",
+      "source_sha256": "5abdc9218e9b6a8d8e22963c8f90421808457cebb5871d8fec05db2085e175ce",
+      "output_sha256": "5abdc9218e9b6a8d8e22963c8f90421808457cebb5871d8fec05db2085e175ce",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/productIssueSeverityEnum.ts",
+      "output": "src/contracts/models/productIssueSeverityEnum.ts",
+      "source_sha256": "ac3485386d9c907e06814e99b25b17ca9b246c005fce0823a51a3ab56f4d3218",
+      "output_sha256": "ac3485386d9c907e06814e99b25b17ca9b246c005fce0823a51a3ab56f4d3218",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/format.ts",
+      "output": "src/format.ts",
+      "source_sha256": "79b230920ce1972ce9afc338247d562d1bb7016316ffb369ac783b6c826c51d4",
+      "output_sha256": "66fa89fcf8ac678e0aef3bb21f75c5d2a346afe80cb5b5b937781625843ec48f",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/decimal.ts",
+      "output": "src/decimal.ts",
+      "source_sha256": "399d8a1088bc6b55ab992ea7adbaf3a89f1dacf79938c462c78b68638e5329bb",
+      "output_sha256": "d096f8466b0dc85b384a556088575a80e83dd91234eb08187cbede8aaa7a7249",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/i18n/es-CL.ts",
+      "output": "src/i18n/es-CL.ts",
+      "source_sha256": "cf10575adb68e825a3cf16079075da1e79169fe5488aab0042adfed867c00662",
+      "output_sha256": "32b892ec5971dcfbb6fdbf36d948d686195d891a82d6e3304a1d26498aefb8ea",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/features/canvas/intentEditing.ts",
+      "output": "src/features/canvas/intentEditing.ts",
+      "source_sha256": "fe344bd4be87f4f5e890077a94862f03dab9e354bf2d4c546a7eef5a5631c19f",
+      "output_sha256": "da4344f9d4934cf54d44d1cee6b4ec911716dde0dac60efebf50568560c47470",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/features/canvas/snapping.ts",
+      "output": "src/features/canvas/snapping.ts",
+      "source_sha256": "e7905962b2c46adce5795bd8bbbc1920507bb2654751155ff2005635d786ae70",
+      "output_sha256": "e7905962b2c46adce5795bd8bbbc1920507bb2654751155ff2005635d786ae70",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/glass/glassModel.ts",
+      "output": "src/features/glass/glassModel.ts",
+      "source_sha256": "ab9241bbaf7d4c5cb3fc773f40c6198faf61e69163ead8dd2093195d2552b108",
+      "output_sha256": "ce4f1d5d413504a55a8fd398d2eea6e0d400b317dfa36ca9bf2bd8cfbe1c74e5",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/api/generated/models/glassSpecChoice.ts",
+      "output": "src/contracts/models/glassSpecChoice.ts",
+      "source_sha256": "5f2e90a34e28ba4c5a7fef7ccf7685017d2524fa810d2d86fe13507814f9f690",
+      "output_sha256": "dcd4fbc40322c7569da5694741de745bb28ca33b1798ccb44f7be195eed8a892",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/features/canvas/physicalOpenings.ts",
+      "output": "src/features/canvas/physicalOpenings.ts",
+      "source_sha256": "4a165eddf4271430b2a3c1da04b0f10e191fd4f50b424d45f53b911adb906682",
+      "output_sha256": "4e0e2d944ea13e9e62ad5d9c624ec7bfe079b4cca72b8963f16b7772dde25357",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/api/generated/models/designOptions.ts",
+      "output": "src/contracts/models/designOptions.ts",
+      "source_sha256": "ab63b35877765fd1c389eff253ffaf3ffe79206401e6bd41384d327dc59fc574",
+      "output_sha256": "ab63b35877765fd1c389eff253ffaf3ffe79206401e6bd41384d327dc59fc574",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/couplerChoice.ts",
+      "output": "src/contracts/models/couplerChoice.ts",
+      "source_sha256": "41290ccd85b15f3af8e3a63914f4f2e1d28cc6ff8c0cd6b3c3556c15e6fc7c66",
+      "output_sha256": "41290ccd85b15f3af8e3a63914f4f2e1d28cc6ff8c0cd6b3c3556c15e6fc7c66",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/couplerRule.ts",
+      "output": "src/contracts/models/couplerRule.ts",
+      "source_sha256": "a41646b825120fa1d7ee485d656c43b5410f6bed3a12cea474b7c306d56daed3",
+      "output_sha256": "a41646b825120fa1d7ee485d656c43b5410f6bed3a12cea474b7c306d56daed3",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/profileSection.ts",
+      "output": "src/contracts/models/profileSection.ts",
+      "source_sha256": "99270bf35f276ddc9fd9c9967eea95e80445138bec39948aad2165eb02dbdfc2",
+      "output_sha256": "99270bf35f276ddc9fd9c9967eea95e80445138bec39948aad2165eb02dbdfc2",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/localOriginEnum.ts",
+      "output": "src/contracts/models/localOriginEnum.ts",
+      "source_sha256": "6db9a95a9697c7ab9d495e8c13fb60660a45e771805358f01ae0fc44cb305618",
+      "output_sha256": "6db9a95a9697c7ab9d495e8c13fb60660a45e771805358f01ae0fc44cb305618",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/profileSectionOrientationEnum.ts",
+      "output": "src/contracts/models/profileSectionOrientationEnum.ts",
+      "source_sha256": "adecc58162007cd18eb5299814ea94a1c5314a8e8ef1cf276fdc6a2e94dfaead",
+      "output_sha256": "adecc58162007cd18eb5299814ea94a1c5314a8e8ef1cf276fdc6a2e94dfaead",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/sectionAxis.ts",
+      "output": "src/contracts/models/sectionAxis.ts",
+      "source_sha256": "6878961106d8191ec635bd43937d123abd4bd345a878005b7247fe9a6fed982a",
+      "output_sha256": "6878961106d8191ec635bd43937d123abd4bd345a878005b7247fe9a6fed982a",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/sectionPoint.ts",
+      "output": "src/contracts/models/sectionPoint.ts",
+      "source_sha256": "b0a2df101e49abdc1d641e0637ba5451e4d538c9885899ead3d00656be89737f",
+      "output_sha256": "b0a2df101e49abdc1d641e0637ba5451e4d538c9885899ead3d00656be89737f",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/sectionSourceEnum.ts",
+      "output": "src/contracts/models/sectionSourceEnum.ts",
+      "source_sha256": "edc006990b456dc84dfd69fca89d36a5e3606ae476e7c8a677f72b7a48f348a2",
+      "output_sha256": "edc006990b456dc84dfd69fca89d36a5e3606ae476e7c8a677f72b7a48f348a2",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/finishAuthority.ts",
+      "output": "src/contracts/models/finishAuthority.ts",
+      "source_sha256": "47f17cd9f99b3f3c90fc0cc0b22c688ff3e4518e8bcb8347e7b7b0ea5fccfc9d",
+      "output_sha256": "47f17cd9f99b3f3c90fc0cc0b22c688ff3e4518e8bcb8347e7b7b0ea5fccfc9d",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/finishColor.ts",
+      "output": "src/contracts/models/finishColor.ts",
+      "source_sha256": "80b93eba8829af1fb6b1198a2c550895c99d2c4fb0d901bf99f5fa85ffbff5ba",
+      "output_sha256": "80b93eba8829af1fb6b1198a2c550895c99d2c4fb0d901bf99f5fa85ffbff5ba",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/finishCombination.ts",
+      "output": "src/contracts/models/finishCombination.ts",
+      "source_sha256": "73cdd8483c33c265a62b216df266930a0697f24458fda17672cd1ad8e5bf1d07",
+      "output_sha256": "58898bbf2dbe2215c1ac58340b47ad536ca05d83a918202ebad5fe770d815878",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/api/generated/models/glazingBeadChoice.ts",
+      "output": "src/contracts/models/glazingBeadChoice.ts",
+      "source_sha256": "c91737614c0c4db9e580e8c4b5d2e4acf9521f063848000f6c5be955dd3baa36",
+      "output_sha256": "c91737614c0c4db9e580e8c4b5d2e4acf9521f063848000f6c5be955dd3baa36",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/handlePolicy.ts",
+      "output": "src/contracts/models/handlePolicy.ts",
+      "source_sha256": "450cb24d30c61b7de09afc1d88a0fa97d752e5ce974a685b9d510e8307ff2e75",
+      "output_sha256": "450cb24d30c61b7de09afc1d88a0fa97d752e5ce974a685b9d510e8307ff2e75",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/handleSlot.ts",
+      "output": "src/contracts/models/handleSlot.ts",
+      "source_sha256": "439e7a8f23e95e8d3554b37f75acd4151788fa1c838bdd80a7a5a759c8691926",
+      "output_sha256": "439e7a8f23e95e8d3554b37f75acd4151788fa1c838bdd80a7a5a759c8691926",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/kitChoice.ts",
+      "output": "src/contracts/models/kitChoice.ts",
+      "source_sha256": "38c59e8589113afc6c532e9eb822c0e18890523d8aafbefb6053ddce59dac24e",
+      "output_sha256": "38c59e8589113afc6c532e9eb822c0e18890523d8aafbefb6053ddce59dac24e",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/kitComponent.ts",
+      "output": "src/contracts/models/kitComponent.ts",
+      "source_sha256": "880c96c37b8e5ba6adbf7909482ae4f4d6700833fabcaf6a3061e6315d847ffb",
+      "output_sha256": "880c96c37b8e5ba6adbf7909482ae4f4d6700833fabcaf6a3061e6315d847ffb",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/panelChoice.ts",
+      "output": "src/contracts/models/panelChoice.ts",
+      "source_sha256": "8b25d14b97533f6549389f467bd726456c95c34894b57077a889f17124a0f27d",
+      "output_sha256": "8b25d14b97533f6549389f467bd726456c95c34894b57077a889f17124a0f27d",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/profileChoice.ts",
+      "output": "src/contracts/models/profileChoice.ts",
+      "source_sha256": "7d2525169de9258539c7bcf903b0086e58ad796834afbfc92414a07e4f20d69c",
+      "output_sha256": "7d2525169de9258539c7bcf903b0086e58ad796834afbfc92414a07e4f20d69c",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/systemDimensionalLimit.ts",
+      "output": "src/contracts/models/systemDimensionalLimit.ts",
+      "source_sha256": "2212d14ff9bae32a06545adc8e57ed9548dc5436651f73103a5d2309fdbd89a5",
+      "output_sha256": "2212d14ff9bae32a06545adc8e57ed9548dc5436651f73103a5d2309fdbd89a5",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/systemDimensionalLimitOpeningTypeEnum.ts",
+      "output": "src/contracts/models/systemDimensionalLimitOpeningTypeEnum.ts",
+      "source_sha256": "d0b9d2cfd6e343eb8e5f71fbeb5d2d7c2b4bb656be438bc7da2cea2806947e3f",
+      "output_sha256": "d0b9d2cfd6e343eb8e5f71fbeb5d2d7c2b4bb656be438bc7da2cea2806947e3f",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/productEditing.ts",
+      "output": "src/features/canvas/productEditing.ts",
+      "source_sha256": "aa6446cc1fd76d0ce6f15374a5e76e5433b26f3b06d47aba09862cc343b10107",
+      "output_sha256": "aa6446cc1fd76d0ce6f15374a5e76e5433b26f3b06d47aba09862cc343b10107",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/members.ts",
+      "output": "src/features/canvas/members.ts",
+      "source_sha256": "5ac91ee3dce6395e57040bf27a43611360969f7f14fc753d48c42e418cab2048",
+      "output_sha256": "76d983aea67cb677b956e1d4476532c7ef34f33e49f116d92f7a5673b31bcec0",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/api/generated/models/resolvedFinish.ts",
+      "output": "src/contracts/models/resolvedFinish.ts",
+      "source_sha256": "8d3f5ecf9004c6bb2813c2e048208b685f3053800de180f23ac31913fa0ee49f",
+      "output_sha256": "8d3f5ecf9004c6bb2813c2e048208b685f3053800de180f23ac31913fa0ee49f",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/resolvedFinishProfileSkus.ts",
+      "output": "src/contracts/models/resolvedFinishProfileSkus.ts",
+      "source_sha256": "d4534e030a6be03d61dff4d7bde0e47f40a1b3f9f555c8c34ba849384bef29e8",
+      "output_sha256": "d4534e030a6be03d61dff4d7bde0e47f40a1b3f9f555c8c34ba849384bef29e8",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/finishColors.ts",
+      "output": "src/features/canvas/finishColors.ts",
+      "source_sha256": "625d2b5ba3533c64f5f8275ddc5aab72e55ae68f42e1c856f6ffb6f0f04c6332",
+      "output_sha256": "4fcd7af581eb7f0c6f52cfc0084e593e52d82483f1b686122945d09cdb14f96d",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/features/canvas/assemblyGraph.ts",
+      "output": "src/features/canvas/assemblyGraph.ts",
+      "source_sha256": "103833722b37a275a8027119160ff7858abc6e10db09e17131f681af10380ee9",
+      "output_sha256": "103833722b37a275a8027119160ff7858abc6e10db09e17131f681af10380ee9",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/openings.ts",
+      "output": "src/features/canvas/openings.ts",
+      "source_sha256": "ce0c0a44758d460df853b6d3ce997f8da4785f58fbdc1a5049f28c8dc37accb2",
+      "output_sha256": "ce0c0a44758d460df853b6d3ce997f8da4785f58fbdc1a5049f28c8dc37accb2",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/materials.ts",
+      "output": "src/features/canvas/materials.ts",
+      "source_sha256": "7253fb3e16c0d86028e0edd755a77ff655b3507df80782aaf31470b294dbd39f",
+      "output_sha256": "87e789977d6d5fb6316b4add65166a46fadc361616740bc28245402533c355c4",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/features/canvas/finishHardware.ts",
+      "output": "src/features/canvas/finishHardware.ts",
+      "source_sha256": "83227bfd583d4919eb09e529759c24f03e4c9e29b9164318d227e8b17bcb30f0",
+      "output_sha256": "696f0b668e82375e6276553d69e86aaaaf38df8a0c4093b3574ec84830d61b51",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/features/canvas/hardwareContracts.ts",
+      "output": "src/features/canvas/hardwareContracts.ts",
+      "source_sha256": "92e19d19049b8505218baca418954ca20e93237b2a39dbed4185c7b3949c35ef",
+      "output_sha256": "92e19d19049b8505218baca418954ca20e93237b2a39dbed4185c7b3949c35ef",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/contourGeometry.ts",
+      "output": "src/features/canvas/contourGeometry.ts",
+      "source_sha256": "898ba6a3207f41b064aaeade5a0d3ca87f910a7ffb522ef919ad08d13c08d365",
+      "output_sha256": "898ba6a3207f41b064aaeade5a0d3ca87f910a7ffb522ef919ad08d13c08d365",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/CanvasViewport.tsx",
+      "output": "src/features/canvas/CanvasViewport.tsx",
+      "source_sha256": "621924e04c2ff039c9d297a151469325d08509f083571a9b5c18d37b99c9aeff",
+      "output_sha256": "621924e04c2ff039c9d297a151469325d08509f083571a9b5c18d37b99c9aeff",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/viewport.ts",
+      "output": "src/features/canvas/viewport.ts",
+      "source_sha256": "53e69caffbad3c5bf4393173cc867cbc1936d655939edc14ff873fd25c55ec90",
+      "output_sha256": "53e69caffbad3c5bf4393173cc867cbc1936d655939edc14ff873fd25c55ec90",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/canvas.css",
+      "output": "src/features/canvas/canvas.css",
+      "source_sha256": "0c9b59016c4b0030e242b82e4df948c42cc5007f53731869d456e1e85953312a",
+      "output_sha256": "a196aa200225a323a9b8627a0616a67b841cd0a12e44e03d4f4b7b41a6868322",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/api/generated/models/drawingEnvelope.ts",
+      "output": "src/contracts/models/drawingEnvelope.ts",
+      "source_sha256": "2e21a53abb45b8bf01ec65d2b924989987de728472e410c778a1ff7798091c8b",
+      "output_sha256": "2e21a53abb45b8bf01ec65d2b924989987de728472e410c778a1ff7798091c8b",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/drawingFacts.ts",
+      "output": "src/contracts/models/drawingFacts.ts",
+      "source_sha256": "a0a86db93f088352b89c6f73d48be6fba9205acca0952cf0558eb0df887d8274",
+      "output_sha256": "a0a86db93f088352b89c6f73d48be6fba9205acca0952cf0558eb0df887d8274",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/dimensionChain.ts",
+      "output": "src/contracts/models/dimensionChain.ts",
+      "source_sha256": "8ad7756420ae71cd31df0b599c47d52c008b8d847081f322a41adb30faaba97b",
+      "output_sha256": "8ad7756420ae71cd31df0b599c47d52c008b8d847081f322a41adb30faaba97b",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/axisEnum.ts",
+      "output": "src/contracts/models/axisEnum.ts",
+      "source_sha256": "67ac02ba7ebef51e19b1d2ebc2357c482cd7c8f6afdf160dd8c6a61ad77a05d9",
+      "output_sha256": "67ac02ba7ebef51e19b1d2ebc2357c482cd7c8f6afdf160dd8c6a61ad77a05d9",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/dimensionSegment.ts",
+      "output": "src/contracts/models/dimensionSegment.ts",
+      "source_sha256": "1b28354d15ed5141520e53aec9140a65881d59b91f5de9c5d7aa9a7c60da0ccb",
+      "output_sha256": "1b28354d15ed5141520e53aec9140a65881d59b91f5de9c5d7aa9a7c60da0ccb",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/drawingBay.ts",
+      "output": "src/contracts/models/drawingBay.ts",
+      "source_sha256": "50ad199f9cbe25c652490cb7c7b3a6bcdf2f5c39946ba81298efdeb19de24f8a",
+      "output_sha256": "50ad199f9cbe25c652490cb7c7b3a6bcdf2f5c39946ba81298efdeb19de24f8a",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/drawingHandleDatum.ts",
+      "output": "src/contracts/models/drawingHandleDatum.ts",
+      "source_sha256": "cec86bb1d73e8b1afbe5eb86f09adda3b5b21da333b1d3badaca3524092406b3",
+      "output_sha256": "cec86bb1d73e8b1afbe5eb86f09adda3b5b21da333b1d3badaca3524092406b3",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/ui/OpeningSymbol.tsx",
+      "output": "src/ui/OpeningSymbol.tsx",
+      "source_sha256": "a3d2230edf841c69e00077e85f6c4d3fa751b3a524d09e6d9116f7a06e511edd",
+      "output_sha256": "a3d2230edf841c69e00077e85f6c4d3fa751b3a524d09e6d9116f7a06e511edd",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/ui/openingSymbols.ts",
+      "output": "src/ui/openingSymbols.ts",
+      "source_sha256": "b37a4695e83ecf90f208296ede6e17794eca750238fef7f3ce6dbba8071fbfc6",
+      "output_sha256": "b37a4695e83ecf90f208296ede6e17794eca750238fef7f3ce6dbba8071fbfc6",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/ui/openingSymbols.generated.ts",
+      "output": "src/ui/openingSymbols.generated.ts",
+      "source_sha256": "3f02e290128a4071b93e368a96c270474279bdcd5fe96f9f7359c307f0fca0aa",
+      "output_sha256": "3f02e290128a4071b93e368a96c270474279bdcd5fe96f9f7359c307f0fca0aa",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/Model3DView.tsx",
+      "output": "src/features/canvas/Model3DView.tsx",
+      "source_sha256": "4ebbd7048dc85927ef1282f36742f2f364ec062497520bfda6f322161598e0f7",
+      "output_sha256": "8c178cf2363959fc95b93767f730b414dfce2bb1ee705450084dda67ae376ad2",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/api/generated/models/planGeometry.ts",
+      "output": "src/contracts/models/planGeometry.ts",
+      "source_sha256": "3bbad4a7926a2720d0de5263f5f916017926046b171846bef99c48be9a76369f",
+      "output_sha256": "3bbad4a7926a2720d0de5263f5f916017926046b171846bef99c48be9a76369f",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/planCoupling.ts",
+      "output": "src/contracts/models/planCoupling.ts",
+      "source_sha256": "75097eea1aa95e4f62c001e665f4125b59779b03056bb03a82f1c8eefcd2dda3",
+      "output_sha256": "75097eea1aa95e4f62c001e665f4125b59779b03056bb03a82f1c8eefcd2dda3",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/planPoint.ts",
+      "output": "src/contracts/models/planPoint.ts",
+      "source_sha256": "38b7b8a8ee7d9821e4834652650aa884d690d54cd6a09c37e62708eefca00778",
+      "output_sha256": "38b7b8a8ee7d9821e4834652650aa884d690d54cd6a09c37e62708eefca00778",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/api/generated/models/planModule.ts",
+      "output": "src/contracts/models/planModule.ts",
+      "source_sha256": "842c139a124ea6eb8b195d9c0a547a097bb8de3d5d5a1d0742a97e659fe4b957",
+      "output_sha256": "842c139a124ea6eb8b195d9c0a547a097bb8de3d5d5a1d0742a97e659fe4b957",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/Product3DScene.ts",
+      "output": "src/features/canvas/Product3DScene.ts",
+      "source_sha256": "3c8cced1aaa065e264fa603ce40d75756ed3af66e2e30fec168ac6f5525deea5",
+      "output_sha256": "56f061778ec15b5e7c46603794f51ab10486c63c2e306e498bea105f77fd2302",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/features/canvas/hardwareVisual.ts",
+      "output": "src/features/canvas/hardwareVisual.ts",
+      "source_sha256": "9ceed47227525bf3fb27694c3aed236d6cf55df19990ae29a6af7168c5ddab2c",
+      "output_sha256": "cdd8012200b7b8bfbaebf11b1a4438d02191ed0e521fb6119527db062b511078",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/features/canvas/Model3DStage.tsx",
+      "output": "src/features/canvas/Model3DStage.tsx",
+      "source_sha256": "e01fedefd5c570d0cdcc89230a7d1964e712a6d4c4610b3732798fdcb838d6ff",
+      "output_sha256": "e01fedefd5c570d0cdcc89230a7d1964e712a6d4c4610b3732798fdcb838d6ff",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/scene3dGeometry.ts",
+      "output": "src/features/canvas/scene3dGeometry.ts",
+      "source_sha256": "c758dd5354b01458ffff068b2d3467e6a9376dd5e11cdbb65313fdf18273cd06",
+      "output_sha256": "c758dd5354b01458ffff068b2d3467e6a9376dd5e11cdbb65313fdf18273cd06",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/finishMaterials3d.ts",
+      "output": "src/features/canvas/finishMaterials3d.ts",
+      "source_sha256": "32fad9316a3d71d475cc207797b629468039d8926959050eed94d2629044324d",
+      "output_sha256": "558358e91fa809a41b1dad8374c47e572d6e32553010a5cfe8c2881be5ccd7ad",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/features/canvas/materials3d.ts",
+      "output": "src/features/canvas/materials3d.ts",
+      "source_sha256": "fc8a9f5d48f1da0d17aa2ef0a05f6c692693969dac7dc2cf94d2078295bdba71",
+      "output_sha256": "fc8a9f5d48f1da0d17aa2ef0a05f6c692693969dac7dc2cf94d2078295bdba71",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/poses3d.ts",
+      "output": "src/features/canvas/poses3d.ts",
+      "source_sha256": "6b3b93cac31baa4cd3767c4f2cf50ad76eadafe8af4daeedf8091e039aad3ce7",
+      "output_sha256": "6b3b93cac31baa4cd3767c4f2cf50ad76eadafe8af4daeedf8091e039aad3ce7",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/studioRig3d.ts",
+      "output": "src/features/canvas/studioRig3d.ts",
+      "source_sha256": "ed64934d16ca021c41f952cf51230f42b05d0704f777f9e9fb45fd2012436783",
+      "output_sha256": "ed64934d16ca021c41f952cf51230f42b05d0704f777f9e9fb45fd2012436783",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/webglAvailable.ts",
+      "output": "src/features/canvas/webglAvailable.ts",
+      "source_sha256": "46c5385b3fc3697b14a7d5d16ce9a3476638f320d82ab0a3c52d24fab34f7168",
+      "output_sha256": "46c5385b3fc3697b14a7d5d16ce9a3476638f320d82ab0a3c52d24fab34f7168",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/renderStudio.tsx",
+      "output": "src/features/canvas/renderStudio.tsx",
+      "source_sha256": "dcc961ceee42825924c3dc0ed02a3b601db4c5fef5fd1f1329e27d28601b9e99",
+      "output_sha256": "6df90f7ebf0681257d79ff0f68e480c67a1bf999db9e0080df1f453591dba9db",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/features/canvas/designLibrary.ts",
+      "output": "src/features/canvas/designLibrary.ts",
+      "source_sha256": "86e25b774f91676c860dbc953a6a8fecf70602846b9d8a1d25797e97104b2356",
+      "output_sha256": "ce61310ec5865903c23cd8a6d01e9618e7d53df01ecc0b20d72cd23c23faa07a",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/features/canvas/BowPlanSvg.tsx",
+      "output": "src/features/canvas/BowPlanSvg.tsx",
+      "source_sha256": "b452b544ccf26c90e8b18ff00d7d4707c1f17ae838e469bbf51d4d3146be03ce",
+      "output_sha256": "27c618bc4c0422e0cd88ed401448ec185b914f00ed89db354827ce99348500d5",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/features/canvas/SectionPreviewSvg.tsx",
+      "output": "src/features/canvas/SectionPreviewSvg.tsx",
+      "source_sha256": "68d58ff83107fab207f91dab458dc15838730f6eab6b4f077bdc18a403d69d9d",
+      "output_sha256": "790fd246dbf380c7bda1e02c077041e6b543363247240adce70f2777a0071c8e",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/features/canvas/profileFamilies.tsx",
+      "output": "src/features/canvas/profileFamilies.tsx",
+      "source_sha256": "93b0a57766130a06214cbbc027111ad673366a03a297a4b4fee3e47a61fc40ed",
+      "output_sha256": "93b0a57766130a06214cbbc027111ad673366a03a297a4b4fee3e47a61fc40ed",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/SectionPreviewSvg.css",
+      "output": "src/features/canvas/SectionPreviewSvg.css",
+      "source_sha256": "0a3cb490c1f7ea5feaa3744c5a0d447d9bf35780bb313a439755776f4a5f212c",
+      "output_sha256": "0a3cb490c1f7ea5feaa3744c5a0d447d9bf35780bb313a439755776f4a5f212c",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/dividerNudge.ts",
+      "output": "src/features/canvas/dividerNudge.ts",
+      "source_sha256": "51eaaad01d8b7f1b3513bbe3516f8378d455833adaa17aca53fd158b9781af33",
+      "output_sha256": "51eaaad01d8b7f1b3513bbe3516f8378d455833adaa17aca53fd158b9781af33",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/Drawing.css",
+      "output": "src/features/canvas/Drawing.css",
+      "source_sha256": "c2e50d87018c884d811e7c431335e263347bf1d94d5108528638a466cb0f7a71",
+      "output_sha256": "c2e50d87018c884d811e7c431335e263347bf1d94d5108528638a466cb0f7a71",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/Tools.css",
+      "output": "src/features/canvas/Tools.css",
+      "source_sha256": "7b10143a53efa2b33455fccc13202ee8e6ebd5674e8e673d8ae4c91f68151636",
+      "output_sha256": "7b10143a53efa2b33455fccc13202ee8e6ebd5674e8e673d8ae4c91f68151636",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/Sections.css",
+      "output": "src/features/canvas/Sections.css",
+      "source_sha256": "6e2e2629a00dfebab6f705c798710def6c6bde760c9aea52cf73c28b7fafc645",
+      "output_sha256": "6e2e2629a00dfebab6f705c798710def6c6bde760c9aea52cf73c28b7fafc645",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/Tree.css",
+      "output": "src/features/canvas/Viewport.extracted.css",
+      "source_sha256": "6dcdbebcdb3d2c217abd4c937a3dc27ab792c7c63f435a1c64557036184f1fc5",
+      "output_sha256": "e1e566e948afcd4cead8777080f30efbe207bf9212db026cc440b3f0087ea096",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/styles/tokens.css",
+      "output": "src/styles/tokens.css",
+      "source_sha256": "203af3531ebbe45878145052ad4539cdc6a0bdbbe745b87398fab924d8d73b91",
+      "output_sha256": "203af3531ebbe45878145052ad4539cdc6a0bdbbe745b87398fab924d8d73b91",
+      "adapted": false
+    },
+    {
+      "source": "frontend/public/fonts/ibm-plex-mono-latin-400-normal.woff2",
+      "output": "public/fonts/ibm-plex-mono-latin-400-normal.woff2",
+      "source_sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7",
+      "output_sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7",
+      "adapted": false
+    },
+    {
+      "source": "frontend/public/fonts/ibm-plex-mono-latin-500-normal.woff2",
+      "output": "public/fonts/ibm-plex-mono-latin-500-normal.woff2",
+      "source_sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22",
+      "output_sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22",
+      "adapted": false
+    },
+    {
+      "source": "frontend/public/fonts/ibm-plex-mono-latin-600-normal.woff2",
+      "output": "public/fonts/ibm-plex-mono-latin-600-normal.woff2",
+      "source_sha256": "0d1f0b8d0722224e32e9f28261bdc86c79115be73444ae5eceb73976a1bcdf83",
+      "output_sha256": "0d1f0b8d0722224e32e9f28261bdc86c79115be73444ae5eceb73976a1bcdf83",
+      "adapted": false
+    },
+    {
+      "source": "frontend/public/fonts/ibm-plex-sans-latin-400-normal.woff2",
+      "output": "public/fonts/ibm-plex-sans-latin-400-normal.woff2",
+      "source_sha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e",
+      "output_sha256": "3b646991d30055a93a4ecc499713d4347953a74a947ecab435ab72070cbdab0e",
+      "adapted": false
+    },
+    {
+      "source": "frontend/public/fonts/ibm-plex-sans-latin-500-normal.woff2",
+      "output": "public/fonts/ibm-plex-sans-latin-500-normal.woff2",
+      "source_sha256": "0717336fb31fcdcde4b8deb3675bb4a0f7f6d484864afcd6751ac29975962203",
+      "output_sha256": "0717336fb31fcdcde4b8deb3675bb4a0f7f6d484864afcd6751ac29975962203",
+      "adapted": false
+    },
+    {
+      "source": "frontend/public/fonts/ibm-plex-sans-latin-600-normal.woff2",
+      "output": "public/fonts/ibm-plex-sans-latin-600-normal.woff2",
+      "source_sha256": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f",
+      "output_sha256": "8960851d691c054ed38e259bdcf1a6190d157b4203ed5bb32c632a863fb8ec2f",
+      "adapted": false
+    },
+    {
+      "source": "frontend/public/fonts/OFL.txt",
+      "output": "public/fonts/OFL.txt",
+      "source_sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da",
+      "output_sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da",
+      "adapted": false
+    },
+    {
+      "source": "backend/documents/fonts/IBMPlexMono-400.ttf",
+      "output": "pdf/fonts/IBMPlexMono-400.ttf",
+      "source_sha256": "a7fdc993f9f0387caedba4e42521136fa97e4c0837ae6239bf0413ccf8af00c2",
+      "output_sha256": "a7fdc993f9f0387caedba4e42521136fa97e4c0837ae6239bf0413ccf8af00c2",
+      "adapted": false
+    },
+    {
+      "source": "backend/documents/fonts/IBMPlexMono-500.ttf",
+      "output": "pdf/fonts/IBMPlexMono-500.ttf",
+      "source_sha256": "4fc14a73ca53ba9d32fd759ae1ca1a3133326035d0dd337862b3ee1633cc156e",
+      "output_sha256": "4fc14a73ca53ba9d32fd759ae1ca1a3133326035d0dd337862b3ee1633cc156e",
+      "adapted": false
+    },
+    {
+      "source": "backend/documents/fonts/IBMPlexSans-400.ttf",
+      "output": "pdf/fonts/IBMPlexSans-400.ttf",
+      "source_sha256": "6dbe082463cf749cfa057d45c3048c90f4df031496498e5b5bdfd0b6babb9d16",
+      "output_sha256": "6dbe082463cf749cfa057d45c3048c90f4df031496498e5b5bdfd0b6babb9d16",
+      "adapted": false
+    },
+    {
+      "source": "backend/documents/fonts/IBMPlexSans-500.ttf",
+      "output": "pdf/fonts/IBMPlexSans-500.ttf",
+      "source_sha256": "6f7a8c4219e021ff7c9131bc5f1f7af97bcd1436a59578d444a8cb92e9791742",
+      "output_sha256": "6f7a8c4219e021ff7c9131bc5f1f7af97bcd1436a59578d444a8cb92e9791742",
+      "adapted": false
+    },
+    {
+      "source": "backend/documents/fonts/IBMPlexSans-600.ttf",
+      "output": "pdf/fonts/IBMPlexSans-600.ttf",
+      "source_sha256": "5311c66fd6d04ae45671236f7eae667b671c06c1dc7e88d52c206e5fadd0fb21",
+      "output_sha256": "5311c66fd6d04ae45671236f7eae667b671c06c1dc7e88d52c206e5fadd0fb21",
+      "adapted": false
+    },
+    {
+      "source": "backend/documents/fonts/IBMPlexSans-700.ttf",
+      "output": "pdf/fonts/IBMPlexSans-700.ttf",
+      "source_sha256": "e129a20e8ff7c907ffd07124b573e88c323b7b18afc934d4aa539a3e0f2fe100",
+      "output_sha256": "e129a20e8ff7c907ffd07124b573e88c323b7b18afc934d4aa539a3e0f2fe100",
+      "adapted": false
+    },
+    {
+      "source": "backend/documents/fonts/LICENSE.txt",
+      "output": "pdf/fonts/LICENSE.txt",
+      "source_sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da",
+      "output_sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da",
+      "adapted": false
+    },
+    {
+      "source": "LICENSE",
+      "output": "LICENSE.original.txt",
+      "source_sha256": "1bc20e230ea616eead7dedfcd0487a76313940c78d6eececa56fe56bf4e995ab",
+      "output_sha256": "1bc20e230ea616eead7dedfcd0487a76313940c78d6eececa56fe56bf4e995ab",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/Product3DScene.test.ts",
+      "output": "src/features/canvas/Product3DScene.test.ts",
+      "source_sha256": "6f4f8228c3102cbf49d4702dc8e7dfdc4cf60d189fd8dc22a99c0edf81585423",
+      "output_sha256": "d8f2bff579bc52cbe474330d7913c248b53a16a80569600ae7e7a53f44e50265",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/features/canvas/members.test.ts",
+      "output": "src/features/canvas/members.test.ts",
+      "source_sha256": "3756f179efdd9dfa37063f578caed477877ff4d59bf629f1f63295c204eba245",
+      "output_sha256": "93d4b43f2ee60ef710304bc9e83b40e8cd96b56850d1691fab660a44699cf1d2",
+      "adapted": true
+    },
+    {
+      "source": "frontend/src/features/canvas/productEditing.test.ts",
+      "output": "src/features/canvas/productEditing.test.ts",
+      "source_sha256": "d13321a86a01e3abbd5f6bc65aff28c6ba724392ebecf01dc41fc0161e855191",
+      "output_sha256": "d13321a86a01e3abbd5f6bc65aff28c6ba724392ebecf01dc41fc0161e855191",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/physicalOpenings.test.ts",
+      "output": "src/features/canvas/physicalOpenings.test.ts",
+      "source_sha256": "50133ac442d9bfbfc4a4f56a85ab88f561c3a9d1c5b8a0f4ebd39be066b64741",
+      "output_sha256": "50133ac442d9bfbfc4a4f56a85ab88f561c3a9d1c5b8a0f4ebd39be066b64741",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/contour.test.ts",
+      "output": "src/features/canvas/contour.test.ts",
+      "source_sha256": "1e0f7a3d9f90306f0c5f3b8592540624a10c3006c396491198ba4aba4178f55a",
+      "output_sha256": "1e0f7a3d9f90306f0c5f3b8592540624a10c3006c396491198ba4aba4178f55a",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/frontLayout.test.ts",
+      "output": "src/features/canvas/frontLayout.test.ts",
+      "source_sha256": "9127dcb8269c45a941958187f843e1138cd88fa08cc7c98d44c556514cf61440",
+      "output_sha256": "9127dcb8269c45a941958187f843e1138cd88fa08cc7c98d44c556514cf61440",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/viewport.test.tsx",
+      "output": "src/features/canvas/viewport.test.tsx",
+      "source_sha256": "dadc70f39dcf750814e8f213342aac02070bbcc1ea1386152d41b46faecfb438",
+      "output_sha256": "dadc70f39dcf750814e8f213342aac02070bbcc1ea1386152d41b46faecfb438",
+      "adapted": false
+    },
+    {
+      "source": "frontend/src/features/canvas/hardwareVisual.test.ts",
+      "output": "src/features/canvas/hardwareVisual.test.ts",
+      "source_sha256": "48c894f3a08fdddb8971dad17080830fc55a12278d021c68f92eb3ce1d779c71",
+      "output_sha256": "f1a872c82ab71fc92cd7252f46f519278c7289039b2601ed0f6a34b217a6ae92",
+      "adapted": true
+    },
+    {
+      "source": "backend/documents/quotation.py",
+      "output": "pdf/quotation.original.css",
+      "source_sha256": "5c6f1911669ebdc8193575ddae0b96f64ffb9b319b8e7312184e82622c47a53a",
+      "adapted": true,
+      "note": "Only the CSS literal; pricing functions and imports were excluded.",
+      "output_sha256": "a1c691abbba11748483e325f830c89aa124853728204fc9fc00ae5103ef9f12c"
+    },
+    {
+      "source": "frontend/src/features/projects/extraModel.ts",
+      "output": "src/contracts/extraSelection.ts",
+      "source_sha256": "393b11fcf59739ab566a4ef34f98c48d96397e4282ecce12a172e62a508d2186",
+      "output_sha256": "cd41ee71ada018792e7d8f93b48ee652ca348e1ac532524258445c4f0ab3baec",
+      "adapted": true,
+      "note": "Only the ExtraSelection type. Rates and commercial extras were excluded."
+    },
+    {
+      "source": "frontend/src/features/canvas/Interactions.css",
+      "output": "src/features/canvas/Interactions.extracted.css",
+      "source_sha256": "08826794ae908a6e5aa77595f66238eb5ea36eebe2c4289e4e88691c7cc66776",
+      "output_sha256": "bb5043d43349f9c229b5454f029364da164adaab1a153b8e8e643073b8640eda",
+      "adapted": true,
+      "note": "Only canvas pointer interaction and selection rules."
+    }
+  ],
+  "adaptations": [
+    "Selected local visual contracts replace generated API imports; no API client included.",
+    "Unneeded translations, formatters, relative_price and finish surcharge fields removed.",
+    "Quotation CSS retained; independent presentation compositor accepts externally supplied display amounts.",
+    "New review harness, presentation snapshot contract, PNG adapter, PDF adapter and documentation."
+  ]
+}

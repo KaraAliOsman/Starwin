@@ -1,0 +1,13 @@
+node_modules/
+.tools/
+output/
+.astro/
+dist/
+.env
+.env.*
+!.env.example
+verificacion/
+
+diseno/runtime/
+.impeccable/questions/
+

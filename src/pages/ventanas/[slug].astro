@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Picture from '../../components/Picture.astro';
+import Icon from '../../components/Icon.astro';
+import {products} from '../../data/products';
+import {absolute} from '../../config/site';
+import '../../styles/interior-2026.css';
+import '../../styles/catalog-refinement.css';
+export function getStaticPaths(){return products.map(product=>({params:{slug:product.slug},props:{product}}));}
+const {product:p}=Astro.props;
+const schema={'@context':'https://schema.org','@type':'Product',name:p.name,description:p.description,image:absolute(`/images/${p.image}-960.webp`),category:'Ventanas de PVC',url:absolute(`/ventanas/${p.slug}/`)};
+---
+<Layout title={`${p.name} de PVC en Biobío y Concepción | Starwin`} description={`${p.description} Consulta la configuración de tu proyecto o usa el estimador de Starwin.`} schema={schema}>
+ <div class="interior-page product-page">
+  <Breadcrumb items={[{name:'Ventanas',href:'/ventanas/'},{name:p.short,href:`/ventanas/${p.slug}/`}]}/>
+  <section class="product-hero-v2 wrap" aria-labelledby="product-title">
+   <div class="product-heading"><h1 id="product-title">{p.name}</h1><p>{p.opening}</p></div>
+   <figure class="product-photo"><Picture name={p.image} alt={`Apertura de una ${p.name.toLowerCase()}`} width={1000} height={1000} eager sizes="(max-width:700px) 100vw, 52vw" sourceMaxWidth={1000}/></figure>
+   <div class="product-buy"><p class="product-description">{p.lead}</p><div class="interior-actions"><a class="interior-primary" href="/cotizar/" data-quote-open>Cotizar este modelo <Icon name="arrow" size={19}/></a></div><p class="interior-note">Te orientamos aunque todavía no tengas medidas.</p></div>
+  </section>
+  <section class="product-details wrap" aria-labelledby="product-use-title">
+   <div><h2 id="product-use-title">Dónde funciona.</h2><p>{p.ideal}</p><ul class="product-benefits">{p.benefits.map(benefit=><li><Icon name="check" size={18}/>{benefit}</li>)}</ul></div>
+   <div><h2>Antes de elegir.</h2><p>{p.consider}</p><p class="interior-note">Medidas, vidrio, acabado e instalación se revisan para tu proyecto.</p><div class="product-detail-links"><a class="interior-link" href="/colores/">Comparar acabados <Icon name="arrow" size={18}/></a><a class="interior-link" href={`/cotizador/?design=${p.query}&view=3d`}>Explorar en 3D <Icon name="cube" size={18}/></a><a class="interior-link" href="/blog/pvc-y-termopanel/">Entender PVC y termopanel <Icon name="arrow" size={18}/></a></div></div>
+  </section>
+  <section class="product-alternatives wrap" aria-labelledby="other-openings"><div class="interior-section-heading"><h2 id="other-openings">Compara otras aperturas.</h2><a class="interior-link" href="/ventanas/">Ver todas <Icon name="arrow" size={18}/></a></div><div class="opening-links">{products.filter(product=>product.slug!==p.slug).map(product=><a href={`/ventanas/${product.slug}/`}><Picture name={product.image} alt="" width={480} height={384} sizes="(max-width:700px) 44vw, 22vw" sourceMaxWidth={1000}/><span>{product.short}<Icon name="arrow" size={19}/></span></a>)}</div></section>
+  <section class="interior-help wrap"><div><h2>Revisemos tu ventana.</h2><p>Una foto y tu comuna bastan para empezar.</p></div><a class="interior-primary" href="/cotizar/" data-quote-open>Cotizar con Starwin <Icon name="arrow" size={19}/></a></section>
+ </div>
+</Layout>

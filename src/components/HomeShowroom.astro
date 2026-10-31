@@ -1,0 +1,86 @@
+---
+import Picture from './Picture.astro';
+import Icon from './Icon.astro';
+import {site,wa} from '../config/site';
+const heroFinishes=[
+ {id:'white',name:'Blanco',color:'#f2f0e9'},
+ {id:'anthracite',name:'Antracita',color:'#3f464b'},
+ {id:'oak',name:'Roble dorado',color:'#a7753f'}
+];
+const openings=[
+ {name:'Corredera Serie Pro70',short:'Corredera',image:'sliding',href:'/ventanas/corredera-pro70/',text:'Dos hojas que se deslizan, sin ocupar espacio hacia dentro.',alt:'Ventana corredera de PVC blanca de dos hojas'},
+ {name:'Abatible',short:'Abatible',image:'casement',href:'/ventanas/abatible/',text:'Apertura lateral para abrir la hoja por completo.',alt:'Ventana abatible de PVC abierta hacia el interior'},
+ {name:'Oscilobatiente',short:'Oscilobatiente',image:'tilt',href:'/ventanas/oscilobatiente/',text:'Una hoja. Dos maneras de abrir y ventilar.',alt:'Ventana oscilobatiente en posición de ventilación'},
+ {name:'Proyectante',short:'Proyectante',image:'awning',href:'/ventanas/proyectante/',text:'Se abre hacia fuera desde su parte inferior.',alt:'Ventana proyectante blanca abierta hacia el exterior'},
+ {name:'Fija',short:'Fija',image:'fixed',href:'/ventanas/fija/',text:'Sin apertura. Todo el espacio para la luz y la vista.',alt:'Ventana fija de PVC blanca sin hojas móviles'}
+];
+const details=[
+ {name:'Vidrio',image:'material-corner',title:'El vidrio también se elige.',text:'Revisamos la composición del termopanel para cada espacio.',alt:'Detalle de vidrio, juntas y perfil blanco',href:'/blog/pvc-y-termopanel/',link:'Conoce el termopanel'},
+ {name:'Manilla',image:'material-handle',title:'El detalle que usas cada día.',text:'La apertura, el cierre y los herrajes forman parte de tu elección.',alt:'Manilla con llave instalada en una ventana',href:'/blog/elegir-apertura-ventana/',link:'Encuentra tu apertura'},
+ {name:'Acabados',image:'starwin-profiles',title:'Mira el material de cerca.',text:'El tono y la textura se aprecian mejor con una muestra.',alt:'Muestras de perfiles blancos, oscuros y acabado madera',href:'/colores/',link:'Explora los acabados'}
+];
+const guides=[
+ {href:'/blog/precio-ventanas-pvc-concepcion/',image:'interior-garden',title:'¿Cuánto cuesta una ventana de PVC?',alt:'Ventana blanca con vista hacia un jardín'},
+ {href:'/blog/pvc-y-termopanel/',image:'material-corner',title:'PVC y termopanel: qué estás eligiendo',alt:'Encuentro entre vidrio y marco de una ventana de PVC'},
+ {href:'/blog/elegir-apertura-ventana/',image:'starwin-use',title:'Qué apertura funciona en tu espacio',alt:'Una persona abriendo una ventana'}
+];
+---
+<section class="portal-story" data-portal-story data-contact-section aria-labelledby="home-title"><div class="architectural-hero portal-story-stage">
+ <div class="portal-room" aria-hidden="true"><picture><source type="image/avif" media="(max-width:700px)" srcset="/images/patagonia-chilena-mobile-480.avif 480w, /images/patagonia-chilena-mobile-720.avif 720w" sizes="160vw"/><source type="image/avif" media="(min-width:701px)" srcset="/images/patagonia-chilena-1920.avif"/><source media="(max-width:700px)" srcset="/images/patagonia-chilena-mobile-480.webp 480w, /images/patagonia-chilena-mobile-720.webp 720w" sizes="160vw"/><img src="/images/patagonia-chilena-1920.webp" width="1920" height="1436" alt="" decoding="async"/></picture></div>
+ <div class="hero-portal" data-hero-portal><div class="architectural-hero-photo"><picture><source type="image/avif" media="(max-width:700px)" srcset="/images/patagonia-chilena-mobile-480.avif 480w, /images/patagonia-chilena-mobile-720.avif 720w" sizes="160vw"/><source type="image/avif" media="(min-width:701px)" srcset="/images/patagonia-chilena-1920.avif"/><source media="(max-width:700px)" srcset="/images/patagonia-chilena-mobile-480.webp 480w, /images/patagonia-chilena-mobile-720.webp 720w" sizes="160vw"/><img src="/images/patagonia-chilena-1920.webp" width="1920" height="1436" alt="Cuernos del Paine y lago Pehoé en la Patagonia chilena" fetchpriority="high" decoding="async"/></picture></div>
+ <div class="hero-product-depth" data-product-depth><div class="hero-scroll-depth"><img class="architectural-hero-object" src="/images/studio-white-900.webp" srcset="/images/studio-white-480.webp 480w, /images/studio-white-600.webp 600w, /images/studio-white-900.webp 900w" sizes="(max-width:700px) 64vw, (max-width:1050px) 48vw, 43vw" width="900" height="1125" alt="" aria-hidden="true" decoding="async"/></div></div>
+ </div>
+ <div class="architectural-hero-copy" data-contact-section><div class="hero-intro"><h1 id="home-title"><span class="hero-title-line"><span>Ventanas</span></span> <span class="hero-title-line hero-title-line--ink"><span>de PVC.</span></span></h1><p>Fabricamos e instalamos<br/> a tu medida, en todo el Biobío.</p></div><a class="btn explore-action portal-story-action" href="#ventanas"><span>Explorar ventanas</span><Icon name="arrow" size={28}/></a></div>
+ <div class="portal-arrival" aria-hidden="true"><h2>Abre la vista.</h2></div>
+</div></section>
+
+
+<section class="window-collection wrap" id="ventanas" data-opening-showcase aria-labelledby="opening-title">
+ <div class="collection-heading"><h2 id="opening-title">Elige cómo abrir.</h2><a class="plain-link" href="/ventanas/">Todas las ventanas <Icon name="diagonal" size={19}/></a></div>
+ <div class="opening-workspace">
+  <div class="opening-selector" role="group" aria-label="Explorar aperturas">{openings.map((p,i)=><button type="button" data-opening-choice={i} aria-controls={`opening-${i}`} aria-pressed={i===0?'true':'false'}><span>{p.short}</span><Icon name="arrow" size={19}/></button>)}<span class="opening-track" aria-hidden="true"></span></div>
+  <div class="window-stage"><div class="window-visual">{openings.map((p,i)=><figure id={`opening-${i}`} data-opening-panel={i} hidden={i!==0}><Picture name={p.image} alt={p.alt} width={1000} height={800} sourceMaxWidth={1000} sizes="(max-width:700px) 100vw, 52vw"/></figure>)}</div><div class="window-description">{openings.map((p,i)=><div data-opening-description={i} hidden={i!==0}><h3>{p.name}</h3><p>{p.text}</p><a class="product-discover" href={p.href}>Ver esta ventana <Icon name="diagonal" size={22}/></a></div>)}</div></div>
+ </div>
+ <noscript><p class="no-script-options">Explora las aperturas en el <a href="/ventanas/">catálogo de ventanas</a>.</p></noscript>
+</section>
+
+<section class="product-opening finish-feature scene" id="acabados" data-scene="finish" data-hero-finish aria-labelledby="finish-feature-title">
+ <div class="scene-stage">
+  <div class="finish-canvas wrap">
+   <div class="product-opening-copy"><h2 id="finish-feature-title">Colores y<br/> acabados.</h2><a class="plain-link finish-feature-link" href="/colores/">Explorar acabados <Icon name="diagonal" size={20}/></a></div>
+   <div class="product-opening-stage" id="hero-window"><div class="finish-object-plane">
+    <div class="finish-echo finish-echo--dark" aria-hidden="true"><img src="/images/studio-anthracite-600.webp" width="600" height="750" alt="" loading="lazy" decoding="async"/></div>
+    <div class="finish-echo finish-echo--oak" aria-hidden="true"><img src="/images/studio-oak-600.webp" width="600" height="750" alt="" loading="lazy" decoding="async"/></div>
+    <div class="finish-window-motion"><img src="/images/studio-white-600.webp" width="600" height="750" alt="Ventana de PVC en acabado blanco" loading="lazy" decoding="async"/></div>
+    <div class="finish-window-mobile"><img data-hero-image src="/images/studio-white-900.webp" srcset="/images/studio-white-480.webp 480w, /images/studio-white-600.webp 600w, /images/studio-white-900.webp 900w" sizes="(max-width:700px) 280px, 380px" width="900" height="1125" alt="Ventana de PVC en acabado blanco" loading="lazy" decoding="async"/></div>
+   </div></div>
+   <div class="finish-lineup-labels" aria-label="Acabados de izquierda a derecha"><span>Antracita</span><span>Blanco</span><span>Roble dorado</span></div>
+   <div class="product-opening-controls"><p><span data-hero-finish-label aria-live="polite">Blanco</span></p><div class="hero-finishes" role="group" aria-label="Comparar acabados de la ventana">{heroFinishes.map((f,i)=><button type="button" data-hero-finish-option={f.id} data-hero-finish-name={f.name} aria-controls="hero-window" aria-label={f.name} aria-pressed={i===0?'true':'false'} style={`--swatch:${f.color};--finish-image:url('/images/studio-${f.id}-480.webp')`}><span aria-hidden="true"></span><Icon name="check" size={17}/></button>)}</div><p class="hero-finish-feedback" role="status" data-hero-finish-status hidden></p></div>
+  </div>
+ </div>
+</section>
+
+<section class="material-scene" data-material-theatre aria-labelledby="detail-title">
+ <div class="material-heading wrap"><h2 id="detail-title">La ventana,<br/> de cerca.</h2><a class="plain-link" href="/blog/pvc-y-termopanel/">Entender el conjunto <Icon name="diagonal" size={20}/></a></div>
+ <div class="material-choices wrap" role="group" aria-label="Detalles de la ventana">{details.map((d,i)=><button type="button" data-material-choice={i} aria-controls={`material-${i}`} aria-pressed={i===0?'true':'false'}>{d.name}</button>)}</div>
+ <div class="material-gallery wrap" tabindex="0" role="region" aria-label="Fotografías de vidrio, manilla y acabados">{details.map((d,i)=><figure class={`material-piece material-piece--${i}`} id={`material-${i}`} data-material-panel={i}><div class="material-image"><Picture name={d.image} alt={d.alt} width={1600} height={1600} sizes={i===0?'(max-width:700px) 85vw, 56vw':'(max-width:700px) 85vw, 32vw'}/></div><figcaption><h3>{d.title}</h3><a class="plain-link" href={d.href}>{d.link}<Icon name="diagonal" size={19}/></a></figcaption></figure>)}</div>
+</section>
+
+<section class="project-workbench wrap" aria-labelledby="tools-title">
+ <div class="collection-heading"><h2 id="tools-title">Antes de decidir.</h2><a class="plain-link" href="/herramientas/">Todas las herramientas <Icon name="diagonal" size={19}/></a></div>
+ <div class="project-tools-grid">
+  <a class="photo-feature" href="/visualizador/"><figure class="photo-feature-image"><img src="/images/scene-comedor-960.webp" srcset="/images/scene-comedor-480.webp 480w, /images/scene-comedor-960.webp 960w, /images/scene-comedor-1200.webp 1200w" alt="Comedor con ventanal hacia una terraza y el jardín" width="1200" height="900" loading="lazy" decoding="async" sizes="(max-width:700px) 100vw, 64vw"/></figure><div class="photo-feature-copy"><div><h3>Míralas en tu casa.</h3><p>Sube una foto al visualizador.</p></div><Icon name="diagonal" size={28}/></div></a>
+  <a class="estimate-utility" href="/cotizador/"><h3>Estima tus<br/> ventanas.</h3><p>Varias ventanas.<br/> Un presupuesto en PDF.</p><span class="plain-link">Abrir estimador <Icon name="arrow" size={22}/></span></a>
+ </div>
+ <nav class="home-tool-links" aria-label="Más herramientas para elegir"><a href="/elegir-ventana/">Encuentra tu apertura <Icon name="arrow" size={19}/></a><a href="/comparar-ventanas/">Compara dos ventanas <Icon name="arrow" size={19}/></a><a href="/medir-ventanas/">Medidas y m² <Icon name="arrow" size={19}/></a></nav>
+</section>
+
+<section class="home-guides wrap" aria-labelledby="guides-title"><div class="collection-heading"><h2 id="guides-title">Resuelve tus dudas.</h2><a class="plain-link" href="/blog/">Todas las guías <Icon name="diagonal" size={19}/></a></div><div class="home-guide-grid">{guides.map((g,i)=><a class="home-guide" href={g.href}><figure><Picture name={g.image} alt={g.alt} width={960} height={720} sizes="(max-width:700px) 30vw, 44vw"/></figure><h3>{['Precios de ventanas.','PVC y termopanel.','Elige la apertura.'][i]}<Icon name="diagonal" size={21}/></h3></a>)}</div></section>
+
+<section class="home-contact" data-contact-section aria-labelledby="contact-title">
+ <div class="contact-picture-frame"><picture class="contact-photo"><source media="(max-width:700px)" srcset="/images/contact-window-mobile-480.webp 480w, /images/contact-window-mobile-720.webp 720w" sizes="100vw"/><img src="/images/starwin-home-1600.webp" width="1600" height="1100" alt="Ventana junto a una butaca en una sala luminosa" loading="lazy" decoding="async"/></picture><div class="wrap contact-picture-content"><div class="home-contact-copy"><h2 id="contact-title">Hablemos de<br/> tus ventanas.</h2><p>Una foto, tus medidas o una idea.<br/> Empezamos con lo que tengas.</p><a class="btn btn-yellow" href={wa()} target="_blank" rel="noopener noreferrer">Escribir por WhatsApp <Icon name="chat" size={22}/></a><a class="plain-link contact-email" href="/contacto/#consulta">Prefiero enviar un correo <Icon name="diagonal" size={20}/></a></div></div></div>
+ <div class="wrap home-contact-details"><a href={`tel:${site.phoneRaw}`}><span>Llámanos</span><strong>{site.phone}</strong></a><address><span>Visítanos en Concepción</span>{site.address}<br/> {site.hours}</address><div><a class="home-business plain-link" href="/empresas/">Arquitectos y empresas <Icon name="diagonal" size={20}/></a><a class="plain-link" href="/proceso/">Cómo trabajamos <Icon name="diagonal" size={20}/></a></div></div>
+</section>
+
+
+

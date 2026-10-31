@@ -1,0 +1,37 @@
+---
+import Icon from './Icon.astro';
+import {wa} from '../config/site';
+const options = [
+ {title:'Cotizar por WhatsApp',description:'Cuéntanos tu proyecto.',href:wa('Hola Starwin, quiero cotizar mis ventanas de PVC.'),icon:'chat',external:true},
+ {title:'Cotizar por correo',description:'Envíanos medidas o planos.',href:'/contacto/#consulta',icon:'mail',external:false},
+ {title:'Calcular un estimado',description:'Medidas, precio y PDF.',href:'/cotizador/',icon:'measure',external:false},
+];
+---
+<nav class="quote-options" aria-label="Opciones de cotización">
+ {options.map(option=><a class="quote-option" href={option.href} target={option.external?'_blank':undefined} rel={option.external?'noopener noreferrer':undefined}>
+  <span class="quote-option-icon"><Icon name={option.icon} size={25}/></span>
+  <span class="quote-option-copy"><span class="quote-option-title">{option.title}</span><span class="quote-option-description">{option.description}</span></span>
+  <span class="quote-option-arrow"><Icon name={option.external?'diagonal':'arrow'} size={19}/></span>
+ </a>)}
+</nav>
+<style>
+ .quote-options{display:grid;gap:10px}
+ .quote-option{display:grid;grid-template-columns:40px minmax(0,1fr) 28px;align-items:center;gap:16px;min-height:98px;padding:20px;touch-action:manipulation;transition:background-color 160ms var(--ease)}
+ .quote-option:first-child{background:var(--ink);color:#fff;border-radius:3px}
+ .quote-option-icon{display:grid;place-items:center;width:40px;height:40px;color:#006d94}
+ .quote-option:first-child .quote-option-icon{color:var(--brand-gold)}
+ .quote-option-copy{display:grid;gap:7px;min-width:0}
+ .quote-option-title{font-family:inherit;font-size:18px;font-weight:500;line-height:1.3;letter-spacing:-.015em}
+ .quote-option-description{font-size:14px;line-height:1.45;color:#53636b}
+ .quote-option:first-child .quote-option-description{color:#d8e3e7}
+ .quote-option-arrow{display:grid;place-items:center;width:28px;height:28px;color:#006d94}
+ .quote-option:first-child .quote-option-arrow{color:var(--brand-gold)}
+ .quote-option:nth-child(2){padding-block:17px;border-bottom:1.5px solid #c6d5dc;border-radius:0}
+ .quote-option:nth-child(3){background:#edf3f5;border-radius:3px;min-height:88px}
+ .quote-option-arrow svg{transition:transform 180ms var(--ease)}
+ .quote-option:focus-visible{outline:3px solid #006d94;outline-offset:3px}
+ .quote-option:active{transform:translateY(1px)}
+ @media(hover:hover) and (pointer:fine){.quote-option:first-child:hover{background:#006d94}.quote-option:nth-child(2):hover{background:#f4f8f9}.quote-option:nth-child(3):hover{background:#dcebf1}.quote-option:hover .quote-option-arrow svg{transform:translateX(3px)}}
+ @media(max-width:359px){.quote-option{padding:17px 14px;grid-template-columns:34px minmax(0,1fr) 20px;gap:12px}.quote-option-icon{width:34px;height:34px}.quote-option-title{font-size:16px}.quote-option-description{font-size:13px}.quote-option-arrow{width:20px}}
+ @media(prefers-reduced-motion:reduce){.quote-option,.quote-option-arrow svg{transition:none}.quote-option:active,.quote-option:hover .quote-option-arrow svg{transform:none}}
+</style>

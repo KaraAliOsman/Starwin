@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import Picture from '../components/Picture.astro';
+import CTA from '../components/CTA.astro';
+import Icon from '../components/Icon.astro';
+---
+<Layout title="Starwin PVC Chile | Ventanas y termopanel en Concepción" description="Conoce Starwin, ventanas de PVC y termopanel en Concepción. Un proyecto claro, elección de aperturas y acabados, y atención para hogares y empresas.">
+ <Breadcrumb items={[{name:'Nosotros',href:'/nosotros/'}]}/><section class="page-intro wrap"><h1>Starwin PVC Chile.</h1><p class="lede">Ventanas de PVC y termopanel para hogares y proyectos en Concepción y el Biobío.</p></section>
+ <section class="section-small"><div class="wrap two-col center"><div class="about-image"><Picture name="interior-garden" alt="Ventana blanca hacia el jardín" width={1000} height={1500} eager/></div><div><h2>Producto y asesoría<br/>para tu proyecto.</h2><p class="lede">En Starwin trabajamos con ventanas de PVC para hogares y proyectos en Concepción y el Biobío.</p><p class="about-text">Acompañamos la elección de aperturas, vidrios y acabados para que el proyecto tenga sentido con el uso del espacio. La propuesta final confirma medidas, alcance y condiciones antes de avanzar.</p><p class="about-text">Creamos herramientas para que puedas explorar por tu cuenta: un estimador con PDF, una vista 3D y un visualizador sobre tu foto. Después, una conversación permite revisar lo que la pantalla no puede ver.</p><a class="text-link" href="/contacto/">Conoce al equipo a través de tu proyecto <Icon name="diagonal" size={17}/></a></div></div></section>
+ <section class="section section-white"><div class="wrap"><div class="section-heading"><h2>Lo que puedes esperar.</h2></div><div class="steps"><div class="step"><h3>Información útil</h3><p>Explicamos las opciones y sus límites para que puedas compararlas.</p></div><div class="step"><h3>Un precio estimado</h3><p>El cotizador permite planificar con tus propias medidas y cantidades.</p></div><div class="step"><h3>Revisión del proyecto</h3><p>Las dimensiones y condiciones de instalación se comprueban antes de fabricar.</p></div><div class="step"><h3>Acuerdos por escrito</h3><p>Alcance, plazos y garantía se confirman en la documentación de tu propuesta.</p></div></div></div></section><CTA title="Hablemos de tus ventanas a medida."/>
+</Layout>
+<style>.about-image{height:570px;position:relative}.about-image img{height:100%;width:100%;object-position:50% 50%}.about-text{font-size:15px;color:var(--muted)}@media(max-width:700px){.about-image{height:350px}.about-text{font-size:14px}}</style>

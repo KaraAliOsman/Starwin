@@ -1,7 +1,0 @@
-User-agent: *
-Disallow: /cdn-cgi/l/email-protection
-
-Allow: /
-
-Sitemap: https://starwinpvc.cl/sitemap.xml
-

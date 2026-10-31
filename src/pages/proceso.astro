@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import Icon from '../components/Icon.astro';
+import CTA from '../components/CTA.astro';
+---
+<Layout title="Cómo cotizar y renovar tus ventanas de PVC | Proceso Starwin" description="Desde la primera conversación hasta la revisión de medidas, fabricación e instalación. Conoce cómo preparar tu proyecto de ventanas de PVC con Starwin.">
+ <Breadcrumb items={[{name:'Cómo trabajamos',href:'/proceso/'}]}/><section class="page-intro wrap"><h1>Cómo comprar<br/>tus ventanas.</h1><p class="lede">Conocer el recorrido ayuda a planificar. Cada paso deja una decisión resuelta antes de pasar al siguiente.</p></section>
+ <section class="section-small section-white"><div class="wrap process-list">
+  <article><span>01</span><div><h2>Cuéntanos qué quieres resolver.</h2><p>Renovar una ventana, reducir las corrientes de aire o preparar una obra. Comparte tu comuna, la cantidad aproximada y, si puedes, una foto del espacio. No hace falta tener medidas para una primera consulta.</p><a class="text-link" href="/contacto/">Conversar con Starwin <Icon name="diagonal" size={17}/></a></div></article>
+  <article><span>02</span><div><h2>Revisamos las opciones contigo.</h2><p>Definimos qué apertura, vidrio y acabado pueden responder a tu espacio. También revisamos el estado del vano, el retiro de la ventana existente, el acceso y las terminaciones si necesitas instalación.</p><a class="text-link" href="/preparar-proyecto/">Qué información ayuda a preparar la propuesta <Icon name="diagonal" size={17}/></a></div></article>
+  <article><span>03</span><div><h2>Confirmamos el alcance.</h2><p>Antes de fabricar se comprueban las medidas finales y se acuerdan aperturas, vidrio, color, cantidad, acceso y terminaciones. La propuesta debe definir precio, plazos y condiciones de garantía.</p><a class="text-link" href="/blog/instalacion-ventanas-concepcion/">Qué revisar en la propuesta <Icon name="diagonal" size={17}/></a></div></article>
+  <article><span>04</span><div><h2>Coordinamos la entrega.</h2><p>La fabricación y la entrega se programan según lo confirmado. Si la propuesta incluye instalación, se acuerdan la preparación del lugar, el acceso y la secuencia de trabajo.</p><p>Los plazos dependen de la configuración, disponibilidad y condiciones de cada proyecto.</p></div></article>
+  <article><span>05</span><div><h2>Revisa la entrega y el funcionamiento.</h2><p>Comprueba apertura, cierre y terminaciones según el alcance contratado. Solicita las indicaciones de uso y mantenimiento, y conserva la documentación de entrega.</p><a class="text-link" href="/blog/mantenimiento-ventanas-pvc/">Cómo cuidarla <Icon name="diagonal" size={17}/></a></div></article>
+ </div></section><CTA title="Empecemos por tu espacio."/>
+</Layout>
+<style>.process-list{max-width:1030px}.process-list article{display:grid;grid-template-columns:80px 1fr;gap:55px;border-bottom:1px solid var(--line);padding:40px 0}.process-list article:first-child{padding-top:0}.process-list article>span{color:var(--blue);font-size:16px;padding-top:7px}.process-list h2{font-size:35px;line-height:1.2;margin-bottom:23px}.process-list p{font-size:16px;color:var(--muted);max-width:750px}.process-list .notice{margin-top:15px;max-width:750px}@media(max-width:700px){.process-list article{grid-template-columns:30px 1fr;gap:20px;padding:32px 0}.process-list h2{font-size:27px;margin-bottom:18px}.process-list p{font-size:14px}.process-list article>span{font-size:13px}}</style>

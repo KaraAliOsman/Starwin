@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Picture from '../../components/Picture.astro';
+import Icon from '../../components/Icon.astro';
+import {products} from '../../data/products';
+import '../../styles/interior-2026.css';
+import '../../styles/catalog-refinement.css';
+---
+<Layout title="Ventanas de PVC en Biobío: aperturas y modelos | Starwin" description="Compara Corredera Serie Pro70, abatibles, oscilobatientes, proyectantes y ventanas fijas. Consulta una solución a medida o estima tus ventanas online.">
+ <div class="interior-page catalog-page">
+  <Breadcrumb items={[{name:'Ventanas',href:'/ventanas/'}]}/>
+  <header class="catalog-intro wrap">
+   <div class="catalog-intro-copy"><h1>Ventanas de PVC <br/>a tu medida.</h1><p>Compara las aperturas y encuentra la que funciona en tu espacio.</p><div class="interior-actions"><a class="interior-primary" href="/cotizar/" data-quote-open>Cotizar mis ventanas <Icon name="arrow" size={19}/></a></div></div>
+   <figure class="catalog-room"><Picture name="interior-panorama" alt="Ventanas de gran formato en una sala abierta al paisaje" width={1200} height={900} eager sizes="(max-width:700px) 100vw, 60vw" sourceMaxWidth={1200}/></figure>
+  </header>
+  <nav class="aperture-nav wrap" aria-label="Ir a una apertura">{products.map(product=><a href={`#${product.slug}`}>{product.short}<Icon name="arrow" size={16}/></a>)}</nav>
+  <section class="aperture-list wrap" id="aperturas" aria-labelledby="aperture-title">
+   <div class="interior-section-heading"><h2 id="aperture-title">Elige cómo abrir.</h2></div>
+   {products.map(product=><article class="aperture-row" id={product.slug}>
+    <a class="aperture-image" href={`/ventanas/${product.slug}/`} aria-label={`Ver ${product.name}`}><Picture name={product.image} alt={`${product.name}`} width={1000} height={800} sizes="(max-width:700px) 100vw, 52vw" sourceMaxWidth={1000}/></a>
+    <div class="aperture-summary"><h3><a href={`/ventanas/${product.slug}/`}>{product.short}</a></h3><p>{product.lead}</p><p class="aperture-use">{product.ideal}</p></div>
+    <div class="aperture-actions"><a class="interior-link" href={`/ventanas/${product.slug}/`}>Ver modelo <Icon name="arrow" size={18}/></a></div>
+   </article>)}
+   
+  </section>
+  <section class="interior-help wrap" aria-labelledby="catalog-help"><div><h2 id="catalog-help">¿Aún no sabes cuál elegir?</h2><p>Envíanos una foto y cuéntanos qué quieres mejorar.</p></div><a class="interior-primary" href="/cotizar/" data-quote-open>Quiero orientación <Icon name="arrow" size={19}/></a><a class="interior-link" href="/colores/">Ver acabados <Icon name="arrow" size={18}/></a></section>
+ </div>
+</Layout>

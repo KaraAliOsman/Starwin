@@ -1,0 +1,14 @@
+import fs from 'node:fs/promises';
+import sharp from 'sharp';
+import crypto from 'node:crypto';
+const source='../material-starwin/imagenes/originales/092-dc2fbdd3-color.jpg';
+const bytes=await fs.readFile(source);
+for(const size of [480,960,1600])await sharp(bytes).resize({width:size,withoutEnlargement:true}).webp({quality:86}).toFile(`public/images/finish-detail-${size}.webp`);
+const samplesSource='../material-starwin/imagenes/originales/114-2258c693-muestra.jpg';
+const samples=await fs.readFile(samplesSource);
+for(const size of [480,960,1600])await sharp(samples).resize({width:size,withoutEnlargement:true}).webp({quality:86}).toFile(`public/images/finish-samples-${size}.webp`);
+const fontSource='procedencia/fuentes/manrope/Manrope-variable.ttf';
+const font=await fs.readFile(fontSource);
+await fs.copyFile(fontSource,'public/fonts/manrope-variable.ttf');
+await fs.writeFile('procedencia/imagenes/arquitectura-material.json',JSON.stringify({image:{source,sha256:crypto.createHash('sha256').update(bytes).digest('hex'),processing:'Resize only, WebP 86. No altered geometry or simulated finish.',sizes:[480,960,1600],description:'Pre-existing Starwin archive image. Does not establish a Starwin installation.'},samples:{source:samplesSource,sha256:crypto.createHash('sha256').update(samples).digest('hex'),derivatives:'finish-samples-{480,960,1600}.webp',processing:'Resize only, WebP 86. No altered geometry or simulated finish.',description:'Profile samples from the Starwin archive. Reference only; does not establish Pro70 compatibility or a Starwin installation.'},hero:{source:'../baufens-reverse-engineering/recursos/imagenes/e8a734d21538__windows-as-part-of-your-interior.jpg',derivatives:'architecture-{480,960,1600}.webp',provenance:'seleccion-v2.json',description:'BauFens reference environment, identified in the page.'},font:{source:fontSource,origin:'https://github.com/google/fonts/tree/main/ofl/manrope',sha256:crypto.createHash('sha256').update(font).digest('hex'),license:'procedencia/fuentes/manrope/OFL.txt'}},null,2));
+console.log('Material y tipografía preparados, con procedencia.');

@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import Picture from '../components/Picture.astro';
+import Icon from '../components/Icon.astro';
+import {wa} from '../config/site';
+import {colors} from '../data/products';
+import '../styles/interior-2026.css';
+const finishes=[{id:'white',name:'Blanco',hex:'#e9ebed'},{id:'anthracite',name:'Antracita',hex:'#41484c'},{id:'oak',name:'Roble dorado',hex:'#aa7b42'}];
+---
+<Layout title="Colores y acabados de ventanas de PVC | Starwin Biobío" description="Compara blanco, antracita y acabados de madera para ventanas de PVC. Explora siete tonos y consulta muestras y disponibilidad con Starwin.">
+ <div class="interior-page finishes-page">
+  <Breadcrumb items={[{name:'Acabados',href:'/colores/'}]}/>
+  <header class="interior-intro wrap"><h1>Colores y acabados.</h1><p>Compara el aspecto. Confirma el tono y la textura con una muestra.</p></header>
+  <section class="finish-studio wrap" data-material-studio aria-labelledby="finish-title">
+   <figure><div class="finish-stage" id="finish-preview"><img data-material-image src="/images/studio-white-900.webp" srcset="/images/studio-white-480.webp 480w, /images/studio-white-600.webp 600w, /images/studio-white-900.webp 900w" sizes="(max-width:700px) 300px, 45vw" width="900" height="1125" alt="Ventana de PVC en acabado blanco" loading="eager" fetchpriority="high" decoding="async"/></div></figure>
+   <div class="finish-controls">
+    <h2 id="finish-title">Misma ventana.<br/> Otro acabado.</h2>
+    <div class="finish-options" role="group" aria-label="Comparar acabados">
+     {finishes.map((finish,index)=><button type="button" data-material-finish={finish.id} data-material-name={finish.name} aria-controls="finish-preview" aria-pressed={index===0?'true':'false'} style={`--finish:${finish.hex};--finish-image:url('/images/studio-${finish.id}-480.webp')`}><span class="finish-chip" aria-hidden="true"></span><span class="finish-name">{finish.name}</span><Icon name="check" size={16}/></button>)}
+    </div>
+    <p class="sr-only" data-material-label aria-live="polite">Blanco seleccionado.</p>
+    <p class="finish-feedback" data-material-feedback role="status" hidden></p>
+    <a class="interior-primary" data-material-contact href={wa('Hola Starwin, me interesa el acabado Blanco. Quiero consultar muestras y disponibilidad.')} target="_blank" rel="noopener noreferrer">Consultar este acabado <Icon name="diagonal" size={19}/></a>
+    <p class="interior-note">La pantalla y la luz pueden cambiar la percepción del color.</p>
+   </div>
+  </section>
+  <section class="finish-range wrap" aria-labelledby="finish-range-title"><div class="interior-section-heading"><h2 id="finish-range-title">Otros tonos para consultar.</h2><p>Disponibilidad según modelo y configuración.</p></div><div class="finish-range-list">{colors.map(color=><a id={color.id} href={wa(`Hola Starwin, me interesa el acabado ${color.name}. Quiero consultar muestras y disponibilidad.`)} target="_blank" rel="noopener noreferrer"><span class="finish-swatch" style={`--swatch:${color.hex}`} aria-hidden="true"></span><span>{color.name}</span><Icon name="diagonal" size={18}/></a>)}</div></section>
+  <section class="finish-samples wrap"><figure><Picture name="finish-samples" alt="Muestras de perfiles en blanco, tonos oscuros y madera con vidrio y juntas visibles" width={2400} height={1600} sizes="(max-width:700px) 100vw, 55vw"/></figure><div><h2>Elige con una muestra.</h2><p>Revisa el acabado junto a los colores de tu casa antes de decidir.</p><a class="interior-primary" href="/cotizar/" data-quote-open>Consultar muestras <Icon name="arrow" size={19}/></a><a class="interior-link" href="/ventanas/">Ver ventanas <Icon name="arrow" size={18}/></a></div></section>
+ </div>
+</Layout>
+<script>
+ document.querySelectorAll<HTMLElement>('.finishes-page [data-material-studio]').forEach(studio=>{
+  const image=studio.querySelector<HTMLImageElement>('[data-material-image]');
+  const label=studio.querySelector<HTMLElement>('[data-material-label]');
+  const contact=studio.querySelector<HTMLAnchorElement>('[data-material-contact]');
+  const feedback=studio.querySelector<HTMLElement>('[data-material-feedback]');
+  const buttons=studio.querySelectorAll<HTMLButtonElement>('[data-material-finish]');
+  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  let revision=0;
+  let reveal:Animation|undefined;
+  reducedMotion.addEventListener('change',event=>{if(event.matches)reveal?.cancel();});
+  buttons.forEach(button=>button.addEventListener('click',async event=>{
+   if(!image||!label||!contact)return;
+   if(button.getAttribute('aria-pressed')==='true'&&!studio.hasAttribute('aria-busy'))return;
+   const current=++revision,name=button.dataset.materialName||'',next=new Image();
+   next.sizes=image.sizes;next.srcset=[480,600,900].map(width=>`/images/studio-${button.dataset.materialFinish}-${width}.webp ${width}w`).join(', ');
+   next.src=`/images/studio-${button.dataset.materialFinish}-900.webp`;
+   buttons.forEach(option=>option.toggleAttribute('data-pending',option===button));
+   if(feedback)feedback.hidden=true;
+   studio.setAttribute('aria-busy','true');label.textContent=`Cargando ${name.toLowerCase()}…`;
+   try{
+    await next.decode();if(current!==revision)return;
+    reveal?.cancel();image.srcset=next.srcset;image.src=next.src;image.alt=`Ventana de PVC en acabado ${name.toLowerCase()}`;
+    if(event.detail>0&&!reducedMotion.matches)reveal=image.animate([{opacity:.65},{opacity:1}],{duration:200,easing:'cubic-bezier(.22,1,.36,1)'});
+    label.textContent=`${name} seleccionado.`;
+    const url=new URL(contact.href);url.searchParams.set('text',`Hola Starwin, me interesa el acabado ${name}. Quiero consultar muestras y disponibilidad.`);contact.href=url.toString();
+    buttons.forEach(option=>option.setAttribute('aria-pressed',String(option===button)));
+   }
+   catch{if(current===revision&&feedback){label.textContent='';feedback.hidden=false;feedback.textContent='No pudimos cargar ese acabado. Tócalo para reintentar.';}}
+   finally{if(current===revision){studio.removeAttribute('aria-busy');buttons.forEach(option=>option.removeAttribute('data-pending'));}}
+  }));
+ });
+</script>

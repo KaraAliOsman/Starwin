@@ -1,0 +1,44 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import {toolProducts} from '../features/tools/model';
+import {wa} from '../config/site';
+const initial=toolProducts.slice(0,2);
+const rows=[['space','Espacio de apertura'],['ventilation','Ventilación'],['closure','Cómo cierra'],['cleaning','Limpieza'],['ideal','Dónde considerarla'],['consider','Qué revisar']] as const;
+---
+<ToolLayout title="Comparador de ventanas: corredera, abatible y oscilobatiente" description="Compara dos ventanas de PVC lado a lado: apertura, ventilación, recorrido de la hoja y limpieza. Corredera Pro70, abatible, oscilobatiente, proyectante y fija." heading="Compara ventanas." intro="Dos aperturas, lado a lado. Descubre qué cambia en tu espacio." slug="comparar-ventanas">
+ <section class="wrap" aria-label="Comparación de aperturas" data-comparison>
+  <div class="compare-choices">{initial.map((product,index)=><article class="compare-choice" data-compare-product={index}>
+   <label for={`compare-${index}`}>{index===0?'Primera ventana':'Segunda ventana'}</label><select id={`compare-${index}`} data-compare-select={index}>{toolProducts.map(p=><option value={p.query} selected={p.query===product.query}>{p.short}</option>)}</select>
+   <img data-product-image src={`/images/${product.image}-960.webp`} width="1000" height="800" alt={product.name} decoding="async"/>
+   <h2 data-product-name>{product.name}</h2><a class="tool-link" data-product-link href={`/ventanas/${product.slug}/`}>Ver ventana <span aria-hidden="true">↗</span></a>
+  </article>)}</div>
+  <p class="compare-notice" data-compare-notice role="status" aria-live="polite"></p>
+  <dl class="compare-facts">{rows.map(([key,title])=><div><dt>{title}</dt>{initial.map((p,index)=><dd data-compare-value={`${index}-${key}`}><span class="sr-only">{p.short}: </span><span data-value>{key==='ideal'||key==='consider'?p[key]:p.facts[key]}</span></dd>)}</div>)}</dl>
+  <div class="tool-actions" style="margin-top:26px"><button class="tool-action secondary" type="button" data-share-comparison>Copiar comparación <span aria-hidden="true">↗</span></button><a class="tool-link" href={wa('Hola Starwin, necesito ayuda para elegir la apertura de mis ventanas.')} data-comparison-contact target="_blank" rel="noopener noreferrer">Consultar estas opciones</a></div><p class="tool-status" data-compare-status role="status" aria-live="polite"></p>
+ </section>
+ <section class="tool-explain wrap" aria-label="Cómo interpretar la comparación"><div><h2>Compara la apertura.</h2><p>Esta herramienta compara cómo se usa cada ventana. El aislamiento depende del perfil, vidrio, herrajes y montaje del conjunto. Para valores técnicos se revisa la ficha del sistema elegido.</p></div><div><h2>Piensa en el recorrido.</h2><p>Considera muebles, cortinas y acceso al exterior. Si todavía no sabes cuál elegir, prueba el <a href="/elegir-ventana/">asistente de aperturas</a>.</p></div></section>
+</ToolLayout>
+<script>
+ import {toolProducts} from '../features/tools/model';
+ import {wa} from '../config/site';
+ const root=document.querySelector<HTMLElement>('[data-comparison]');
+ if(root){
+  const selects=[...root.querySelectorAll<HTMLSelectElement>('[data-compare-select]')];
+  const params=new URLSearchParams(location.search);
+  selects.forEach((select,i)=>{const query=params.get(i===0?'a':'b');if(toolProducts.some(p=>p.query===query))select.value=query!;});
+  function update(){
+   const picked=selects.map(select=>toolProducts.find(p=>p.query===select.value)!);
+   picked.forEach((p,i)=>{
+    const panel=root!.querySelector<HTMLElement>(`[data-compare-product="${i}"]`)!;
+    const image=panel.querySelector<HTMLImageElement>('[data-product-image]')!;image.src=`/images/${p.image}-960.webp`;image.alt=p.name;
+    panel.querySelector('[data-product-name]')!.textContent=p.name;panel.querySelector<HTMLAnchorElement>('[data-product-link]')!.href=`/ventanas/${p.slug}/`;
+    for(const key of ['space','ventilation','closure','cleaning','ideal','consider'] as const){const value=root!.querySelector(`[data-compare-value="${i}-${key}"]`)!;value.querySelector('.sr-only')!.textContent=`${p.short}: `;value.querySelector('[data-value]')!.textContent=key==='ideal'||key==='consider'?p[key]:p.facts[key];}
+   });
+   root!.querySelector('[data-compare-notice]')!.textContent=picked[0].query===picked[1].query?'Estás viendo la misma apertura. Elige otra para compararlas.':'';
+   const url=new URL(location.href);url.searchParams.set('a',picked[0].query);url.searchParams.set('b',picked[1].query);history.replaceState(null,'',url);
+   root!.querySelector<HTMLAnchorElement>('[data-comparison-contact]')!.href=wa(`Hola Starwin, estoy comparando ${picked[0].short} y ${picked[1].short}. Necesito orientación para mi proyecto.`);
+  }
+  selects.forEach(select=>select.addEventListener('change',update));
+  root.querySelector('[data-share-comparison]')?.addEventListener('click',async()=>{const status=root.querySelector('[data-compare-status]')!;try{await navigator.clipboard.writeText(location.href);status.textContent='Enlace copiado con tus dos aperturas.';}catch{status.textContent='Puedes copiar la dirección de esta página; conserva las aperturas elegidas.';}});update();
+ }
+</script>

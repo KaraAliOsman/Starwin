@@ -1,0 +1,8 @@
+import fs from 'node:fs/promises';import sharp from 'sharp';
+const base='https://qwen-qwen-image-edit-2511.hf.space';
+const data=await sharp('public/images/scene-sala-1200.webp').resize(768).jpeg({quality:88}).toBuffer();const form=new FormData();form.set('files',new Blob([data],{type:'image/jpeg'}),'sample-room.jpg');
+const up=await fetch(base+'/gradio_api/upload',{method:'POST',body:form,signal:AbortSignal.timeout(20000)});const uploaded=await up.json();console.log(JSON.stringify({uploadStatus:up.status,type:typeof uploaded,files:Array.isArray(uploaded)?uploaded.length:null}));if(!up.ok||!Array.isArray(uploaded))process.exit(1);
+const path=uploaded[0];
+const req=await fetch(base+'/gradio_api/call/infer',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({data:[[{image:{path,meta:{_type:'gradio.FileData'}},caption:null}], 'Replace only the large window in this room with an anthracite PVC window with two horizontal sliding panes. Keep the existing opening dimensions, walls, furniture, garden and lighting unchanged. Photorealistic renovation preview, no text.',42,false,4,40,576,768,false]}),signal:AbortSignal.timeout(20000)});const job=await req.json();console.log(JSON.stringify({requestStatus:req.status,job}));if(!req.ok||!job.event_id)process.exit(1);
+await fs.writeFile('verificacion/proveedor-gratuito/prototype-job.json',JSON.stringify({base,eventId:job.event_id},null,2));
+const stream=await fetch(base+'/gradio_api/call/infer/'+job.event_id,{signal:AbortSignal.timeout(180000)});console.log('stream status',stream.status);const result=await stream.text();await fs.writeFile('verificacion/proveedor-gratuito/prototype-sse.txt',result);console.log(result.slice(0,1600));

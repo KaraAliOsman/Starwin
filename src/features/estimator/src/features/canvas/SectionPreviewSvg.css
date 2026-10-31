@@ -1,0 +1,95 @@
+/* §15 profile section preview — true-scale cross-section with provenance. */
+.section-preview {
+  margin: 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.section-preview svg {
+  display: block;
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-1);
+  background: var(--surface-panel);
+}
+
+.section-preview__shape {
+  stroke-width: 0.6;
+  vector-effect: non-scaling-stroke;
+}
+
+.section-preview__shape--approx {
+  fill: none;
+  stroke-dasharray: 3 2;
+}
+
+.section-preview__axis {
+  stroke: var(--border-strong);
+  stroke-width: 0.4;
+  stroke-dasharray: 4 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.section-preview__dims {
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.section-preview__axes {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+}
+.section-preview__axes > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.section-preview__axes dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.section-preview figcaption {
+  display: grid;
+  gap: var(--space-1);
+  font-size: var(--type-dense);
+  color: var(--text-secondary);
+}
+
+.section-preview[data-provenance="APPROXIMATE"] figcaption::before,
+.section-preview[data-provenance="ILLUSTRATIVE"] figcaption::before {
+  content: "◌ ";
+}
+.section-family__shape {
+  stroke-width: 0.8;
+  vector-effect: non-scaling-stroke;
+}
+.section-family__chamber {
+  fill: none;
+  stroke-width: 0.5;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.7;
+}
+.section-family__break {
+  opacity: 0.8;
+}
+.section-preview[data-provenance="ILLUSTRATIVE"] svg {
+  background: var(--bg-app);
+}
+
+.section-preview[data-provenance="POLYGON"] figcaption::before,
+.section-preview[data-provenance="DXF_REFERENCE"] figcaption::before {
+  content: "■ ";
+}
+
+.section-preview-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}

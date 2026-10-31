@@ -1,0 +1,38 @@
+---
+import Icon from './Icon.astro';
+import {site,wa} from '../config/site';
+---
+<footer class="site-footer">
+ <div class="wrap">
+  <div class="footer-signature">
+   <div class="footer-brand"><a href="/" aria-label="Starwin, inicio"><img src="/starwin-logo-small.webp" width="178" height="30" alt="Starwin" loading="lazy" decoding="async"/></a></div>
+   <p>Ventanas de PVC y termopanel.<br/><span>Desde Concepción, a todo el Biobío.</span></p>
+  </div>
+  <div class="footer-grid">
+   <nav aria-labelledby="footer-productos">
+    <h2 class="footer-label" id="footer-productos">Ventanas y proyecto</h2>
+    <a href="/ventanas/">Ventanas y aperturas</a>
+    <a href="/colores/">Colores y acabados</a>
+    <a href="/herramientas/">Herramientas para tus ventanas</a>
+    <a href="/preparar-proyecto/">Preparar mi proyecto</a>
+   </nav>
+   <nav aria-labelledby="footer-informacion">
+    <h2 class="footer-label" id="footer-informacion">Starwin y guías</h2>
+    <a href="/nosotros/">Starwin</a>
+    <a href="/proceso/">Proceso de compra</a>
+    <a href="/ventanas-pvc-biobio/">Cobertura en el Biobío</a>
+    <a href="/empresas/">Empresas y arquitectura</a>
+    <a href="/blog/">Guías de ventanas</a>
+    <a href="/preguntas-frecuentes/">Preguntas frecuentes</a>
+   </nav>
+   <div class="footer-contact">
+    <h2 class="footer-label">Contacto</h2>
+    <div class="footer-contact-links"><a href={`tel:${site.phoneRaw}`}>{site.phone}</a><a href={wa()} target="_blank" rel="noopener noreferrer">WhatsApp <Icon name="diagonal" size={13}/></a></div>
+    <a href={`mailto:${site.email}`}>{site.email}</a>
+    <p>{site.address}, Concepción<br/>{site.hours}</p>
+    <div class="social-links"><a href={site.instagram} target="_blank" rel="noopener noreferrer">Instagram <Icon name="diagonal" size={13}/></a><a href={site.facebook} target="_blank" rel="noopener noreferrer">Facebook <Icon name="diagonal" size={13}/></a></div>
+   </div>
+  </div>
+  <div class="footer-bottom"><span>© {new Date().getFullYear()} Starwin PVC Chile</span><div><a href="/privacidad/">Privacidad</a><a href="/condiciones/">Condiciones</a></div><a href="/contacto/">Contacto <Icon name="diagonal" size={14}/></a></div>
+ </div>
+</footer>

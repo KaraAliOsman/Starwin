@@ -1,0 +1,41 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+const questions=[
+ {name:'room',title:'¿Dónde irá?',options:[['bedroom','Dormitorio'],['living','Sala o comedor'],['kitchen','Cocina'],['bathroom','Baño']]},
+ {name:'space',title:'¿Qué espacio está libre?',options:[['clear','Puede abrir hacia dentro o fuera'],['inside','Tengo muebles o cortinas por dentro'],['outside','No puede sobresalir hacia fuera']]},
+ {name:'priority',title:'¿Qué priorizas?',options:[['air','Opciones para ventilar'],['seal','Un cierre a presión'],['light','Luz y vista; ya tengo ventilación']]},
+];
+---
+<ToolLayout title="Qué ventana elegir: asistente de aperturas de PVC" description="Encuentra qué apertura considerar para tu dormitorio, cocina, sala o baño. Un asistente sencillo compara el espacio disponible y tu prioridad, sin pedir datos personales." heading="Encuentra tu apertura." intro="Cuéntanos cómo es tu espacio. Te mostramos por dónde empezar." slug="elegir-ventana">
+ <section class="wrap" data-finder aria-label="Asistente de aperturas">
+  <div class="finder-stage" data-finder-stage><div class="finder-photo"><img src="/images/tilt-960.webp" width="1000" height="800" alt="Ventana oscilobatiente blanca" decoding="async"/></div><form class="finder-body" data-finder-form>
+   <p class="finder-progress" data-finder-progress aria-live="polite">Espacio, apertura y prioridad.</p>
+   {questions.map((question,i)=><fieldset data-finder-step={i}><legend tabindex="-1">{question.title}</legend><div class="finder-options">{question.options.map(([value,label])=><label><input type="radio" name={question.name} value={value}/><span>{label}</span></label>)}</div></fieldset>)}
+   <p class="tool-error" data-finder-error role="alert"></p><div class="tool-actions"><button class="finder-back" type="button" data-finder-back hidden>Volver</button><button class="tool-action" type="submit" data-finder-next>Continuar <span aria-hidden="true">→</span></button></div>
+  </form></div>
+  <section class="finder-result" data-finder-result hidden aria-labelledby="finder-result-title"><h2 id="finder-result-title" tabindex="-1">Estas aperturas encajan.</h2><p data-finder-reason></p><div class="finder-results" data-finder-products></div><p class="tool-note">Orientación inicial. Se deben revisar dimensiones, ventilación requerida, acceso, herrajes y factibilidad. El modo inclinado no es una protección infantil.</p><div class="tool-actions"><a class="tool-action" data-finder-contact href="/contacto/" target="_blank" rel="noopener noreferrer">Consultar mi elección <span aria-hidden="true">↗</span></a><button class="finder-back" data-finder-restart type="button">Elegir de nuevo</button></div></section>
+  <template id="finder-product-template"><article class="finder-product"><img width="1000" height="800" alt="" decoding="async"/><div><h3></h3><p></p><a class="tool-link" data-finder-product>Ver ventana <span aria-hidden="true">↗</span></a><a class="tool-link" data-finder-compare>Comparar con otra <span aria-hidden="true">↗</span></a></div></article></template>
+  <noscript><p class="tool-note">Activa JavaScript para usar el asistente o <a href="/ventanas/">explora todas las aperturas</a>.</p></noscript>
+ </section>
+ <section class="tool-explain wrap" aria-label="Ayuda para elegir"><div><h2>Una apertura para tu espacio.</h2><p>La corredera evita el giro interior. La abatible reserva un recorrido lateral. La oscilobatiente añade inclinación. La proyectante necesita espacio fuera. La fija aporta luz y necesita ventilación complementaria.</p></div><div><h2>Después, el conjunto.</h2><p>Vidrio, medidas, color y condiciones del lugar completan la elección. Puedes <a href="/medir-ventanas/">preparar tus medidas</a> o comparar los <a href="/colores/">acabados</a>.</p></div></section>
+</ToolLayout>
+<script>
+ import {recommendOpening} from '../features/tools/model';
+ import {wa} from '../config/site';
+ const root=document.querySelector<HTMLElement>('[data-finder]');
+ if(root){
+  const form=root.querySelector<HTMLFormElement>('[data-finder-form]')!,steps=[...form.querySelectorAll<HTMLFieldSetElement>('[data-finder-step]')],back=form.querySelector<HTMLButtonElement>('[data-finder-back]')!,next=form.querySelector<HTMLButtonElement>('[data-finder-next]')!,error=form.querySelector('[data-finder-error]')!;
+  let step=0;
+  function show(focus=true){steps.forEach((el,i)=>el.hidden=i!==step);back.hidden=step===0;next.textContent=step===steps.length-1?'Ver mis opciones →':'Continuar →';form.querySelector('[data-finder-progress]')!.textContent=['Tu espacio','El recorrido de la hoja','Tu prioridad'][step];error.textContent='';if(focus)steps[step].querySelector<HTMLElement>('legend')?.focus();}
+  back.addEventListener('click',()=>{step=Math.max(0,step-1);show();});
+  form.addEventListener('submit',event=>{event.preventDefault();if(!steps[step].querySelector('input:checked')){error.textContent='Elige una opción para continuar.';steps[step].querySelector<HTMLInputElement>('input')!.focus();return;}if(step<2){step++;show();return;}
+   const data=new FormData(form),room=String(data.get('room')),space=String(data.get('space')),priority=String(data.get('priority')),recommendations=recommendOpening(room,space,priority);
+   const list=root.querySelector('[data-finder-products]')!;list.replaceChildren();
+   recommendations.forEach(p=>{const template=root.querySelector<HTMLTemplateElement>('#finder-product-template')!,fragment=template.content.cloneNode(true) as DocumentFragment;const img=fragment.querySelector('img')!;img.src=`/images/${p.image}-960.webp`;img.alt=p.name;fragment.querySelector('h3')!.textContent=p.name;fragment.querySelector('p')!.textContent=p.consider;fragment.querySelector<HTMLAnchorElement>('[data-finder-product]')!.href=`/ventanas/${p.slug}/`;fragment.querySelector<HTMLAnchorElement>('[data-finder-compare]')!.href=`/comparar-ventanas/?a=${p.query}&b=${p.query==='sliding2'?'casement':'sliding2'}`;list.append(fragment);});
+   root.querySelector('[data-finder-reason]')!.textContent=priority==='light'?'Si la ventilación está resuelta, un paño fijo permite priorizar la vista. La segunda opción añade apertura.':space==='inside'?'Priorizamos aperturas que no necesitan girar hacia el interior. Revisa también el espacio exterior.':space==='outside'?'Priorizamos aperturas que pueden resolverse hacia el interior. Confirma el sentido de giro.':'Estas opciones ofrecen apertura y cierre perimetral. Revisa el recorrido de cada hoja.';
+   root.querySelector<HTMLAnchorElement>('[data-finder-contact]')!.href=wa(`Hola Starwin, usé el asistente y quiero revisar ${recommendations.map(p=>p.short).join(' o ')} para mi ${form.querySelector<HTMLInputElement>('[name=room]:checked')!.closest('label')!.textContent?.trim().toLowerCase()}.`);
+   root.querySelector<HTMLElement>('[data-finder-stage]')!.hidden=true;root.querySelector<HTMLElement>('[data-finder-result]')!.hidden=false;root.querySelector<HTMLElement>('#finder-result-title')!.focus();
+  });
+  root.querySelector('[data-finder-restart]')!.addEventListener('click',()=>{root.querySelector<HTMLElement>('[data-finder-result]')!.hidden=true;root.querySelector<HTMLElement>('[data-finder-stage]')!.hidden=false;form.reset();step=0;show();});show(false);
+ }
+</script>

@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import Picture from '../components/Picture.astro';
+import Icon from '../components/Icon.astro';
+import {wa} from '../config/site';
+import ContactForm from '../components/ContactForm.astro';
+---
+<Layout title="Ventanas de PVC para empresas y arquitectos en Concepción | Starwin" description="Propuestas de ventanas de PVC para arquitectura, constructoras y proyectos en Concepción y el Biobío. Revisemos cantidades, especificaciones y coordinación.">
+ <div class="business-page">
+ <Breadcrumb items={[{name:'Empresas y arquitectura',href:'/empresas/'}]}/>
+ <header class="business-hero wrap">
+  <div><h1>Ventanas para<br/> tu obra.</h1><p>Planos, un cuadro de ventanas o una idea inicial. Revisemos tu proyecto en Concepción y el Biobío.</p><div class="button-row"><a class="btn" href="#proyecto">Escribir sobre mi obra <Icon name="mail"/></a><a class="text-link" href={wa('Hola Starwin, quiero revisar un proyecto de empresa o arquitectura. Puedo compartir ubicación, etapa y cuadro de ventanas.')} target="_blank" rel="noopener noreferrer">WhatsApp <Icon name="chat" size={18}/></a></div></div>
+  <figure><Picture name="exterior-timber" alt="Arquitectura de madera con ventanas oscuras" sourceMaxWidth={1200} eager width={1200} height={900} sizes="(max-width:700px) 100vw, 54vw"/></figure>
+ </header>
+ <section class="business-scope wrap" aria-labelledby="scope-title"><h2 id="scope-title">Del plano<br/> al detalle.</h2><div class="business-points">
+  <div><h3>Una solución por recinto.</h3><p>Apertura, vidrio, acabado y dimensiones según el uso de cada espacio.</p></div>
+  <div><h3>Una propuesta comparable.</h3><p>Cantidades, partidas, instalación y terminaciones con un alcance definido.</p></div>
+  <div><h3>Coordinación de obra.</h3><p>Medidas finales, accesos y programación. Los plazos se confirman para tu proyecto.</p></div>
+ </div></section>
+ <section class="business-inquiry" id="proyecto"><div class="wrap"><div class="business-inquiry-copy"><h2>Revisemos<br/> tu proyecto.</h2><p>Comparte la ubicación, etapa de obra y cantidad aproximada de ventanas.</p><p>Puedes adjuntar planos al correo que prepares.</p><a class="text-link" href="/proceso/">Cómo trabajamos <Icon name="diagonal" size={18}/></a></div><ContactForm business id="business"/></div></section>
+ </div>
+</Layout>
+<style>
+ .business-hero{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(35px,6vw,85px);align-items:center;padding-block:32px 70px}
+ .business-hero h1{font-size:clamp(52px,5.7vw,82px);line-height:.98;font-weight:500;letter-spacing:-.05em}.business-hero p{font-size:18px;line-height:1.55;max-width:34ch;margin:28px 0 30px}.business-hero figure{height:580px;overflow:clip;min-width:0;margin:0}.business-hero img{width:100%;height:100%;object-fit:cover;object-position:center}
+ .business-scope{display:grid;grid-template-columns:.9fr 1.15fr;gap:clamp(35px,6vw,85px);padding-block:40px 85px}.business-scope>h2{font-size:clamp(40px,4.5vw,64px);line-height:1.05;font-weight:500;letter-spacing:-.04em}.business-points{display:grid;gap:32px}.business-points h3{font-size:27px;line-height:1.15;margin:0 0 12px;font-weight:500}.business-points p{font-size:18px;line-height:1.5;color:#43535b;max-width:40ch;margin:0}
+ .business-inquiry{padding-block:70px;background:#edf3f5;scroll-margin-top:80px}.business-inquiry>.wrap{display:grid;grid-template-columns:.9fr 1.15fr;gap:clamp(35px,6vw,85px)}.business-inquiry-copy h2{font-size:clamp(40px,4.5vw,64px);line-height:1.05;font-weight:500;letter-spacing:-.04em}.business-inquiry-copy p{font-size:18px;line-height:1.5;max-width:32ch;margin:24px 0}.business-inquiry :global(.contact-form){background:#fff;padding:30px}
+ @media(max-width:1050px){.business-hero figure{height:480px}.business-hero h1{font-size:58px}.business-hero .button-row{align-items:start;flex-direction:column;gap:10px}}
+ @media(max-width:700px){.business-hero{display:flex;flex-direction:column;gap:30px;align-items:stretch;padding-block:25px 40px}.business-hero h1{font-size:52px}.business-hero p{font-size:17px;margin:24px 0}.business-hero figure{height:330px}.business-hero .button-row{flex-direction:row;align-items:center;gap:15px}.business-hero .btn{font-size:15px;padding-inline:16px;gap:16px}.business-scope{display:block;padding-block:25px 45px}.business-scope>h2,.business-inquiry-copy h2{font-size:40px;margin-bottom:30px}.business-scope h2 br{display:none}.business-points{gap:28px}.business-points h3{font-size:25px}.business-points p{font-size:17px}.business-inquiry{padding-block:40px}.business-inquiry>.wrap{display:block}.business-inquiry-copy p{font-size:17px}.business-inquiry-copy h2 br{display:none}.business-inquiry :global(.contact-form){margin-top:30px;padding:22px}.business-inquiry :global(.form-bottom){flex-direction:column;align-items:stretch;gap:12px}.business-inquiry :global(.form-bottom .btn){width:100%;white-space:nowrap}}
+ @media(max-width:359px){.business-hero h1{font-size:46px}.business-hero .button-row{align-items:start;flex-direction:column}.business-inquiry :global(.contact-form){padding:18px}}
+</style>

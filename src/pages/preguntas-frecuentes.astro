@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+import {faqs} from '../data/faqs';
+---
+<Layout title="Preguntas sobre ventanas de PVC y cotización | Starwin" description="Respuestas sobre precios, medidas, aperturas, termopanel, colores, instalación, garantía y cotización de varias ventanas de PVC en Concepción.">
+ <Breadcrumb items={[{name:'Preguntas frecuentes',href:'/preguntas-frecuentes/'}]}/><section class="page-intro wrap"><span class="eyebrow">Sin vueltas</span><h1>Preguntas frecuentes.</h1><p class="lede">Precios, medidas, vidrio, instalación y uso del estimador. Consulta con Starwin los detalles de tu proyecto.</p></section><section class="section-small section-white"><div class="wrap faq-page"><FAQ items={faqs} all/></div></section><CTA title="¿Tu pregunta es más específica?" description="Podemos revisar el uso de tu espacio, sus medidas y las condiciones de tu proyecto."/>
+</Layout>
+<style>.faq-page{max-width:930px}</style>

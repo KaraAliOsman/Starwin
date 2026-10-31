@@ -1,0 +1,74 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileContact from '../components/MobileContact.astro';
+import {site} from '../config/site';
+import {buildPageSEO,serializeJsonLd} from '../lib/seo';
+import '../styles/global.css';
+import '../styles/brand.css';
+import '../styles/showroom.css';
+import '../styles/actions.css';
+import '../styles/showroom-interiors.css';
+
+interface Props {title:string;description:string;image?:string;schema?:object|object[];noindex?:boolean;}
+const {title,description,image='/images/og-starwin.jpg',schema=[],noindex=false}=Astro.props;
+const seo=buildPageSEO({title,description,image,schema,noindex,pathname:Astro.url.pathname});
+const quickContact=!noindex&&!['/contacto/','/empresas/','/cotizador/','/visualizador/','/preparar-proyecto/','/elegir-ventana/','/comparar-ventanas/','/medir-ventanas/','/calculadora-condensacion/'].includes(Astro.url.pathname);
+---
+<!DOCTYPE html><html lang="es-CL"><head><meta charset="UTF-8"/><script is:inline>document.documentElement.classList.add('js');</script><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content"/><meta name="theme-color" content="#ffffff"/><title>{title}</title><meta name="description" content={description}/><link rel="canonical" href={seo.canonical}/><meta name="robots" content={seo.robots}/><meta property="og:type" content="website"/><meta property="og:locale" content="es_CL"/><meta property="og:site_name" content={site.businessName}/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:url" content={seo.canonical}/><meta property="og:image" content={seo.imageUrl}/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta name="twitter:card" content="summary_large_image"/><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="apple-touch-icon" href="/apple-touch-icon.png"/><link rel="preload" href="/fonts/switzer-variable.woff2" as="font" type="font/woff2" crossorigin/><link rel="alternate" type="application/rss+xml" title="Guías Starwin" href="/rss.xml"/>{seo.schemas.map(s=><script type="application/ld+json" set:html={serializeJsonLd(s)}/>)}<slot name="head"/></head><body><Header/><main id="contenido"><slot/></main><Footer/>{quickContact&&<MobileContact/>}
+<script>
+ import '../scripts/showroom-motion';
+ const button=document.querySelector<HTMLButtonElement>('.menu-button');
+ const header=document.querySelector('.site-header');
+ document.documentElement.classList.add('js');
+ document.querySelectorAll<HTMLElement>('.table-scroll').forEach((el,index)=>{el.tabIndex=0;el.setAttribute('role','region');el.setAttribute('aria-label',`Tabla comparativa ${index+1}. Desplázala horizontalmente si hace falta.`);});
+ const mobileMenu=matchMedia('(max-width:900px)');
+ let menuScroll=0;
+ let menuBodyStyle:string|null=null;
+ let menuAnimation:Animation|undefined;
+ let menuItems:Animation[]=[];
+ const settleMenuItems=()=>{menuItems.forEach(item=>item.cancel());menuItems=[];};
+ const reducedMenu=matchMedia('(prefers-reduced-motion:reduce)');
+ const inertElements=new Map<HTMLElement,boolean>();
+ function closeMenu(){
+  if(button?.getAttribute('aria-expanded')!=='true')return;
+  menuAnimation?.cancel();
+  button.setAttribute('aria-expanded','false');button.setAttribute('aria-label','Abrir menú');header?.classList.remove('menu-open');
+  if(menuBodyStyle===null)document.body.removeAttribute('style');else document.body.setAttribute('style',menuBodyStyle);
+  const root=document.documentElement,behavior=root.style.scrollBehavior;
+  root.style.scrollBehavior='auto';window.scrollTo(0,menuScroll);root.style.scrollBehavior=behavior;
+  inertElements.forEach((value,el)=>el.inert=value);inertElements.clear();
+  document.dispatchEvent(new Event('starwin:menu-state'));
+ }
+ button?.addEventListener('click',event=>{
+  button.dataset.menuInstant=String(event.detail===0);
+  if(button.getAttribute('aria-expanded')==='true'){closeMenu();return;}
+  menuScroll=window.scrollY;menuBodyStyle=document.body.getAttribute('style');
+  Object.assign(document.body.style,{position:'fixed',top:`-${menuScroll}px`,left:'0',right:'0',overflow:'hidden'});
+  document.querySelectorAll<HTMLElement>('main,.site-footer').forEach(el=>{inertElements.set(el,el.inert);el.inert=true;});
+  button.setAttribute('aria-expanded','true');button.setAttribute('aria-label','Cerrar menú');header?.classList.add('menu-open');
+  const nav=header?.querySelector('nav');
+  if(event.detail>0&&!reducedMenu.matches&&nav){menuAnimation=nav.animate([{transform:'translateY(-4px)'},{transform:'translateY(0)'}],{duration:200,easing:'cubic-bezier(.22,1,.36,1)'});menuItems=[...nav.querySelectorAll('a')].map((item,index)=>item.animate([{transform:'translateX(12px)'},{transform:'translateX(0)'}],{duration:160,delay:index*20,easing:'cubic-bezier(.22,1,.36,1)'}));}
+  document.dispatchEvent(new Event('starwin:menu-state'));
+ });
+ document.addEventListener('starwin:menu-close',closeMenu);
+ reducedMenu.addEventListener('change',()=>{menuAnimation?.cancel();settleMenuItems();});
+ mobileMenu.addEventListener('change',()=>{if(!mobileMenu.matches)closeMenu();});
+ document.querySelectorAll('.main-nav a').forEach(link=>link.addEventListener('click',closeMenu));
+ document.addEventListener('keydown',e=>{
+  if(button?.getAttribute('aria-expanded')!=='true')return;
+  if(e.key==='Escape'){closeMenu();button.focus();return;}
+  if(e.key==='Tab'){
+   const focusables=[...document.querySelectorAll<HTMLElement>('.site-header a,.site-header button')].filter(el=>el.getClientRects().length>0);
+   const first=focusables[0],last=focusables.at(-1);
+   if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}
+   else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}
+  }
+ });
+ document.addEventListener('click',e=>{if(e.target instanceof Node&&!header?.contains(e.target))closeMenu();});
+
+
+</script>
+</body></html>
+
+

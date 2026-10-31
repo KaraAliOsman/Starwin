@@ -1,0 +1,6 @@
+---
+const {name,alt,width=1600,height=1100,eager=false,sizes='(max-width: 700px) 100vw, 50vw',sourceMaxWidth=1600,...rest}=Astro.props;
+const variants=[480,960,1600].map(file=>({file,width:Math.min(file,sourceMaxWidth)})).filter((variant,index,all)=>all.findIndex(other=>other.width===variant.width)===index);
+const srcset=variants.map(variant=>`/images/${name}-${variant.file}.webp ${variant.width}w`).join(', ');
+---
+<img src={`/images/${name}-960.webp`} srcset={srcset} sizes={sizes} width={width} height={height} alt={alt} loading={eager?'eager':'lazy'} fetchpriority={eager?'high':'auto'} decoding="async" {...rest}/>

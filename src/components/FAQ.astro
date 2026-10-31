@@ -1,0 +1,6 @@
+---
+import {faqs} from '../data/faqs';
+const {items=faqs.slice(0,5),all=false}=Astro.props;
+---
+<div class="faq-list">{items.map((f)=><details><summary>{f.q}<span aria-hidden="true">+</span></summary><div class="faq-answer"><p>{f.a}</p><a class="text-link" href={f.link}>{f.label} <span aria-hidden="true">↗</span></a></div></details>)}</div>
+{all&&<script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:items.map(f=>({'@type':'Question',name:f.q,acceptedAnswer:{'@type':'Answer',text:f.a}}))}).replace(/</g,'\\u003c')}/>}

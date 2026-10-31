@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import Icon from '../components/Icon.astro';
+import Visualizer from '../features/visualizer/Visualizer';
+import '../features/visualizer/style.css';
+---
+<Layout title="Visualizador de ventanas con IA sobre tu foto | Starwin" description="Selecciona una foto de tu casa, una apertura y un acabado para preparar una propuesta fotográfica de ventanas de PVC con inteligencia artificial.">
+ <Breadcrumb items={[{name:'Visualizador con IA',href:'/visualizador/'}]}/>
+ <section class="visualizer-intro wrap">
+  <h1>Visualizador de ventanas.</h1>
+  <p>Selecciona una foto, una apertura y un acabado para preparar tu propuesta.</p>
+ </section>
+ <section class="visualizer-workspace wrap" aria-label="Prepara tu propuesta fotográfica"><Visualizer client:load/></section>
+ <section class="visualizer-reference wrap">
+  <h2>Antes de generar.</h2>
+  <div>
+   <p>La propuesta visual no define medidas ni precios.</p>
+   <a class="text-link" href="/contacto/">Consultar mi proyecto <Icon name="arrow" size={18}/></a>
+   <p class="small">La foto se envía al proveedor de IA únicamente cuando solicitas generar. Puedes borrar el trabajo desde esta herramienta.</p>
+  </div>
+ </section>
+</Layout>
+<style>
+ .visualizer-intro{padding-block:38px 34px}
+ .visualizer-intro h1{font-size:42px;line-height:1.15;letter-spacing:-.03em;max-width:800px}
+ .visualizer-intro>p{font-size:18px;line-height:1.6;color:var(--muted);max-width:640px;margin:18px 0 0}
+ .visualizer-workspace{padding-bottom:64px}
+ .visualizer-reference{display:grid;grid-template-columns:1fr 1fr;gap:64px;border-top:1px solid var(--line);padding-block:46px 70px}
+ .visualizer-reference h2{font-size:30px;line-height:1.2;letter-spacing:-.02em}
+ .visualizer-reference p{font-size:16px;line-height:1.65;color:var(--muted);max-width:65ch;margin-bottom:14px}
+ .visualizer-reference .small{font-size:13px;margin:20px 0 0}
+ @media(max-width:700px){.visualizer-intro{padding-block:24px 25px}.visualizer-intro h1{font-size:32px}.visualizer-intro>p{font-size:16px;margin-top:14px}.visualizer-workspace{padding-bottom:40px}.visualizer-reference{grid-template-columns:1fr;gap:18px;padding-block:32px 46px}.visualizer-reference h2{font-size:27px}.visualizer-reference p{font-size:15px}.visualizer-reference .small{font-size:12px}}
+</style>

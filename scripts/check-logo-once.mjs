@@ -1,0 +1,2 @@
+import {chromium} from 'playwright';
+const b=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});const p=await b.newPage({viewport:{width:1440,height:1000}});const failures=[];p.on('requestfailed',r=>failures.push({url:r.url(),error:r.failure()}));await p.goto('http://127.0.0.1:3006/',{waitUntil:'networkidle'});await p.locator('.brand img').evaluate(i=>i.decode());console.log(JSON.stringify({logo:await p.locator('.brand img').evaluate(i=>({width:i.naturalWidth,src:i.currentSrc})),failures}));await b.close();

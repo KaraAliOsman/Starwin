@@ -1,0 +1,18 @@
+{
+  "file": "public/images/scene-comedor-mobile-720.webp",
+  "sourceUrl": "https://a.storyblok.com/f/280153/1200x900/5eeb6e6c65/k18_titel_bearb_hell_korrci.png",
+  "sourcePage": "https://www.internorm.com/en-us/products/photo-gallery",
+  "company": "Internorm",
+  "usage": "Ambiente, no obra Starwin; no implica modelo o sistema propio.",
+  "reason": "Carpintería oscura, umbral y apertura a terraza visibles. Otra estancia, sin sugerir que pertenece a la misma vivienda.",
+  "transform": {
+    "crop": {
+      "left": 360,
+      "top": 0,
+      "width": 720,
+      "height": 900
+    },
+    "width": 720
+  },
+  "sha256": "9a64ac064f2a5ec5005c151dda3b46ebcd426ab5da9adaa19f9b31683e5da6e5"
+}

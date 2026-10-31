@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Picture from '../components/Picture.astro';
+import Icon from '../components/Icon.astro';
+import {site,wa} from '../config/site';
+import '../styles/interior-2026.css';
+---
+<Layout title="Contacto Starwin | Ventanas de PVC en Biobío y Concepción" description="Cotiza tus ventanas de PVC en Concepción y el Biobío. Consulta por WhatsApp o prepara un correo, incluso si todavía no tienes medidas.">
+ <div class="interior-page contact-page">
+  <Breadcrumb items={[{name:'Contacto',href:'/contacto/'}]}/>
+  <header class="interior-intro contact-intro wrap"><h1>Cotiza tus ventanas.</h1><p>Con o sin medidas, cuéntanos qué necesitas.</p></header>
+  <nav class="contact-mobile-channels wrap" aria-label="Elige cómo contactar"><a href={wa()} target="_blank" rel="noopener noreferrer">WhatsApp <Icon name="chat" size={20}/></a><a href="#consulta">Correo <Icon name="mail" size={20}/></a></nav>
+  <section class="contact-layout wrap">
+   <div class="contact-form-panel" id="consulta" aria-labelledby="inquiry-title"><h2 id="inquiry-title">Escribir por correo.</h2><p>Prepara el mensaje y revísalo antes de enviarlo.</p><ContactForm/></div>
+   <aside class="contact-aside" aria-label="Otras formas de contactar a Starwin">
+    <figure class="contact-scene"><Picture name="starwin-use" alt="Una persona accionando la manilla de una ventana" width={960} height={640} sizes="(max-width:700px) 1px, 42vw"/></figure>
+    <div class="contact-whatsapp"><h2>Empecemos con una foto.</h2><p>Compártela por WhatsApp y dinos la comuna de tu proyecto.</p><a class="interior-primary" href={wa()} target="_blank" rel="noopener noreferrer">Hablar por WhatsApp <Icon name="chat" size={20}/></a></div>
+    <div class="contact-address"><h2>Visítanos en Concepción.</h2><address>{site.address}<br/>Concepción, Biobío</address><p>{site.hours}</p><a class="interior-link" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.address+', Concepción, Chile')}`} target="_blank" rel="noopener noreferrer">Ver mapa <Icon name="diagonal" size={18}/></a><p class="interior-note">Coordina tu visita con el equipo.</p></div>
+    <div class="contact-direct"><a href={`tel:${site.phoneRaw}`}>{site.phone}<Icon name="arrow" size={18}/></a><a href={`mailto:${site.email}`}>{site.email}<Icon name="arrow" size={18}/></a></div>
+    <a class="interior-link" href="/empresas/">Proyectos de arquitectura y empresas <Icon name="arrow" size={18}/></a>
+   </aside>
+  </section>
+  <div class="contact-followup wrap"><p>Atendemos toda la Región del Biobío desde Concepción. Comparte tu comuna para coordinar el proyecto.</p><a class="interior-link" href="/preparar-proyecto/">Qué información compartir <Icon name="arrow" size={18}/></a></div>
+ </div>
+</Layout>

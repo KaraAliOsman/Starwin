@@ -1,0 +1,12 @@
+{
+  "file": "public/images/scene-sala-960.webp",
+  "sourceUrl": "https://a.storyblok.com/f/280153/1200x900/cd8db58ad8/haus-innen-96.png",
+  "sourcePage": "https://www.internorm.com/en-us/products/photo-gallery",
+  "company": "Internorm",
+  "usage": "Ambiente, no obra Starwin; no implica modelo o sistema propio.",
+  "reason": "Ventanal de esquina completo y relación directa entre sala y jardín. El recorte móvil conserva ambas caras del vidrio.",
+  "transform": {
+    "width": 960
+  },
+  "sha256": "98b9e1554e77b53ce5855d96f3250eeca11eb05a10a31c03268a47e9dca478aa"
+}

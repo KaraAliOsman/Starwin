@@ -1,0 +1,45 @@
+{
+  "name": "starwin-v3",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env node_modules/astro/bin/astro.mjs dev --host 0.0.0.0 --port 3006",
+    "build": "node --env-file-if-exists=.env node_modules/astro/bin/astro.mjs build",
+    "preview": "node --env-file-if-exists=.env scripts/serve.mjs",
+    "start": "node --env-file-if-exists=.env scripts/serve.mjs",
+    "check": "node scripts/check-site.mjs",
+    "typecheck": "tsc --noEmit",
+    "test:browser": "node scripts/browser-check.mjs",
+    "test:tools": "node scripts/tools-browser-check.mjs",
+    "test:performance": "node scripts/performance-check.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=22.16.0"
+  },
+  "dependencies": {
+    "@astrojs/react": "7.1.0",
+    "@astrojs/sitemap": "3.7.4",
+    "@react-three/drei": "9.122.0",
+    "@react-three/fiber": "8.18.0",
+    "astro": "7.4.0",
+    "gsap": "3.15.0",
+    "jpeg-js": "0.4.4",
+    "jspdf": "4.2.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "three": "0.186.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@types/react": "18.3.28",
+    "@types/react-dom": "18.3.7",
+    "@types/three": "0.186.0",
+    "esbuild": "0.28.2",
+    "lighthouse": "13.5.0",
+    "playwright": "1.62.1",
+    "sharp": "0.35.5",
+    "typescript": "5.9.3"
+  }
+}

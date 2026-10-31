@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import {site, wa} from '../config/site';
+
+const initialMessage = 'Hola Starwin, necesito orientación para un proyecto de ventanas de PVC.';
+const emailSubject = 'Consulta de proyecto de ventanas';
+const emailLink = `mailto:${site.email}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(initialMessage)}`;
+const checklist = [
+  {title:'Qué quieres mejorar', text:'Frío, ruido, ventilación, una ventana que falla o un cambio de diseño. Cuéntanos lo que te pasa, aunque todavía no sepas qué apertura elegir.'},
+  {title:'En qué comuna está el proyecto', text:'La ubicación nos ayuda a revisar la cobertura y las condiciones del trabajo. Para empezar basta con la comuna.'},
+  {title:'Cuántas ventanas estás pensando cambiar', text:'Puede ser una o varias. Una cantidad aproximada sirve para entender el proyecto; después se revisa cada ventana.'},
+  {title:'Fotos del lugar, si las tienes', text:'Una foto frontal permite ver la ventana completa. Otra del marco y su encuentro con el muro ayuda a mostrar detalles. Evita incluir personas o información privada.'},
+  {title:'Medidas aproximadas, si ya las conoces', text:'Anota ancho y alto por separado e indica si usaste centímetros o milímetros. No hace falta medir para escribirnos: las medidas de fabricación requieren confirmación técnica.'},
+  {title:'Planos o listado de vanos, para una obra', text:'Si consultas por una empresa o una construcción, puedes preparar los documentos que ya tengas y explicar la etapa del proyecto. No necesitas completar un estimador.'},
+];
+---
+
+<Layout title="Qué preparar para consultar por tus ventanas | Starwin" description="Una lista sencilla para preparar tu proyecto de ventanas de PVC: comuna, fotos y cantidad aproximada. Crea un mensaje opcional para WhatsApp o correo.">
+  <article class="project-guide" data-project-guide data-email={site.email}>
+    <div class="guide-wrap">
+      <nav class="guide-breadcrumb guide-no-print" aria-label="Ruta de navegación"><a href="/">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Preparar tu proyecto</span></nav>
+      <header class="guide-intro">
+        <p class="guide-kicker">Guía práctica · {site.name}</p>
+        <h1>Qué preparar para<br class="wide-break"/> hablar de tus ventanas.</h1>
+        <p class="guide-lead">Puedes empezar con una idea y una foto. No necesitas conocer los sistemas ni tener todas las medidas para conversar con nosotros.</p>
+        <div class="guide-top-actions guide-no-print">
+          <a class="guide-action guide-action-primary" href={wa(initialMessage)} target="_blank" rel="noopener noreferrer"><Icon name="chat" size={20}/> Hablar por WhatsApp</a>
+          <a class="guide-email" href={emailLink}><Icon name="mail" size={19}/> Escribir por correo</a>
+        </div>
+      </header>
+
+      <section class="guide-checklist" aria-labelledby="checklist-title">
+        <div class="guide-section-heading">
+          <div><p class="guide-kicker">01 / Tu lista</p><h2 id="checklist-title">Reúne lo que ya tengas.</h2><p>Puedes marcar esta lista o imprimirla. Todo es orientativo; ningún punto es un requisito para contactarnos.</p></div>
+          <button class="guide-print guide-no-print" type="button" data-print-guide hidden><Icon name="file" size={18}/> Imprimir lista</button>
+        </div>
+        <ul class="guide-check-items">
+          {checklist.map((item, index) => <li><label for={`guide-check-${index}`}><input type="checkbox" id={`guide-check-${index}`} autocomplete="off"/><span><strong>{item.title}</strong><span>{item.text}</span></span></label></li>)}
+        </ul>
+        <p class="guide-measure-note"><Icon name="measure" size={22}/><span>Una referencia inicial ayuda a conversar. Antes de fabricar se deben confirmar las medidas, la apertura y el alcance de cada ventana.</span></p>
+        <noscript><p class="guide-no-print guide-browser-hint">También puedes imprimir esta lista desde el menú de tu navegador.</p></noscript>
+      </section>
+
+      <section class="guide-brief guide-no-print" aria-labelledby="brief-title">
+        <div class="guide-brief-intro"><p class="guide-kicker">02 / Si te sirve</p><h2 id="brief-title">Prepara un mensaje.</h2><p>Todos los campos son opcionales. El resumen solo reúne lo que quieras contarnos; puedes enviarnos una consulta directamente si lo prefieres.</p><a class="guide-inline-link" href="/contacto/">Ver todas las formas de contacto <Icon name="arrow" size={18}/></a></div>
+        <div class="guide-brief-body">
+          <fieldset class="guide-fields">
+            <legend>Datos opcionales del proyecto</legend>
+            <div class="guide-field"><label for="guide-kind">Tipo de proyecto</label><select id="guide-kind" data-brief-field="kind" autocomplete="off"><option value="">Todavía no lo defino</option><option>Recambio de ventanas</option><option>Obra nueva</option><option>Empresa o proyecto de arquitectura</option><option>Otra consulta</option></select></div>
+            <div class="guide-field"><label for="guide-city">Comuna</label><input id="guide-city" data-brief-field="city" type="text" maxlength="80" placeholder="Ej. Concepción" autocomplete="off" list="guide-communes"/><datalist id="guide-communes">{site.serviceAreas.map(city => <option value={city}/>)}</datalist></div>
+            <div class="guide-field guide-field-quantity"><label for="guide-quantity">Cantidad aproximada</label><input id="guide-quantity" data-brief-field="quantity" type="text" inputmode="numeric" maxlength="20" placeholder="Ej. 3" autocomplete="off"/></div>
+            <div class="guide-field guide-field-wide"><label for="guide-need">Qué necesitas</label><textarea id="guide-need" data-brief-field="need" rows="3" maxlength="600" placeholder="Ej. Cambiar las ventanas de dos dormitorios para mejorar el aislamiento." autocomplete="off"></textarea></div>
+          </fieldset>
+          <div class="guide-summary" data-brief-summary hidden>
+            <div class="guide-summary-heading"><label for="guide-message">Tu mensaje</label><button class="guide-copy" type="button" data-copy-brief><Icon name="file" size={17}/> Copiar</button></div>
+            <textarea id="guide-message" rows="6" readonly aria-describedby="guide-data-note">{initialMessage}</textarea>
+            <p class="guide-copy-status" data-copy-status role="status" aria-live="polite"></p>
+          </div>
+          <noscript><p class="guide-browser-hint">Puedes usar la lista y escribirnos directamente por los enlaces de abajo. El resumen automático necesita JavaScript.</p></noscript>
+          <div class="guide-send-actions">
+            <a class="guide-action guide-action-primary" data-brief-whatsapp href={wa(initialMessage)} target="_blank" rel="noopener noreferrer"><Icon name="chat" size={19}/> Abrir WhatsApp</a>
+            <a class="guide-action guide-action-secondary" data-brief-email href={emailLink}><Icon name="mail" size={19}/> Abrir correo</a>
+          </div>
+          <p class="guide-data-note" id="guide-data-note">No guardamos este resumen ni lo enviamos automáticamente. Los enlaces abren WhatsApp o tu aplicación de correo con el mensaje preparado; tú decides si lo envías. Las fotos y los documentos se adjuntan allí.</p>
+        </div>
+      </section>
+
+      <aside class="guide-finish">
+        <p class="guide-kicker">Para seguir</p><p>Si todavía estás comparando opciones, revisa <a href="/ventanas/">las aperturas de ventanas</a> o <a href="/proceso/">cómo trabajamos</a>. Podemos ayudarte a definir el siguiente paso.</p>
+        <div class="guide-print-contact"><strong>{site.businessName}</strong><span>{site.phone} · {site.email}</span><span>{site.address}, {site.city}</span></div>
+      </aside>
+    </div>
+  </article>
+</Layout>
+
+<script>
+  const guide = document.querySelector<HTMLElement>('[data-project-guide]');
+  if (guide) {
+    const message = guide.querySelector<HTMLTextAreaElement>('#guide-message');
+    const whatsapp = guide.querySelector<HTMLAnchorElement>('[data-brief-whatsapp]');
+    const email = guide.querySelector<HTMLAnchorElement>('[data-brief-email]');
+    const status = guide.querySelector<HTMLElement>('[data-copy-status]');
+    const fields = [...guide.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('[data-brief-field]')];
+    const summary = guide.querySelector<HTMLElement>('[data-brief-summary]');
+    const print = guide.querySelector<HTMLButtonElement>('[data-print-guide]');
+    const emailAddress = guide.dataset.email || '';
+    function updateBrief() {
+      const values = Object.fromEntries(fields.map(field => [field.dataset.briefField, field.value.trim()]));
+      const lines = ['Hola Starwin, necesito orientación para un proyecto de ventanas de PVC.'];
+      if (values.kind) lines.push(`Tipo de proyecto: ${values.kind}`);
+      if (values.city) lines.push(`Comuna: ${values.city.replace(/[\r\n]+/g, ' ')}`);
+      if (values.quantity) lines.push(`Cantidad aproximada: ${values.quantity.replace(/[\r\n]+/g, ' ')}`);
+      if (values.need) lines.push(`Lo que necesito: ${values.need}`);
+      const text = lines.join('\n\n');
+      if (message) message.value = text;
+      if (whatsapp) {
+        const url = new URL(whatsapp.href);
+        url.searchParams.set('text', text);
+        whatsapp.href = url.href;
+      }
+      if (email) email.href = `mailto:${emailAddress}?subject=${encodeURIComponent('Consulta de proyecto de ventanas')}&body=${encodeURIComponent(text)}`;
+      if (status) status.textContent = '';
+    }
+    fields.forEach(field => field.addEventListener('input', updateBrief));
+    guide.querySelector<HTMLButtonElement>('[data-copy-brief]')?.addEventListener('click', async () => {
+      if (!message || !status) return;
+      try {
+        await navigator.clipboard.writeText(message.value);
+        status.textContent = 'Mensaje copiado. Puedes pegarlo donde prefieras.';
+      } catch {
+        message.focus();
+        message.select();
+        status.textContent = 'Seleccionamos el mensaje para que puedas copiarlo desde tu dispositivo.';
+      }
+    });
+    if (summary) summary.hidden = false;
+    if (print) {
+      print.hidden = false;
+      print.addEventListener('click', () => window.print());
+    }
+    updateBrief();
+  }
+</script>
+
+<style>
+  .project-guide{background:#fff;color:var(--ink);padding-bottom:80px}.guide-wrap{width:min(1120px,calc(100% - 80px));margin-inline:auto}.guide-breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding-top:20px;font-size:12px;color:var(--muted)}.guide-breadcrumb a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:4px}.guide-intro{padding:52px 0 64px;max-width:920px}.guide-kicker{font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 18px;color:var(--blue)}.guide-intro h1{font-size:clamp(40px,5.5vw,70px);line-height:1.08;font-weight:400;letter-spacing:-.045em}.guide-lead{font-size:19px;line-height:1.6;max-width:650px;margin:25px 0 0;color:var(--muted)}.guide-top-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px 28px;margin-top:30px}.guide-action{display:inline-flex;justify-content:center;align-items:center;gap:12px;min-height:50px;padding:13px 20px;border:1px solid var(--ink);font-size:15px;font-weight:500;line-height:1.4;text-align:center;touch-action:manipulation}.guide-action svg,.guide-email svg,.guide-print svg,.guide-copy svg{flex-shrink:0}.guide-action-primary{color:#fff;background:var(--ink)}.guide-action-secondary{background:#fff;color:var(--ink)}.guide-email{display:inline-flex;align-items:center;gap:10px;min-height:48px;font-size:15px;text-decoration:underline;text-underline-offset:5px}.guide-action:active,.guide-print:active,.guide-copy:active{opacity:.75}.guide-checklist{border-top:1px solid var(--line);padding-top:40px}.guide-section-heading{display:flex;align-items:start;justify-content:space-between;gap:25px}.guide-section-heading>div{max-width:660px}.guide-section-heading h2,.guide-brief h2{font-size:clamp(30px,3vw,42px);line-height:1.15;font-weight:400;letter-spacing:-.035em}.guide-section-heading p:not(.guide-kicker){margin:18px 0 0;font-size:16px;color:var(--muted)}.guide-print{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:10px 14px;border:1px solid var(--line);font-size:13px;flex-shrink:0}.guide-check-items{list-style:none;margin:32px 0 0;padding:0}.guide-check-items li{border-top:1px solid var(--line)}.guide-check-items label{display:grid;grid-template-columns:24px minmax(0,1fr);align-items:start;gap:22px;padding:24px 0;cursor:pointer}.guide-check-items input{width:24px;height:24px;margin:2px 0 0;accent-color:var(--ink);flex-shrink:0;touch-action:manipulation}.guide-check-items strong{display:block;font-size:19px;font-weight:500;line-height:1.4}.guide-check-items label>span>span{display:block;font-size:15px;line-height:1.7;color:var(--muted);max-width:830px;margin-top:7px}.guide-check-items input:checked+span strong{color:var(--blue)}.guide-measure-note{border-block:1px solid var(--line);padding:23px 0;display:flex;gap:19px;align-items:start;color:var(--muted);font-size:14px;margin:0}.guide-measure-note svg{flex-shrink:0;margin-top:2px}.guide-measure-note span{max-width:780px}.guide-brief{padding-top:72px;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:70px}.guide-brief-intro>p:not(.guide-kicker){font-size:16px;color:var(--muted);margin-top:22px}.guide-inline-link{display:inline-flex;align-items:center;gap:16px;font-size:14px;text-decoration:underline;text-underline-offset:5px;min-height:44px}.guide-inline-link svg{flex-shrink:0}.guide-fields{border:0;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 18px;min-width:0}.guide-fields legend{font-size:13px;color:var(--muted);padding:0;margin-bottom:24px}.guide-field{display:flex;flex-direction:column;gap:9px;min-width:0}.guide-field label{font-size:14px;font-weight:500}.guide-field input,.guide-field select,.guide-field textarea{width:100%;max-width:100%;min-width:0;min-height:48px;border:1px solid #aab5b8;background:#fff;border-radius:0;font-size:16px;padding:12px;line-height:1.5;appearance:auto}.guide-field textarea{resize:vertical;min-height:120px}.guide-field-wide{grid-column:1/-1}.guide-field-quantity{grid-column:1/-1;max-width:240px}.guide-summary{border-top:1px solid var(--line);margin-top:28px;padding-top:18px}.guide-summary-heading{display:flex;align-items:center;justify-content:space-between;gap:15px}.guide-summary-heading label{font-size:14px;font-weight:500}.guide-copy{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 0 8px 15px;gap:8px;font-size:13px}.guide-summary textarea{display:block;width:100%;font-size:16px;padding:14px;border:1px solid var(--line);border-radius:0;background:#f5f6f6;resize:vertical;line-height:1.6;min-height:190px}.guide-copy-status{font-size:13px;line-height:1.5;margin:10px 0 0;color:var(--muted)}.guide-copy-status:empty{display:none}.guide-send-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.guide-send-actions>a{flex:1;min-width:170px}.guide-data-note{font-size:12px;line-height:1.7;color:var(--muted);margin:17px 0 0}.guide-browser-hint{font-size:14px;line-height:1.7;margin:22px 0;color:var(--muted)}.guide-finish{border-top:1px solid var(--line);margin-top:65px;padding-top:28px;max-width:100%;font-size:15px;color:var(--muted)}.guide-finish>p:last-of-type{max-width:700px;margin:0}.guide-finish a{text-decoration:underline;text-underline-offset:4px}.guide-print-contact{display:none}.project-guide [hidden]{display:none}.guide-action,.guide-print,.guide-copy{user-select:none;-webkit-user-select:none}
+  @media(hover:hover) and (pointer:fine){.guide-action-primary:hover{background:#34434b}.guide-action-secondary:hover,.guide-print:hover{background:#f1f3f3}.guide-copy:hover,.guide-email:hover,.guide-inline-link:hover{color:var(--blue)}}
+  @media(max-width:760px){.guide-wrap{width:calc(100% - 40px)}.guide-intro{padding:35px 0 42px}.guide-intro h1{font-size:44px}.guide-lead{font-size:17px}.guide-top-actions{gap:7px 22px;margin-top:24px}.guide-checklist{padding-top:30px}.guide-section-heading{display:block}.guide-print{margin-top:20px}.guide-check-items label{gap:16px;padding:22px 0}.guide-check-items strong{font-size:18px}.guide-check-items label>span>span{font-size:15px}.guide-brief{grid-template-columns:1fr;gap:30px;padding-top:50px}.guide-brief-intro{max-width:570px}.guide-brief-intro>p:not(.guide-kicker){margin-top:18px}.guide-fields{gap:20px 16px}.guide-fields legend{margin-bottom:18px}.guide-finish{margin-top:45px}.project-guide{padding-bottom:55px}}
+  @media(max-width:400px){.guide-wrap{width:calc(100% - 32px)}.guide-intro h1{font-size:37px}.wide-break{display:none}.guide-action{padding-inline:14px;font-size:14px}.guide-fields{grid-template-columns:1fr}.guide-field-quantity{max-width:none}.guide-send-actions{display:grid;grid-template-columns:1fr}.guide-send-actions>a{min-width:0}.guide-top-actions>.guide-action{width:100%}.guide-check-items label{gap:13px}.guide-check-items strong{font-size:17px}.guide-kicker{font-size:10px}}
+  @media print{.project-guide{padding:0;background:#fff;color:#111;font-size:10pt}.guide-wrap{width:100%;max-width:none}.guide-no-print{display:none!important}.guide-intro{padding:0 0 18pt;max-width:none}.guide-kicker{color:#333;font-size:8pt;margin-bottom:8pt}.guide-intro h1{font-size:28pt;line-height:1.1}.wide-break{display:none}.guide-lead{font-size:11pt;max-width:none;margin-top:12pt;line-height:1.5}.guide-checklist{padding-top:18pt}.guide-section-heading h2{font-size:20pt}.guide-section-heading p:not(.guide-kicker){font-size:10pt;margin-top:8pt}.guide-check-items{margin-top:18pt}.guide-check-items li{break-inside:avoid}.guide-check-items label{grid-template-columns:15pt minmax(0,1fr);gap:10pt;padding:12pt 0}.guide-check-items input{width:13pt;height:13pt;margin-top:2pt;print-color-adjust:exact}.guide-check-items strong{font-size:11pt}.guide-check-items label>span>span{font-size:9.5pt;line-height:1.5;margin-top:4pt;max-width:none}.guide-measure-note{font-size:9pt;line-height:1.5;padding:12pt 0;gap:10pt}.guide-measure-note svg{width:16pt}.guide-finish{margin-top:18pt;padding-top:12pt;font-size:9pt;break-inside:avoid}.guide-finish>p{display:none}.guide-print-contact{display:flex;flex-direction:column;gap:4pt}.guide-print-contact strong{color:#111;font-size:11pt}.guide-print-contact span{font-size:9pt}}
+</style>

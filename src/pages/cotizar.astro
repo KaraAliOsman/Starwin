@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import QuoteOptions from '../components/QuoteOptions.astro';
+---
+<Layout title="Cotizar ventanas de PVC en Biobío y Concepción | Starwin" description="Cotiza tus ventanas de PVC con Starwin por WhatsApp o correo, o calcula un estimado con tus medidas y descarga un PDF. Concepción y Biobío.">
+ <Breadcrumb items={[{name:'Cotizar',href:'/cotizar/'}]}/>
+ <section class="quote-page wrap" data-contact-section>
+  <div class="quote-page-intro"><h1>¿Cómo quieres cotizar?</h1><p>Habla con nosotros o calcula un estimado con las medidas de tus ventanas.</p></div>
+  <div class="quote-page-options"><QuoteOptions/></div>
+ </section>
+</Layout>
+<style>
+ .quote-page{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;padding-block:65px 110px}
+ .quote-page-intro h1{font-size:clamp(38px,4.5vw,64px);max-width:10ch}
+ .quote-page-intro p{max-width:38ch;font-size:18px;color:var(--muted);margin:25px 0 0}
+ .quote-page-options{padding-top:5px}
+ @media(max-width:900px){.quote-page{gap:45px}.quote-page-intro h1{font-size:46px}}
+ @media(max-width:700px){.quote-page{grid-template-columns:1fr;gap:32px;padding-block:34px 65px}.quote-page-intro h1{font-size:40px;max-width:12ch}.quote-page-intro p{font-size:17px;margin-top:18px}.quote-page-options{padding:0}}
+ @media(max-width:359px){.quote-page-intro h1{font-size:36px}}
+</style>
