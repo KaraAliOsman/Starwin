@@ -22,7 +22,7 @@ export function composeEmail(d) {
  const body=`Nombre: ${d.name}\nCorreo: ${d.email}\nTeléfono: ${d.phone||'No indicado'}\nComuna: ${d.city||'Por confirmar'}\nEmpresa: ${d.company||'No indicada'}\nTipo: ${d.kind}\n\n${d.message}\n\nAutorizó el uso de estos datos para responder su consulta.`;
  return {subject,body,mailto:`mailto:${DESTINATION}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`};
 }
-export function deliveryMode(env={}){return env.RESEND_API_KEY&&env.CONTACT_FROM?'send':'draft';}
+export function deliveryMode(env={}){return env.WEB3FORMS_ACCESS_KEY||env.RESEND_API_KEY&&env.CONTACT_FROM?'send':'draft';}
 export async function handleContactRequest(request,{env={},ip='local',fetcher=fetch,rateLimit=true}={}) {
  const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
  if(request.method==='GET')return json({mode:deliveryMode(env)});
@@ -44,6 +44,12 @@ export async function handleContactRequest(request,{env={},ip='local',fetcher=fe
   if(limits.size>3000)for(const [key,times]of limits)if(times.every(t=>now-t>600000))limits.delete(key);
  }
  try{
+  if(env.WEB3FORMS_ACCESS_KEY){
+   const response=await fetcher('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({access_key:env.WEB3FORMS_ACCESS_KEY,name:result.data.name,email:result.data.email,subject:email.subject,message:email.body,from_name:'Starwin · Consulta web',botcheck:false}),signal:AbortSignal.timeout(12000)});
+   const resultBody=await response.json().catch(()=>null);
+   if(!response.ok||resultBody?.success!==true)return json({message:'No pudimos entregar la consulta al servicio de correo. Tus datos siguen en el formulario; puedes intentar de nuevo o escribir por WhatsApp.'},502);
+   return json({mode:'sent',message:'Consulta enviada. Te responderemos al correo que indicaste.'});
+  }
   const response=await fetcher('https://api.resend.com/emails',{method:'POST',headers:{Authorization:`Bearer ${env.RESEND_API_KEY}`,'Content-Type':'application/json'},body:JSON.stringify({from:env.CONTACT_FROM,to:[DESTINATION],reply_to:result.data.email,subject:email.subject,text:email.body}),signal:AbortSignal.timeout(12000)});
   if(!response.ok)return json({message:'No pudimos enviar el correo. Tus datos siguen en el formulario. Puedes intentarlo otra vez o escribir por WhatsApp.'},502);
   return json({mode:'sent',message:'Consulta enviada. Te responderemos al correo que indicaste.'});

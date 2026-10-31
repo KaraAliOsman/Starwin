@@ -34,10 +34,10 @@ Prueba real en https://starwinpvc.cl/visualizador/: un POST, HTTP 202, estado `r
 
 ## Comprobaciones y límites
 
-37 pruebas pasan, incluidas las 945 equivalencias de precios con el motor original y dos pruebas del servicio durable. Recorrido funcional del navegador: seis grupos, cero infracciones Axe. Scroll reversible: dos escenas en cinco tamaños, retorno y movimiento reducido. Verificación pública: portada, cobertura, producto, cotizador, visualizador, contacto, robots, sitemaps, llms, redirecciones y canonical www correctos.
+38 pruebas pasan, incluidas las 945 equivalencias de precios con el motor original y dos pruebas del servicio durable. Recorrido funcional del navegador: seis grupos, cero infracciones Axe. Scroll reversible: dos escenas en cinco tamaños, retorno y movimiento reducido. Verificación pública: portada, cobertura, producto, cotizador, visualizador, contacto, robots, sitemaps, llms, redirecciones y canonical www correctos.
 
-La medición de carga se realiza contra el dominio real, no se confunde con localhost. Se prioriza el render principal del hero y se integra CSS en el HTML para eliminar dos peticiones que bloqueaban la primera pintura. Los resultados finales se registran en `verificacion/rendimiento.json` y `verificacion/produccion/`.
+La medición de carga se realiza contra el dominio real, no se confunde con localhost: Lighthouse móvil registra 91 en rendimiento y 100 en accesibilidad, buenas prácticas y SEO; LCP 3,2 s, TBT 0 ms y CLS 0,001. Se prioriza el render principal del hero y se integra CSS en el HTML para eliminar dos peticiones que bloqueaban la primera pintura. Los resultados finales se registran en `verificacion/rendimiento.json` y `verificacion/produccion/`.
 
-El correo del formulario conserva la modalidad de preparar un mensaje para enviarlo desde la aplicación del visitante; el envío directo requiere configurar un transporte y remitente verificados. WhatsApp, teléfono y correo directo están activos. No se declara comprobada una recepción de correo que no ocurrió.
+Se restaura la integración Web3Forms que utilizaba la web anterior, guardando su clave como secreto de producción en Cloudflare. El transporte se verifica con una prueba simulada de aceptación y rechazo; la API solo confirma el envío si el proveedor responde `success: true`. La consulta GET del endpoint público debe anunciar `mode: send` tras publicar. No se envió un correo de prueba ni se comprobó recepción en la bandeja de entrada. WhatsApp, teléfono y correo directo están activos.
 
 No se garantiza posicionamiento ni número de clics. La verificación del navegador es emulada, no en teléfono físico. El SEO técnico, la publicación y la generación real son comprobaciones distintas.

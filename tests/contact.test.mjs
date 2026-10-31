@@ -23,3 +23,23 @@ test('Transporte configurado simulado: contenido correcto, error honesto y lími
  assert.equal((await handleContactRequest(request(),{env,ip:'mock-limit',fetcher})).status,429);assert.equal(calls,5);
  const fail=await handleContactRequest(request(),{env,ip:'mock-failure',fetcher:async()=>new Response('{}',{status:500})});assert.equal(fail.status,502);assert(!JSON.stringify(await fail.json()).includes('Consulta enviada'));
 });
+test('Web3Forms conserva la integración anterior y solo confirma una aceptación explícita',async()=>{
+ const env={WEB3FORMS_ACCESS_KEY:'mock-web3forms-only'};
+ const configured=await handleContactRequest(new Request('http://localhost:3004/api/contact'),{env});
+ assert.equal((await configured.json()).mode,'send');
+ let calls=0;
+ const fetcher=async(url,options)=>{
+  calls++;assert.equal(url,'https://api.web3forms.com/submit');assert.equal(options.method,'POST');
+  const body=JSON.parse(options.body);
+  assert.equal(body.access_key,env.WEB3FORMS_ACCESS_KEY);assert.equal(body.name,valid.name);assert.equal(body.email,valid.email);
+  assert.equal(body.subject,composeEmail(valid).subject);assert.equal(body.message,composeEmail(valid).body);
+  assert.equal(body.botcheck,false);assert.equal(body.from_name,'Starwin · Consulta web');
+  return new Response('{"success":true}',{status:200});
+ };
+ const accepted=await handleContactRequest(request(),{env,fetcher,rateLimit:false});
+ assert.equal((await accepted.json()).mode,'sent');assert.equal(calls,1);
+ for(const [body,status] of [['{"success":false}',200],['{}',200],['invalid-json',200],['{"success":true}',500]]){
+  const rejected=await handleContactRequest(request(),{env,rateLimit:false,fetcher:async()=>new Response(body,{status})});
+  assert.equal(rejected.status,502);assert.equal((await rejected.json()).mode,undefined);
+ }
+});

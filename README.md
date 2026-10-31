@@ -22,14 +22,14 @@ Fuente del Worker: `worker/visualizer.mjs`; empaquetado: `node scripts/build-wor
 
 Los adaptadores anteriores de Qwen y Google permanecen aislados para desarrollo local y pruebas; no son el proveedor de producción. Los secretos locales no se incluyen en el repositorio.
 
-Google queda como adaptador alternativo separado, sujeto a habilitación explícita de pago. El formulario sigue preparando borradores de correo hasta configurar el servicio de envío.
+Google queda como adaptador alternativo separado, sujeto a habilitación explícita de pago. El formulario de producción reutiliza Web3Forms, la integración de la web anterior, con `WEB3FORMS_ACCESS_KEY` guardada como secreto en Cloudflare. Solo anuncia un envío si el proveedor lo acepta expresamente. Sin credenciales, el entorno local prepara un borrador; Resend permanece como alternativa. No se ha comprobado recepción en la bandeja de entrada.
 
 ## Comprobar
 
-- `npm test`: 37 pruebas, incluyendo precios originales, SEO, formularios y almacenamiento/API de producción con transporte de IA simulado.
+- `npm test`: 38 pruebas, incluyendo precios originales, SEO, formularios y almacenamiento/API de producción con transporte de IA simulado.
 - `npm run typecheck` y `npm run check`: tipos, metadatos, sitemap, enlaces, archivos y schema.
 - `npm run test:browser`: recorrido funcional de navegación, formulario, estimador, PDF, 3D y visualizador simulado.
-- `node scripts/performance-check.mjs inicio`: Lighthouse móvil local. Última medición: 99 rendimiento y 100 accesibilidad/buenas prácticas/SEO; LCP 2,1 s, CLS 0, TBT 0 ms.
+- `node scripts/performance-check.mjs inicio`: Lighthouse móvil; la última medición contra el dominio público registró 91 en rendimiento y 100 en accesibilidad/buenas prácticas/SEO; LCP 3,2 s, CLS 0,001 y TBT 0 ms. Informe: `verificacion/rendimiento.json`.
 - Prueba real del visualizador: únicamente con credencial propia y `STARWIN_ALLOW_LIVE_IMAGE_TEST=1 node scripts/visualizer-live-check.mjs`. Hace una sola generación y conserva el informe; no forma parte de las pruebas automáticas.
 
-Son tamaños y red emulados en Chrome. No son datos de teléfono físico, ranking, indexación ni conversión. No se publicó en GitHub o Cloudflare. Chile y Bolivia necesitan identidad comercial, precios, moneda y SEO independientes.
+Son tamaños y red emulados en Chrome. No son datos de teléfono físico, ranking, indexación ni conversión. Publicado en https://starwinpvc.cl desde `KaraAliOsman/Starwin`, rama `main`, mediante Cloudflare Pages. El registro de publicación, recuperación y límites está en [PUBLICACION-BIOBIO-OCT31.md](diseno/PUBLICACION-BIOBIO-OCT31.md). La propiedad existente de Search Console y sus registros DNS se conservan; queda pendiente enviar el sitemap desde el panel autenticado. Chile y Bolivia necesitan identidad comercial, precios, moneda y SEO independientes.
