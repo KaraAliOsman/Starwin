@@ -19,7 +19,7 @@ try{
    for(const pof of [0,.15,.3,.5,.7,.85,1,.5,0]){
     await page.evaluate(({start,run,pof})=>scrollTo({top:start+run*pof,behavior:'instant'}),{...range,pof});
     await page.waitForFunction(({selector,pof,key})=>Math.abs(Number(document.querySelector(selector).dataset[key==='portal'?'storyProgress':'sceneProgress'])-pof)<.003,{selector,pof,key});
-    const state=await root.evaluate((el,key)=>({transform:getComputedStyle(el.querySelector(key==='portal'?'.hero-portal':'.finish-echo--dark')).transform,opacity:getComputedStyle(el.querySelector(key==='portal'?'.hero-intro':'.finish-echo--dark')).opacity,overflow:document.documentElement.scrollWidth>innerWidth}),key);
+    const state=await root.evaluate((el,key)=>({transform:getComputedStyle(el.querySelector(key==='portal'?'.hero-product-depth':'.finish-echo--dark')).transform,opacity:getComputedStyle(el.querySelector(key==='portal'?'.hero-intro':'.finish-echo--dark')).opacity,overflow:document.documentElement.scrollWidth>innerWidth}),key);
     assert.equal(state.overflow,false);
     if(key==='finish')assert.equal(state.opacity,'1','Finishes stay opaque');
     frames.push({progress:pof,...state});

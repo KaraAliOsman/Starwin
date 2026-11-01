@@ -1,3 +1,5 @@
+> Histórico: este borrador fue sustituido el 1 de noviembre por `src/pages/trabajos-realizados.astro`, con siete fotografías verificadas. Las limitaciones de acceso descritas abajo ya se resolvieron.
+
 # Trabajos realizados · borrador editorial
 
 La página no está publicada. El propietario autorizó reutilizar trabajos de su Facebook, pero el acceso disponible a los perfiles solo entregó el logo y los datos del perfil; las fotos de las publicaciones siguen pendientes.

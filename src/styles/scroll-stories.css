@@ -3,7 +3,7 @@
 .portal-room,.portal-arrival{display:none}
 .portal-story .hero-portal,.portal-story .architectural-hero-photo img,.portal-story .hero-title-line>span{animation:none!important}
 .material-piece--0 img,.material-piece--2 .material-image,.contact-photo img{animation:none!important}
-.portal-story .hero-product-depth{transition:none}
+.portal-story .hero-product-depth{transition:none;transform-origin:0 0}
 .portal-room{position:absolute;inset:0;z-index:0;overflow:clip;pointer-events:none}
 .portal-room picture{display:contents}
 .portal-room img{position:absolute;left:0;top:0;max-width:none;transform-origin:0 0;object-fit:fill}

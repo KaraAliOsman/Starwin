@@ -20,7 +20,8 @@ function scrollClock(root:HTMLElement,measure:()=>void,paint:(p:number)=>void,re
   const stage=root.firstElementChild as HTMLElement;
   const viewport=stage.offsetHeight+parseFloat(getComputedStyle(root).getPropertyValue('--story-nav'));
   run=Math.max(1,root.offsetHeight-viewport);
-  root.dataset.scrollStart=String(start);root.dataset.scrollRun=String(run);last=-1;queue();
+  // Restore progress in the measurement frame; avoid a flash during zoom.
+  root.dataset.scrollStart=String(start);root.dataset.scrollRun=String(run);last=-1;draw();
  };
  addEventListener('scroll',queue,{passive:true});addEventListener('resize',refresh,{passive:true});
  reduced.addEventListener('change',refresh);mobile.addEventListener('change',refresh);
@@ -40,23 +41,24 @@ export function createPortalStory(root:HTMLElement){
  const intro=root.querySelector<HTMLElement>('.hero-intro')!;
  const arrival=root.querySelector<HTMLElement>('.portal-arrival')!;
  let ready=false;
- let geometry:{w:number;h:number;px:number;py:number;fx:number;fy:number;zoom:number;imageW:number;imageH:number;initialScale:number;ix:number;iy:number;ex:number;ey:number;points:number[][]}|undefined;
+ let geometry:{w:number;h:number;frameX:number;frameY:number;fx:number;fy:number;zoom:number;imageW:number;imageH:number;initialScale:number;ix:number;iy:number;ex:number;ey:number;points:number[][]}|undefined;
  const reset=()=>{
   root.classList.remove('story-live');delete root.dataset.storyProgress;
-  for(const el of [plane,frameImage,intro,room,photo,arrival]){el.style.removeProperty('transform');el.style.removeProperty('opacity');el.style.removeProperty('clip-path');}
+  for(const el of [plane,frame,frameImage,intro,room,photo,arrival]){el.style.removeProperty('transform');el.style.removeProperty('opacity');el.style.removeProperty('clip-path');el.style.removeProperty('will-change');}
   arrival.setAttribute('aria-hidden','true');
  };
  const clock=scrollClock(root,()=>{
   if(!ready)return;
   plane.style.removeProperty('transform');
-  const bounds=stage.getBoundingClientRect(),p=position(originalPhoto,bounds),f=position(frame,bounds),planeBox=position(plane,bounds);
+  frame.style.removeProperty('transform');
+  const bounds=stage.getBoundingClientRect(),p=position(originalPhoto,bounds),f=position(frame,bounds);
   const h=Math.min(f.h,f.w*1.25),w=h*.8,left=f.x+(f.w-w)/2,top=f.y+(f.h-h)/2;
   // The camera travels through the left pane; it never flies into the centre post.
   const fx=left+w*.32,fy=top+h*.49;
   const aspect=photo.naturalWidth/photo.naturalHeight;
   const imageW=Math.max(bounds.width,bounds.height*aspect),imageH=imageW/aspect;
   const initialW=Math.max(p.w,p.h*aspect);
-  geometry={w:bounds.width,h:bounds.height,px:planeBox.x,py:planeBox.y,fx,fy,zoom:Math.max(bounds.width/(w*.30),bounds.height/(h*.64))*1.1,
+  geometry={w:bounds.width,h:bounds.height,frameX:f.x,frameY:f.y,fx,fy,zoom:Math.max(bounds.width/(w*.30),bounds.height/(h*.64))*1.1,
    imageW,imageH,initialScale:initialW/imageW,ix:p.x+(p.w-initialW)*.70,iy:p.y+(p.h-initialW/aspect)*(innerWidth<=700?.55:.5),ex:(bounds.width-imageW)*.70,ey:(bounds.height-imageH)*.5,
    points:[[p.x,p.y],[p.x+w*.76,p.y+h*.035],[p.x+p.w,p.y+h*.035],[p.x+p.w,p.y+h*.80],[p.x+w*.76,p.y+h*.80],[p.x,p.y+p.h]]};
   photo.style.width=`${imageW}px`;photo.style.height=`${imageH}px`;
@@ -65,7 +67,9 @@ export function createPortalStory(root:HTMLElement){
   if(!geometry||!ready)return;
   const g=geometry,t=smooth(phase(p,.04,.78)),scale=Math.pow(g.zoom,t);
   const x=(g.w/2-g.fx)*t+g.fx*(1-scale),y=(g.h/2-g.fy)*t+g.fy*(1-scale);
-  plane.style.transform=`translate3d(${x+g.px*(scale-1)}px,${y+g.py*(scale-1)}px,0) scale(${scale})`;
+  // Scale the render rather than a full-viewport transparent GPU surface.
+  frame.style.transform=`translate3d(${x+g.frameX*(scale-1)}px,${y+g.frameY*(scale-1)}px,0) scale(${scale})`;
+  frame.style.willChange=p>.02&&p<.91?'transform':'auto';
   const aperture=g.points.map(([a,b])=>[a*scale+x,b*scale+y]);
   room.style.clipPath=`polygon(${aperture.map(([a,b])=>`${a.toFixed(2)}px ${b.toFixed(2)}px`).join(',')})`;
   // Keep the photographic world behind every newly exposed part of the opening.

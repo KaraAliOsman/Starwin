@@ -1,6 +1,6 @@
 # Starwin · showroom de ventanas
 
-Astro con 36 páginas HTML, 35 URL indexables y 81 redirecciones permanentes. Ventanas de PVC para Concepción y las 33 comunas del Biobío. Identidad cian/oro, Switzer y portada de Patagonia chilena. Dos secuencias reversibles controladas por scroll, para PC y celular.
+Astro con 37 páginas HTML, 36 URL indexables y 81 redirecciones permanentes. Ventanas de PVC para Concepción y las 33 comunas del Biobío. Identidad cian/oro, Switzer y portada de Patagonia chilena. Dos secuencias reversibles controladas por scroll, para PC y celular.
 
 ## Ejecutar
 
@@ -36,4 +36,4 @@ Son tamaños y red emulados en Chrome. No son datos de teléfono físico, rankin
 
 IndexNow notifica cambios públicos después de cada publicación verificada en `main`, mediante [Notify search engines](.github/workflows/indexnow.yml). El archivo de control solo sirve para este protocolo. Preparar sin enviar: `node scripts/indexnow.mjs`; enviar: añadir `--submit`. El estado de cada canal, los requisitos de acceso y los límites están en [BUSCADORES-NOV01.md](diseno/BUSCADORES-NOV01.md).
 
-La [revisión posterior de SEO y trabajos](diseno/REVISION-SEO-TRABAJOS-NOV01.md) completa las variantes históricas sin extensión. `node scripts/legacy-route-check.mjs` comprueba las 81 reglas en producción. La galería de trabajos está preparada en [drafts](drafts/README.md), fuera del sitio público hasta disponer de las fotos y publicaciones verificadas.
+La [revisión posterior de SEO y trabajos](diseno/REVISION-SEO-TRABAJOS-NOV01.md) completa las variantes históricas sin extensión. `node scripts/legacy-route-check.mjs` comprueba las 81 reglas en producción. La galería pública `/trabajos-realizados/` reúne siete fotografías verificadas del Facebook de Starwin, con filtros y ampliación accesible. Fuentes y revisión: [TRABAJOS-NOV01.md](diseno/TRABAJOS-NOV01.md).

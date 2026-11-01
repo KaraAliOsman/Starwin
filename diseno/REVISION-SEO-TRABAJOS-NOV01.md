@@ -1,3 +1,5 @@
+> Actualización: galería completada con siete fotos públicas verificadas; ver [TRABAJOS-NOV01.md](TRABAJOS-NOV01.md). El estado pendiente de abajo es histórico.
+
 # Revisión pública de SEO y trabajos realizados · 1 de noviembre de 2026
 
 ## Lo verificado en esta revisión

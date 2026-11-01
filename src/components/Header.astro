@@ -2,7 +2,7 @@
 import Icon from './Icon.astro';
 import QuoteEntry from './QuoteEntry.astro';
 const path=Astro.url.pathname;
-const links=[['Ventanas','/ventanas/'],['Acabados','/colores/'],['Herramientas','/herramientas/'],['Guías','/blog/'],['Empresas','/empresas/']];
+const links=[['Ventanas','/ventanas/'],['Acabados','/colores/'],['Trabajos','/trabajos-realizados/'],['Herramientas','/herramientas/'],['Empresas','/empresas/']];
 ---
 <a class="skip-link" href="#contenido">Saltar al contenido</a>
 <header class="site-header">
@@ -11,6 +11,7 @@ const links=[['Ventanas','/ventanas/'],['Acabados','/colores/'],['Herramientas',
   <nav class="main-nav" id="navegacion" aria-label="Principal">
    {links.map(([label,href])=><a href={href} aria-current={path.startsWith(href)?'page':undefined}>{label}</a>)}
    <a href="/nosotros/" class="nav-mobile-extra">Starwin</a>
+   <a href="/blog/" class="nav-mobile-extra">Guías</a>
   </nav>
   <div class="header-actions">
    <a href="/cotizar/" class="btn btn-small quote-launch" data-quote-open aria-current={path==='/cotizar/'?'page':undefined}><span>Cotizar</span><Icon name="diagonal" size={18}/></a>
