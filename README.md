@@ -1,6 +1,6 @@
 # Starwin · showroom de ventanas
 
-Astro con 36 páginas HTML, 35 URL indexables y 63 redirecciones permanentes. Ventanas de PVC para Concepción y las 33 comunas del Biobío. Identidad cian/oro, Switzer y portada de Patagonia chilena. Dos secuencias reversibles controladas por scroll, para PC y celular.
+Astro con 36 páginas HTML, 35 URL indexables y 81 redirecciones permanentes. Ventanas de PVC para Concepción y las 33 comunas del Biobío. Identidad cian/oro, Switzer y portada de Patagonia chilena. Dos secuencias reversibles controladas por scroll, para PC y celular.
 
 ## Ejecutar
 
@@ -35,3 +35,5 @@ Google queda como adaptador alternativo separado, sujeto a habilitación explíc
 Son tamaños y red emulados en Chrome. No son datos de teléfono físico, ranking, indexación ni conversión. Publicado en https://starwinpvc.cl desde `KaraAliOsman/Starwin`, rama `main`, mediante Cloudflare Pages. El registro de publicación, recuperación y límites está en [PUBLICACION-BIOBIO-OCT31.md](diseno/PUBLICACION-BIOBIO-OCT31.md). El 1 de noviembre se envió el sitemap desde las propiedades existentes de Google Search Console y Bing Webmaster Tools: Google lo muestra como «Correcto» y Bing como «Success». Google también confirma que la página regional y el cotizador están indexados. Esto no acredita que todas las URL estén indexadas. Chile y Bolivia necesitan identidad comercial, precios, moneda y SEO independientes.
 
 IndexNow notifica cambios públicos después de cada publicación verificada en `main`, mediante [Notify search engines](.github/workflows/indexnow.yml). El archivo de control solo sirve para este protocolo. Preparar sin enviar: `node scripts/indexnow.mjs`; enviar: añadir `--submit`. El estado de cada canal, los requisitos de acceso y los límites están en [BUSCADORES-NOV01.md](diseno/BUSCADORES-NOV01.md).
+
+La [revisión posterior de SEO y trabajos](diseno/REVISION-SEO-TRABAJOS-NOV01.md) completa las variantes históricas sin extensión. `node scripts/legacy-route-check.mjs` comprueba las 81 reglas en producción. La galería de trabajos está preparada en [drafts](drafts/README.md), fuera del sitio público hasta disponer de las fotos y publicaciones verificadas.

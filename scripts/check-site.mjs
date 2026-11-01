@@ -148,6 +148,14 @@ for (const [from, to, status] of redirects) {
   if (target.hash) assert(pages.get(localFile(target.pathname))?.ids.has(decodeURIComponent(target.hash.slice(1))), `Redirección con ancla inexistente: ${to}`);
 }
 for (const [, to] of redirects) assert(!redirectSources.has(to), `Cadena de redirecciones innecesaria: ${to}`);
+// GitHub Pages also exposed legacy .html pages at their extensionless URLs.
+for (const [from, to] of redirects.filter(([from]) => from.endsWith('.html'))) {
+  const stem = from.slice(0, -5);
+  if (stem === '/index' || to === stem + '/') continue;
+  for (const variant of [stem, stem + '/']) {
+    assert(redirects.some(([source, target]) => source === variant && target === to), `Falta la variante histórica ${variant} → ${to}`);
+  }
+}
 for (const legacy of ['/blog-comparativa-materiales', '/blog-comparativa-materiales/']) {
   assert(redirects.some(([from, to, status]) => from === legacy && to === '/blog/pvc-o-aluminio/' && status === '301'), `Falta recuperar la URL histórica detectada en Search Console: ${legacy}`);
 }

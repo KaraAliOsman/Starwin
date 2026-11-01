@@ -63,3 +63,22 @@
 /blog-guia-compra.html /proceso/ 301
 /gracias.html /contacto/ 301
 /sitemap.xml /sitemap-index.xml 301
+# Variantes sin extensión de las páginas antiguas.
+/detalles-tecnicos /blog/pvc-y-termopanel/ 301
+/detalles-tecnicos/ /blog/pvc-y-termopanel/ 301
+/beneficios /blog/pvc-y-termopanel/ 301
+/beneficios/ /blog/pvc-y-termopanel/ 301
+/blog-eficiencia-estilo /blog/pvc-y-termopanel/ 301
+/blog-eficiencia-estilo/ /blog/pvc-y-termopanel/ 301
+/blog-ahorro-energetico /blog/pvc-y-termopanel/ 301
+/blog-ahorro-energetico/ /blog/pvc-y-termopanel/ 301
+/blog-clima-sur /blog/instalacion-ventanas-concepcion/ 301
+/blog-clima-sur/ /blog/instalacion-ventanas-concepcion/ 301
+/blog-disenos-acabados /colores/ 301
+/blog-disenos-acabados/ /colores/ 301
+/blog-impacto-ambiental /blog/mantenimiento-ventanas-pvc/ 301
+/blog-impacto-ambiental/ /blog/mantenimiento-ventanas-pvc/ 301
+/blog-guia-compra /proceso/ 301
+/blog-guia-compra/ /proceso/ 301
+/gracias /contacto/ 301
+/gracias/ /contacto/ 301

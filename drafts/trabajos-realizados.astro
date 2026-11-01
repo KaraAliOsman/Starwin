@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import Icon from '../components/Icon.astro';
+import {works} from '../data/works';
+import {site,wa} from '../config/site';
+import {businessId,canonicalUrl} from '../lib/seo';
+const ready=works.length>0;
+const categories=[...new Set(works.map(work=>work.category))];
+const schema={
+  '@context':'https://schema.org','@type':'CollectionPage',
+  '@id':`${canonicalUrl('/trabajos-realizados/')}#trabajos`,
+  name:'Trabajos realizados por Starwin',
+  about:{'@id':businessId},
+  ...(ready?{mainEntity:{'@type':'ItemList',itemListElement:works.map((work,index)=>({
+    '@type':'ListItem',position:index+1,item:{'@type':'CreativeWork',name:work.title,
+    description:work.description,url:`${canonicalUrl('/trabajos-realizados/')}#${work.slug}`,
+    creator:{'@id':businessId},image:work.photos.map(photo=>new URL(photo.src,site.url).href),
+    isBasedOn:work.sourceUrl},
+  }))}}:{}),
+};
+---
+<Layout title="Trabajos realizados | Ventanas de PVC Starwin en Biobío" description="Conoce los trabajos de ventanas y puertas de PVC de Starwin. Fotografías de nuestras instalaciones y un contacto directo para tu proyecto en el Biobío." schema={schema} noindex={!ready}>
+  <div class="work-page">
+    <Breadcrumb items={[{name:'Trabajos realizados',href:'/trabajos-realizados/'}]}/>
+    <section class="work-intro wrap">
+      <h1>Trabajos realizados.</h1>
+      <p>Ventanas a medida.<br/>Así quedan, en su lugar.</p>
+    </section>
+    {ready ? <>
+      {categories.length>1&&<div class="wrap work-filters" role="group" aria-label="Filtrar trabajos">
+        <button type="button" data-work-filter="Todos" aria-pressed="true">Todos</button>
+        {categories.map(category=><button type="button" data-work-filter={category} aria-pressed="false">{category}</button>)}
+      </div>}
+      <section class="wrap work-gallery" aria-label="Instalaciones Starwin">
+        {works.map((work,index)=><article class:list={['work-project',index%3===0&&'work-project--wide']} data-work-category={work.category} id={work.slug}>
+          <div class="work-photos">
+            {work.photos.map((photo,photoIndex)=><button class="work-photo" type="button" data-work-image={photo.src} data-work-alt={photo.alt} data-work-caption={work.title} aria-label={`Ampliar: ${photo.alt}`}>
+              <img src={photo.src} width={photo.width} height={photo.height} alt={photo.alt} loading={index===0&&photoIndex===0?'eager':'lazy'} fetchpriority={index===0&&photoIndex===0?'high':'auto'} decoding="async"/>
+              <span class="work-enlarge" aria-hidden="true"><Icon name="plus" size={18}/></span>
+            </button>)}
+          </div>
+          <div class="work-caption"><div><h2>{work.title}</h2>{work.location&&<p class="work-location">{work.location}</p>}</div><p>{work.description}</p><a href={work.sourceUrl} target="_blank" rel="noopener noreferrer">Ver publicación <Icon name="diagonal" size={15}/></a></div>
+        </article>)}
+      </section>
+      <section class="work-contact"><div class="wrap"><h2>Ahora, tu proyecto.</h2><a href={wa('Hola Starwin, vi sus trabajos realizados y quiero conversar sobre mi proyecto.')} class="btn" target="_blank" rel="noopener noreferrer">Conversemos <Icon name="diagonal" size={18}/></a></div></section>
+    </> : <section class="wrap work-draft" aria-labelledby="work-draft-title">
+      <div><h2 id="work-draft-title">Nuestros trabajos,<br/>en Facebook.</h2><p>Estamos preparando esta selección. Mientras tanto, puedes ver nuestras publicaciones en Facebook.</p><a href={site.facebook} class="text-link" target="_blank" rel="noopener noreferrer">Ver trabajos en Facebook <Icon name="diagonal" size={18}/></a></div>
+      <a href={wa('Hola Starwin, quiero conocer sus trabajos y consultar por mi proyecto.')} class="work-draft-contact" target="_blank" rel="noopener noreferrer"><span>Cuéntanos qué necesitas.</span><Icon name="diagonal" size={24}/></a>
+    </section>}
+  </div>
+  {ready&&<dialog class="work-viewer" aria-label="Fotografía del trabajo"><button class="work-viewer-close" type="button" aria-label="Cerrar fotografía">Cerrar <span aria-hidden="true">×</span></button><figure><img alt=""/><figcaption></figcaption></figure></dialog>}
+</Layout>
+<script>
+  const filters=document.querySelectorAll<HTMLButtonElement>('[data-work-filter]');
+  filters.forEach(button=>button.addEventListener('click',()=>{
+    filters.forEach(filter=>filter.setAttribute('aria-pressed',String(filter===button)));
+    document.querySelectorAll<HTMLElement>('[data-work-category]').forEach(project=>{project.hidden=button.dataset.workFilter!=='Todos'&&project.dataset.workCategory!==button.dataset.workFilter;});
+  }));
+  const viewer=document.querySelector<HTMLDialogElement>('.work-viewer');
+  let origin:HTMLButtonElement|undefined,previousOverflow='';
+  const close=()=>viewer?.close();
+  document.querySelectorAll<HTMLButtonElement>('[data-work-image]').forEach(button=>button.addEventListener('click',()=>{
+    if(!viewer)return;
+    const image=viewer.querySelector('img'),caption=viewer.querySelector('figcaption');
+    if(!image||!caption)return;
+    image.src=button.dataset.workImage||'';image.alt=button.dataset.workAlt||'';caption.textContent=button.dataset.workCaption||'';
+    origin=button;previousOverflow=document.body.style.overflow;document.body.style.overflow='hidden';viewer.showModal();
+  }));
+  viewer?.querySelector('button')?.addEventListener('click',close);
+  viewer?.addEventListener('click',event=>{if(event.target===viewer)close();});
+  viewer?.addEventListener('close',()=>{document.body.style.overflow=previousOverflow;origin?.focus();});
+</script>
+<style>
+  .work-page{padding-bottom:0}.work-intro{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:end;padding-top:40px;padding-bottom:64px}.work-intro h1{font-size:clamp(44px,6vw,88px);line-height:1;letter-spacing:-.055em;font-weight:500;max-width:12ch;margin:0}.work-intro>p{font-size:clamp(20px,2.1vw,28px);line-height:1.3;margin:0;max-width:24ch}
+  .work-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}.work-filters button{min-height:46px;padding:12px 20px;border:0;border-radius:0;background:#edf1f2;color:var(--ink);font:inherit;cursor:pointer}.work-filters button[aria-pressed=true]{background:var(--ink);color:white}.work-filters button:focus-visible,.work-photo:focus-visible{outline:3px solid var(--brand);outline-offset:4px}
+  .work-gallery{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:80px 32px;padding-bottom:104px}.work-project{grid-column:span 6;min-width:0}.work-project--wide{grid-column:1/-1}.work-project[hidden]{display:none}.work-photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px;align-items:start}.work-photo{position:relative;padding:0;border:0;border-radius:0;background:#edf1f2;cursor:zoom-in;display:block;width:100%;overflow:hidden}.work-photo img{width:100%;height:auto;display:block;aspect-ratio:4/3;object-fit:cover;transition:transform 350ms cubic-bezier(.2,.75,.3,1)}.work-project--wide .work-photo img{aspect-ratio:16/10}.work-enlarge{position:absolute;bottom:16px;right:16px;display:grid;place-items:center;width:40px;height:40px;background:#fff;color:var(--ink)}
+  .work-caption{display:grid;grid-template-columns:1fr;gap:14px;padding-top:20px;align-items:start}.work-caption h2{font-size:clamp(24px,2.5vw,34px);line-height:1.12;letter-spacing:-.03em;font-weight:500;margin:0}.work-caption p{font-size:16px;line-height:1.55;margin:0;max-width:46ch}.work-caption .work-location{margin-top:6px}.work-caption>a{display:inline-flex;align-items:center;gap:8px;font-size:14px;min-height:44px;justify-self:start}.work-project--wide .work-caption{grid-template-columns:1.2fr 1fr auto;gap:40px}
+  .work-contact{background:var(--brand-gold);padding:64px 0}.work-contact>.wrap{display:flex;align-items:center;justify-content:space-between;gap:28px}.work-contact h2{font-size:clamp(32px,4vw,52px);font-weight:500;line-height:1.05;letter-spacing:-.035em;margin:0}.work-contact .btn{background:var(--ink);color:white}
+  .work-draft{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(32px,5vw,80px);align-items:stretch;padding-bottom:88px}.work-draft>div{background:#edf3f5;padding:clamp(28px,5vw,64px)}.work-draft h2{font-size:clamp(32px,4vw,52px);font-weight:500;line-height:1.08;letter-spacing:-.04em;margin:0 0 24px}.work-draft p{max-width:35ch;font-size:17px;line-height:1.5;margin-bottom:28px}.work-draft-contact{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding:32px;background:var(--brand);color:white;font-size:28px;line-height:1.15;letter-spacing:-.025em}
+  .work-viewer{position:fixed;inset:0;border:0;margin:auto;padding:64px 24px 24px;width:min(1280px,100vw - 32px);max-height:calc(100dvh - 32px);background:white;color:var(--ink)}.work-viewer::backdrop{background:#101b22d9}.work-viewer-close{position:absolute;top:12px;right:16px;display:flex;align-items:center;gap:12px;min-height:44px;padding:8px;border:0;background:white;color:var(--ink);font:inherit;cursor:pointer}.work-viewer-close span{font-size:26px}.work-viewer figure{margin:0}.work-viewer figure img{display:block;width:100%;height:auto;max-height:calc(100dvh - 180px);object-fit:contain}.work-viewer figcaption{padding-top:16px;font-size:16px}
+  @media(hover:hover){.work-photo:hover img{transform:scale(1.025)}}
+  @media(max-width:700px){.work-intro{grid-template-columns:1fr;gap:24px;padding-top:24px;padding-bottom:36px}.work-intro h1{font-size:clamp(38px,10.5vw,58px);max-width:12ch}.work-intro>p{font-size:20px}.work-gallery{grid-template-columns:1fr;gap:48px;padding-bottom:56px}.work-project,.work-project--wide{grid-column:1}.work-photos{grid-template-columns:1fr}.work-project--wide .work-photo img{aspect-ratio:4/3}.work-caption,.work-project--wide .work-caption{grid-template-columns:1fr;gap:12px}.work-caption h2{font-size:28px}.work-contact{padding:40px 0}.work-contact>.wrap{display:block}.work-contact .btn{margin-top:24px}.work-draft{grid-template-columns:1fr;gap:16px;padding-bottom:48px}.work-draft>div{padding:28px 24px}.work-draft-contact{font-size:24px;min-height:140px;padding:24px}.work-viewer{width:100%;max-height:100dvh;padding:calc(64px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom));min-height:100dvh}.work-viewer-close{top:calc(12px + env(safe-area-inset-top))}.work-viewer figure img{max-height:calc(100dvh - 180px)}}
+  @media(prefers-reduced-motion:reduce){.work-photo img{transition:none}}
+</style>
