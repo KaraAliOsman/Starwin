@@ -148,6 +148,9 @@ for (const [from, to, status] of redirects) {
   if (target.hash) assert(pages.get(localFile(target.pathname))?.ids.has(decodeURIComponent(target.hash.slice(1))), `Redirección con ancla inexistente: ${to}`);
 }
 for (const [, to] of redirects) assert(!redirectSources.has(to), `Cadena de redirecciones innecesaria: ${to}`);
+for (const legacy of ['/blog-comparativa-materiales', '/blog-comparativa-materiales/']) {
+  assert(redirects.some(([from, to, status]) => from === legacy && to === '/blog/pvc-o-aluminio/' && status === '301'), `Falta recuperar la URL histórica detectada en Search Console: ${legacy}`);
+}
 
 assert(!home.includes('component-export="default"'), 'La portada no debe hidratar React sin necesidad.');
 const report = {

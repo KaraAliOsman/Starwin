@@ -17,7 +17,7 @@ for(const route of ['/','/ventanas-pvc-biobio/','/ventanas/corredera-pro70/','/c
  if(route==='/ventanas-pvc-biobio/')for(const city of ['Concepción','Los Ángeles','Arauco','Tirúa','Alto Biobío'])assert(body.includes(city));
  report.checks.push({route,status:response.status});
 }
-for(const [from,to]of [['/configurador.html','/cotizador/'],['/productos.html','/ventanas/'],['/sitemap.xml','/sitemap-index.xml']]){
+for(const [from,to]of [['/configurador.html','/cotizador/'],['/productos.html','/ventanas/'],['/sitemap.xml','/sitemap-index.xml'],['/blog-comparativa-materiales','/blog/pvc-o-aluminio/'],['/blog-comparativa-materiales/','/blog/pvc-o-aluminio/']]){
  const response=await fetch(base+from,{redirect:'manual'});assert.equal(response.status,301,from);assert.equal(new URL(response.headers.get('location'),base).pathname,to);report.checks.push({redirect:from,to,status:301});
 }
 const www=await fetch('https://www.starwinpvc.cl/',{redirect:'manual'});assert.equal(www.status,301);assert.equal(www.headers.get('location'),base+'/');

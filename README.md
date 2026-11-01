@@ -1,6 +1,6 @@
 # Starwin · showroom de ventanas
 
-Astro con 36 páginas HTML, 35 URL indexables y 61 redirecciones permanentes. Ventanas de PVC para Concepción y las 33 comunas del Biobío. Identidad cian/oro, Switzer y portada de Patagonia chilena. Dos secuencias reversibles controladas por scroll, para PC y celular.
+Astro con 36 páginas HTML, 35 URL indexables y 63 redirecciones permanentes. Ventanas de PVC para Concepción y las 33 comunas del Biobío. Identidad cian/oro, Switzer y portada de Patagonia chilena. Dos secuencias reversibles controladas por scroll, para PC y celular.
 
 ## Ejecutar
 
@@ -32,6 +32,6 @@ Google queda como adaptador alternativo separado, sujeto a habilitación explíc
 - `node scripts/performance-check.mjs inicio`: Lighthouse móvil; la última medición contra el dominio público registró 91 en rendimiento y 100 en accesibilidad/buenas prácticas/SEO; LCP 3,2 s, CLS 0,001 y TBT 0 ms. Informe: `verificacion/rendimiento.json`.
 - Prueba real del visualizador: únicamente con credencial propia y `STARWIN_ALLOW_LIVE_IMAGE_TEST=1 node scripts/visualizer-live-check.mjs`. Hace una sola generación y conserva el informe; no forma parte de las pruebas automáticas.
 
-Son tamaños y red emulados en Chrome. No son datos de teléfono físico, ranking, indexación ni conversión. Publicado en https://starwinpvc.cl desde `KaraAliOsman/Starwin`, rama `main`, mediante Cloudflare Pages. El registro de publicación, recuperación y límites está en [PUBLICACION-BIOBIO-OCT31.md](diseno/PUBLICACION-BIOBIO-OCT31.md). La propiedad existente de Search Console y sus registros DNS se conservan; queda pendiente enviar el sitemap desde el panel autenticado. Chile y Bolivia necesitan identidad comercial, precios, moneda y SEO independientes.
+Son tamaños y red emulados en Chrome. No son datos de teléfono físico, ranking, indexación ni conversión. Publicado en https://starwinpvc.cl desde `KaraAliOsman/Starwin`, rama `main`, mediante Cloudflare Pages. El registro de publicación, recuperación y límites está en [PUBLICACION-BIOBIO-OCT31.md](diseno/PUBLICACION-BIOBIO-OCT31.md). El 1 de noviembre se envió el sitemap desde las propiedades existentes de Google Search Console y Bing Webmaster Tools: Google lo muestra como «Correcto» y Bing como «Success». Google también confirma que la página regional y el cotizador están indexados. Esto no acredita que todas las URL estén indexadas. Chile y Bolivia necesitan identidad comercial, precios, moneda y SEO independientes.
 
 IndexNow notifica cambios públicos después de cada publicación verificada en `main`, mediante [Notify search engines](.github/workflows/indexnow.yml). El archivo de control solo sirve para este protocolo. Preparar sin enviar: `node scripts/indexnow.mjs`; enviar: añadir `--submit`. El estado de cada canal, los requisitos de acceso y los límites están en [BUSCADORES-NOV01.md](diseno/BUSCADORES-NOV01.md).
