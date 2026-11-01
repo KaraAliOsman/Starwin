@@ -26,7 +26,7 @@ Google queda como adaptador alternativo separado, sujeto a habilitación explíc
 
 ## Comprobar
 
-- `npm test`: 41 pruebas, incluyendo precios originales, SEO, formularios, avisos IndexNow y almacenamiento/API de producción con transporte de IA simulado.
+- `npm test`: 42 pruebas, incluyendo precios originales, SEO, formularios, avisos IndexNow y almacenamiento/API de producción con transporte de IA simulado.
 - `npm run typecheck` y `npm run check`: tipos, metadatos, sitemap, enlaces, archivos y schema.
 - `npm run test:browser`: recorrido funcional de navegación, formulario, estimador, PDF, 3D y visualizador simulado.
 - `node scripts/performance-check.mjs inicio`: Lighthouse móvil; la última medición contra el dominio público registró 91 en rendimiento y 100 en accesibilidad/buenas prácticas/SEO; LCP 3,2 s, CLS 0,001 y TBT 0 ms. Informe: `verificacion/rendimiento.json`.

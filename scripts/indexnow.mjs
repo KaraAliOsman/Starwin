@@ -23,6 +23,17 @@ export function sitemapLocations(xml) {
 // Ignore code and presentation changes; retain visible text, metadata, links,
 // image sources/alt text and structured data, which affect search discovery.
 export function contentFingerprint(html) {
+  // Cloudflare's public email obfuscation uses a fresh XOR key per response.
+  // Compare the public address, not that transient representation.
+  const email = hex => {
+    if (hex.length < 4 || hex.length % 2) return null;
+    const bytes = Uint8Array.from(hex.match(/../g), pair => Number.parseInt(pair, 16));
+    try { return new TextDecoder('utf-8', {fatal: true}).decode(bytes.slice(1).map(byte => byte ^ bytes[0])); }
+    catch { return null; }
+  };
+  html = html.replace(/href=(["'])\/cdn-cgi\/l\/email-protection#([a-f0-9]+)\1/gi, (tag, quote, hex) => {
+    const decoded = email(hex); return decoded === null ? tag : `href=${quote}mailto:${decoded}${quote}`;
+  }).replace(/<span\b[^>]*data-cfemail=(["'])([a-f0-9]+)\1[^>]*>[^]*?<\/span>/gi, (tag, quote, hex) => email(hex) ?? tag);
   const attrs = (tag) => [...tag.matchAll(/\b(?:name|property|content|href|src|srcset|alt)\s*=\s*(?:"[^"]*"|'[^']*')/gi)].map(m => m[0]).join(' ');
   const metadata = [...html.matchAll(/<(?:meta|img|a|link)\b[^>]*>/gi)]
     .filter(m => !/^<link\b/i.test(m[0]) || /\brel=["'](?:canonical|alternate)["']/i.test(m[0]))
@@ -37,6 +48,15 @@ export function contentFingerprint(html) {
 export function changedUrls(current, previous = {}) {
   const urls = new Set([...Object.keys(current), ...Object.keys(previous)]);
   return [...urls].filter(url => current[url] !== previous[url]).map(publicUrl).sort();
+}
+
+export function notificationPlan(current, saved) {
+  // The v1 fingerprint included rotating Cloudflare email links. Rebase only
+  // existing URLs once; additions and removals still produce notifications.
+  const previous = saved?.version === 1
+    ? Object.fromEntries(Object.entries(saved.pages).map(([url, hash]) => [url, current[url] ?? hash]))
+    : saved?.pages || {};
+  return {urls: changedUrls(current, previous), baselineMigration: saved?.version === 1 ? 'v1_to_v2' : null};
 }
 
 async function get(url) {
@@ -93,11 +113,10 @@ export async function main() {
   const key = (await fs.readFile('public/indexnow-key.txt', 'utf8')).trim();
   if (!/^[a-f0-9]{64}$/.test(key)) throw Error('Archivo de verificación IndexNow inválido.');
   if (submit && (await (await get(ORIGIN + '/indexnow-key.txt')).text()).trim() !== key) throw Error('El archivo público de verificación no coincide.');
-  let previous = {};
+  let saved;
   try {
-    const saved = JSON.parse(await fs.readFile(STATE, 'utf8'));
-    if (saved.origin !== ORIGIN || saved.version !== 1) throw Error('Registro de notificaciones incompatible.');
-    previous = saved.pages;
+    saved = JSON.parse(await fs.readFile(STATE, 'utf8'));
+    if (saved.origin !== ORIGIN || ![1, 2].includes(saved.version) || !saved.pages || typeof saved.pages !== 'object') throw Error('Registro de notificaciones incompatible.');
   } catch (error) { if (error.code !== 'ENOENT') throw error; }
   const urls = await listPages(), current = {};
   for (const url of urls) {
@@ -107,12 +126,12 @@ export async function main() {
   }
   // A newer deployment could replace production while pages are being read.
   if (revision && (await (await get(ORIGIN + '/build-revision.txt')).text()).trim() !== revision) throw Error('Producción cambió durante la comprobación. No se notificó.');
-  const changed = changedUrls(current, previous);
-  const report = {date: new Date().toISOString(), origin: ORIGIN, revision: revision || null, mode: submit ? 'submit' : 'dry_run', pages: urls.length, changed: changed.length, urls: changed, result: null};
+  const {urls: changed, baselineMigration} = notificationPlan(current, saved);
+  const report = {date: new Date().toISOString(), origin: ORIGIN, revision: revision || null, mode: submit ? 'submit' : 'dry_run', pages: urls.length, changed: changed.length, urls: changed, baselineMigration, result: null};
   if (submit && changed.length) report.result = await notify(changed, key);
   if (submit) {
     await fs.mkdir(path.dirname(STATE), {recursive: true});
-    await fs.writeFile(STATE, JSON.stringify({version: 1, origin: ORIGIN, date: report.date, pages: current}, null, 2));
+    await fs.writeFile(STATE, JSON.stringify({version: 2, origin: ORIGIN, date: report.date, pages: current}, null, 2));
   }
   await fs.mkdir('verificacion/indexnow', {recursive: true});
   await fs.writeFile('verificacion/indexnow/ultimo-envio.json', JSON.stringify(report, null, 2));
