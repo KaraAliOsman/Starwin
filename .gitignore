@@ -2,6 +2,7 @@ node_modules/
 .tools/
 output/
 .astro/
+.cache/
 dist/
 .env
 .env.*

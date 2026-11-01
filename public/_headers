@@ -9,3 +9,10 @@
 /api/*
   Cache-Control: private, no-store
   X-Robots-Tag: noindex, nofollow
+
+/build-revision.txt
+  Cache-Control: no-store
+  X-Robots-Tag: noindex
+
+/indexnow-key.txt
+  X-Robots-Tag: noindex
